@@ -11,5 +11,5 @@ public class Card
     public boolean getIsOpen(){return isOpen;}
 
     public void setValue (char v){valueOfCard=v;}
-    public char getValue ()(return valueOfCard;)
+    public char getValue (){return valueOfCard;}
 }
