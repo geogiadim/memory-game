@@ -6,11 +6,11 @@ public class Table
         tableOfCards = new Card[x][y];
     }
 
-    public openCard(int x,int y){
+    public void openCard(int x,int y){
         //send openCard to UI;
     }
 
-    public closeCard(int x,int y){
+    public void closeCard(int x,int y){
         //send closeCard to UI;
     }
 

@@ -1,6 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello, let's test your memory!!");
+        //if (!args[1]) {}
+        UI.getMode();
     }
 }
