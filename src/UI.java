@@ -1,8 +1,10 @@
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UI {
+
+    final static String ANSI_CLS = "\u001b[2J";
+    final static String ANSI_HOME = "\u001b[H";
 
     public static int getMode(){
         intro();
@@ -12,9 +14,7 @@ public class UI {
     }
 
     private static void intro(){
-        final String ANSI_CLS = "\u001b[2J";
-        final String ANSI_HOME = "\u001b[H";
-        System.out.print(ANSI_CLS + ANSI_HOME);
+        clearScreen();
         System.out.flush();
         System.out.println("       ________________________    ");
         System.out.println("      /|                       |   ");
@@ -24,5 +24,14 @@ public class UI {
         System.out.println("     | |_______________________|   ");
         System.out.println("     |/_______________________/    ");
         System.out.print("\nChoose Mode: ");
+    }
+
+    private static void clearScreen(){
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
     }
 }
