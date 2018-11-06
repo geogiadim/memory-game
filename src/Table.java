@@ -19,16 +19,29 @@ public class Table
     }
 
     /**
+     * Appears the card
      *
-     * @param x
-     * @param y
+     * @param x the row on which the card is inserted
+     * @param y the column on which the card is inserted
      */
     public void openCard(int x,int y){
         //UI
     }
+    /**
+     * Hide the card
+     *
+     * @param x the row on which the card is inserted
+     * @param y the column on which the card is inserted
+     */
     public void closeCard(int x,int y){
         //UI
     }
+    /**
+     * Set the card as paired and makes it unable to be chosen again.
+     *
+     * @param x the row on which the card is inserted
+     * @param y the column on which the card is inserted
+     */
     public void unableCard(int x,int y){
         tableOfCards[x][y].setPairedTrue();
     }
