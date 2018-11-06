@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * @author Giorgos Giannios
+ */
 public class Main {
 
     public static void main(String[] args)
@@ -17,5 +20,6 @@ public class Main {
         else if (mode==2)
             System.out.println("You have chosen the double version.\nLet's play!");
         else System.out.println("You have chosen the triple version.\nLet's play!");
+
     }
 }

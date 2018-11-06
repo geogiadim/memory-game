@@ -1,3 +1,7 @@
+/**
+ * @author Giorgos Giannios
+ *
+ */
 public class Card
 {
     private char valueOfCard;
