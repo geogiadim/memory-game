@@ -1,5 +1,6 @@
 /**
  * @author Giorgos Giannios
+ * @author Giorgos Christidis
  */
 
 public class Main {

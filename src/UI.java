@@ -16,22 +16,27 @@ public class UI {
         while (mode!=1 && mode!=2 && mode!=3)
         {
             clearScreen();
-            System.out.println("    You have to chose one of the three modes. Try again:\n");
+            intro();
+            System.out.println("    You have to chose one of the three modes.");
+            System.out.println("    Try again:\n");
             mode=scanner.nextInt();
         }
 
         if (mode==1){
             clearScreen();
+            intro();
             System.out.println("    You have chosen Basic mode.");
             System.out.println("    Let's play!");
         }
         else if (mode==2){
             clearScreen();
+            intro();
             System.out.println("    You have chosen Double mode.");
             System.out.println("    Let's play!");
         }
         else {
             clearScreen();
+            intro();
             System.out.println("    You have chosen Triple mode.");
             System.out.println("    Let's play!");
         }
