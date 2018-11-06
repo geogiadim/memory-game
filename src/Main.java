@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 /**
  * @author Giorgos Giannios
+ * This isthe main class whichh asks the player which version of the game wants to play.
  */
 public class Main {
 
