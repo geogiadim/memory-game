@@ -6,7 +6,7 @@ public class Logic {
     private Table[][] newTable;
     private int mode;
 
-    public void Logic(int mode)
+    public Logic(int mode)
     {
         this.mode=mode;
         if (mode==1)
