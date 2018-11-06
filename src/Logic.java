@@ -7,7 +7,7 @@ public class Logic {
     private Table[][] newTable;
     private int mode;
 
-    public void Logic(int mode) {
+    public Logic(int mode){
         this.mode = mode;
         if (mode == 1)
             newTable = new Table[4][6];
@@ -27,6 +27,7 @@ public class Logic {
                 break;
         }
     }
+
     private void basicGame ()
     {
         //codeαα

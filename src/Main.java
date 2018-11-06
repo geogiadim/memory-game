@@ -6,11 +6,13 @@ import java.util.Scanner;
  */
 public class Main {
 
+    private static int mode;
+    private static Logic log;
     public static void main(String[] args)
     {
         System.out.println("There are three versions of the game.\nType 1: for the basic version.\nType 2: for the double version.\nType 3: for the triple version.");
         Scanner scanner = new Scanner(System.in);
-        int mode = scanner.nextInt();
+        mode = scanner.nextInt();
         while (mode!=1 && mode!=2 && mode!=3)
         {
             System.out.println("You have to chose one of the tree versions. Try again");
@@ -22,5 +24,9 @@ public class Main {
             System.out.println("You have chosen the double version.\nLet's play!");
         else System.out.println("You have chosen the triple version.\nLet's play!");
 
+        log = new Logic(mode);
+
     }
+
+
 }

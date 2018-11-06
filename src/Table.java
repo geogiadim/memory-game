@@ -15,7 +15,6 @@ public class Table
     public Table (int x,int y)
     {
         tableOfCards= new Card[x][y];
-
     }
 
     /**
