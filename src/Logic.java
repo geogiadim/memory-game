@@ -28,7 +28,7 @@ public class Logic {
 
     public void tripleGame ()
     {
-        //code
+        //codeαα
     }
 }
 
