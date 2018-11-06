@@ -26,6 +26,7 @@ public class Main {
 
         log = new Logic(mode);
 
+
     }
 
 
