@@ -1,3 +1,7 @@
+/**
+ * @author Giorgos Giannios
+ *
+ */
 public class Card
 {
     private char valueOfCard;
@@ -5,33 +9,15 @@ public class Card
     private boolean isPaired;
 
     public Card(){
-        isPaired = false;
-        isOpen = false;
+        isOpen=false;
+        isPaired=false;
     }
 
-    public void setPairedTrue(){
-        isPaired = true;
-    }
+    public void setIsOpen(boolean mode){isOpen=mode;}
+    public boolean getIsOpen(){return isOpen;}
 
-    public boolean getIsPaired(){
-        return isPaired;
-    }
+    public void setValue (char value){valueOfCard=value;}
+    public char getValue (){return valueOfCard;}
 
-    //Setter and Getters for isOpen
-    public void setIsOpen(boolean o){
-        isOpen = o;
-    }
-
-    public boolean getIsOpen(){
-        return isOpen;
-    }
-
-    //Setters and Getters for valueOfCard
-    public void setValue(char v){
-        valueOfCard = v;
-    }
-
-    public char getValue(){
-        return valueOfCard;
-    }
+    public void setPairedTrue() {isPaired=true;}
 }
