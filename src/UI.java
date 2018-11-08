@@ -1,17 +1,29 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * @author Giorgos Christidis
+ * @author Giorgos Giannios
+ */
 public class UI {
 
-    final static String ANSI_CLS = "\u001b[2J";
-    final static String ANSI_HOME = "\u001b[H";
+    private final static String ANSI_CLS = "\u001b[2J";
+    private final static String ANSI_HOME = "\u001b[H";
 
     public static int getMode(){
         intro();
         modes();
 
-        Scanner scanner = new Scanner(System.in);
-        int mode = scanner.nextInt();
+        Scanner sc = new Scanner(System.in);
+
+        while (!sc.hasNextInt()){
+            clearScreen();
+            intro();
+            System.out.println("    You have to chose one of the three modes.");
+            System.out.println("    Try again:\n");
+            sc.next();
+        }
+        int mode = sc.nextInt();
 
         while (mode!=1 && mode!=2 && mode!=3)
         {
@@ -19,27 +31,11 @@ public class UI {
             intro();
             System.out.println("    You have to chose one of the three modes.");
             System.out.println("    Try again:\n");
-            mode=scanner.nextInt();
+            while (!sc.hasNextInt()) sc.next();
+            mode = sc.nextInt();
         }
 
-        if (mode==1){
-            clearScreen();
-            intro();
-            System.out.println("    You have chosen Basic mode.");
-            System.out.println("    Let's play!");
-        }
-        else if (mode==2){
-            clearScreen();
-            intro();
-            System.out.println("    You have chosen Double mode.");
-            System.out.println("    Let's play!");
-        }
-        else {
-            clearScreen();
-            intro();
-            System.out.println("    You have chosen Triple mode.");
-            System.out.println("    Let's play!");
-        }
+        chosenMode(mode);
 
         return mode;
     }
@@ -62,6 +58,32 @@ public class UI {
         System.out.println("    >Type 3 : for Triple mode.");
     }
 
+    private static void chosenMode(int mode){
+        if (mode==1){
+            clearScreen();
+            intro();
+            System.out.println("    You have chosen Basic mode.");
+            System.out.println("    Let's play!\n");
+        }
+        else if (mode==2){
+            clearScreen();
+            intro();
+            System.out.println("    You have chosen Double mode.");
+            System.out.println("    Let's play!\n");
+        }
+        else {
+            clearScreen();
+            intro();
+            System.out.println("    You have chosen Triple mode.");
+            System.out.println("    Let's play!\n");
+        }
+    }
+
+    public static void consoleArgsIntro(int mode){
+        intro();
+        chosenMode(mode);
+    }
+
     //Clears screen
     private static void clearScreen(){
         try {
@@ -76,8 +98,9 @@ public class UI {
                 System.out.print(ANSI_CLS + ANSI_HOME);
                 System.out.flush();
             }
-        } catch (IOException | InterruptedException ex) {}
+        }
+        catch (IOException | InterruptedException ex) {
+            System.out.print("Can not identify OS!");
+        }
     }
-
-
 }
