@@ -34,16 +34,7 @@ public class Logic {
 
     private void basicGame ()
     {
-        rnd = new Random();
-
-        int value = 0;
-
-        for (int i=0; i < newTable.sizeX(); i++){
-            for (int j=1; j < newTable.sizeY(); j+=2){
-                newTable.initCard(i,j-1,value);
-                newTable.initCard(i, j, value++);
-            }
-        }
+        initTablePairs();
         shuffleTable();
 
         UI.printTest(newTable);
@@ -71,6 +62,19 @@ public class Logic {
 
         UI.printTest(newTable);
         UI.showClosedCards(newTable);
+    }
+
+    private void initTablePairs(){
+        rnd = new Random();
+
+        int value = 0;
+
+        for (int i=0; i < newTable.sizeX(); i++){
+            for (int j=1; j < newTable.sizeY(); j+=2){
+                newTable.initCard(i,j-1,value);
+                newTable.initCard(i,j,value++);
+            }
+        }
     }
 
 
