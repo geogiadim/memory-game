@@ -21,41 +21,6 @@ public class Table
         this.y=y;
     }
 
-   /*public void fillTable (int x, int y)
-    {
-        char[] letters= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X'};
-        int counter=0;
-        if (y==8)
-        {
-            for (int i=0; i<x; i++)
-            {
-                for (int j=0; j<y;j++)
-                {
-                    tableOfCards[i][j].setValue(letters[counter]);
-                    counter++;
-                    if (counter==24)
-                    {
-                        counter=0;
-                    }
-                }
-            }
-        }
-        else {
-            for (int i=0; i<x; i++)
-            {
-                for (int j=0; j<y;j++)
-                {
-                    tableOfCards[i][j].setValue(letters[counter]);
-                    counter++;
-                    if (counter==12)
-                    {
-                        counter=0;
-                    }
-                }
-            }
-        }
-    }*/
-
     public void initCard(int x,int y,int v){
         tableOfCards[x][y] = new Card();
         tableOfCards[x][y].setValue(v);
@@ -78,6 +43,7 @@ public class Table
      */
     public void openCard(int x,int y){
         //UI
+        tableOfCards[x][y].getValue();
     }
     /**
      * Hide the card

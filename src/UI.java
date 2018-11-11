@@ -198,4 +198,54 @@ public class UI {
             System.out.println("\n");
         }
     }
+
+   /* public void userChoice(Table newTable)
+    {
+        int x1,x2,y1,y2;
+        int numberOfPairedCards=0;
+        Scanner sc= new Scanner(System.in);
+        System.out.println("In order to chose a card you have to type its coordinates as you see them in the cards.\nYou have to chose two cards in each round.");
+
+        System.out.println("Give the coordinates for the first card: ");
+        x1= sc.nextInt();
+        y1= sc.nextInt();
+        newTable.openCard(x1,y1);
+
+        System.out.println("Give the coordinates for the second card: ");
+        x2= sc.nextInt();
+        y2= sc.nextInt();
+        newTable.openCard(x2,y2);
+        while (numberOfPairedCards<newTable.sizeOfTable()) {
+
+            if (karta1==karta2) {
+                newTable.unableCard(x1, y1);
+                newTable.unableCard(x2, y2);
+                numberOfPairedCards+=2;
+
+                System.out.println("Give the coordinates for the first card: ");
+                x1 = sc.nextInt();
+                y1 = sc.nextInt();
+                newTable.openCard(x1, y1);
+
+                System.out.println("Give the coordinates for the second card: ");
+                x2 = sc.nextInt();
+                y2 = sc.nextInt();
+                newTable.openCard(x2, y2);
+            }
+            else {
+                newTable.closeCard(x1, y1);
+                newTable.closeCard(x2, y2);
+
+                System.out.println("Give the coordinates for the first card: ");
+                x1 = sc.nextInt();
+                y1 = sc.nextInt();
+                newTable.openCard(x1, y1);
+
+                System.out.println("Give the coordinates for the second card: ");
+                x2 = sc.nextInt();
+                y2 = sc.nextInt();
+                newTable.openCard(x2, y2);
+            }
+        }
+    }*/
 }
