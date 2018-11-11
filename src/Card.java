@@ -5,7 +5,7 @@
  */
 public class Card
 {
-    private char valueOfCard;
+    private int valueOfCard;
     private boolean isOpen;
     private boolean isPaired;
 
@@ -33,13 +33,13 @@ public class Card
      * Set the letter that is represented by the card
      * @param value the letter that is represented by the card
      */
-    public void setValue (char value){valueOfCard=value;}
+    public void setValue (int value){valueOfCard=value;}
 
     /**
      * Returns the letter of the card
      * @return the letter of the card
      */
-    public char getValue (){return valueOfCard;}
+    public int getValue (){return valueOfCard;}
 
     /**
      * Set the card as paired

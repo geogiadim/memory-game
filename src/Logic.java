@@ -1,11 +1,15 @@
+import java.util.Random;
+
 /**
  * @author Giorgos Giannios
+ * @author Giorgos Christidis
  *
  */
 public class Logic {
 
     private Table newTable;
     private int mode;
+    private Random rnd;
 
     public Logic(int mode){
         this.mode = mode;
@@ -30,20 +34,59 @@ public class Logic {
 
     private void basicGame ()
     {
-        //code
-       // newTable.fillTable(4,6);
+        rnd = new Random();
+
+        int value = 0;
+
+        for (int i=0; i < newTable.sizeX(); i++){
+            for (int j=1; j < newTable.sizeY(); j+=2){
+                newTable.initCard(i,j-1,value);
+                newTable.initCard(i, j, value++);
+            }
+        }
+        shuffleTable();
+
+        UI.printTest(newTable);
+        UI.showClosedCards(newTable);
     }
 
     private void doubleGame ()
     {
-        //code
-        //newTable.fillTable(6,8);
+        basicGame();
     }
 
     private void tripleGame ()
     {
-        //code
-        //newTable.fillTable(6,6);
+        int value = 0;
+
+        for (int i=0; i < newTable.sizeX(); i++){
+            for (int j=2; j < newTable.sizeY(); j+=3){
+                newTable.initCard(i,j-2,value);
+                newTable.initCard(i,j-1,value);
+                newTable.initCard(i,j,value++);
+            }
+        }
+
+        shuffleTable();
+
+        UI.printTest(newTable);
+        UI.showClosedCards(newTable);
+    }
+
+
+    private void shuffleTable(){
+        rnd = new Random();
+        //Fisher Yates shuffle algorithm for 2D arrays
+        for (int i = newTable.sizeX() - 1; i > 0; i--) {
+            for (int j = newTable.sizeY() - 1; j > 0; j--) {
+                int m = rnd.nextInt(i + 1);
+                int n = rnd.nextInt(j + 1);
+
+                int temp = newTable.getCardValue(i,j);
+                newTable.setCardXY(i,j,newTable.getCardValue(m,n));
+                newTable.setCardXY(m,n,temp);
+            }
+        }
     }
 
 }

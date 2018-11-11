@@ -1,11 +1,13 @@
 /**
  * @author Giorgos Giannios
+ * @author Giorgos Christidis
  * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
  */
 public class Table
 {
     private Card[][] tableOfCards;
-
+    private int x;
+    private int y;
     /**
      * Initialize the table with the cards.
      *
@@ -15,9 +17,11 @@ public class Table
     public Table (int x,int y)
     {
         tableOfCards= new Card[x][y];
+        this.x=x;
+        this.y=y;
     }
 
-    public void fillTable (int x, int y)
+   /*public void fillTable (int x, int y)
     {
         char[] letters= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X'};
         int counter=0;
@@ -50,6 +54,20 @@ public class Table
                 }
             }
         }
+    }*/
+
+    public void initCard(int x,int y,int v){
+        tableOfCards[x][y] = new Card();
+        tableOfCards[x][y].setValue(v);
+    }
+
+    public void setCardXY(int x, int y, int v){
+        tableOfCards[x][y].setValue(v);
+    }
+
+
+    public int getCardValue(int x, int y){
+        return tableOfCards[x][y].getValue();
     }
 
     /**
@@ -76,7 +94,19 @@ public class Table
      * @param x the row on which the card is inserted
      * @param y the column on which the card is inserted
      */
-    public void unableCard(int x,int y){
+    public void unableCard(int x,int y) {
         tableOfCards[x][y].setPairedTrue();
     }
+
+    public boolean isCardOpen(int x, int y){
+        return tableOfCards[x][y].getIsOpen();
+    }
+
+    public boolean isCardPaired(int x, int y){
+        return tableOfCards[x][y].getIsOpen();
+    }
+
+    public int sizeX(){return x;}
+    public int sizeY(){return y;}
+    public int sizeOfTable(){return x*y;}
 }
