@@ -39,6 +39,7 @@ public class Logic {
 
         UI.printTest(newTable);
         UI.showClosedCards(newTable);
+        //UI.userChoice(newTable);
     }
 
     private void doubleGame ()
@@ -65,8 +66,6 @@ public class Logic {
     }
 
     private void initTablePairs(){
-        rnd = new Random();
-
         int value = 0;
 
         for (int i=0; i < newTable.sizeX(); i++){
