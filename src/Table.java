@@ -44,6 +44,7 @@ public class Table
     public void openCard(int x,int y){
         //UI
         tableOfCards[x][y].getValue();
+
     }
     /**
      * Hide the card
