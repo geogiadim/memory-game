@@ -39,7 +39,7 @@ public class Logic {
 
         UI.printTest(newTable);
         UI.showClosedCards(newTable);
-        //UI.userChoice(newTable);
+        UI.userChoice(newTable);
     }
 
     private void doubleGame ()
@@ -91,6 +91,5 @@ public class Logic {
             }
         }
     }
-
 }
 

@@ -45,4 +45,5 @@ public class Card
      * Set the card as paired
      */
     public void setPairedTrue() {isPaired=true;}
+    public boolean getIsPaired() {return isPaired;}
 }

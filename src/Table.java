@@ -43,8 +43,9 @@ public class Table
      */
     public void openCard(int x,int y){
         //UI
+        tableOfCards[x][y].setIsOpen(true);
         tableOfCards[x][y].getValue();
-
+        //return tableOfCards[x][y].getIsOpen();
     }
     /**
      * Hide the card
@@ -54,6 +55,7 @@ public class Table
      */
     public void closeCard(int x,int y){
         //UI
+        tableOfCards[x][y].setIsOpen(false);
     }
     /**
      * Set the card as paired and makes it unable to be chosen again.
@@ -63,15 +65,12 @@ public class Table
      */
     public void unableCard(int x,int y) {
         tableOfCards[x][y].setPairedTrue();
+        tableOfCards[x][y].setIsOpen(true);
     }
 
-    public boolean isCardOpen(int x, int y){
-        return tableOfCards[x][y].getIsOpen();
-    }
+    public boolean isCardOpen(int x, int y){ return tableOfCards[x][y].getIsOpen(); }
 
-    public boolean isCardPaired(int x, int y){
-        return tableOfCards[x][y].getIsOpen();
-    }
+    public boolean isCardPaired(int x, int y){ return tableOfCards[x][y].getIsPaired(); }
 
     public int sizeX(){return x;}
     public int sizeY(){return y;}
