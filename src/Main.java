@@ -18,5 +18,7 @@ public class Main {
         else {
             log = new Logic(UI.getMode());
         }
+        //System.out.println("EXIT");
+        System.exit(0);
     }
 }
