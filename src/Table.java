@@ -19,14 +19,15 @@ public class Table
         tableOfCards= new Card[x][y];
         this.x=x;
         this.y=y;
+
+        for (int i=0;i<sizeX();i++)
+        {
+            for (int j=0;j<sizeY();j++)
+                tableOfCards[x][y] = new Card();
+        }
     }
 
-    public void initCard(int x,int y,int v){
-        tableOfCards[x][y] = new Card();
-        tableOfCards[x][y].setValue(v);
-    }
-
-    public void setCardXY(int x, int y, int v){
+    public void setCardValue (int x, int y, int v){
         tableOfCards[x][y].setValue(v);
     }
 

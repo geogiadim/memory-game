@@ -283,7 +283,6 @@ public class UI {
             newTable.openCard(x1, y1);
             newTable.openCard(x2, y2);
 
-
             if (newTable.getCardValue(x1,y1)  == newTable.getCardValue(x2,y2)) {
                 newTable.unableCard(x1, y1);
                 newTable.unableCard(x2, y2);

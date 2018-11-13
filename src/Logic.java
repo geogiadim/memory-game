@@ -61,9 +61,9 @@ public class Logic {
 
         for (int i=0; i < newTable.sizeX(); i++){
             for (int j=2; j < newTable.sizeY(); j+=3){
-                newTable.initCard(i,j-2,value);
-                newTable.initCard(i,j-1,value);
-                newTable.initCard(i,j,value++);
+                newTable.setCardValue(i,j-2,value);
+                newTable.setCardValue(i,j-1,value);
+                newTable.setCardValue(i,j,value++);
             }
         }
 
@@ -78,8 +78,8 @@ public class Logic {
 
         for (int i=0; i < newTable.sizeX(); i++){
             for (int j=1; j < newTable.sizeY(); j+=2){
-                newTable.initCard(i,j-1,value);
-                newTable.initCard(i,j,value++);
+                newTable.setCardValue(i,j-1,value);
+                newTable.setCardValue(i,j,value++);
             }
         }
     }
@@ -94,8 +94,8 @@ public class Logic {
                 int n = rnd.nextInt(j + 1);
 
                 int temp = newTable.getCardValue(i,j);
-                newTable.setCardXY(i,j,newTable.getCardValue(m,n));
-                newTable.setCardXY(m,n,temp);
+                newTable.setCardValue(i,j,newTable.getCardValue(m,n));
+                newTable.setCardValue(m,n,temp);
             }
         }
     }
