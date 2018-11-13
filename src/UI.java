@@ -58,7 +58,6 @@ public class UI {
                 System.out.println(TAB + "Try again:\n");
             }
         }
-
         chosenMode(mode);
         return mode;
     }
@@ -316,7 +315,6 @@ public class UI {
                     System.out.println(TAB + "This card is already paired. Try again!");
                 }
             }while (same || wrongXY || newTable.isCardPaired(x2,y2));
-
 
             newTable.openCard(x2, y2);
             clearScreen();
