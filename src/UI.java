@@ -151,14 +151,14 @@ public class UI {
      * @param newTable The 2D Table of Cards.
      */
     public static void showClosedCards (Table newTable) {
-        try
+       /* try
         {
             Thread.sleep(PREVIEW_TIME*1000);
         }
         catch(InterruptedException ex)
         {
             Thread.currentThread().interrupt();
-        }
+        }*/
         clearScreen();
         intro();
         System.out.print("\b");
@@ -239,7 +239,7 @@ public class UI {
         int numberOfPairedCards=0;
         boolean wrongXY,same;
         Scanner sc= new Scanner(System.in);
-        System.out.println("In order to chose a card you have to type its coordinates as you see them in the cards.\nYou have to chose two cards in each round.");
+        System.out.println("\nIn order to chose a card you have to type its coordinates as you see them in the cards.\nYou have to chose two cards in each round.");
 
         do {
             //check out for the first card

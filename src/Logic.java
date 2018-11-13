@@ -38,6 +38,14 @@ public class Logic {
         shuffleTable();
 
         UI.printTest(newTable);
+        try
+        {
+            Thread.sleep(15*1000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
         UI.showClosedCards(newTable);
         UI.userChoice(newTable);
     }
