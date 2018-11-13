@@ -150,59 +150,73 @@ public class UI {
      *
      * @param newTable The 2D Table of Cards.
      */
-    public static void showClosedCards (Table newTable) {
-       /* try
-        {
-            Thread.sleep(PREVIEW_TIME*1000);
+    public static void showCards(Table newTable){
+        //Preview Mode for first time.
+        if (previewMode){
+            System.out.println();
+            System.out.println(TAB + "Cards will be revealed for " + PREVIEW_TIME + " seconds. Try to remember as many as you can.");
+            try{
+                Thread.sleep(MESSAGE_DELAY * 1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }*/
-        clearScreen();
-        intro();
-        System.out.print("\b");
-        for (int i = 0; i < newTable.sizeX(); i++) {
-            for (int lines = 0; lines < 4; lines++) {
+        //Card Drawing.
+        for (int i = 0; i < newTable.sizeX(); i++){
+            for (int lines = 0; lines < 4; lines++){
                 System.out.println();
-                for (int j = 0; j < newTable.sizeY(); j++) {
+                for (int j = 0; j < newTable.sizeY(); j++){
                     switch (lines){
+                        //First Line.
                         case 0: {
-                            if (newTable.isCardPaired(i, j)) {
+                            if (newTable.isCardPaired(i, j)){
                                 System.out.print(EMPTY_LINE);
-                            } else if (newTable.isCardOpen(i, j)) {
+                            }
+                            else if (newTable.isCardOpen(i, j) || previewMode){
                                 System.out.print("  _ _  ");
-                            } else {
+                            }
+                            else {
                                 System.out.print("  _ _  ");
                             }
                             break;
                         }
+                        //Second Line.
                         case 1: {
-                            if (newTable.isCardPaired(i, j)) {
+                            if (newTable.isCardPaired(i, j)){
                                 System.out.print(EMPTY_LINE);
-                            } else if (newTable.isCardOpen(i, j)) {
+                            }
+                            else if (newTable.isCardOpen(i, j) || previewMode){
                                 System.out.print(" |   | ");
-                            } else {
+                            }
+                            else {
                                 System.out.print(" |" + (i+1) + "  | ");
                             }
                             break;
                         }
+                        //Third Line.
                         case 2: {
-                            if (newTable.isCardPaired(i, j)) {
+                            if (newTable.isCardPaired(i, j)){
                                 System.out.print(EMPTY_LINE);
-                            } else if (newTable.isCardOpen(i, j)) {
-                                System.out.print(" | " + newTable.getCardValue(i,j) + " | ");
-                            } else {
+                            }
+                            else if (newTable.isCardOpen(i, j) || previewMode){
+                                System.out.print(" | " + LETTERS[newTable.getCardValue(i,j)] + " | ");
+                            }
+                            else {
                                 System.out.print(" |  " + (j+1) + "| ");
                             }
                             break;
                         }
+                        //Fourth Line.
                         case 3: {
-                            if (newTable.isCardPaired(i, j)) {
+                            if (newTable.isCardPaired(i, j)){
                                 System.out.print(EMPTY_LINE);
-                            } else if (newTable.isCardOpen(i, j)) {
+                            }
+                            else if (newTable.isCardOpen(i, j) || previewMode){
                                 System.out.print(" |_ _| ");
-                            } else {
+                            }
+                            else {
                                 System.out.print(" |_ _| ");
                             }
                             break;
@@ -211,11 +225,23 @@ public class UI {
                 }
             }
         }
+        //Preview Mode delay.
+        if (previewMode){
+            try{
+                previewMode = false;
+                Thread.sleep(PREVIEW_TIME * 1000);
+                clearScreen();
+                intro();
+            }
+            catch(InterruptedException ex){
+                Thread.currentThread().interrupt();
+            }
+        }
         System.out.println();
     }
 
 
-    public static void printTest(Table newTable){
+    /*public static void printTest(Table newTable){
         System.out.println(" Cards will be revealed for 15 seconds. Try to remember as many as you can.\n");
         try
         {
@@ -231,7 +257,7 @@ public class UI {
                 System.out.print("  "+LETTERS[newTable.getCardValue(i,j)] + "  ");
             System.out.println("\n");
         }
-    }
+    }*/
 
     public static void userChoice(Table newTable)
     {
@@ -295,7 +321,7 @@ public class UI {
             }
             clearScreen();
             intro();
-            showClosedCards(newTable);
+            showCards(newTable);
         } while (numberOfPairedCards<newTable.sizeOfTable());
         System.out.println("Congratulations, you matched all the cards!");
     }
