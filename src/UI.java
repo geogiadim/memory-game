@@ -13,8 +13,8 @@ public class UI {
     private static boolean previewMode;
 
     //Times for delays.
-    private final static int MESSAGE_DELAY = 5;
-    private final static int PREVIEW_TIME = 15;
+    private final static int MESSAGE_DELAY = 3;
+    private final static int PREVIEW_TIME = 3;
 
     //Char list for Card Value.
     private final static char[] LETTERS = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X'};
@@ -27,6 +27,7 @@ public class UI {
     private final static String TAB = "    "; //4 Spaces
     private final static String EMPTY_LINE = "       "; //7 Spaces
 
+    private static int mode;
     /**
      * Handles mode selection. Checks for proper mode and prepares game for next
      *
@@ -35,7 +36,6 @@ public class UI {
     public static int getMode(){
         previewMode = true;
         Scanner sc = new Scanner(System.in);
-        int mode;
 
         intro();
         modes();
@@ -116,11 +116,13 @@ public class UI {
     /**
      * Handles console argument input.
      *
-     * @param mode The game mode given by the player.
+     * @param m The game mode given by the player.
      */
-    public static void consoleArgsIntro(int mode){
+    public static void consoleArgsIntro(int m){
         intro();
-        chosenMode(mode);
+        previewMode = true;
+        mode=m;
+        chosenMode(m);
     }
 
     /**
@@ -153,15 +155,8 @@ public class UI {
     public static void showCards(Table newTable){
         //Preview Mode for first time.
         if (previewMode){
-            System.out.println();
             System.out.println(TAB + "Cards will be revealed for " + PREVIEW_TIME + " seconds. Try to remember as many as you can.");
-            try{
-                Thread.sleep(MESSAGE_DELAY * 1000);
-            }
-            catch(InterruptedException ex)
-            {
-                Thread.currentThread().interrupt();
-            }
+            delay(MESSAGE_DELAY);
         }
         //Card Drawing.
         for (int i = 0; i < newTable.sizeX(); i++){
@@ -265,57 +260,81 @@ public class UI {
         int numberOfPairedCards=0;
         boolean wrongXY,same;
         Scanner sc= new Scanner(System.in);
-        System.out.println("\nIn order to chose a card you have to type its coordinates as you see them in the cards.\nYou have to chose two cards in each round.");
+        showCards(newTable);
+        if (mode==3)
+            System.out.println("\nIn order to chose a card you have to type its coordinates as you see them in the cards.\nYou have to chose three cards in each round.");
+        else
+            System.out.println("\nIn order to chose a card you have to type its coordinates as you see them in the cards.\nYou have to chose two cards in each round.");
 
         do {
             //check out for the first card
             do {
                 wrongXY=false;
-                System.out.println("Give the coordinates for the first card: ");
-                x1 = sc.nextInt() - 1;
-                y1 = sc.nextInt() - 1;
-                if (x1>newTable.sizeX() || x1<0 || y1>newTable.sizeY() || y1<0)
+                System.out.println("\nGive the coordinates for the first card: ");
+                x1=sc.nextInt()-1;
+                y1=sc.nextInt()-1;
+
+                if (x1>newTable.sizeX()-1 || x1<0 || y1>newTable.sizeY()-1 || y1<0)
                 {
                     System.out.println("Invalid coordinates.\nX must be in range of [1,"+newTable.sizeX()+"]\nY must be in range of [1,"+newTable.sizeY()+"]\nTry again!");
                     wrongXY=true;
                 }
-                if (newTable.isCardPaired(x1,y1) && !wrongXY)
-                {
-                    System.out.println("This card is already paired. Try again!");
+                if (!wrongXY) {
+                    if (newTable.isCardPaired(x1, y1)) {
+                        System.out.println("This card is already paired. Try again!");
+                    }
                 }
             }while (wrongXY || newTable.isCardPaired(x1,y1));
+
+            newTable.openCard(x1, y1);
+            clearScreen();
+            intro();
+            showCards(newTable);
+            //delay(MESSAGE_DELAY);
+
             //check out for the second card
             do{
                 same=false;
                 wrongXY=false;
-                System.out.println("Give the coordinates for the second card: ");
-                x2 = sc.nextInt()-1;
-                y2 = sc.nextInt()-1;
-                if (x2>newTable.sizeX() || x2<0 || y2>newTable.sizeY() || y2<0)
+                System.out.println("\nGive the coordinates for the second card: ");
+                x2=sc.nextInt()-1;
+                y2=sc.nextInt()-1;
+
+                if (x2>newTable.sizeX()-1 || x2<0 || y2>newTable.sizeY()-1 || y2<0)
                 {
                     System.out.println("Invalid coordinates.\nX must be in range of [1,"+newTable.sizeX()+"]\nY must be in range of [1,"+newTable.sizeY()+"]\nTry again!");
                     wrongXY=true;
                 }
-                if (x1==x2 && y1==y2 && !wrongXY)
-                {
-                    same=true;
-                    System.out.println("This is your first choice. Chose again a different card: ");
+                if (!wrongXY) {
+                    if (x1 == x2 && y1 == y2 ) {
+                        same = true;
+                        System.out.println("This is your first choice. Chose again a different card: ");
+                    }
                 }
-                if (newTable.isCardPaired(x2,y2) && !same && !wrongXY)
+                if (!wrongXY && !same && newTable.isCardPaired(x2,y2))
                 {
                     System.out.println("This card is already paired. Try again!");
                 }
             }while (same || wrongXY || newTable.isCardPaired(x2,y2));
-            newTable.openCard(x1, y1);
+
+
             newTable.openCard(x2, y2);
+
+            clearScreen();
+            intro();
+            showCards(newTable);
+            //delay(MESSAGE_DELAY);
 
             if (newTable.getCardValue(x1,y1)  == newTable.getCardValue(x2,y2)) {
                 newTable.unableCard(x1, y1);
                 newTable.unableCard(x2, y2);
                 System.out.println("Correct!!");
                 numberOfPairedCards+=2;
+                delay(MESSAGE_DELAY);
             }
             else {
+                System.out.println("Wrong!!");
+                delay(MESSAGE_DELAY);
                 newTable.closeCard(x1, y1);
                 newTable.closeCard(x2, y2);
             }
@@ -326,4 +345,13 @@ public class UI {
         System.out.println("Congratulations, you matched all the cards!");
     }
 
+    private static void delay (int seconds){
+        try{
+            Thread.sleep(seconds * 1000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
 }

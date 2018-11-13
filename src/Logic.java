@@ -64,6 +64,7 @@ public class Logic {
 
         //UI.printTest(newTable);
         UI.showCards(newTable);
+        UI.userChoice(newTable);
     }
 
     private void initTablePairs(){

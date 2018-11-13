@@ -23,7 +23,7 @@ public class Table
         for (int i=0;i<sizeX();i++)
         {
             for (int j=0;j<sizeY();j++)
-                tableOfCards[x][y] = new Card();
+                tableOfCards[i][j] = new Card();
         }
     }
 
@@ -45,8 +45,6 @@ public class Table
     public void openCard(int x,int y){
         //UI
         tableOfCards[x][y].setIsOpen(true);
-        tableOfCards[x][y].getValue();
-        //return tableOfCards[x][y].getIsOpen();
     }
     /**
      * Hide the card
