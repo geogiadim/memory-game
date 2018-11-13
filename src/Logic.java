@@ -36,9 +36,6 @@ public class Logic {
     {
         initTablePairs();
         shuffleTable();
-
-        //UI.printTest(newTable);
-
         UI.showCards(newTable);
         UI.userChoice(newTable);
     }
@@ -61,8 +58,6 @@ public class Logic {
         }
 
         shuffleTable();
-
-        //UI.printTest(newTable);
         UI.showCards(newTable);
         UI.userChoice(newTable);
     }
