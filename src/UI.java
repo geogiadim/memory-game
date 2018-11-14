@@ -162,6 +162,8 @@ public class UI {
             for (int lines = 0; lines < 4; lines++){
                 System.out.println();
                 for (int j = 0; j < newTable.sizeY(); j++){
+                    if (j==0)
+                        System.out.print(TAB);
                     switch (lines){
                         //First Line.
                         case 0: {
@@ -234,7 +236,6 @@ public class UI {
         System.out.println();
     }
 
-
     /*public static void printTest(Table newTable){
         System.out.println(" Cards will be revealed for 15 seconds. Try to remember as many as you can.\n");
         try
@@ -262,7 +263,7 @@ public class UI {
         Scanner sc= new Scanner(System.in);
         showCards(newTable);
         if (mode==3)
-            System.out.println("\n" + TAB + "In order to chose a card you have to type its coordinates as you see them in the cards.\n" + TAB + "You have to chose three cards in each round.");
+            System.out.println("\n" + TAB + "In order to chose a card you have to type its coordinates as you see them in the cards.\n" + TAB + "You have to chose three cards in each round. You can choose the third card only when the first two cards are same");
         else
             System.out.println("\n" + TAB + "In order to chose a card you have to type its coordinates as you see them in the cards.\n" + TAB + "You have to chose two cards in each round.");
 
@@ -321,30 +322,99 @@ public class UI {
             intro();
             showCards(newTable);
 
-            if (newTable.getCardValue(x1,y1)  == newTable.getCardValue(x2,y2)) {
-                newTable.unableCard(x1, y1);
-                newTable.unableCard(x2, y2);
+            if (mode == 3) {
+                int x3, y3;
+                //check if the first two cards are same
+                if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
+                    //check out for the third card
+                    do {
+                        same = false;
+                        wrongXY = false;
+                        System.out.println("\n" + TAB + "Give the coordinates for the third card: ");
+                        x3 = sc.nextInt() - 1;
+                        y3 = sc.nextInt() - 1;
 
-                System.out.println("\n" + TAB + "Correct!!");
-                numberOfPairedCards+=2;
-                tries++;
-                delay(MESSAGE_DELAY);
+                        if (x3 > newTable.sizeX() - 1 || x3 < 0 || y3 > newTable.sizeY() - 1 || y3 < 0) {
+                            System.out.println(TAB + "Invalid coordinates.\n" + TAB + "X must be in range of [1," + newTable.sizeX() + "]\n" + TAB + "Y must be in range of [1," + newTable.sizeY() + "]\n" + TAB + "Try again!");
+                            wrongXY = true;
+                        }
+                        if (!wrongXY) {
+                            if (x3 == x1 && y3 == y1) {
+                                same = true;
+                                System.out.println(TAB + "This is your first choice. Chose again a different card: ");
+                            } else if (x3 == x2 && y3 == y2) {
+                                same = true;
+                                System.out.println(TAB + "This is your second choice. Chose again a different card: ");
+                            }
+                        }
+                        if (!wrongXY && !same && newTable.isCardPaired(x3, y3)) {
+                            System.out.println(TAB + "This card is already paired. Try again!");
+                        }
+                    } while (same || wrongXY || newTable.isCardPaired(x3, y3));
+
+                    newTable.openCard(x3, y3);
+                    clearScreen();
+                    intro();
+                    showCards(newTable);
+
+                    if (newTable.getCardValue(x2, y2) == newTable.getCardValue(x3, y3)) {
+                        newTable.unableCard(x1, y1);
+                        newTable.unableCard(x2, y2);
+                        newTable.unableCard(x3, y3);
+                        System.out.println("\n" + TAB + "Correct!!");
+                        numberOfPairedCards += 3;
+                        tries++;
+                        delay(MESSAGE_DELAY);
+                    }
+                    else {
+                        System.out.println("\n" + TAB + "Wrong!!");
+                        delay(MESSAGE_DELAY);
+                        tries++;
+                        newTable.closeCard(x1, y1);
+                        newTable.closeCard(x2, y2);
+                        newTable.closeCard(x3, y3);
+                    }
+                    clearScreen();
+                    intro();
+                    showCards(newTable);
+                }
+                else
+                {
+                    System.out.println("\n" + TAB + "Wrong!!. You can not choose the third card.");
+                    delay(MESSAGE_DELAY);
+                    tries++;
+                    newTable.closeCard(x1, y1);
+                    newTable.closeCard(x2, y2);
+                }
+
             }
-            else {
-                System.out.println("\n" + TAB + "Wrong!!");
-                delay(MESSAGE_DELAY);
-                tries++;
-                newTable.closeCard(x1, y1);
-                newTable.closeCard(x2, y2);
+            else
+            {
+                if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
+                    newTable.unableCard(x1, y1);
+                    newTable.unableCard(x2, y2);
+
+                    System.out.println("\n" + TAB + "Correct!!");
+                    numberOfPairedCards += 2;
+                    tries++;
+                    delay(MESSAGE_DELAY);
+                }
+                else {
+                    System.out.println("\n" + TAB + "Wrong!!");
+                    delay(MESSAGE_DELAY);
+                    tries++;
+                    newTable.closeCard(x1, y1);
+                    newTable.closeCard(x2, y2);
+                }
             }
             clearScreen();
             intro();
             showCards(newTable);
+
         } while (numberOfPairedCards<newTable.sizeOfTable());
         clearScreen();
         intro();
         System.out.println("\n"+ TAB + "Congratulations, you matched all the cards in "+ tries +" tries.");
-
     }
 
     private static void delay (int seconds){
