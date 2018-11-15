@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -9,12 +10,15 @@ import java.util.Scanner;
  * This Class clears the console screen, prints graphics for Cards and handles user's inputs.
  */
 public class UI {
+    // Coordinates of cards.
+    private static int x1,x2,y1,y2,x3,y3;
+
     //Boolean to handle Card values appearing for preview before actual game play.
     private static boolean previewMode;
 
     //Times for delays.
-    private final static int MESSAGE_DELAY = 3;
-    private final static int PREVIEW_TIME = 3;
+    private final static int MESSAGE_DELAY = 5;
+    private final static int PREVIEW_TIME = 10;
 
     //Char list for Card Value.
     private final static char[] LETTERS = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X'};
@@ -254,10 +258,14 @@ public class UI {
         }
     }*/
 
+    /**
+     * Handles the player's choices for the cards which wants to open and prints the appropriate messages
+     *
+     * @param newTable object of the class Table
+     */
     public static void userChoice(Table newTable)
     {
         int tries=0;
-        int x1,x2,y1,y2;
         int numberOfPairedCards=0;
         boolean wrongXY,same;
         Scanner sc= new Scanner(System.in);
@@ -272,8 +280,7 @@ public class UI {
             do {
                 wrongXY=false;
                 System.out.println("\n" + TAB + "Give the coordinates for the first card: ");
-                x1=sc.nextInt()-1;
-                y1=sc.nextInt()-1;
+                checkCharReturnInt(1);
 
                 if (x1>newTable.sizeX()-1 || x1<0 || y1>newTable.sizeY()-1 || y1<0)
                 {
@@ -297,8 +304,7 @@ public class UI {
                 same=false;
                 wrongXY=false;
                 System.out.println("\n" + TAB + "Give the coordinates for the second card: ");
-                x2=sc.nextInt()-1;
-                y2=sc.nextInt()-1;
+                checkCharReturnInt(2);
 
                 if (x2>newTable.sizeX()-1 || x2<0 || y2>newTable.sizeY()-1 || y2<0)
                 {
@@ -323,7 +329,7 @@ public class UI {
             showCards(newTable);
 
             if (mode == 3) {
-                int x3, y3;
+
                 //check if the first two cards are same
                 if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
                     //check out for the third card
@@ -331,8 +337,7 @@ public class UI {
                         same = false;
                         wrongXY = false;
                         System.out.println("\n" + TAB + "Give the coordinates for the third card: ");
-                        x3 = sc.nextInt() - 1;
-                        y3 = sc.nextInt() - 1;
+                        checkCharReturnInt(3);
 
                         if (x3 > newTable.sizeX() - 1 || x3 < 0 || y3 > newTable.sizeY() - 1 || y3 < 0) {
                             System.out.println(TAB + "Invalid coordinates.\n" + TAB + "X must be in range of [1," + newTable.sizeX() + "]\n" + TAB + "Y must be in range of [1," + newTable.sizeY() + "]\n" + TAB + "Try again!");
@@ -417,6 +422,49 @@ public class UI {
         System.out.println("\n"+ TAB + "Congratulations, you matched all the cards in "+ tries +" tries.");
     }
 
+    /**
+     * Checks if coordinates of a card are not chars. Takes the Card number and scans the coordinates.
+     * @param cardNo The Card number to scan for.
+     */
+    private static void checkCharReturnInt(int cardNo){
+        Scanner sc = new Scanner(System.in);
+        while (true){
+            try {
+                switch (cardNo){
+                    case 1:{
+                        x1=sc.nextInt()-1;
+                        y1=sc.nextInt()-1;
+                        sc.nextLine();
+                        break;
+                    }
+                    case 2:{
+                        x2=sc.nextInt()-1;
+                        y2=sc.nextInt()-1;
+                        sc.nextLine();
+                        break;
+                    }
+                    case 3:{
+                        x3=sc.nextInt()-1;
+                        y3=sc.nextInt()-1;
+                        sc.nextLine();
+                        break;
+                    }
+                }
+                break;
+            } catch (InputMismatchException ime){
+                sc.nextLine();
+                System.out.println(TAB + "You must type only numbers");
+                System.out.println(TAB + "Try again:");
+            }
+        }
+    }
+
+
+    /**
+     * Stops the program for given seconds.
+     *
+     * @param seconds Delay in seconds.
+     */
     private static void delay (int seconds){
         try{
             Thread.sleep(seconds * 1000);

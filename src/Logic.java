@@ -3,7 +3,8 @@ import java.util.Random;
 /**
  * @author Giorgos Giannios
  * @author Giorgos Christidis
- *
+ * This class represents the logic of the game. Creates the table with the cards and seperates the game in the three differnt types.
+ * This class is connected to Ui in order to create interaction with the player.
  */
 public class Logic {
 
@@ -11,6 +12,11 @@ public class Logic {
     private int mode;
     private Random rnd;
 
+    /**
+     * Initializes the appropriate table and chooses the appropriate method to start the game.
+     *
+     * @param mode the type of the game
+     */
     public Logic(int mode){
         this.mode = mode;
         if (mode == 1)
@@ -32,6 +38,9 @@ public class Logic {
         }
     }
 
+    /**
+     * This is the logic for the basic game
+     */
     private void basicGame ()
     {
         initTablePairs();
@@ -40,13 +49,20 @@ public class Logic {
         UI.userChoice(newTable);
     }
 
+    /**
+     * This is the logic for the double game
+     */
     private void doubleGame ()
     {
         basicGame();
     }
 
+    /**
+     * This is the logic for the triple game
+     */
     private void tripleGame ()
     {
+        //Fills the table with different cards, each card three times
         int value = 0;
 
         for (int i=0; i < newTable.sizeX(); i++){
@@ -62,6 +78,9 @@ public class Logic {
         UI.userChoice(newTable);
     }
 
+    /**
+     * Fills the table with different cards, each card two times
+     */
     private void initTablePairs(){
         int value = 0;
 
@@ -73,7 +92,9 @@ public class Logic {
         }
     }
 
-
+    /**
+     * Shuffles the table with the cards
+     */
     private void shuffleTable(){
         rnd = new Random();
         //Fisher Yates shuffle algorithm for 2D arrays
