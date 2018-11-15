@@ -40,7 +40,7 @@ public class Card
      * @return the letter of the card
      */
     public int getValue (){return valueOfCard;}
-
+ 
     /**
      * Set the card as paired
      */
