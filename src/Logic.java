@@ -1,10 +1,11 @@
 import java.util.Random;
 
 /**
+ * This class represents the logic of the game. Creates the table with the cards and separates the game in the three different types.
+ * This class is connected to Ui in order to create interaction with the player.
+ *
  * @author Giorgos Giannios
  * @author Giorgos Christidis
- * This class represents the logic of the game. Creates the table with the cards and seperates the game in the three differnt types.
- * This class is connected to Ui in order to create interaction with the player.
  */
 public class Logic {
 

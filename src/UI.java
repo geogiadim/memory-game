@@ -3,11 +3,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * @author Giorgos Christidis
- * @author Giorgos Giannios
- *
  * UI Class handles all interactions with the Screen and the Player using static classes.
  * This Class clears the console screen, prints graphics for Cards and handles user's inputs.
+ *
+ * @author Giorgos Christidis
+ * @author Giorgos Giannios
  */
 public class UI {
     // Coordinates of cards.

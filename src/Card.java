@@ -1,7 +1,8 @@
 /**
- * @author Giorgos Giannios
- * This class create the cards of the memory game. Thera are some methods that give some charechteristics in each card.
+ * This class create the cards of the memory game. Thera are some methods that give some characteristics in each card.
  * Each card represents a letter.
+ *
+ * @author Giorgos Giannios
  */
 public class Card
 {

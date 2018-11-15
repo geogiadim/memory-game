@@ -1,7 +1,8 @@
 /**
+ * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
+ *
  * @author Giorgos Giannios
  * @author Giorgos Christidis
- * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
  */
 public class Table
 {
