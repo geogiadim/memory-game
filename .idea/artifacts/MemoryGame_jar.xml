@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MemoryGame:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MemoryGame_jar</output-path>
+    <root id="archive" name="MemoryGame.jar">
+      <element id="module-output" name="MemoryGame" />
+    </root>
+  </artifact>
+</component>
