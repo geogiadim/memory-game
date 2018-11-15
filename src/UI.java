@@ -242,7 +242,6 @@ public class UI {
 
     /*public static void printTest(Table newTable){
         System.out.println(" Cards will be revealed for 15 seconds. Try to remember as many as you can.\n");
-
         try
         {
             Thread.sleep(MESSAGE_DELAY *1000);
