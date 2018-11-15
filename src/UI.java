@@ -329,7 +329,6 @@ public class UI {
             showCards(newTable);
 
             if (mode == 3) {
-
                 //check if the first two cards are same
                 if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
                     //check out for the third card
