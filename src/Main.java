@@ -5,6 +5,8 @@
 
 public class Main {
     /**
+     *Passes the game mode to Logic class, either from cmd args or from player Interaction with UI class.
+     * Finally, when the game is over exits the game.
      *
      * @param args the command line arguments as an array of String objects
      */
