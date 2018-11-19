@@ -3,7 +3,7 @@ import java.util.Random;
 
 /**
  * This class represents the logic of the game. Creates the table with the cards and separates the game in the three different types.
- * This class is connected to Ui in order to create interaction with the player.
+ * This class is connected to Ui in order to make the game interactive to the player.
  *
  * @author Giorgos Giannios
  * @author Giorgos Christidis
@@ -20,7 +20,7 @@ public class Logic {
     private int y3 = 0;
 
     /**
-     * Initializes the appropriate table and chooses the appropriate method to start the game.
+     * Initializes the appropriate table and chooses the correct version to start the game.
      *
      * @param mode the type of the game.
      */
@@ -29,17 +29,19 @@ public class Logic {
         if (mode == 1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
-        } else if (mode == 2) {
+        }
+        else if (mode == 2) {
             newTable = new Table(6, 8);
             basicDoubleGame();
-        } else {
+        }
+        else if (mode == 3) {
             newTable = new Table(6, 6);
             tripleGame();
         }
     }
 
     /**
-     * This is the logic for the Basic and Double game modes
+     * This is the logic for the Basic and Double game.
      */
     private void basicDoubleGame() {
         initTablePairs(1);
@@ -105,6 +107,12 @@ public class Logic {
         UI.congrats(tries);
     }
 
+    /**
+     * Asks through the class Ui the player the coordinates of his/her choice card and
+     * checks all the possible conditions in order given coordinates to be valid.
+     *
+     * @param maxCards how many times have to be appeared each card in the table.
+     */
     private void checkAllCardConditions(int maxCards) {
         boolean wrongXY;
 
@@ -133,11 +141,13 @@ public class Logic {
                 x1 = UI.getX(cardNo);
                 y1 = UI.getY(cardNo);
                 newTable.openCard(x1, y1);
-            } else if (cardNo == 1) {
+            }
+            else if (cardNo == 1) {
                 x2 = UI.getX(cardNo);
                 y2 = UI.getY(cardNo);
                 newTable.openCard(x2, y2);
-            } else if (cardNo == 2) {
+            }
+            else if (cardNo == 2) {
                 x3 = UI.getX(cardNo);
                 y3 = UI.getY(cardNo);
                 newTable.openCard(x3, y3);

@@ -11,9 +11,9 @@ import java.util.Scanner;
  */
 public class UI {
     //Times in secs for delays.
-    private final static int MESSAGE_DELAY = 5;
-    private final static int RULES_DELAY = 8;
-    private final static int PREVIEW_TIME = 10;
+    private final static int MESSAGE_DELAY = 3;
+    private final static int RULES_DELAY = 3;
+    private final static int PREVIEW_TIME = 3;
     //Card Numbers to strings of numerical order.
     private final static String[] CARD_NO_LETTERS = {"first", "second", "third"};
     //ANSI codes for linux based systems to clear screen.
@@ -39,16 +39,24 @@ public class UI {
         intro();
         modes();
 
-        while (sc.hasNextInt()) {
-            if (!sc.hasNextInt() && (mode < 1 || mode > 3)) {
+        while (true){
+            try {
+                mode = Integer.parseInt(sc.nextLine());
+                if (mode!=1 && mode!=2 && mode!=3){
+                    clearScreen();
+                    intro();
+                    System.out.println(TAB + "You have to chose one of the three modes.");
+                    System.out.println(TAB + "Try again:\n");
+                    continue;
+                }
+                break;
+            }
+            catch (NumberFormatException nfe) {
                 clearScreen();
                 intro();
                 System.out.println(TAB + "You have to chose one of the three modes.");
                 System.out.println(TAB + "Try again:\n");
-                continue;
             }
-            mode = sc.nextInt();
-            break;
         }
 
         chosenMode(mode);
@@ -104,13 +112,14 @@ public class UI {
     }
 
     /**
-     * Handles console argument input.
+     * Handles console's argument input.
      *
      * @param m The game mode given by the player.
      */
     public static void consoleArgsIntro(int m) {
         intro();
         previewMode = true;
+        mode=m;
         chosenMode(m);
     }
 
@@ -133,6 +142,12 @@ public class UI {
         }
     }
 
+
+    /**
+     * Shows cards opened at the beginning of the game.
+     *
+     * @param newTable the 2D Table of Cards
+     */
     public static void showCardsPreview(Table newTable) {
         System.out.println(TAB + "Cards will be revealed for " + PREVIEW_TIME + " seconds. Try to remember as many as you can.");
         delay(MESSAGE_DELAY);
@@ -147,29 +162,38 @@ public class UI {
     }
 
     /**
-     * Handles graphical Card printing and showing first time Card values.
-     * Draws Card-like shapes in console and shows Card Values.
-     * Handles empty space left by paired Cards.
+     * Calls the "DrawTableUI" class.
      *
-     * @param newTable The 2D Table of Cards.
+     * @param newTable The 2D Table of Cards
      */
-
     public static void showCards(Table newTable) {
         DrawTableUI.showTable(newTable, previewMode);
     }
 
+    /**
+     * Prints the rules of the game.
+     *
+     * @param gameMode the mode of the game
+     */
     public static void rules(int gameMode) {
         System.out.println();
         if (gameMode == 3) {
             System.out.println(TAB + "In order to choose a card you have to type its coordinates as you see them in the cards.");
             System.out.println(TAB + "You have to choose three cards in each round.");
-        } else {
+        }
+        else {
             System.out.println(TAB + "In order to choose a card you have to type its coordinates as you see them in the cards.");
             System.out.println(TAB + "You have to choose two cards in each round.");
         }
         delay(RULES_DELAY);
     }
 
+    /**
+     * Returns the X of the appropriate card
+     *
+     * @param cardNo the number of the card that player wants to open (first,second,third).
+     * @return the X of the appropriate card
+     */
     public static int getX(int cardNo) {
         switch (cardNo) {
             case 0:
@@ -184,6 +208,12 @@ public class UI {
         }
     }
 
+    /**
+     * Returns the Y of the appropriate card
+     *
+     * @param cardNo the number of the card that player wants to open (first, second or third).
+     * @return the Y of the appropriate card
+     */
     public static int getY(int cardNo) {
         switch (cardNo) {
             case 0:
@@ -198,6 +228,11 @@ public class UI {
         }
     }
 
+    /**
+     * Prints the appropriate messages if the given coordinates are out of bounds.
+     *
+     * @param newTable The 2D Table of Cards
+     */
     public static void choiceOutOfBounds(Table newTable) {
         System.out.println(TAB + "Invalid coordinates!");
         System.out.println(TAB + "X must be in range of [1," + newTable.sizeX() + "]");
@@ -206,16 +241,27 @@ public class UI {
         delay(MESSAGE_DELAY);
     }
 
+    /**
+     * Prints the appropriate message if the chosen card is already opened.
+     */
     public static void choiceIsOpen() {
         System.out.println(TAB + "You have chosen an already open card. Try again!");
         delay(MESSAGE_DELAY);
     }
 
+    /**
+     * Prints the appropriate message if the chosen card is already paired.
+     */
     public static void choiceIsPaired() {
         System.out.println(TAB + "This card is already paired. Try again!");
         delay(MESSAGE_DELAY);
     }
 
+    /**
+     * Prints he appropriate messages if player's choice is correct or not.
+     *
+     * @param correct true if player's choice is correct and false if it is wrong.
+     */
     public static void showCorrectOrNot(boolean correct) {
         System.out.println();
         if (correct) System.out.println(TAB + "Correct Choice!!!");
@@ -223,6 +269,11 @@ public class UI {
         delay(MESSAGE_DELAY);
     }
 
+    /**
+     * Prints a congrats message when the player finishes the game
+     *
+     * @param tries the number of tries that player needed to find all pairs correctly.
+     */
     public static void congrats(int tries) {
         clearScreen();
         intro();
@@ -230,12 +281,22 @@ public class UI {
         System.out.println(TAB + "Congratulations, you matched all the cards in " + tries + " tries.");
     }
 
+    /**
+     * Clears screen, prints intro and shows the cards.
+     *
+     * @param newTable The 2D Table of Cards
+     */
     public static void clsIntroShowCards(Table newTable) {
         clearScreen();
         intro();
         showCards(newTable);
     }
 
+    /**
+     * Asks the coordinates of player's choice card.
+     *
+     * @param cardNo the number of the card that player wants to open (first, second or third).
+     */
     public static void userChoice(int cardNo) {
         System.out.println();
         System.out.println(TAB + "Give the coordinates for the " + CARD_NO_LETTERS[cardNo] + " card: ");

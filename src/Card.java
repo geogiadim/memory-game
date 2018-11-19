@@ -1,5 +1,5 @@
 /**
- * This class create the cards of the memory game. Thera are some methods that give some characteristics in each card.
+ * This class creates the cards of the memory game. There are some methods that give some characteristics in each card.
  * Each card represents a letter.
  *
  * @author Giorgos Giannios
@@ -19,7 +19,7 @@ public class Card
     }
 
     /**
-     * Set the card as opened or as closed
+     * Sets the card as opened or as closed
      * @param mode true if it is opened false if it is closed
      */
     public void setIsOpen(boolean mode){isOpen=mode;}
@@ -31,7 +31,7 @@ public class Card
     public boolean getIsOpen(){return isOpen;}
 
     /**
-     * Set the letter that is represented by the card
+     * Sets the letter that is represented by the card
      * @param value the letter that is represented by the card
      */
     public void setValue (int value){valueOfCard=value;}
@@ -43,7 +43,7 @@ public class Card
     public int getValue (){return valueOfCard;}
  
     /**
-     * Set the card as paired
+     * Sets the card as paired
      */
     public void setPairedTrue() {isPaired=true;}
 
