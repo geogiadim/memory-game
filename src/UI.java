@@ -65,23 +65,6 @@ public class UI {
     /**
      * Graphics related method to print game name.
      */
-    private static void intro(){
-        clearScreen();
-        System.out.println(TAB + "   _______________________");
-        System.out.println(TAB + " /|                       |");
-        System.out.println(TAB + "| |                       |");
-        System.out.println(TAB + "| |      MEMORY  GAME     |");
-        System.out.println(TAB + "| |                       |");
-        System.out.println(TAB + "| |_______________________|");
-        System.out.println(TAB + "|/________________________/\n");
-    }
-        chosenMode(mode);
-        return mode;
-    }
-
-    /**
-     * Graphics related method to print game name.
-     */
     private static void intro() {
         clearScreen();
         System.out.println(TAB + "   _______________________ ");
