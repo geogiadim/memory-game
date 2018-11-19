@@ -11,9 +11,9 @@ import java.util.Scanner;
  */
 public class UI {
     //Times in secs for delays.
-    private final static int MESSAGE_DELAY = 3;
-    private final static int RULES_DELAY = 3;
-    private final static int PREVIEW_TIME = 3;
+    private final static int MESSAGE_DELAY = 5;
+    private final static int RULES_DELAY = 8;
+    private final static int PREVIEW_TIME = 10;
     //Card Numbers to strings of numerical order.
     private final static String[] CARD_NO_LETTERS = {"first", "second", "third"};
     //ANSI codes for linux based systems to clear screen.
