@@ -1,7 +1,8 @@
 /**
+ * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
+ *
  * @author Giorgos Giannios
  * @author Giorgos Christidis
- * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
  */
 public class Table
 {
@@ -9,7 +10,7 @@ public class Table
     private int x;
     private int y;
     /**
-     * Initialize the table with the cards.
+     * Initializes the table with the cards.
      *
      * @param x the number of rows of the table
      * @param y the number of columns of the table
@@ -40,7 +41,7 @@ public class Table
     }
 
     /**
-     *Returns the value of the card
+     * Returns the value of the card
      *
      * @param x the row on which the card is inserted
      * @param y the row on which the card is inserted
@@ -62,7 +63,7 @@ public class Table
         tableOfCards[x][y].setIsOpen(true);
     }
     /**
-     * Hide the card
+     * Hides the card
      *
      * @param x the row on which the card is inserted
      * @param y the column on which the card is inserted
@@ -72,14 +73,14 @@ public class Table
         tableOfCards[x][y].setIsOpen(false);
     }
     /**
-     * Set the card as paired and makes it unable to be chosen again.
+     * Sets the card as paired and makes it unable to be chosen again.
      *
      * @param x the row on which the card is inserted
      * @param y the column on which the card is inserted
      */
     public void unableCard(int x,int y) {
         tableOfCards[x][y].setPairedTrue();
-        tableOfCards[x][y].setIsOpen(true);
+        tableOfCards[x][y].setIsOpen(false);
     }
 
     /**
