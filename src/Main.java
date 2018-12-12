@@ -13,7 +13,7 @@ public class Main {
      */
     public static void main(String[] args)
     {
-        Logic log;
+        /*Logic log;
         int mode;
         if (args.length > 0){
             mode = Integer.parseInt(args[0]);
@@ -25,6 +25,8 @@ public class Main {
         else {
             log = new Logic(UI.getMode());
         }
-        System.exit(0);
+        System.exit(0);*/
+        GUI g=new GUI();
+        chooseVersionGUI f=new chooseVersionGUI();
     }
 }
