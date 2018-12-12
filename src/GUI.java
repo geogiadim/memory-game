@@ -19,9 +19,8 @@ public class GUI implements ActionListener {
             aLayout = new FlowLayout();
             frame.setLayout(aLayout);
 
-            frame.setResizable(true);
+            frame.setResizable(false);
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            //setFrameOnCenter(frame);
 
             makeButton();
             makeLabel();
@@ -31,7 +30,10 @@ public class GUI implements ActionListener {
             frame.add(doubLe);
             frame.add(triple);
             frame.add(duel);
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+            //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            frame.pack();
+            setFrameOnCenter(frame);
             frame.setVisible(true);
       }
 
@@ -55,7 +57,7 @@ public class GUI implements ActionListener {
       private void setFrameOnCenter(Frame frame){
             Toolkit t= Toolkit.getDefaultToolkit();
             Dimension d=t.getScreenSize();
-            frame.setLocationRelativeTo(null);
+            //frame.setLocationRelativeTo(null);
             int x=(d.width-frame.getWidth())/2;
             int y=(d.height-frame.getHeight())/2;
             frame.setLocation(x,y);

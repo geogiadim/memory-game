@@ -10,23 +10,25 @@ public class chooseVersionGUI {
         layout = new FlowLayout();
         frame.setLayout(layout);
 
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         createButtons();
 
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.pack();
+        setLocationOnCenter();
         frame.setVisible(true);
     }
 
-   /* private void setLocationOnCenter(){
+    private void setLocationOnCenter(){
         Toolkit t=Toolkit.getDefaultToolkit();
         Dimension d =t.getScreenSize();
         frame.setLocationRelativeTo(null);
         int x = (d.width - frame.getWidth())/2;
         int y = (d.height - frame.getHeight())/2;
         frame.setLocation(x, y);
-    }*/
+    }
 
     private void createButtons(){
         JButton version1 = new JButton("Version 1");
