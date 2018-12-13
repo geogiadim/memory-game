@@ -125,7 +125,7 @@ public class UI {
     /**
      * Clears screen. Works for both Windows and Linux based OS.
      */
-    private static void clearScreen() {
+    protected static void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 //System.out.println(">>>IN WINDOWS CLEAR SCREEN!");

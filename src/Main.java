@@ -12,22 +12,38 @@ public class Main {
      * @param args the command line arguments as an array of String objects
      */
     public static void main(String[] args) {
-        Logic log;
-
-        if (version == 1) {
-            int mode;
-            if (args.length > 0) {
-                mode = Integer.parseInt(args[0]);
+        //Test if terminal version
+        if (args.length == 1) {
+            if (args[0].equals("-t")) {
+                askMode();
+            } else if (args[0].equals("-g")) {
+                initGUI();
+            }
+        } else if (args.length == 2) {
+            if (args[0].equals("-t")) {
+                int mode = Integer.parseInt(args[1]);
                 if (mode == 1 || mode == 2 || mode == 3) {
                     UI.consoleArgsIntro(mode);
-                    log = new Logic(mode);
-                }
-            } else {
-                log = new Logic(UI.getMode());
+                    Logic log = new Logic(mode);
+                } else askMode();
+            } else if (args[0].equals("-g")) {
+                initGUI();
             }
-        } else if (version == 2) {
-
+        } else {
+            if (chooseVersionUI.getVersion() == 1) {
+                askMode();
+            } else {
+                initGUI();
+            }
         }
         System.exit(0);
+    }
+
+    private static void initGUI() {
+        System.out.println("GUI");
+    }
+
+    private static void askMode() {
+        Logic log = new Logic(UI.getMode());
     }
 }
