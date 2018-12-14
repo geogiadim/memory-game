@@ -10,9 +10,7 @@ public class GUI implements ActionListener {
       private JLabel gameplay;
       private FlowLayout aLayout;
 
-      public GUI() {
-            makeFrame();
-      }
+      public GUI() {makeFrame(); }
 
       private void makeFrame() {
             frame = new JFrame("Memory Game");

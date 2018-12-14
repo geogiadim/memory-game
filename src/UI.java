@@ -27,11 +27,25 @@ public class UI {
     private static boolean previewMode;
     private static int mode = 0;
 
+    private static int version;
+
     /**
      * Handles mode selection. Checks for proper mode and prepares game for next
      *
      * @return mode Returns given mode.
      */
+    public static int getVersion(){
+        intro();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println(TAB + "Choose one of the two Versions: ");
+        System.out.println(TAB + "Type 1: for the console version.");
+        System.out.println(TAB + "Type 2: for the graphical version.");
+        version= sc.nextInt();
+
+        return version;
+    }
+
     public static int getMode() {
         previewMode = true;
         Scanner sc = new Scanner(System.in);
@@ -118,8 +132,10 @@ public class UI {
     public static void consoleArgsIntro(int m) {
         intro();
         previewMode = true;
-        mode=m;
-        chosenMode(m);
+        //mode=m;
+        //chosenMode(m);
+        version=m;
+        getMode();
     }
 
     /**

@@ -1,11 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class chooseVersionGUI {
+public class chooseVersionGUI implements ActionListener {
     private JFrame frame;
     private FlowLayout layout;
+    private static int mode=0;
+    private boolean flag=false;
 
-    public chooseVersionGUI(){
+    public int chooseVersionGUI(){
         frame = new JFrame("Memory Game");
         layout = new FlowLayout();
         frame.setLayout(layout);
@@ -19,6 +23,8 @@ public class chooseVersionGUI {
         frame.pack();
         setLocationOnCenter();
         frame.setVisible(true);
+
+        return 2;
     }
 
     private void setLocationOnCenter(){
@@ -32,8 +38,25 @@ public class chooseVersionGUI {
 
     private void createButtons(){
         JButton version1 = new JButton("Version 1");
+        version1.addActionListener(this);
         JButton version2 = new JButton("Version 2");
+        version2.addActionListener(this);
         frame.add(version1);
         frame.add(version2);
+    }
+
+    private static int getModeGUI(){return mode;}
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Version 1")) {
+            mode=1;
+            flag=true;
+        }
+        else if (e.getActionCommand().equals("Version 2"))
+        {
+            mode=2;
+            flag=true;
+        }
     }
 }

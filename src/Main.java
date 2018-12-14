@@ -13,20 +13,29 @@ public class Main {
      */
     public static void main(String[] args)
     {
-        /*Logic log;
-        int mode;
-        if (args.length > 0){
-            mode = Integer.parseInt(args[0]);
-            if (mode == 1 || mode == 2 || mode == 3){
-                UI.consoleArgsIntro(mode);
-                log = new Logic(mode);
+        Logic log;
+        GUI g;
+        int version;
+
+        if (args.length > 0) {
+            version = Integer.parseInt(args[0]);
+            if (version == 1) {
+                //UI.consoleArgsIntro(version);
+                log = new Logic(UI.getMode());
+            }
+            else if (version==2) {
+                g=new GUI();
             }
         }
         else {
-            log = new Logic(UI.getMode());
+            version = UI.getVersion();
+            if (version == 1) {
+                log = new Logic(UI.getMode());
+            }
+            else if (version == 2) {
+                g = new GUI();
+            }
         }
-        System.exit(0);*/
-        GUI g=new GUI();
-        chooseVersionGUI f=new chooseVersionGUI();
+        //System.exit(0);
     }
 }
