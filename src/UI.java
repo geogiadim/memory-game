@@ -127,16 +127,14 @@ public class UI {
     /**
      * Handles console's argument input.
      *
-     * @param m The game mode given by the player.
+     * @param ver The game mode given by the player.
      */
-    public static void consoleArgsIntro(int m) {
+   /* public static void consoleArgsIntro(int ver) {
         intro();
         previewMode = true;
-        //mode=m;
-        //chosenMode(m);
-        version=m;
+        version=ver;
         getMode();
-    }
+    }*/
 
     /**
      * Clears screen. Works for both Windows and Linux based OS.

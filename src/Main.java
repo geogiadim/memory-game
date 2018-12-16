@@ -20,7 +20,6 @@ public class Main {
         if (args.length > 0) {
             version = Integer.parseInt(args[0]);
             if (version == 1) {
-                //UI.consoleArgsIntro(version);
                 log = new Logic(UI.getMode());
             }
             else if (version==2) {

@@ -52,7 +52,7 @@ public class GUI implements ActionListener {
             gameplay.setForeground(Color.RED);
       }
 
-      private void setFrameOnCenter(Frame frame){
+      public void setFrameOnCenter(Frame frame){
             Toolkit t= Toolkit.getDefaultToolkit();
             Dimension d=t.getScreenSize();
             //frame.setLocationRelativeTo(null);
