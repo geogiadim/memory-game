@@ -13,28 +13,8 @@ public class Main {
      */
     public static void main(String[] args)
     {
-        Logic log;
-        GUI g;
-        int version;
-
-        if (args.length > 0) {
-            version = Integer.parseInt(args[0]);
-            if (version == 1) {
-                log = new Logic(UI.getMode());
-            }
-            else if (version==2) {
-                g=new GUI();
-            }
-        }
-        else {
-            version = UI.getVersion();
-            if (version == 1) {
-                log = new Logic(UI.getMode());
-            }
-            else if (version == 2) {
-                g = new GUI();
-            }
-        }
+        //GUI g=new GUI();
+        LayoutGrid l= new LayoutGrid();
         //System.exit(0);
     }
 }

@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI implements ActionListener {
+public class GUI extends UI implements ActionListener {
 
-      private JFrame frame;
+      private JFrame frame, frame2;
       private JButton basic, doubLe,triple,duel;
       private JLabel gameplay;
       private FlowLayout aLayout;
@@ -65,19 +65,38 @@ public class GUI implements ActionListener {
       public void actionPerformed(ActionEvent e) {
             if (e.getActionCommand().equals("Basic Game"))
             {
-                  gameplay.setText("Basic");
+                //frame.setVisible(true);
+                //gameplay.setText("Basic");
+
+                frame.removeAll();
+                aLayout = new FlowLayout();
+                frame.setLayout(aLayout);
+
+                frame.add(doubLe);
+
+                frame.pack();
+                setFrameOnCenter(frame);
+                frame.setVisible(true);
+
+                /*frame2=new JFrame("frame 2");
+                frame2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame2.add(gameplay);
+                frame2.pack();
+                setFrameOnCenter(frame2);
+                frame2.setVisible(true);*/
+
             }
             else if (e.getActionCommand().equals("Double Game"))
             {
-                  gameplay.setText("Double");
+                gameplay.setText("Double");
             }
             else if (e.getActionCommand().equals("Triple Game"))
             {
-                  gameplay.setText("Triple");
+                gameplay.setText("Triple");
             }
             else if (e.getActionCommand().equals("Duel Game"))
             {
-                  gameplay.setText("Duel");
+                gameplay.setText("Duel");
             }
       }
 }

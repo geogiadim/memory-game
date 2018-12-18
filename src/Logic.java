@@ -37,6 +37,10 @@ public class Logic {
             newTable = new Table(6, 6);
             tripleGame();
         }
+        else if (mode == 4){
+            newTable= new Table(6, 4);
+            duelGame();
+        }
     }
 
     /**
@@ -104,6 +108,10 @@ public class Logic {
             }
         } while (numberOfPairedCards < newTable.sizeOfTable());
         UI.congrats(tries);
+    }
+
+    private void duelGame(){
+
     }
 
     /**

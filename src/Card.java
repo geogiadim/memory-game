@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  * This class creates the cards of the memory game. There are some methods that give some characteristics in each card.
  * Each card represents a letter.
@@ -9,13 +11,14 @@ public class Card
     private int valueOfCard;
     private boolean isOpen;
     private boolean isPaired;
-
+   // private JButton card;
     /**
      * Creates a card and set it as closed and unpaired.
      */
     public Card(){
         isOpen=false;
         isPaired=false;
+        //card=new JButton(name);
     }
 
     /**
