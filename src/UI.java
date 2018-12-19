@@ -27,25 +27,11 @@ public class UI {
     private static boolean previewMode;
     private static int mode = 0;
 
-    private static int version;
-
     /**
      * Handles mode selection. Checks for proper mode and prepares game for next
      *
      * @return mode Returns given mode.
      */
-    public static int getVersion(){
-        intro();
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println(TAB + "Choose one of the two Versions: ");
-        System.out.println(TAB + "Type 1: for the console version.");
-        System.out.println(TAB + "Type 2: for the graphical version.");
-        version= sc.nextInt();
-
-        return version;
-    }
-
     public static int getMode() {
         previewMode = true;
         Scanner sc = new Scanner(System.in);
@@ -79,9 +65,9 @@ public class UI {
     /**
      * Graphics related method to print game name.
      */
-    private static void intro(){
+    private static void intro() {
         clearScreen();
-        System.out.println(TAB + "   _______________________");
+        System.out.println(TAB + "   _______________________ ");
         System.out.println(TAB + " /|                       |");
         System.out.println(TAB + "| |                       |");
         System.out.println(TAB + "| |      MEMORY  GAME     |");
@@ -127,19 +113,19 @@ public class UI {
     /**
      * Handles console's argument input.
      *
-     * @param ver The game mode given by the player.
+     * @param m The game mode given by the player.
      */
-   /* public static void consoleArgsIntro(int ver) {
+    public static void consoleArgsIntro(int m) {
         intro();
         previewMode = true;
-        version=ver;
-        getMode();
-    }*/
+        mode=m;
+        chosenMode(m);
+    }
 
     /**
      * Clears screen. Works for both Windows and Linux based OS.
      */
-    private static void clearScreen() {
+    protected static void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 //System.out.println(">>>IN WINDOWS CLEAR SCREEN!");

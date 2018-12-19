@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  * This is the main Class of the project.
  *
@@ -11,10 +13,12 @@ public class Main {
      *
      * @param args the command line arguments as an array of String objects
      */
-    public static void main(String[] args)
-    {
-        //GUI g=new GUI();
-        LayoutGrid l= new LayoutGrid();
-        //System.exit(0);
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        GUI.createGUI();
     }
 }
