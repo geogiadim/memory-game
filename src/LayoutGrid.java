@@ -23,7 +23,4 @@ public class LayoutGrid extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        LayoutGrid frame = new LayoutGrid();
-    }
 }

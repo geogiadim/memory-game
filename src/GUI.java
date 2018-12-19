@@ -11,7 +11,6 @@ public class GUI implements ActionListener {
     private JButton basicButton, doubleButton, tripleButton, duelButton;
     private JRadioButton p1, p2, p3, p4;
     private JLabel chooseGameMode;
-
     private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
     private Logic log;
@@ -20,6 +19,8 @@ public class GUI implements ActionListener {
     public static void createGUI() {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //frame.setContentPane(pane);
 
         GUI gui = new GUI();
         gui.addContent(frame.getContentPane());
@@ -91,13 +92,19 @@ public class GUI implements ActionListener {
     private void makeGameModeLabel() {
         chooseGameMode = new JLabel("Select game mode");
         chooseGameMode.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 52));
-        chooseGameMode.setForeground(Color.BLACK);
+        chooseGameMode.setForeground(Color.BLUE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(basicButton.getText())) {
-            chooseGameMode.setText("Basic Mode");
+            frame.getContentPane().removeAll();
+            frame.getContentPane().repaint();
+
+            makeNumPlayersRadioButtons(frame.getContentPane());
+            frame.validate();
+
+            //chooseGameMode.setText("Basic Mode");
         } else if (e.getActionCommand().equals(doubleButton.getText())) {
             chooseGameMode.setText("Double Mode");
         } else if (e.getActionCommand().equals(tripleButton.getText())) {
@@ -117,11 +124,13 @@ public class GUI implements ActionListener {
         }
     }
 
-    private void makeNumPlayersRadioButtons() {
-        JRadioButton p1 = new JRadioButton("1");
-        JRadioButton p2 = new JRadioButton("2");
-        JRadioButton p3 = new JRadioButton("3");
-        JRadioButton p4 = new JRadioButton("4");
+    private void makeNumPlayersRadioButtons(Container pane) {
+        JPanel numPlayersButtons = new JPanel(new GridLayout(1,0));
+        JRadioButton p1 = new JRadioButton("1 Player");
+        p1.setSelected(true);
+        JRadioButton p2 = new JRadioButton("2 Players");
+        JRadioButton p3 = new JRadioButton("3 Players");
+        JRadioButton p4 = new JRadioButton("4 Players");
 
         ButtonGroup radioButtons = new ButtonGroup();
         radioButtons.add(p1);
@@ -129,9 +138,22 @@ public class GUI implements ActionListener {
         radioButtons.add(p3);
         radioButtons.add(p4);
 
+        numPlayersButtons.add(p1);
+        numPlayersButtons.add(p2);
+        numPlayersButtons.add(p3);
+        numPlayersButtons.add(p4);
+
         p1.addActionListener(this);
         p2.addActionListener(this);
         p3.addActionListener(this);
         p4.addActionListener(this);
+
+        JLabel selectPlayers = new JLabel("Select Number of Players");
+        selectPlayers.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+
+        JPanel selPlayers = new JPanel(new GridLayout(2,0));
+        selPlayers.add(selectPlayers);
+        selPlayers.add(numPlayersButtons);
+        pane.add(selPlayers, BorderLayout.PAGE_START);
     }
 }
