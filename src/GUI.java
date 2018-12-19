@@ -1,65 +1,36 @@
-import sun.rmi.runtime.Log;
-
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.invoke.LambdaConversionException;
+import java.awt.event.KeyEvent;
 
 public class GUI implements ActionListener {
 
-    private JFrame frame;
-    private JButton basic, doubLe, triple, duel;
-    private JLabel gameplay;
-    private FlowLayout aLayout;
+    private static JFrame frame;
+    private JButton basicButton, doubleButton, tripleButton, duelButton;
+    private JRadioButton p1, p2, p3, p4;
+    private JLabel chooseGameMode;
+
+    private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+
     private Logic log;
     private Table tableOfCards;
 
-    public GUI() {
-        makeFrame();
-    }
-
-    private void makeFrame() {
+    public static void createGUI() {
         frame = new JFrame("Memory Game");
-        aLayout = new FlowLayout();
-        frame.setLayout(aLayout);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        GUI gui = new GUI();
+        gui.addContent(frame.getContentPane());
 
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        makeButton();
-        makeLabel();
-
-        frame.add(gameplay);
-        frame.add(basic);
-        frame.add(doubLe);
-        frame.add(triple);
-        frame.add(duel);
-
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.pack();
         setFrameOnCenter(frame);
         frame.setVisible(true);
     }
 
-    private void makeButton() {
-        basic = new JButton("Basic Game");
-        basic.addActionListener(this);
-        doubLe = new JButton("Double Game");
-        doubLe.addActionListener(this);
-        triple = new JButton("Triple Game");
-        triple.addActionListener(this);
-        duel = new JButton("Duel Game");
-        duel.addActionListener(this);
-    }
-
-    private void makeLabel() {
-        gameplay = new JLabel("Select game mode: ");
-        gameplay.setFont(new Font("Sheriff", Font.BOLD, 50));
-        gameplay.setForeground(Color.BLACK);
-    }
-
-    public void setFrameOnCenter(Frame frame) {
+    private static void setFrameOnCenter(JFrame frame) {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension d = t.getScreenSize();
         //frame.setLocationRelativeTo(null);
@@ -68,37 +39,99 @@ public class GUI implements ActionListener {
         frame.setLocation(x, y);
     }
 
+    private void addContent(Container pane) {
+        JPanel gmLabel = new JPanel();
+        makeGameModeLabel();
+        gmLabel.add(chooseGameMode);
+
+        JPanel gmButtons = new JPanel();
+        makeGMButtons();
+        gmButtons.add(basicButton);
+        gmButtons.add(basicButton);
+        gmButtons.add(doubleButton);
+        gmButtons.add(tripleButton);
+        gmButtons.add(duelButton);
+
+        pane.add(gmLabel, BorderLayout.PAGE_START);
+        pane.add(gmButtons, BorderLayout.CENTER);
+    }
+
+    private void makeGMButtons() {
+        Dimension dimension = new Dimension(180,90);
+
+        basicButton = new JButton("Basic Game");
+        basicButton.addActionListener(this);
+        basicButton.setFocusPainted(false);
+        basicButton.setMnemonic(KeyEvent.VK_B);
+        basicButton.setPreferredSize(dimension);
+        basicButton.setFont(buttonFont);
+
+        doubleButton = new JButton("Double Game");
+        doubleButton.addActionListener(this);
+        doubleButton.setFocusPainted(false);
+        doubleButton.setMnemonic(KeyEvent.VK_D);
+        doubleButton.setPreferredSize(dimension);
+        doubleButton.setFont(buttonFont);
+
+        tripleButton = new JButton("Triple Game");
+        tripleButton.addActionListener(this);
+        tripleButton.setFocusPainted(false);
+        tripleButton.setMnemonic(KeyEvent.VK_T);
+        tripleButton.setPreferredSize(dimension);
+        tripleButton.setFont(buttonFont);
+
+        duelButton = new JButton("Duel Game");
+        duelButton.addActionListener(this);
+        duelButton.setFocusPainted(false);
+        duelButton.setMnemonic(KeyEvent.VK_U);
+        duelButton.setPreferredSize(dimension);
+        duelButton.setFont(buttonFont);
+    }
+
+    private void makeGameModeLabel() {
+        chooseGameMode = new JLabel("Select game mode");
+        chooseGameMode.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 52));
+        chooseGameMode.setForeground(Color.BLACK);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Basic Game")) {
-            removeCompontents();
-            gameplay.setText("You have chosen Basic Mode!");
-            frame.add(gameplay);
-            frame.validate();
-            log = new Logic(1);
-            makeGrid();
-        } else if (e.getActionCommand().equals("Double Game")) {
-            gameplay.setText("Double");
-        } else if (e.getActionCommand().equals("Triple Game")) {
-            gameplay.setText("Triple");
-        } else if (e.getActionCommand().equals("Duel Game")) {
-            gameplay.setText("Duel");
+        if (e.getActionCommand().equals(basicButton.getText())) {
+            chooseGameMode.setText("Basic Mode");
+        } else if (e.getActionCommand().equals(doubleButton.getText())) {
+            chooseGameMode.setText("Double Mode");
+        } else if (e.getActionCommand().equals(tripleButton.getText())) {
+            chooseGameMode.setText("Triple Mode");
+        } else if (e.getActionCommand().equals(duelButton.getText())) {
+            chooseGameMode.setText("Duel Mode");
         }
     }
 
-    private void removeCompontents() {
-        frame.getContentPane().removeAll();
-        frame.repaint();
+    private void makeGrid(Container pane) {
+        JButton[] cards = new JButton[24/*tableOfCards.sizeOfTable()*/];
+        GridLayout gridLayout = new GridLayout(4, 6/*tableOfCards.sizeX(),tableOfCards.sizeY()*/);
+        pane.setLayout(gridLayout);
+        for (int i = 0; i < tableOfCards.sizeOfTable(); i++) {
+            cards[i] = new JButton("Button" + (i + 1));
+            pane.add(cards[i]);
+        }
     }
 
-    private void makeGrid(){
-        JButton[] cards = new JButton[tableOfCards.sizeOfTable()];
-        GridLayout gridLayout = new GridLayout(tableOfCards.sizeX(),tableOfCards.sizeY());
-        frame.setLayout(gridLayout);
-        for (int i =0;i < tableOfCards.sizeOfTable();i++){
-            cards[i] = new JButton("Button" + (i+1));
-            frame.add(cards[i]);
-        }
-        frame.pack();
+    private void makeNumPlayersRadioButtons() {
+        JRadioButton p1 = new JRadioButton("1");
+        JRadioButton p2 = new JRadioButton("2");
+        JRadioButton p3 = new JRadioButton("3");
+        JRadioButton p4 = new JRadioButton("4");
+
+        ButtonGroup radioButtons = new ButtonGroup();
+        radioButtons.add(p1);
+        radioButtons.add(p2);
+        radioButtons.add(p3);
+        radioButtons.add(p4);
+
+        p1.addActionListener(this);
+        p2.addActionListener(this);
+        p3.addActionListener(this);
+        p4.addActionListener(this);
     }
 }
