@@ -28,12 +28,10 @@ public class Logic {
         if (mode == 1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
-        }
-        else if (mode == 2) {
+        } else if (mode == 2) {
             newTable = new Table(6, 8);
             basicDoubleGame();
-        }
-        else if (mode == 3) {
+        } else if (mode == 3) {
             newTable = new Table(6, 6);
             tripleGame();
         }
@@ -140,13 +138,11 @@ public class Logic {
                 x1 = UI.getX(cardNo);
                 y1 = UI.getY(cardNo);
                 newTable.openCard(x1, y1);
-            }
-            else if (cardNo == 1) {
+            } else if (cardNo == 1) {
                 x2 = UI.getX(cardNo);
                 y2 = UI.getY(cardNo);
                 newTable.openCard(x2, y2);
-            }
-            else if (cardNo == 2) {
+            } else if (cardNo == 2) {
                 x3 = UI.getX(cardNo);
                 y3 = UI.getY(cardNo);
                 newTable.openCard(x3, y3);
@@ -171,8 +167,7 @@ public class Logic {
             }
         }
         //Fills the table with different cards, each card three times
-        else
-        {
+        else {
             for (int i = 0; i < newTable.sizeX(); i++) {
                 for (int j = 2; j < newTable.sizeY(); j += 3) {
                     newTable.setCardValue(i, j - 2, value);

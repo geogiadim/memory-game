@@ -1,11 +1,13 @@
-import java.awt.GridLayout;
-import javax.swing.*;
+package GUI;
 
-public class LayoutGrid extends JFrame {
+import javax.swing.*;
+import java.awt.*;
+
+class LayoutGrid extends JFrame {
 
     private JButton[] buttons;
 
-    public LayoutGrid() {
+    LayoutGrid() {
         setTitle("Grid Layout");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,7 +17,7 @@ public class LayoutGrid extends JFrame {
         GridLayout grid = new GridLayout(0, 4, 10, 5);
         setLayout(grid);
         for (int i = 0; i < NUM_BUTTONS; i++) {
-            buttons[i] = new JButton("Card " + (i+1));
+            buttons[i] = new JButton("Card " + (i + 1));
             add(buttons[i]);
         }
 

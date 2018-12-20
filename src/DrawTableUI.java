@@ -17,7 +17,7 @@ public class DrawTableUI {
      * Draws Card-like shapes in console and shows Card Values.
      * Handles empty spaces by paired Cards.
      *
-     * @param newTable the table with the cards
+     * @param newTable    the table with the cards
      * @param previewMode true if cards have to be opened and false if have to be closed
      */
     public static void showTable(Table newTable, boolean previewMode) {

@@ -1,3 +1,5 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,31 +13,6 @@ public class GUI implements ActionListener {
 
     //private Logic log;
     //private Table tableOfCards;
-
-    private void createJContents(){
-        button=new Buttons();
-        button.setButtonsName();
-        addButtonsActList();
-        label=new Labels();
-        label.setLabelName();
-        radiobutton=new RadioButtons();
-        radiobutton.setRadioButtonName();
-        addRadButActList();
-    }
-
-    private void addButtonsActList(){
-        button.basicButton.addActionListener(this);
-        button.doubleButton.addActionListener(this);
-        button.tripleButton.addActionListener(this);
-        button.duelButton.addActionListener(this);
-    }
-
-    private void addRadButActList(){
-        radiobutton.p1.addActionListener(this);
-        radiobutton.p2.addActionListener(this);
-        radiobutton.p3.addActionListener(this);
-        radiobutton.p4.addActionListener(this);
-    }
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -59,9 +36,35 @@ public class GUI implements ActionListener {
         frame.setLocation(x, y);
     }
 
-    private static void clearFrame(){
+    private static void clearFrame() {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();
+    }
+
+    private void createJContents() {
+        button = new Buttons();
+        button.setButtonsName();
+        addButtonsActList();
+
+        label = new Labels();
+        label.setLabelName();
+        radiobutton = new RadioButtons();
+        radiobutton.setRadioButtonName();
+        addRadButActList();
+    }
+
+    private void addButtonsActList() {
+        button.basicButton.addActionListener(this);
+        button.doubleButton.addActionListener(this);
+        button.tripleButton.addActionListener(this);
+        button.duelButton.addActionListener(this);
+    }
+
+    private void addRadButActList() {
+        radiobutton.p1.addActionListener(this);
+        radiobutton.p2.addActionListener(this);
+        radiobutton.p3.addActionListener(this);
+        radiobutton.p4.addActionListener(this);
     }
 
     private void addContentGameMode(Container pane) {
@@ -80,7 +83,7 @@ public class GUI implements ActionListener {
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
     }
 
-    private void selectNumOfPlayers(){
+    private void selectNumOfPlayers() {
         clearFrame();
         addContentRadioButtons(frame.getContentPane());
         frame.validate();
@@ -104,12 +107,12 @@ public class GUI implements ActionListener {
         selectPlayersPanel.add(label.chooseNumOfPlayers);
 
         pane.add(selectPlayersPanel, BorderLayout.PAGE_START);
-        pane.add(numPlayersButtonsPanel,BorderLayout.CENTER);
+        pane.add(numPlayersButtonsPanel, BorderLayout.CENTER);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(button.basicButton.getText())){
+        if (e.getActionCommand().equals(button.basicButton.getText())) {
             selectNumOfPlayers();
         } else if (e.getActionCommand().equals(button.doubleButton.getText())) {
             selectNumOfPlayers();

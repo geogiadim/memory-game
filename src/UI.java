@@ -39,10 +39,10 @@ public class UI {
         intro();
         modes();
 
-        while (true){
+        while (true) {
             try {
                 mode = Integer.parseInt(sc.nextLine());
-                if (mode!=1 && mode!=2 && mode!=3){
+                if (mode != 1 && mode != 2 && mode != 3) {
                     clearScreen();
                     intro();
                     System.out.println(TAB + "You have to chose one of the three modes.");
@@ -50,8 +50,7 @@ public class UI {
                     continue;
                 }
                 break;
-            }
-            catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe) {
                 clearScreen();
                 intro();
                 System.out.println(TAB + "You have to chose one of the three modes.");
@@ -118,7 +117,7 @@ public class UI {
     public static void consoleArgsIntro(int m) {
         intro();
         previewMode = true;
-        mode=m;
+        mode = m;
         chosenMode(m);
     }
 
@@ -179,8 +178,7 @@ public class UI {
         if (gameMode == 3) {
             System.out.println(TAB + "In order to choose a card you have to type its coordinates as you see them in the cards.");
             System.out.println(TAB + "You have to choose three cards in each round.");
-        }
-        else {
+        } else {
             System.out.println(TAB + "In order to choose a card you have to type its coordinates as you see them in the cards.");
             System.out.println(TAB + "You have to choose two cards in each round.");
         }
