@@ -9,10 +9,10 @@ public class GUI implements ActionListener {
     private Labels label;
     private RadioButtons radiobutton;
 
-    private Logic log;
-    private Table tableOfCards;
+    //private Logic log;
+    //private Table tableOfCards;
 
-    private void craeateJcontents(){
+    private void createJContents(){
         button=new Buttons();
         button.setButtonsName();
         addButtonsActList();
@@ -42,7 +42,7 @@ public class GUI implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GUI gui = new GUI();
-        gui.addContent(frame.getContentPane());
+        gui.addContentGameMode(frame.getContentPane());
 
         frame.setResizable(false);
         frame.pack();
@@ -59,8 +59,13 @@ public class GUI implements ActionListener {
         frame.setLocation(x, y);
     }
 
-    private void addContent(Container pane) {
-        craeateJcontents();
+    private static void clearFrame(){
+        frame.getContentPane().removeAll();
+        frame.getContentPane().repaint();
+    }
+
+    private void addContentGameMode(Container pane) {
+        createJContents();
 
         JPanel gmLabelPanel = new JPanel();
         gmLabelPanel.add(label.chooseGameMode);
@@ -77,39 +82,11 @@ public class GUI implements ActionListener {
 
     private void selectNumOfPlayers(){
         clearFrame();
-        makeNumPlayersRadioButtons(frame.getContentPane());
+        addContentRadioButtons(frame.getContentPane());
         frame.validate();
     }
 
-    private void clearFrame(){
-        frame.getContentPane().removeAll();
-        frame.getContentPane().repaint();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(button.basicButton.getText())){
-            selectNumOfPlayers();
-        } else if (e.getActionCommand().equals(button.doubleButton.getText())) {
-            selectNumOfPlayers();
-        } else if (e.getActionCommand().equals(button.tripleButton.getText())) {
-            selectNumOfPlayers();
-        } else if (e.getActionCommand().equals(button.duelButton.getText())) {
-            selectNumOfPlayers();
-        }
-    }
-
-    private void makeGrid(Container pane) {
-        JButton[] cards = new JButton[24/*tableOfCards.sizeOfTable()*/];
-        GridLayout gridLayout = new GridLayout(4, 6/*tableOfCards.sizeX(),tableOfCards.sizeY()*/);
-        pane.setLayout(gridLayout);
-        for (int i = 0; i < tableOfCards.sizeOfTable(); i++) {
-            cards[i] = new JButton("Button" + (i + 1));
-            pane.add(cards[i]);
-        }
-    }
-
-    private void makeNumPlayersRadioButtons(Container pane) {
+    private void addContentRadioButtons(Container pane) {
         JPanel numPlayersButtonsPanel = new JPanel(/*new GridLayout(1,0)*/);
         numPlayersButtonsPanel.add(radiobutton.p1);
         numPlayersButtonsPanel.add(radiobutton.p2);
@@ -129,4 +106,27 @@ public class GUI implements ActionListener {
         pane.add(selectPlayersPanel, BorderLayout.PAGE_START);
         pane.add(numPlayersButtonsPanel,BorderLayout.CENTER);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals(button.basicButton.getText())){
+            selectNumOfPlayers();
+        } else if (e.getActionCommand().equals(button.doubleButton.getText())) {
+            selectNumOfPlayers();
+        } else if (e.getActionCommand().equals(button.tripleButton.getText())) {
+            selectNumOfPlayers();
+        } else if (e.getActionCommand().equals(button.duelButton.getText())) {
+            selectNumOfPlayers();
+        }
+    }
+
+    /*private void makeGrid(Container pane) {
+        JButton[] cards = new JButton[24/*tableOfCards.sizeOfTable()*//*];
+        /*GridLayout gridLayout = new GridLayout(4, 6/*tableOfCards.sizeX(),tableOfCards.sizeY()*//*);
+       /* pane.setLayout(gridLayout);
+        for (int i = 0; i < tableOfCards.sizeOfTable(); i++) {
+            cards[i] = new JButton("Button" + (i + 1));
+            pane.add(cards[i]);
+        }
+    }*/
 }
