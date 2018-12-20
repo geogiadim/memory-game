@@ -2,23 +2,27 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Buttons {
-    public JButton basicButton, doubleButton, tripleButton, duelButton;
+    public JButton basicButton, doubleButton, tripleButton, duelButton, nextbutton, backbutton;
     public JButton button;
     private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
+    private final static int WIDTH_MODE=180;
+    private final static int HEIGHT_MODE=90;
+
 
     public void setButtonsName(){
-        basicButton=makeButton("Basic Game");
-        doubleButton=makeButton("Double Game");
-        tripleButton=makeButton("Triple Game");
-        duelButton=makeButton("Duel Game");
+        basicButton=makeButton("Basic Game",WIDTH_MODE, HEIGHT_MODE);
+        doubleButton=makeButton("Double Game",WIDTH_MODE,HEIGHT_MODE);
+        tripleButton=makeButton("Triple Game",WIDTH_MODE,HEIGHT_MODE);
+        duelButton=makeButton("Duel Game",WIDTH_MODE,HEIGHT_MODE);
+        nextbutton=makeButton("Next",90,45);
+        backbutton=makeButton("Back",90,45);
     }
 
-    public JButton makeButton(String name){
-        Dimension dimension = new Dimension(180,90);
+    public JButton makeButton(String name,int w, int h){
+        Dimension dimension = new Dimension(w,h);
 
         button = new JButton(name);
-        //button.addActionListener(this);
         button.setFocusPainted(false);
         //button.setMnemonic(KeyEvent.VK_B);
         button.setPreferredSize(dimension);
