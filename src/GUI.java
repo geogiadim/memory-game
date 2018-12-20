@@ -8,19 +8,35 @@ import java.awt.event.KeyEvent;
 public class GUI implements ActionListener {
 
     private static JFrame frame;
-    private JButton basicButton, doubleButton, tripleButton, duelButton;
+    private Buttons button;
+
+    //private JButton basicButton, doubleButton, tripleButton, duelButton;
+    //private JButton button;
     private JRadioButton p1, p2, p3, p4;
-    private JLabel chooseGameMode;
+    private JRadioButton radioButton;
+    private JLabel chooseGameMode, chooseNumOfPlayers;
+    private JLabel label;
+
     private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
     private Logic log;
     private Table tableOfCards;
 
+    private void craeateJconents(){
+        button=new Buttons();
+        addActList();
+    }
+
+    private void addActList(){
+        button.basicButton.addActionListener(this);
+        button.doubleButton.addActionListener(this);
+        button.tripleButton.addActionListener(this);
+        button.duelButton.addActionListener(this);
+    }
+
     public static void createGUI() {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //frame.setContentPane(pane);
 
         GUI gui = new GUI();
         gui.addContent(frame.getContentPane());
@@ -39,78 +55,90 @@ public class GUI implements ActionListener {
         int y = (d.height - frame.getHeight()) / 2;
         frame.setLocation(x, y);
     }
+    /*private void setButtonsName(){
+        basicButton=makeButton("Basic Game");
+        doubleButton=makeButton("Double Game");
+        tripleButton=makeButton("Triple Game");
+        duelButton=makeButton("Duel Game");
+    }*/
+
+    private void setLabelName(){
+        chooseGameMode=makeLabel("Select Game mode");
+        chooseNumOfPlayers=makeLabel("Select Number of Players");
+    }
+
+    private void setRadioButtonName(){
+        p1=makeRadioButton("1 Player");
+        p2=makeRadioButton("2 Players");
+        p3=makeRadioButton("3 Players");
+        p4=makeRadioButton("4 Players");
+    }
 
     private void addContent(Container pane) {
-        JPanel gmLabel = new JPanel();
-        makeGameModeLabel();
-        gmLabel.add(chooseGameMode);
+        craeateJconents();
+        JPanel gmLabelPanel = new JPanel();
+        setLabelName();
+        gmLabelPanel.add(chooseGameMode);
 
-        JPanel gmButtons = new JPanel();
-        makeGMButtons();
-        gmButtons.add(basicButton);
-        gmButtons.add(basicButton);
-        gmButtons.add(doubleButton);
-        gmButtons.add(tripleButton);
-        gmButtons.add(duelButton);
+        JPanel gmButtonsPanel = new JPanel();
+        button.setButtonsName();
+        gmButtonsPanel.add(button.basicButton);
+        gmButtonsPanel.add(button.doubleButton);
+        gmButtonsPanel.add(button.tripleButton);
+        gmButtonsPanel.add(button.duelButton);
 
-        pane.add(gmLabel, BorderLayout.PAGE_START);
-        pane.add(gmButtons, BorderLayout.CENTER);
+        pane.add(gmLabelPanel, BorderLayout.PAGE_START);
+        pane.add(gmButtonsPanel, BorderLayout.CENTER);
     }
 
-    private void makeGMButtons() {
+    /*private JButton makeButton(String name){
         Dimension dimension = new Dimension(180,90);
 
-        basicButton = new JButton("Basic Game");
-        basicButton.addActionListener(this);
-        basicButton.setFocusPainted(false);
-        basicButton.setMnemonic(KeyEvent.VK_B);
-        basicButton.setPreferredSize(dimension);
-        basicButton.setFont(buttonFont);
+        button = new JButton(name);
+        button.addActionListener(this);
+        button.setFocusPainted(false);
+        //button.setMnemonic(KeyEvent.VK_B);
+        button.setPreferredSize(dimension);
+        button.setFont(buttonFont);
 
-        doubleButton = new JButton("Double Game");
-        doubleButton.addActionListener(this);
-        doubleButton.setFocusPainted(false);
-        doubleButton.setMnemonic(KeyEvent.VK_D);
-        doubleButton.setPreferredSize(dimension);
-        doubleButton.setFont(buttonFont);
+        return button;
+    }*/
 
-        tripleButton = new JButton("Triple Game");
-        tripleButton.addActionListener(this);
-        tripleButton.setFocusPainted(false);
-        tripleButton.setMnemonic(KeyEvent.VK_T);
-        tripleButton.setPreferredSize(dimension);
-        tripleButton.setFont(buttonFont);
+    private JLabel makeLabel(String name){
+        label = new JLabel(name);
+        label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 52));
+        label.setForeground(Color.BLUE);
 
-        duelButton = new JButton("Duel Game");
-        duelButton.addActionListener(this);
-        duelButton.setFocusPainted(false);
-        duelButton.setMnemonic(KeyEvent.VK_U);
-        duelButton.setPreferredSize(dimension);
-        duelButton.setFont(buttonFont);
+        return label;
     }
 
-    private void makeGameModeLabel() {
-        chooseGameMode = new JLabel("Select game mode");
-        chooseGameMode.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 52));
-        chooseGameMode.setForeground(Color.BLUE);
+    private JRadioButton makeRadioButton(String name){
+        radioButton=new JRadioButton(name);
+
+        return radioButton;
+    }
+
+    private void selectNumOfPlayers(){
+        clearFrame();
+        makeNumPlayersRadioButtons(frame.getContentPane());
+        frame.validate();
+    }
+
+    private void clearFrame(){
+        frame.getContentPane().removeAll();
+        frame.getContentPane().repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(basicButton.getText())) {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().repaint();
-
-            makeNumPlayersRadioButtons(frame.getContentPane());
-            frame.validate();
-
-            //chooseGameMode.setText("Basic Mode");
-        } else if (e.getActionCommand().equals(doubleButton.getText())) {
-            chooseGameMode.setText("Double Mode");
-        } else if (e.getActionCommand().equals(tripleButton.getText())) {
-            chooseGameMode.setText("Triple Mode");
-        } else if (e.getActionCommand().equals(duelButton.getText())) {
-            chooseGameMode.setText("Duel Mode");
+        if (e.getActionCommand().equals(button.basicButton.getText())){
+            selectNumOfPlayers();
+        } else if (e.getActionCommand().equals(button.doubleButton.getText())) {
+            selectNumOfPlayers();
+        } else if (e.getActionCommand().equals(button.tripleButton.getText())) {
+            selectNumOfPlayers();
+        } else if (e.getActionCommand().equals(button.duelButton.getText())) {
+            selectNumOfPlayers();
         }
     }
 
@@ -125,12 +153,9 @@ public class GUI implements ActionListener {
     }
 
     private void makeNumPlayersRadioButtons(Container pane) {
-        JPanel numPlayersButtons = new JPanel(new GridLayout(1,0));
-        JRadioButton p1 = new JRadioButton("1 Player");
+        JPanel numPlayersButtonsPanel = new JPanel(new GridLayout(1,0));
+        setRadioButtonName();
         p1.setSelected(true);
-        JRadioButton p2 = new JRadioButton("2 Players");
-        JRadioButton p3 = new JRadioButton("3 Players");
-        JRadioButton p4 = new JRadioButton("4 Players");
 
         ButtonGroup radioButtons = new ButtonGroup();
         radioButtons.add(p1);
@@ -138,22 +163,20 @@ public class GUI implements ActionListener {
         radioButtons.add(p3);
         radioButtons.add(p4);
 
-        numPlayersButtons.add(p1);
-        numPlayersButtons.add(p2);
-        numPlayersButtons.add(p3);
-        numPlayersButtons.add(p4);
+        numPlayersButtonsPanel.add(p1);
+        numPlayersButtonsPanel.add(p2);
+        numPlayersButtonsPanel.add(p3);
+        numPlayersButtonsPanel.add(p4);
 
         p1.addActionListener(this);
         p2.addActionListener(this);
         p3.addActionListener(this);
         p4.addActionListener(this);
 
-        JLabel selectPlayers = new JLabel("Select Number of Players");
-        selectPlayers.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+        JPanel selectPlayersPanel = new JPanel(new GridLayout(2,0));
+        selectPlayersPanel.add(chooseNumOfPlayers);
 
-        JPanel selPlayers = new JPanel(new GridLayout(2,0));
-        selPlayers.add(selectPlayers);
-        selPlayers.add(numPlayersButtons);
-        pane.add(selPlayers, BorderLayout.PAGE_START);
+        pane.add(selectPlayersPanel, BorderLayout.PAGE_START);
+        pane.add(numPlayersButtonsPanel,BorderLayout.CENTER);
     }
 }
