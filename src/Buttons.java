@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class Buttons {
     public JButton basicButton, doubleButton, tripleButton, duelButton;
