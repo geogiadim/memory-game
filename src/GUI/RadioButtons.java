@@ -14,7 +14,7 @@ class RadioButtons {
 
     private JRadioButton makeRadioButton(String name) {
         JRadioButton radioButton = new JRadioButton(name);
-
+        radioButton.setFocusPainted(false);
         return radioButton;
     }
 
