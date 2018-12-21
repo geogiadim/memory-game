@@ -1,8 +1,10 @@
-/*import java.awt.event.ActionEvent;
+/*
+package GUI
+
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public interface  ActionListenerRadioButtons {
-
+interface ActionListenerRadioButtons {
 
     void addRadButActList(){
         radiobutton.p1.addActionListener(new ActionListener() {
@@ -137,8 +139,6 @@ public interface  ActionListenerRadioButtons {
                 radiobutton.difficultCPU3.setEnabled(true);
             }
         });
-
-
     }
 }
 */

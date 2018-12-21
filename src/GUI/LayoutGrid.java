@@ -8,9 +8,6 @@ class LayoutGrid extends JFrame {
     private JButton[] buttons;
 
     LayoutGrid() {
-        setTitle("Grid Layout");
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         final int NUM_BUTTONS = 24;
         buttons = new JButton[NUM_BUTTONS];
@@ -20,9 +17,6 @@ class LayoutGrid extends JFrame {
             buttons[i] = new JButton("Card " + (i + 1));
             add(buttons[i]);
         }
-
-        pack();
-        setVisible(true);
     }
 
 }
