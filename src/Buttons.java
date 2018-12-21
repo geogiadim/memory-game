@@ -4,7 +4,6 @@ import java.awt.*;
 public class Buttons {
     public JButton basicButton, doubleButton, tripleButton, duelButton, nextbutton, backbutton;
     public JButton button;
-    private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
     private final static int WIDTH_MODE=250;
     private final static int HEIGHT_MODE=150;
@@ -13,22 +12,22 @@ public class Buttons {
 
 
     public void setButtonsName(){
-        basicButton=makeButton("Basic Game",WIDTH_MODE, HEIGHT_MODE);
-        doubleButton=makeButton("Double Game",WIDTH_MODE,HEIGHT_MODE);
-        tripleButton=makeButton("Triple Game",WIDTH_MODE,HEIGHT_MODE);
-        duelButton=makeButton("Duel Game",WIDTH_MODE,HEIGHT_MODE);
-        nextbutton=makeButton("Next",90,45);
-        backbutton=makeButton("Back",90,45);
+        basicButton=makeButton("Basic Game",WIDTH_MODE, HEIGHT_MODE,FONT_SIZE_MODE);
+        doubleButton=makeButton("Double Game",WIDTH_MODE,HEIGHT_MODE,FONT_SIZE_MODE);
+        tripleButton=makeButton("Triple Game",WIDTH_MODE,HEIGHT_MODE,FONT_SIZE_MODE);
+        duelButton=makeButton("Duel Game",WIDTH_MODE,HEIGHT_MODE,FONT_SIZE_MODE);
+        nextbutton=makeButton("Next",90,45,FONT_SIZE_GAME);
+        backbutton=makeButton("Back",90,45,FONT_SIZE_GAME);
     }
 
-    public JButton makeButton(String name,int w, int h){
+    public JButton makeButton(String name,int w, int h,int size){
         Dimension dimension = new Dimension(w,h);
 
         button = new JButton(name);
         button.setFocusPainted(false);
         //button.setMnemonic(KeyEvent.VK_B);
         button.setPreferredSize(dimension);
-        button.setFont(buttonFont);
+        button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
 
         return button;
     }

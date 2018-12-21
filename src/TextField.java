@@ -1,5 +1,6 @@
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.*;
 
 public class TextField {
 
@@ -14,15 +15,19 @@ public class TextField {
 
     public TextField() {
         labelP1 = new JLabel("1st Player");
+        labelP1.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 16));
         textP1 = new JTextField(" ");
 
         labelP2 = new JLabel("2nd Player");
+        labelP2.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 16));
         textP2 = new JTextField(" ");
 
         labelP3 = new JLabel("3rd Player");
+        labelP3.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 16));
         textP3 = new JTextField(" ");
 
         labelP4 = new JLabel("4th Player");
+        labelP4.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 16));
         textP4 = new JTextField(" ");
     }
 
