@@ -24,19 +24,6 @@ public class TextField {
 
         labelP4 = new JLabel("4th Player");
         textP4 = new JTextField(" ");
-        //textP1.setEditable(false);
-
-        /*JPanel panel2 = new JPanel();
-        JButton buttonCalculate = new JButton("Υπολογισμός Δόσης");
-        buttonCalculate.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                calculateDose();
-            }
-        });
-        panel2.add(buttonCalculate);
-        add(panel2, BorderLayout.PAGE_END);*/
     }
 
 }

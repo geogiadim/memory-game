@@ -8,7 +8,7 @@ public class Labels {
     //private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
     public void setLabelName(){
-        chooseGameMode=makeLabel("Select Game mode", 52);
+        chooseGameMode=makeLabel("Select Game mode", 60);
         chooseNumOfPlayers=makeLabel("Select Number of Players and CPUs",30);
         writeNames= makeLabel("Write the names of the players",30);
     }

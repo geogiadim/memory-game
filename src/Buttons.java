@@ -6,8 +6,10 @@ public class Buttons {
     public JButton button;
     private Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
 
-    private final static int WIDTH_MODE=180;
-    private final static int HEIGHT_MODE=90;
+    private final static int WIDTH_MODE=250;
+    private final static int HEIGHT_MODE=150;
+    private final static int FONT_SIZE_MODE=30;
+    private final static int FONT_SIZE_GAME=18;
 
 
     public void setButtonsName(){
