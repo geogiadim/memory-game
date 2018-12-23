@@ -6,13 +6,16 @@ import java.awt.*;
 
 public class GUI {
     private static JFrame frame;
-    private Buttons button;
-    private Labels label;
-    private RadioButtons radiobutton;
-    private TextField textField;
+    private static Buttons button;
+    private static Labels label;
+    private static RadioButtons radiobutton;
+    private static TextField textField;
 
-    private int numOfFrames = 0;
-    private int numOfPlayers = 0;
+    static ActionListenerRadioButtons radioButtonListener;
+    static ActionListenerButtons buttonListener;
+
+    private static int numOfFrames = 0;
+    //private static int numOfPlayers = 0;
 
     //private Logic log;
     //private Table tableOfCards;
@@ -20,179 +23,41 @@ public class GUI {
     private void createJContents() {
         button = new Buttons();
         button.setButtonsName();
-        addButtonsActList();
+        //addButtonsActList();
+        buttonListener=new ActionListenerButtons();
 
         label = new Labels();
         label.setLabelName();
 
         radiobutton = new RadioButtons();
         radiobutton.setRadioButtonName();
-        addRadButActList();
+        //addRadButActList();
+        radioButtonListener=new ActionListenerRadioButtons();
 
         textField = new TextField();
     }
 
-    private void addButtonsActList() {
-        button.basicButton.addActionListener(actionEvent -> {
-            selectNumOfPlayers();
-            System.out.println("1");
-        });
-        button.doubleButton.addActionListener(actionEvent -> {
-            selectNumOfPlayers();
-            System.out.println("2");
-        });
-        button.tripleButton.addActionListener(actionEvent -> {
-            selectNumOfPlayers();
-            System.out.println("3");
-        });
-//        button.duelButton.addActionListener(actionEvent -> {
-//                    selectNumOfPlayers();
-//
-//        });
-
-        button.backButton.addActionListener(actionEvent -> {
-            clearFrame();
-            if (numOfFrames == 2) {
-                frame1GameMode(frame.getContentPane());
-            } else if (numOfFrames == 3) {
-                frame2PlayerChoice(frame.getContentPane());
-            }
-            frame.validate();
-        });
-
-        button.nextButton.addActionListener(actionEvent -> {
-            clearFrame();
-            if (numOfFrames == 2) {
-                frame3PlayersName(frame.getContentPane());
-            }
-            frame.validate();
-
-        });
+    static RadioButtons getRadiobuttons(){
+        return radiobutton;
     }
 
-    private void addRadButActList() {
-        radiobutton.p1.addActionListener(actionEvent -> {
-
-            numOfPlayers = 1;
-            textField.textP1.setEnabled(true);
-            textField.textP2.setEnabled(false);
-            textField.textP3.setEnabled(false);
-            textField.textP4.setEnabled(false);
-
-            radiobutton.cpu0.setSelected(true);
-            radiobutton.cpu0.setEnabled(true);
-            radiobutton.cpu1.setEnabled(false);
-            radiobutton.cpu2.setEnabled(false);
-            radiobutton.cpu3.setEnabled(false);
-
-        });
-
-        radiobutton.p2.addActionListener(actionEvent -> {
-
-            numOfPlayers = 2;
-            textField.textP1.setEnabled(true);
-            textField.textP2.setEnabled(true);
-            textField.textP3.setEnabled(false);
-            textField.textP4.setEnabled(false);
-
-            radiobutton.cpu0.setSelected(true);
-            radiobutton.cpu0.setEnabled(true);
-            radiobutton.cpu1.setEnabled(true);
-            radiobutton.cpu2.setEnabled(false);
-            radiobutton.cpu3.setEnabled(false);
-        });
-
-        radiobutton.p3.addActionListener(actionEvent -> {
-
-            numOfPlayers = 3;
-            textField.textP1.setEnabled(true);
-            textField.textP2.setEnabled(true);
-            textField.textP3.setEnabled(true);
-            textField.textP4.setEnabled(false);
-
-            radiobutton.cpu0.setSelected(true);
-            radiobutton.cpu0.setEnabled(true);
-            radiobutton.cpu1.setEnabled(true);
-            radiobutton.cpu2.setEnabled(true);
-            radiobutton.cpu3.setEnabled(false);
-
-        });
-
-        radiobutton.p4.addActionListener(actionEvent -> {
-
-            numOfPlayers = 4;
-            textField.textP1.setEnabled(true);
-            textField.textP2.setEnabled(true);
-            textField.textP3.setEnabled(true);
-            textField.textP4.setEnabled(true);
-
-            radiobutton.cpu0.setSelected(true);
-            radiobutton.cpu0.setEnabled(true);
-            radiobutton.cpu1.setEnabled(true);
-            radiobutton.cpu2.setEnabled(true);
-            radiobutton.cpu3.setEnabled(true);
-        });
-
-        radiobutton.cpu0.addActionListener(actionEvent -> {
-
-            radiobutton.easyCPU.setEnabled(false);
-            radiobutton.normalCPU.setEnabled(false);
-            radiobutton.difficultCPU.setEnabled(false);
-
-            radiobutton.easyCPU2.setEnabled(false);
-            radiobutton.normalCPU2.setEnabled(false);
-            radiobutton.difficultCPU2.setEnabled(false);
-
-            radiobutton.easyCPU3.setEnabled(false);
-            radiobutton.normalCPU3.setEnabled(false);
-            radiobutton.difficultCPU3.setEnabled(false);
-        });
-
-        radiobutton.cpu1.addActionListener(actionEvent -> {
-
-            radiobutton.easyCPU.setEnabled(true);
-            radiobutton.normalCPU.setEnabled(true);
-            radiobutton.difficultCPU.setEnabled(true);
-
-            radiobutton.easyCPU2.setEnabled(false);
-            radiobutton.normalCPU2.setEnabled(false);
-            radiobutton.difficultCPU2.setEnabled(false);
-
-            radiobutton.easyCPU3.setEnabled(false);
-            radiobutton.normalCPU3.setEnabled(false);
-            radiobutton.difficultCPU3.setEnabled(false);
-        });
-
-        radiobutton.cpu2.addActionListener(actionEvent -> {
-
-            radiobutton.easyCPU.setEnabled(true);
-            radiobutton.normalCPU.setEnabled(true);
-            radiobutton.difficultCPU.setEnabled(true);
-
-            radiobutton.easyCPU2.setEnabled(true);
-            radiobutton.normalCPU2.setEnabled(true);
-            radiobutton.difficultCPU2.setEnabled(true);
-
-            radiobutton.easyCPU3.setEnabled(false);
-            radiobutton.normalCPU3.setEnabled(false);
-            radiobutton.difficultCPU3.setEnabled(false);
-        });
-
-        radiobutton.cpu3.addActionListener(actionEvent -> {
-
-            radiobutton.easyCPU.setEnabled(true);
-            radiobutton.normalCPU.setEnabled(true);
-            radiobutton.difficultCPU.setEnabled(true);
-
-            radiobutton.easyCPU2.setEnabled(true);
-            radiobutton.normalCPU2.setEnabled(true);
-            radiobutton.difficultCPU2.setEnabled(true);
-
-            radiobutton.easyCPU3.setEnabled(true);
-            radiobutton.normalCPU3.setEnabled(true);
-            radiobutton.difficultCPU3.setEnabled(true);
-        });
+    static TextField getTextField(){
+        return textField;
     }
+
+    static Buttons getButton(){
+        return button;
+    }
+
+    static JFrame getFrame(){
+        return frame;
+    }
+
+    static int getNumOfFrames(){
+        return numOfFrames;
+    }
+
+    //static int getNumOfPlayers(){return numOfPlayers;}
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -200,7 +65,7 @@ public class GUI {
 
         GUI gui = new GUI();
         gui.createJContents();
-        gui.frame1GameMode(frame.getContentPane());
+        GUI.frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
         frame.pack();
@@ -217,12 +82,12 @@ public class GUI {
         frame.setLocation(x, y);
     }
 
-    private static void clearFrame() {
+    static void clearFrame() {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();
     }
 
-    private void frame1GameMode(Container pane) {
+    static void frame1GameMode(Container pane) {
         numOfFrames = 1;
         JPanel gmLabelPanel = new JPanel();
         gmLabelPanel.add(label.chooseGameMode);
@@ -237,13 +102,13 @@ public class GUI {
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
     }
 
-    private void selectNumOfPlayers() {
+    /*private void selectNumOfPlayers() {
         clearFrame();
         frame2PlayerChoice(frame.getContentPane());
         frame.validate();
-    }
+    }*/
 
-    private void frame2PlayerChoice(Container pane) {
+    static void frame2PlayerChoice(Container pane) {
         numOfFrames = 2;
         JPanel numOfPlayersPanel = new JPanel(new GridLayout(4, 0, 2, 2));
         numOfPlayersPanel.add(radiobutton.p1);
@@ -347,7 +212,7 @@ public class GUI {
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
 
-    private void frame3PlayersName(Container pane) {
+    static void frame3PlayersName(Container pane) {
         numOfFrames = 3;
         JPanel textFieldPanel = new JPanel();
         TitledBorder border = BorderFactory.createTitledBorder("Player Names");
@@ -380,7 +245,7 @@ public class GUI {
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
 
-    private void checkForTextField() {
+    private static void checkForTextField() {
         if (radiobutton.p1.isSelected()) {
             textField.textP1.setEnabled(true);
             textField.textP2.setEnabled(false);
@@ -407,53 +272,37 @@ public class GUI {
         }
     }
 
-    private void checkForTextField2() {
+    private static void checkForTextField2() {
         if (radiobutton.cpu0.isSelected()) {
-            textField.labelP1.setText("1st Player");
             textField.textP1.setText(" ");
-            textField.labelP2.setText("2nd Player");
             textField.textP2.setText(" ");
-            textField.labelP3.setText("3rd Player");
             textField.textP3.setText(" ");
-            textField.labelP4.setText("4th Player");
             textField.textP4.setText(" ");
-            textField.textP1.setEnabled(true);
-            textField.textP2.setEnabled(true);
-            textField.textP3.setEnabled(true);
-            textField.textP4.setEnabled(true);
-
         }
         if (radiobutton.cpu1.isSelected()) {
             textField.textP1.setText("CPU 1");
-            textField.labelP1.setText("1st CPU");
             textField.textP1.setEnabled(false);
         }
         if (radiobutton.cpu2.isSelected()) {
             textField.textP1.setText("CPU 1");
-            textField.labelP1.setText("1st CPU");
             textField.textP1.setEnabled(false);
 
             textField.textP2.setText("CPU 2");
-            textField.labelP2.setText("2nd CPU");
             textField.textP2.setEnabled(false);
         }
         if (radiobutton.cpu3.isSelected()) {
             textField.textP1.setText("CPU 1");
-            textField.labelP1.setText("1st CPU");
             textField.textP1.setEnabled(false);
 
             textField.textP2.setText("CPU 2");
-            textField.labelP2.setText("2nd CPU");
             textField.textP2.setEnabled(false);
 
             textField.textP3.setText("CPU 3");
-            textField.labelP3.setText("3rd CPU");
             textField.textP3.setEnabled(false);
-
         }
     }
 
-    private void checkForRadioButtons() {
+    private static void checkForRadioButtons() {
         if (radiobutton.p1.isSelected()) {
             radiobutton.cpu1.setEnabled(false);
             radiobutton.cpu2.setEnabled(false);
@@ -461,59 +310,75 @@ public class GUI {
         }
     }
 
-    private void checkForRadioButtons2() {
+    private static void checkForRadioButtons2() {
         if (radiobutton.cpu0.isSelected()) {
-            radiobutton.easyCPU.setEnabled(false);
-            radiobutton.normalCPU.setEnabled(false);
-            radiobutton.difficultCPU.setEnabled(false);
-
-            radiobutton.easyCPU2.setEnabled(false);
-            radiobutton.normalCPU2.setEnabled(false);
-            radiobutton.difficultCPU2.setEnabled(false);
-
-            radiobutton.easyCPU3.setEnabled(false);
-            radiobutton.normalCPU3.setEnabled(false);
-            radiobutton.difficultCPU3.setEnabled(false);
+            setEnabledLevelCPU0();
         }
         if (radiobutton.cpu1.isSelected()) {
-            radiobutton.easyCPU.setEnabled(true);
-            radiobutton.normalCPU.setEnabled(true);
-            radiobutton.difficultCPU.setEnabled(true);
-
-            radiobutton.easyCPU2.setEnabled(false);
-            radiobutton.normalCPU2.setEnabled(false);
-            radiobutton.difficultCPU2.setEnabled(false);
-
-            radiobutton.easyCPU3.setEnabled(false);
-            radiobutton.normalCPU3.setEnabled(false);
-            radiobutton.difficultCPU3.setEnabled(false);
+            setEnabledLevelCPU1();
         }
         if (radiobutton.cpu2.isSelected()) {
-            radiobutton.easyCPU.setEnabled(true);
-            radiobutton.normalCPU.setEnabled(true);
-            radiobutton.difficultCPU.setEnabled(true);
-
-            radiobutton.easyCPU2.setEnabled(true);
-            radiobutton.normalCPU2.setEnabled(true);
-            radiobutton.difficultCPU2.setEnabled(true);
-
-            radiobutton.easyCPU3.setEnabled(false);
-            radiobutton.normalCPU3.setEnabled(false);
-            radiobutton.difficultCPU3.setEnabled(false);
+            setEnabledLevelCPU2();
         }
         if (radiobutton.cpu3.isSelected()) {
-            radiobutton.easyCPU.setEnabled(true);
-            radiobutton.normalCPU.setEnabled(true);
-            radiobutton.difficultCPU.setEnabled(true);
-
-            radiobutton.easyCPU2.setEnabled(true);
-            radiobutton.normalCPU2.setEnabled(true);
-            radiobutton.difficultCPU2.setEnabled(true);
-
-            radiobutton.easyCPU3.setEnabled(true);
-            radiobutton.normalCPU3.setEnabled(true);
-            radiobutton.difficultCPU3.setEnabled(true);
+            setEnabledLevelCPU3();
         }
+    }
+
+    private static void setEnabledLevelCPU0 (){
+        radiobutton.easyCPU.setEnabled(false);
+        radiobutton.normalCPU.setEnabled(false);
+        radiobutton.difficultCPU.setEnabled(false);
+
+        radiobutton.easyCPU2.setEnabled(false);
+        radiobutton.normalCPU2.setEnabled(false);
+        radiobutton.difficultCPU2.setEnabled(false);
+
+        radiobutton.easyCPU3.setEnabled(false);
+        radiobutton.normalCPU3.setEnabled(false);
+        radiobutton.difficultCPU3.setEnabled(false);
+    }
+
+    private static void setEnabledLevelCPU1(){
+        radiobutton.easyCPU.setEnabled(true);
+        radiobutton.normalCPU.setEnabled(true);
+        radiobutton.difficultCPU.setEnabled(true);
+
+        radiobutton.easyCPU2.setEnabled(false);
+        radiobutton.normalCPU2.setEnabled(false);
+        radiobutton.difficultCPU2.setEnabled(false);
+
+        radiobutton.easyCPU3.setEnabled(false);
+        radiobutton.normalCPU3.setEnabled(false);
+        radiobutton.difficultCPU3.setEnabled(false);
+    }
+
+    private static void setEnabledLevelCPU2(){
+        radiobutton.easyCPU.setEnabled(true);
+        radiobutton.normalCPU.setEnabled(true);
+        radiobutton.difficultCPU.setEnabled(true);
+
+        radiobutton.easyCPU2.setEnabled(true);
+        radiobutton.normalCPU2.setEnabled(true);
+        radiobutton.difficultCPU2.setEnabled(true);
+
+        radiobutton.easyCPU3.setEnabled(false);
+        radiobutton.normalCPU3.setEnabled(false);
+        radiobutton.difficultCPU3.setEnabled(false);
+    }
+
+    private static void setEnabledLevelCPU3(){
+        radiobutton.easyCPU.setEnabled(true);
+        radiobutton.normalCPU.setEnabled(true);
+        radiobutton.difficultCPU.setEnabled(true);
+
+        radiobutton.easyCPU2.setEnabled(true);
+        radiobutton.normalCPU2.setEnabled(true);
+        radiobutton.difficultCPU2.setEnabled(true);
+
+        radiobutton.easyCPU3.setEnabled(true);
+        radiobutton.normalCPU3.setEnabled(true);
+        radiobutton.difficultCPU3.setEnabled(true);
     }
 
     /*private void makeGrid(Container pane) {

@@ -1,144 +1,131 @@
-/*
-package GUI
+package GUI;
+class ActionListenerRadioButtons {
+    ActionListenerRadioButtons(){
+        addRadButActList();
+    }
+    private void addRadButActList() {
+        GUI.getRadiobuttons().p1.addActionListener(actionEvent -> {
+            GUI.getTextField().textP1.setEnabled(true);
+            GUI.getTextField().textP2.setEnabled(false);
+            GUI.getTextField().textP3.setEnabled(false);
+            GUI.getTextField().textP4.setEnabled(false);
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-interface ActionListenerRadioButtons {
-
-    void addRadButActList(){
-        radiobutton.p1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numOfPlayers=1;
-                textField.textP1.setEnabled(true);
-                textField.textP2.setEnabled(false);
-                textField.textP3.setEnabled(false);
-                textField.textP4.setEnabled(false);
-
-                radiobutton.cpu0.setSelected(true);
-                radiobutton.cpu0.setEnabled(true);
-                radiobutton.cpu1.setEnabled(false);
-                radiobutton.cpu2.setEnabled(false);
-                radiobutton.cpu3.setEnabled(false);
-            }
-        });
-        radiobutton.p2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numOfPlayers=2;
-                textField.textP1.setEnabled(true);
-                textField.textP2.setEnabled(true);
-                textField.textP3.setEnabled(false);
-                textField.textP4.setEnabled(false);
-
-                radiobutton.cpu0.setSelected(true);
-                radiobutton.cpu0.setEnabled(true);
-                radiobutton.cpu1.setEnabled(true);
-                radiobutton.cpu2.setEnabled(false);
-                radiobutton.cpu3.setEnabled(false);
-            }
-        });
-        radiobutton.p3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numOfPlayers=3;
-                textField.textP1.setEnabled(true);
-                textField.textP2.setEnabled(true);
-                textField.textP3.setEnabled(true);
-                textField.textP4.setEnabled(false);
-
-                radiobutton.cpu0.setSelected(true);
-                radiobutton.cpu0.setEnabled(true);
-                radiobutton.cpu1.setEnabled(true);
-                radiobutton.cpu2.setEnabled(true);
-                radiobutton.cpu3.setEnabled(false);
-            }
-        });
-        radiobutton.p4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                numOfPlayers=4;
-                textField.textP1.setEnabled(true);
-                textField.textP2.setEnabled(true);
-                textField.textP3.setEnabled(true);
-                textField.textP4.setEnabled(true);
-
-                radiobutton.cpu0.setSelected(true);
-                radiobutton.cpu0.setEnabled(true);
-                radiobutton.cpu1.setEnabled(true);
-                radiobutton.cpu2.setEnabled(true);
-                radiobutton.cpu3.setEnabled(true);
-            }
+            GUI.getRadiobuttons().cpu0.setSelected(true);
+            GUI.getRadiobuttons().cpu0.setEnabled(true);
+            GUI.getRadiobuttons().cpu1.setEnabled(false);
+            GUI.getRadiobuttons().cpu2.setEnabled(false);
+            GUI.getRadiobuttons().cpu3.setEnabled(false);
         });
 
-        radiobutton.cpu0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radiobutton.easyCPU.setEnabled(false);
-                radiobutton.normalCPU.setEnabled(false);
-                radiobutton.difficultCPU.setEnabled(false);
+        GUI.getRadiobuttons().p2.addActionListener(actionEvent -> {
+           // gui.getNumOfPlayers() = 2;
+            GUI.getTextField().textP1.setEnabled(true);
+            GUI.getTextField().textP2.setEnabled(true);
+            GUI.getTextField().textP3.setEnabled(false);
+            GUI.getTextField().textP4.setEnabled(false);
 
-                radiobutton.easyCPU2.setEnabled(false);
-                radiobutton.normalCPU2.setEnabled(false);
-                radiobutton.difficultCPU2.setEnabled(false);
-
-                radiobutton.easyCPU3.setEnabled(false);
-                radiobutton.normalCPU3.setEnabled(false);
-                radiobutton.difficultCPU3.setEnabled(false);
-            }
+            GUI.getRadiobuttons().cpu0.setSelected(true);
+            GUI.getRadiobuttons().cpu0.setEnabled(true);
+            GUI.getRadiobuttons().cpu1.setEnabled(true);
+            GUI.getRadiobuttons().cpu2.setEnabled(false);
+            GUI.getRadiobuttons().cpu3.setEnabled(false);
         });
 
-        radiobutton.cpu1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radiobutton.easyCPU.setEnabled(true);
-                radiobutton.normalCPU.setEnabled(true);
-                radiobutton.difficultCPU.setEnabled(true);
+        GUI.getRadiobuttons().p3.addActionListener(actionEvent -> {
+           // gui.getNumOfPlayers() = 3;
+            GUI.getTextField().textP1.setEnabled(true);
+            GUI.getTextField().textP2.setEnabled(true);
+            GUI.getTextField().textP3.setEnabled(true);
+            GUI.getTextField().textP4.setEnabled(false);
 
-                radiobutton.easyCPU2.setEnabled(false);
-                radiobutton.normalCPU2.setEnabled(false);
-                radiobutton.difficultCPU2.setEnabled(false);
-
-                radiobutton.easyCPU3.setEnabled(false);
-                radiobutton.normalCPU3.setEnabled(false);
-                radiobutton.difficultCPU3.setEnabled(false);
-            }
+            GUI.getRadiobuttons().cpu0.setSelected(true);
+            GUI.getRadiobuttons().cpu0.setEnabled(true);
+            GUI.getRadiobuttons().cpu1.setEnabled(true);
+            GUI.getRadiobuttons().cpu2.setEnabled(true);
+            GUI.getRadiobuttons().cpu3.setEnabled(false);
         });
 
-        radiobutton.cpu2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radiobutton.easyCPU.setEnabled(true);
-                radiobutton.normalCPU.setEnabled(true);
-                radiobutton.difficultCPU.setEnabled(true);
+        GUI.getRadiobuttons().p4.addActionListener(actionEvent -> {
+           // gui.getNumOfPlayers() = 4;
+            GUI.getTextField().textP1.setEnabled(true);
+            GUI.getTextField().textP2.setEnabled(true);
+            GUI.getTextField().textP3.setEnabled(true);
+            GUI.getTextField().textP4.setEnabled(true);
 
-                radiobutton.easyCPU2.setEnabled(true);
-                radiobutton.normalCPU2.setEnabled(true);
-                radiobutton.difficultCPU2.setEnabled(true);
-
-                radiobutton.easyCPU3.setEnabled(false);
-                radiobutton.normalCPU3.setEnabled(false);
-                radiobutton.difficultCPU3.setEnabled(false);
-            }
+            GUI.getRadiobuttons().cpu0.setSelected(true);
+            GUI.getRadiobuttons().cpu0.setEnabled(true);
+            GUI.getRadiobuttons().cpu1.setEnabled(true);
+            GUI.getRadiobuttons().cpu2.setEnabled(true);
+            GUI.getRadiobuttons().cpu3.setEnabled(true);
         });
 
-        radiobutton.cpu3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radiobutton.easyCPU.setEnabled(true);
-                radiobutton.normalCPU.setEnabled(true);
-                radiobutton.difficultCPU.setEnabled(true);
-
-                radiobutton.easyCPU2.setEnabled(true);
-                radiobutton.normalCPU2.setEnabled(true);
-                radiobutton.difficultCPU2.setEnabled(true);
-
-                radiobutton.easyCPU3.setEnabled(true);
-                radiobutton.normalCPU3.setEnabled(true);
-                radiobutton.difficultCPU3.setEnabled(true);
-            }
+        GUI.getRadiobuttons().cpu0.addActionListener(actionEvent -> {
+            setEnabledLevelCPU0();
+        });
+        GUI.getRadiobuttons().cpu1.addActionListener(actionEvent -> {
+            setEnabledLevelCPU1();
+        });
+        GUI.getRadiobuttons().cpu2.addActionListener(actionEvent -> {
+            setEnabledLevelCPU2();
+        });
+        GUI.getRadiobuttons().cpu3.addActionListener(actionEvent -> {
+            setEnabledLevelCPU3();
         });
     }
+
+    private void setEnabledLevelCPU0 (){
+        GUI.getRadiobuttons().easyCPU.setEnabled(false);
+        GUI.getRadiobuttons().normalCPU.setEnabled(false);
+        GUI.getRadiobuttons().difficultCPU.setEnabled(false);
+
+        GUI.getRadiobuttons().easyCPU2.setEnabled(false);
+        GUI.getRadiobuttons().normalCPU2.setEnabled(false);
+        GUI.getRadiobuttons().difficultCPU2.setEnabled(false);
+
+        GUI.getRadiobuttons().easyCPU3.setEnabled(false);
+        GUI.getRadiobuttons().normalCPU3.setEnabled(false);
+        GUI.getRadiobuttons().difficultCPU3.setEnabled(false);
+    }
+
+    private void setEnabledLevelCPU1(){
+        GUI.getRadiobuttons().easyCPU.setEnabled(true);
+        GUI.getRadiobuttons().normalCPU.setEnabled(true);
+        GUI.getRadiobuttons().difficultCPU.setEnabled(true);
+
+        GUI.getRadiobuttons().easyCPU2.setEnabled(false);
+        GUI.getRadiobuttons().normalCPU2.setEnabled(false);
+        GUI.getRadiobuttons().difficultCPU2.setEnabled(false);
+
+        GUI.getRadiobuttons().easyCPU3.setEnabled(false);
+        GUI.getRadiobuttons().normalCPU3.setEnabled(false);
+        GUI.getRadiobuttons().difficultCPU3.setEnabled(false);
+    }
+
+    private void setEnabledLevelCPU2(){
+        GUI.getRadiobuttons().easyCPU.setEnabled(true);
+        GUI.getRadiobuttons().normalCPU.setEnabled(true);
+        GUI.getRadiobuttons().difficultCPU.setEnabled(true);
+
+        GUI.getRadiobuttons().easyCPU2.setEnabled(true);
+        GUI.getRadiobuttons().normalCPU2.setEnabled(true);
+        GUI.getRadiobuttons().difficultCPU2.setEnabled(true);
+
+        GUI.getRadiobuttons().easyCPU3.setEnabled(false);
+        GUI.getRadiobuttons().normalCPU3.setEnabled(false);
+        GUI.getRadiobuttons().difficultCPU3.setEnabled(false);
+    }
+
+    private void setEnabledLevelCPU3(){
+        GUI.getRadiobuttons().easyCPU.setEnabled(true);
+        GUI.getRadiobuttons().normalCPU.setEnabled(true);
+        GUI.getRadiobuttons().difficultCPU.setEnabled(true);
+
+        GUI.getRadiobuttons().easyCPU2.setEnabled(true);
+        GUI.getRadiobuttons().normalCPU2.setEnabled(true);
+        GUI.getRadiobuttons().difficultCPU2.setEnabled(true);
+
+        GUI.getRadiobuttons().easyCPU3.setEnabled(true);
+        GUI.getRadiobuttons().normalCPU3.setEnabled(true);
+        GUI.getRadiobuttons().difficultCPU3.setEnabled(true);
+    }
 }
-*/
