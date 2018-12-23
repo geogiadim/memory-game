@@ -11,6 +11,9 @@ public class GUI {
     private static RadioButtons radiobutton;
     private static TextField textField;
 
+    private static JButton[] buttons;
+    private final static int NUM_BUTTONS=24;
+
     static ActionListenerRadioButtons radioButtonListener;
     static ActionListenerButtons buttonListener;
 
@@ -53,6 +56,18 @@ public class GUI {
         frame.pack();
         setFrameOnCenter(frame);
         frame.setVisible(true);
+    }
+
+    public static void createFrame2(){
+        gameFrame= new JFrame("Memory Game");
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame4GamePlay();
+
+        gameFrame.setResizable(false);
+        gameFrame.pack();
+        setFrameOnCenter(gameFrame);
+        gameFrame.setVisible(true);
     }
 
     static void setFrameOnCenter(JFrame frame) {
@@ -223,6 +238,22 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
+    private static void frame4GamePlay(){
+        numOfFrame=4;
+        Dimension dimension = new Dimension(150, 75);
+        buttons = new JButton[NUM_BUTTONS];
+        GridLayout grid =new GridLayout(0,4,10,5);
+        gameFrame.setLayout(grid);
+        for (int i=0;i<NUM_BUTTONS;i++){
+            buttons[i]=new JButton("Card "+(i+1));
+            buttons[i].setFocusPainted(false);
+            buttons[i].setPreferredSize(dimension);
+            gameFrame.add(buttons[i]);
+        }
+        //JPanel panel=new JPanel();
+        //panel.add(gameFrame);
+        //pane.add(panel);
+    }
 
     private static void checkForTextField() {
         if (radiobutton.p1.isSelected()) {
@@ -300,23 +331,4 @@ public class GUI {
             ActionListenerRadioButtons.setEnabledLevelCPU3();
         }
     }
-   /* static void makeGrid(Container pane) {
-        numOfFrame=4;
-        frame.setVisible(false);
-
-        gameFrame=new JFrame("Memory Game");
-        gameFrame.setResizable(false);
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JButton[] cards = new JButton[24];
-        GridLayout gridLayout = new GridLayout(4, 6);
-        pane.setLayout(gridLayout);
-        for (int i = 0; i < 24; i++) {
-            cards[i] = new JButton("Button" + (i + 1));
-            pane.add(cards[i]);
-        }
-        gameFrame.pack();
-        setFrameOnCenter(gameFrame);
-        gameFrame.setVisible(true);
-    }*/
 }

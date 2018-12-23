@@ -36,6 +36,10 @@ class ActionListenerButtons {
             if (GUI.getNumOfFrame()== 2) {
                 GUI.frame3PlayersName(GUI.getFrame().getContentPane());
             }
+            else if (GUI.getNumOfFrame()==3){
+                GUI.getFrame().setVisible(false);
+                GUI.createFrame2();
+            }
             GUI.getFrame().validate();
         });
     }
