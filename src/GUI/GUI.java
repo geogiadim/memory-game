@@ -20,7 +20,6 @@ public class GUI {
     //private Table tableOfCards;
 
     private void createJContents() {
-        if (ActionListenerRadioButtons.getNumOfPlayers()==2){int x=1;}
         button = new Buttons();
         button.setButtonsName();
         buttonListener=new ActionListenerButtons();
@@ -292,75 +291,18 @@ public class GUI {
 
     private static void checkForRadioButtons2() {
         if (radiobutton.cpu0.isSelected()) {
-            setEnabledLevelCPU0();
+            ActionListenerRadioButtons.setEnabledLevelCPU0();
         }
         if (radiobutton.cpu1.isSelected()) {
-            setEnabledLevelCPU1();
+            ActionListenerRadioButtons.setEnabledLevelCPU1();
         }
         if (radiobutton.cpu2.isSelected()) {
-            setEnabledLevelCPU2();
+            ActionListenerRadioButtons.setEnabledLevelCPU2();
         }
         if (radiobutton.cpu3.isSelected()) {
-            setEnabledLevelCPU3();
+            ActionListenerRadioButtons.setEnabledLevelCPU3();
         }
     }
-
-    private static void setEnabledLevelCPU0 (){
-        radiobutton.easyCPU.setEnabled(false);
-        radiobutton.normalCPU.setEnabled(false);
-        radiobutton.difficultCPU.setEnabled(false);
-
-        radiobutton.easyCPU2.setEnabled(false);
-        radiobutton.normalCPU2.setEnabled(false);
-        radiobutton.difficultCPU2.setEnabled(false);
-
-        radiobutton.easyCPU3.setEnabled(false);
-        radiobutton.normalCPU3.setEnabled(false);
-        radiobutton.difficultCPU3.setEnabled(false);
-    }
-
-    private static void setEnabledLevelCPU1(){
-        radiobutton.easyCPU.setEnabled(true);
-        radiobutton.normalCPU.setEnabled(true);
-        radiobutton.difficultCPU.setEnabled(true);
-
-        radiobutton.easyCPU2.setEnabled(false);
-        radiobutton.normalCPU2.setEnabled(false);
-        radiobutton.difficultCPU2.setEnabled(false);
-
-        radiobutton.easyCPU3.setEnabled(false);
-        radiobutton.normalCPU3.setEnabled(false);
-        radiobutton.difficultCPU3.setEnabled(false);
-    }
-
-    private static void setEnabledLevelCPU2(){
-        radiobutton.easyCPU.setEnabled(true);
-        radiobutton.normalCPU.setEnabled(true);
-        radiobutton.difficultCPU.setEnabled(true);
-
-        radiobutton.easyCPU2.setEnabled(true);
-        radiobutton.normalCPU2.setEnabled(true);
-        radiobutton.difficultCPU2.setEnabled(true);
-
-        radiobutton.easyCPU3.setEnabled(false);
-        radiobutton.normalCPU3.setEnabled(false);
-        radiobutton.difficultCPU3.setEnabled(false);
-    }
-
-    private static void setEnabledLevelCPU3(){
-        radiobutton.easyCPU.setEnabled(true);
-        radiobutton.normalCPU.setEnabled(true);
-        radiobutton.difficultCPU.setEnabled(true);
-
-        radiobutton.easyCPU2.setEnabled(true);
-        radiobutton.normalCPU2.setEnabled(true);
-        radiobutton.difficultCPU2.setEnabled(true);
-
-        radiobutton.easyCPU3.setEnabled(true);
-        radiobutton.normalCPU3.setEnabled(true);
-        radiobutton.difficultCPU3.setEnabled(true);
-    }
-
     /*private void makeGrid(Container pane) {
         JButton[] cards = new JButton[24/*tableOfCards.sizeOfTable()*//*];
         /*GridLayout gridLayout = new GridLayout(4, 6/*tableOfCards.sizeX(),tableOfCards.sizeY()*//*);

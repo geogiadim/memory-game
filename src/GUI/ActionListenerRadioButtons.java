@@ -82,7 +82,7 @@ class ActionListenerRadioButtons {
         });
     }
 
-    private void setEnabledLevelCPU0 (){
+    static void setEnabledLevelCPU0 (){
         GUI.getRadioButtons().easyCPU.setEnabled(false);
         GUI.getRadioButtons().normalCPU.setEnabled(false);
         GUI.getRadioButtons().difficultCPU.setEnabled(false);
@@ -96,7 +96,7 @@ class ActionListenerRadioButtons {
         GUI.getRadioButtons().difficultCPU3.setEnabled(false);
     }
 
-    private void setEnabledLevelCPU1(){
+    static void setEnabledLevelCPU1(){
         GUI.getRadioButtons().easyCPU.setEnabled(true);
         GUI.getRadioButtons().normalCPU.setEnabled(true);
         GUI.getRadioButtons().difficultCPU.setEnabled(true);
@@ -110,7 +110,7 @@ class ActionListenerRadioButtons {
         GUI.getRadioButtons().difficultCPU3.setEnabled(false);
     }
 
-    private void setEnabledLevelCPU2(){
+    static void setEnabledLevelCPU2(){
         GUI.getRadioButtons().easyCPU.setEnabled(true);
         GUI.getRadioButtons().normalCPU.setEnabled(true);
         GUI.getRadioButtons().difficultCPU.setEnabled(true);
@@ -124,7 +124,7 @@ class ActionListenerRadioButtons {
         GUI.getRadioButtons().difficultCPU3.setEnabled(false);
     }
 
-    private void setEnabledLevelCPU3(){
+    static void setEnabledLevelCPU3(){
         GUI.getRadioButtons().easyCPU.setEnabled(true);
         GUI.getRadioButtons().normalCPU.setEnabled(true);
         GUI.getRadioButtons().difficultCPU.setEnabled(true);
