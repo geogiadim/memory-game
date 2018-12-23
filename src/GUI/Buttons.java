@@ -6,7 +6,6 @@ import java.awt.*;
 class Buttons {
     //Mode Buttons
     JButton basicButton, doubleButton, tripleButton, duelButton;
-
     //Secondary Buttons
     JButton nextButton, backButton;
 
@@ -44,12 +43,10 @@ class Buttons {
 
     private JButton makeButton(String name, int width, int height, Font font) {
         Dimension dimension = new Dimension(width, height);
-
         JButton button = new JButton(name);
         button.setFocusPainted(false);
         button.setPreferredSize(dimension);
         button.setFont(font);
-
         return button;
     }
 }

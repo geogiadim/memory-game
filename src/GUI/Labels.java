@@ -14,7 +14,6 @@ class Labels {
     private static final int FONT_SIZE_MEDIUM = 18;
     private static final int FONT_SIZE_SMALL = 12;
 
-
     void setLabelName() {
         chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);
         chooseNumOfPlayers = makeLabel("Select Number of Players", FONT_SIZE_LARGE);
@@ -30,7 +29,6 @@ class Labels {
         JLabel label = new JLabel(name);
         label.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, font_size));
         label.setForeground(Color.BLUE);
-
         return label;
     }
 }

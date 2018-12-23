@@ -6,12 +6,15 @@ class ActionListenerButtons {
     private void addButtonsActList() {
         GUI.getButton().basicButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
+            System.out.println("1");
         });
         GUI.getButton().doubleButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
+            System.out.println("2");
         });
         GUI.getButton().tripleButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
+            System.out.println("3");
         });
         GUI.getButton().duelButton.addActionListener(actionEvent -> {
             // selectNumOfPlayers();
@@ -19,10 +22,10 @@ class ActionListenerButtons {
 
         GUI.getButton().backButton.addActionListener(actionEvent -> {
             GUI.clearFrame();
-            if (GUI.getNumOfFrames()== 2) {
+            if (GUI.getNumOfFrame()== 2) {
                 GUI.frame1GameMode(GUI.getFrame().getContentPane());
             }
-            else if (GUI.getNumOfFrames() == 3) {
+            else if (GUI.getNumOfFrame() == 3) {
                 GUI.frame2PlayerChoice(GUI.getFrame().getContentPane());
             }
             GUI.getFrame().validate();
@@ -30,7 +33,7 @@ class ActionListenerButtons {
 
         GUI.getButton().nextButton.addActionListener(actionEvent -> {
             GUI.clearFrame();
-            if (GUI.getNumOfFrames()== 2) {
+            if (GUI.getNumOfFrame()== 2) {
                 GUI.frame3PlayersName(GUI.getFrame().getContentPane());
             }
             GUI.getFrame().validate();

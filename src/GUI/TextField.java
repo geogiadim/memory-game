@@ -32,5 +32,4 @@ class TextField {
         labelP4.setFont(FONT_TEXTFIELD_LABEL);
         textP4 = new JTextField(SPACE);
     }
-
 }

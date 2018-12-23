@@ -31,7 +31,7 @@ class RadioButtons {
         cpu2 = makeRadioButton("2 CPUs");
         cpu3 = makeRadioButton("3 CPUs");
 
-        //Make CPU Radio Buttons
+        //Make CPU1 Radio Buttons
         easyCPU  = makeRadioButton("Easy");
         normalCPU = makeRadioButton("Normal");
         difficultCPU = makeRadioButton("Difficult");
@@ -49,11 +49,8 @@ class RadioButtons {
 
     private JRadioButton makeRadioButton(String name) {
         JRadioButton radioButton = new JRadioButton(name);
-
         radioButton.setFocusPainted(false);
         radioButton.setFont(FONT_RADIOBUTTON);
-
         return radioButton;
     }
-
 }

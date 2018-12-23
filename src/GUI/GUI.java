@@ -14,16 +14,15 @@ public class GUI {
     static ActionListenerRadioButtons radioButtonListener;
     static ActionListenerButtons buttonListener;
 
-    private static int numOfFrames = 0;
-    //private static int numOfPlayers = 0;
+    private static int numOfFrame = 0;
 
     //private Logic log;
     //private Table tableOfCards;
 
     private void createJContents() {
+        if (ActionListenerRadioButtons.getNumOfPlayers()==2){int x=1;}
         button = new Buttons();
         button.setButtonsName();
-        //addButtonsActList();
         buttonListener=new ActionListenerButtons();
 
         label = new Labels();
@@ -31,33 +30,20 @@ public class GUI {
 
         radiobutton = new RadioButtons();
         radiobutton.setRadioButtonName();
-        //addRadButActList();
         radioButtonListener=new ActionListenerRadioButtons();
 
         textField = new TextField();
     }
 
-    static RadioButtons getRadiobuttons(){
-        return radiobutton;
-    }
+    static RadioButtons getRadioButtons() {return radiobutton;}
 
-    static TextField getTextField(){
-        return textField;
-    }
+    static TextField getTextField() {return textField;}
 
-    static Buttons getButton(){
-        return button;
-    }
+    static Buttons getButton() {return button;}
 
-    static JFrame getFrame(){
-        return frame;
-    }
+    static JFrame getFrame() {return frame;}
 
-    static int getNumOfFrames(){
-        return numOfFrames;
-    }
-
-    //static int getNumOfPlayers(){return numOfPlayers;}
+    static int getNumOfFrame() {return numOfFrame;}
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -88,7 +74,7 @@ public class GUI {
     }
 
     static void frame1GameMode(Container pane) {
-        numOfFrames = 1;
+        numOfFrame = 1;
         JPanel gmLabelPanel = new JPanel();
         gmLabelPanel.add(label.chooseGameMode);
 
@@ -102,14 +88,8 @@ public class GUI {
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
     }
 
-    /*private void selectNumOfPlayers() {
-        clearFrame();
-        frame2PlayerChoice(frame.getContentPane());
-        frame.validate();
-    }*/
-
     static void frame2PlayerChoice(Container pane) {
-        numOfFrames = 2;
+        numOfFrame = 2;
         JPanel numOfPlayersPanel = new JPanel(new GridLayout(4, 0, 2, 2));
         numOfPlayersPanel.add(radiobutton.p1);
         numOfPlayersPanel.add(radiobutton.p2);
@@ -213,7 +193,7 @@ public class GUI {
     }
 
     static void frame3PlayersName(Container pane) {
-        numOfFrames = 3;
+        numOfFrame = 3;
         JPanel textFieldPanel = new JPanel();
         TitledBorder border = BorderFactory.createTitledBorder("Player Names");
         textFieldPanel.setBorder(border);
