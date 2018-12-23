@@ -1,4 +1,4 @@
-package GUI;
+package com.memoryGame.GUI;
 
 class ActionListenerButtons {
 

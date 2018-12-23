@@ -1,3 +1,5 @@
+package com.memoryGame;
+
 /**
  * This class creates the cards of the memory game. There are some methods that give some characteristics in each card.
  * Each card represents a letter.

@@ -1,4 +1,6 @@
-import GUI.GUI;
+package com.memoryGame;
+
+import com.memoryGame.GUI.GUI;
 
 import javax.swing.*;
 
@@ -10,7 +12,7 @@ import javax.swing.*;
 
 public class Main {
     /**
-     * Sets Look of GUI to System Default and calls the GUI creator.
+     * Sets Look of com.memoryGame.GUI to System Default and calls the com.memoryGame.GUI creator.
      *
      * @param args the command line arguments as an array of String objects
      */

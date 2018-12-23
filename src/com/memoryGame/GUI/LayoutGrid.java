@@ -1,4 +1,4 @@
-//package GUI;
+//package com.memoryGame.GUI;
 //
 //import javax.swing.*;
 //import java.awt.*;
@@ -18,13 +18,13 @@
 //        GridLayout grid = new GridLayout(0, 4, 10, 5);
 //        frame.setLayout(grid);
 //        for (int i = 0; i < NUM_BUTTONS; i++) {
-//            buttons[i] = new JButton("Card " + (i + 1));
+//            buttons[i] = new JButton("com.memoryGame.Card " + (i + 1));
 //            buttons[i].setFocusPainted(false);
 //            buttons[i].setzPreferredSize(dimension);
 //            frame.add(buttons[i]);
 //        }
 //        frame.pack();
-//        GUI.setFrameOnCenter(this);
+//        com.memoryGame.GUI.setFrameOnCenter(this);
 //        frame.setVisible(true);
 //    }
 //

@@ -1,3 +1,5 @@
+package com.memoryGame;
+
 public class Player {
     private String name;
     private int pairs;

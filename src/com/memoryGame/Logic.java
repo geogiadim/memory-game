@@ -1,3 +1,5 @@
+package com.memoryGame;
+
 import java.util.Random;
 
 /**
@@ -114,7 +116,7 @@ public class Logic {
         boolean wrongXY;
 
         for (int cardNo = 0; cardNo < maxCards; cardNo++) {
-            do { //False Card Checking!
+            do { //False com.memoryGame.Card Checking!
                 wrongXY = false;
                 UI.clsIntroShowCards(newTable);
                 UI.userChoice(cardNo);
