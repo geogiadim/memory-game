@@ -4,21 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 class RadioButtons {
-    //Player Number Radio Buttons
-    JRadioButton p1, p2, p3, p4;
-
-    //CPU Number Radio Buttons
-    JRadioButton cpu0, cpu1, cpu2, cpu3;
-
-    //CPU Difficulty Radio Buttons
-    JRadioButton easyCPU, normalCPU, difficultCPU;
-    JRadioButton easyCPU2, normalCPU2, difficultCPU2;
-    JRadioButton easyCPU3, normalCPU3, difficultCPU3;
-
     //Font for Radio Buttons
     private final static Font FONT_RADIOBUTTON = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
+    //Player Number Radio Buttons
+    static JRadioButton p1, p2, p3, p4;
+    //CPU Number Radio Buttons
+    static JRadioButton cpu0, cpu1, cpu2, cpu3;
+    //CPU Difficulty Radio Buttons
+    static JRadioButton easyCPU, normalCPU, difficultCPU;
+    static JRadioButton easyCPU2, normalCPU2, difficultCPU2;
+    static JRadioButton easyCPU3, normalCPU3, difficultCPU3;
 
-    void setRadioButtonName() {
+    static void setRadioButtonName() {
         //Make 4 Player Number Radio Buttons
         p1 = makeRadioButton("1 Player");
         p2 = makeRadioButton("2 Players");
@@ -32,7 +29,7 @@ class RadioButtons {
         cpu3 = makeRadioButton("3 CPUs");
 
         //Make CPU1 Radio Buttons
-        easyCPU  = makeRadioButton("Easy");
+        easyCPU = makeRadioButton("Easy");
         normalCPU = makeRadioButton("Normal");
         difficultCPU = makeRadioButton("Difficult");
 
@@ -45,9 +42,12 @@ class RadioButtons {
         easyCPU3 = makeRadioButton("Easy");
         normalCPU3 = makeRadioButton("Normal");
         difficultCPU3 = makeRadioButton("Difficult");
+
+        //Add ActionListeners for all Radio Buttons
+        ActionListenerRadioButtons.addRadButActList();
     }
 
-    private JRadioButton makeRadioButton(String name) {
+    private static JRadioButton makeRadioButton(String name) {
         JRadioButton radioButton = new JRadioButton(name);
         radioButton.setFocusPainted(false);
         radioButton.setFont(FONT_RADIOBUTTON);

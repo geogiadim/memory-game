@@ -1,4 +1,5 @@
 import GUI.GUI;
+
 import javax.swing.*;
 
 /**
@@ -9,8 +10,7 @@ import javax.swing.*;
 
 public class Main {
     /**
-     * Passes the game mode to Logic class, either from cmd args or from player interaction with UI class.
-     * Finally, when the game is over exits the game.
+     * Sets Look of GUI to System Default and calls the GUI creator.
      *
      * @param args the command line arguments as an array of String objects
      */

@@ -7,11 +7,19 @@ public class Player {
         pairs = 0;
     }
 
-    public void increaseNumberOfPairs() {pairs++;}
+    public void increaseNumberOfPairs() {
+        pairs++;
+    }
 
-    public int getNumberOfPairs() {return pairs;}
+    public int getNumberOfPairs() {
+        return pairs;
+    }
 
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String n) {name = n;}
+    public void setName(String n) {
+        name = n;
+    }
 }
