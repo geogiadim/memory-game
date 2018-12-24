@@ -11,8 +11,6 @@ class TextField {
     //Labels for Text Fields
     JLabel labelP1, labelP2, labelP3, labelP4;
 
-
-
     //Font for Text Field Labels
     private final static Font FONT_TEXTFIELD_LABEL = new Font(Font.SANS_SERIF, Font.ITALIC, 16);
     private final static String SPACE = " ";
