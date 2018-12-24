@@ -7,6 +7,7 @@ class Labels {
     JLabel chooseGameMode, chooseNumOfPlayers;
     JLabel writeNames, levelOfCPU;
     JLabel levelCpu1, levelCpu2, levelCpu3;
+    JLabel message,turnOfPlayer;
 
     //Different Font sizes
     private static final int FONT_SIZE_HUGE = 60;
@@ -23,12 +24,15 @@ class Labels {
         levelCpu1=makeLabel("CPU 1: ",FONT_SIZE_SMALL);
         levelCpu2=makeLabel("CPU 2: ",FONT_SIZE_SMALL);
         levelCpu3=makeLabel("CPU 3: ",FONT_SIZE_SMALL);
+
+        message=makeLabel("Select one card",FONT_SIZE_MEDIUM);
+        turnOfPlayer=makeLabel("It's the turn of Player 1",FONT_SIZE_MEDIUM);
     }
 
     private JLabel makeLabel(String name, int font_size) {
         JLabel label = new JLabel(name);
         label.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, font_size));
-        label.setForeground(Color.BLUE);
+        label.setForeground(Color.blue);
         return label;
     }
 }

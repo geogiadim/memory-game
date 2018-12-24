@@ -1,7 +1,9 @@
 package com.memoryGame.GUI;
+import com.memoryGame.Logic;
 import com.memoryGame.Player;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
@@ -11,7 +13,7 @@ public class GUI {
     private static Labels label;
     private static RadioButtons radiobutton;
     private static TextField textField;
-    private static JButton[] buttons;
+
     private final static int NUM_BUTTONS=24;
 
     static ActionListenerRadioButtons radioButtonListener;
@@ -62,7 +64,7 @@ public class GUI {
         gameFrame= new JFrame("Memory Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame4GamePlay();
+        GUI.frame4GamePlay(gameFrame.getContentPane());
 
         gameFrame.setResizable(false);
         gameFrame.pack();
@@ -70,7 +72,7 @@ public class GUI {
         gameFrame.setVisible(true);
     }
 
-    static void setFrameOnCenter(JFrame frame) {
+    private static void setFrameOnCenter(JFrame frame) {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension d = t.getScreenSize();
         //frame.setLocationRelativeTo(null);
@@ -238,21 +240,26 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
-    private static void frame4GamePlay(){
+    private static void frame4GamePlay(Container pane){
         numOfFrame=4;
-        Dimension dimension = new Dimension(150, 75);
-        buttons = new JButton[NUM_BUTTONS];
-        GridLayout grid =new GridLayout(0,4,10,5);
-        gameFrame.setLayout(grid);
+        JPanel messagePanel=new JPanel();
+        messagePanel.add(label.message);
+
+        JPanel gamePanel=new JPanel(new GridLayout(0,4,10,5));
+        TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
+        gamePanel.setBorder(border);
         for (int i=0;i<NUM_BUTTONS;i++){
-            buttons[i]=new JButton("Card "+(i+1));
-            buttons[i].setFocusPainted(false);
-            buttons[i].setPreferredSize(dimension);
-            gameFrame.add(buttons[i]);
+            gamePanel.add(button.cardButtons[i]);
         }
-        //JPanel panel=new JPanel();
-        //panel.add(gameFrame);
-        //pane.add(panel);
+
+        JPanel playerPanel= new JPanel();
+        TitledBorder border2 = BorderFactory.createTitledBorder("");
+        playerPanel.setBorder(border2);
+        playerPanel.add(label.turnOfPlayer);
+
+        pane.add(messagePanel,BorderLayout.PAGE_START);
+        pane.add(gamePanel, BorderLayout.CENTER);
+        pane.add(playerPanel,BorderLayout.PAGE_END);
     }
 
     private static void checkForTextField() {

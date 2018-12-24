@@ -8,6 +8,9 @@ class Buttons {
     JButton basicButton, doubleButton, tripleButton, duelButton;
     //Secondary Buttons
     JButton nextButton, backButton;
+    //Card Buttons
+    JButton[] cardButtons;
+    private final static int NUM_BUTTONS=24;
 
     //Width, Height, Font size of Mode Buttons
     private final static int WIDTH_MODE=250;
@@ -19,9 +22,15 @@ class Buttons {
     private final static int HEIGHT_SECONDARY = 45;
     private final static int FONT_SIZE_GAME=18;
 
-    //Fonts for Mode and Secondary Buttons
+    //Width, Height, Font size of Card Buttons
+    private final static int WIDTH_CARD = 140;
+    private final static int HEIGHT_CARD = 100;
+    private final static int FONT_SIZE_CARD=18;
+
+    //Fonts for Mode Secondary and Card Buttons
     private final Font FONT_MODE = new Font(Font.SANS_SERIF, Font.PLAIN, FONT_SIZE_MODE);
     private final Font FONT_SECONDARY = new Font(Font.SANS_SERIF, Font.PLAIN, FONT_SIZE_GAME);
+    private final Font FONT_GAME= new Font(Font.SANS_SERIF,Font.PLAIN,FONT_SIZE_CARD);
 
     void setButtonsName() {
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
@@ -39,6 +48,13 @@ class Buttons {
         nextButton.setMnemonic(nextButton.getText().charAt(0));
         backButton = makeButton("Back",WIDTH_SECONDARY,HEIGHT_SECONDARY,FONT_SECONDARY);
         backButton.setMnemonic(backButton.getText().charAt(0));
+
+        //make card buttons
+        cardButtons=new JButton[NUM_BUTTONS];
+        for (int i=0;i<NUM_BUTTONS;i++){
+            cardButtons[i]= makeButton("Card "+(i+1),WIDTH_CARD,HEIGHT_CARD,FONT_GAME);
+
+        }
     }
 
     private JButton makeButton(String name, int width, int height, Font font) {

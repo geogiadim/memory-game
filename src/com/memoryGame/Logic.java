@@ -28,7 +28,6 @@ public class Logic {
      *
      */
     public Logic() {
-
         if (GUIConnectionToLogic.getGameMode()==1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
@@ -71,7 +70,9 @@ public class Logic {
      * This is the logic for the Basic and Double game.
      */
     private void basicDoubleGame() {
-        initTablePairs(1);
+        createPlayers();
+
+        /*initTablePairs(1);
         shuffleTable();
 
         int tries = 0;
@@ -96,14 +97,16 @@ public class Logic {
                 UI.showCorrectOrNot(false);
             }
         } while (numberOfPairedCards < newTable.sizeOfTable());
-        UI.congrats(tries);
+        UI.congrats(tries);*/
     }
 
     /**
      * This is the logic for the triple game.
      */
     private void tripleGame() {
-        initTablePairs(3);
+        createPlayers();
+
+        /*initTablePairs(3);
         shuffleTable();
 
         int tries = 0;
@@ -131,11 +134,11 @@ public class Logic {
                 UI.showCorrectOrNot(false);
             }
         } while (numberOfPairedCards < newTable.sizeOfTable());
-        UI.congrats(tries);
+        UI.congrats(tries);*/
     }
 
     private void duelGame(){
-
+        createPlayers();
     }
 
     /**
