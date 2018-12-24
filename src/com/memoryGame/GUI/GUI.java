@@ -1,4 +1,5 @@
 package com.memoryGame.GUI;
+import com.memoryGame.Player;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -10,7 +11,6 @@ public class GUI {
     private static Labels label;
     private static RadioButtons radiobutton;
     private static TextField textField;
-
     private static JButton[] buttons;
     private final static int NUM_BUTTONS=24;
 
@@ -58,7 +58,7 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    public static void createFrame2(){
+     static void createFrame2(){
         gameFrame= new JFrame("Memory Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

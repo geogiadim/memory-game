@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 import java.awt.*;
 
 class TextField {
-    //com.memoryGame.Player Name Text Fields
+    //Player Name Text Fields
     JTextField textP1, textP2, textP3, textP4;
 
     //Labels for Text Fields

@@ -1,16 +1,13 @@
 package com.memoryGame.GUI;
 
 class ActionListenerRadioButtons {
-    private static int numOfPlayers=0;
 
     ActionListenerRadioButtons(){
         addRadButActList();
     }
-    static int getNumOfPlayers(){return numOfPlayers;}
 
     private void addRadButActList() {
         GUI.getRadioButtons().p1.addActionListener(actionEvent -> {
-            numOfPlayers =1;
             GUI.getTextField().textP1.setEnabled(true);
             GUI.getTextField().textP2.setEnabled(false);
             GUI.getTextField().textP3.setEnabled(false);
@@ -24,7 +21,6 @@ class ActionListenerRadioButtons {
         });
 
         GUI.getRadioButtons().p2.addActionListener(actionEvent -> {
-            numOfPlayers = 2;
             GUI.getTextField().textP1.setEnabled(true);
             GUI.getTextField().textP2.setEnabled(true);
             GUI.getTextField().textP3.setEnabled(false);
@@ -38,7 +34,6 @@ class ActionListenerRadioButtons {
         });
 
         GUI.getRadioButtons().p3.addActionListener(actionEvent -> {
-            numOfPlayers = 3;
             GUI.getTextField().textP1.setEnabled(true);
             GUI.getTextField().textP2.setEnabled(true);
             GUI.getTextField().textP3.setEnabled(true);
@@ -52,7 +47,6 @@ class ActionListenerRadioButtons {
         });
 
         GUI.getRadioButtons().p4.addActionListener(actionEvent -> {
-            numOfPlayers = 4;
             GUI.getTextField().textP1.setEnabled(true);
             GUI.getTextField().textP2.setEnabled(true);
             GUI.getTextField().textP3.setEnabled(true);

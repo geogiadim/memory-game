@@ -1,4 +1,4 @@
-package com.memoryGame.GUI;
+/*package com.memoryGame.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,4 +29,4 @@ class LayoutGrid extends JFrame{
     //public static void main(String[] args) {
         //LayoutGrid l=new LayoutGrid();
     //}
-}
+}*/
