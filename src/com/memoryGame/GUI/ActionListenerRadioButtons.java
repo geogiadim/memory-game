@@ -1,4 +1,5 @@
-package GUI;
+package com.memoryGame.GUI;
+
 class ActionListenerRadioButtons {
     private static int numOfPlayers=0;
 

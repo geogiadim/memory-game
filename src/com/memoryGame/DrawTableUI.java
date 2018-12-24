@@ -1,3 +1,5 @@
+package com.memoryGame;
+
 /**
  * This class draws the cards in the table either opened or closed.
  *
@@ -5,7 +7,7 @@
  */
 public class DrawTableUI {
 
-    //Char list for Card Value.
+    //Char list for com.memoryGame.Card Value.
     private final static char[] LETTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X'};
 
     //Strings in place of spaces in print commands.
@@ -13,15 +15,15 @@ public class DrawTableUI {
     private final static String EMPTY_LINE = "       "; //7 Spaces
 
     /**
-     * Handles graphical Card printing and showing first time Card values.
-     * Draws Card-like shapes in console and shows Card Values.
+     * Handles graphical com.memoryGame.Card printing and showing first time com.memoryGame.Card values.
+     * Draws com.memoryGame.Card-like shapes in console and shows com.memoryGame.Card Values.
      * Handles empty spaces by paired Cards.
      *
      * @param newTable    the table with the cards
      * @param previewMode true if cards have to be opened and false if have to be closed
      */
     public static void showTable(Table newTable, boolean previewMode) {
-        //Card Drawing.
+        //com.memoryGame.Card Drawing.
         for (int i = 0; i < newTable.sizeX(); i++) {
             for (int lines = 0; lines < 4; lines++) {
                 System.out.println();

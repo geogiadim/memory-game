@@ -1,9 +1,11 @@
+package com.memoryGame;
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * UI Class handles all interactions with the Screen and the Player using static classes.
+ * com.memoryGame.UI Class handles all interactions with the Screen and the com.memoryGame.Player using static classes.
  * This Class clears the console screen, prints graphics for Cards and handles user's inputs.
  *
  * @author Giorgos Christidis
@@ -14,7 +16,7 @@ public class UI {
     private final static int MESSAGE_DELAY = 5;
     private final static int RULES_DELAY = 8;
     private final static int PREVIEW_TIME = 10;
-    //Card Numbers to strings of numerical order.
+    //com.memoryGame.Card Numbers to strings of numerical order.
     private final static String[] CARD_NO_LETTERS = {"first", "second", "third"};
     //ANSI codes for linux based systems to clear screen.
     private final static String ANSI_CLS = "\u001b[2J";
@@ -23,7 +25,7 @@ public class UI {
     private final static String TAB = "    "; //4 Spaces
     // Coordinates of cards.
     private static int x1, x2, y1, y2, x3, y3;
-    //Boolean to handle Card values appearing for preview before actual game play.
+    //Boolean to handle com.memoryGame.Card values appearing for preview before actual game play.
     private static boolean previewMode;
     private static int mode = 0;
 
@@ -144,7 +146,7 @@ public class UI {
     /**
      * Shows cards opened at the beginning of the game.
      *
-     * @param newTable the 2D Table of Cards
+     * @param newTable the 2D com.memoryGame.Table of Cards
      */
     public static void showCardsPreview(Table newTable) {
         System.out.println(TAB + "Cards will be revealed for " + PREVIEW_TIME + " seconds. Try to remember as many as you can.");
@@ -160,9 +162,9 @@ public class UI {
     }
 
     /**
-     * Calls the "DrawTableUI" class.
+     * Calls the "com.memoryGame.DrawTableUI" class.
      *
-     * @param newTable The 2D Table of Cards
+     * @param newTable The 2D com.memoryGame.Table of Cards
      */
     public static void showCards(Table newTable) {
         DrawTableUI.showTable(newTable, previewMode);
@@ -228,7 +230,7 @@ public class UI {
     /**
      * Prints the appropriate messages if the given coordinates are out of bounds.
      *
-     * @param newTable The 2D Table of Cards
+     * @param newTable The 2D com.memoryGame.Table of Cards
      */
     public static void choiceOutOfBounds(Table newTable) {
         System.out.println(TAB + "Invalid coordinates!");
@@ -281,7 +283,7 @@ public class UI {
     /**
      * Clears screen, prints intro and shows the cards.
      *
-     * @param newTable The 2D Table of Cards
+     * @param newTable The 2D com.memoryGame.Table of Cards
      */
     public static void clsIntroShowCards(Table newTable) {
         clearScreen();
@@ -301,9 +303,9 @@ public class UI {
     }
 
     /**
-     * Checks if coordinates of a card are not chars. Takes the Card number and scans the coordinates.
+     * Checks if coordinates of a card are not chars. Takes the com.memoryGame.Card number and scans the coordinates.
      *
-     * @param cardNo The Card number to scan for.
+     * @param cardNo The com.memoryGame.Card number to scan for.
      */
     private static void checkCharStoreInt(int cardNo) {
         Scanner sc = new Scanner(System.in);

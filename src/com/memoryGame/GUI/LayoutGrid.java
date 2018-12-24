@@ -1,4 +1,4 @@
-package GUI;
+package com.memoryGame.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ class LayoutGrid extends JFrame{
         GridLayout grid = new GridLayout(0, 4, 10, 5);
         setLayout(grid);
         for (int i = 0; i < NUM_BUTTONS; i++) {
-            buttons[i] = new JButton("Card " + (i + 1));
+            buttons[i] = new JButton("com.memoryGame.Card " + (i + 1));
             buttons[i].setFocusPainted(false);
             buttons[i].setPreferredSize(dimension);
             add(buttons[i]);

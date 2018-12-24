@@ -1,4 +1,4 @@
-package GUI;
+package com.memoryGame.GUI;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -19,8 +19,8 @@ public class GUI {
 
     private static int numOfFrame = 0;
 
-    //private Logic log;
-    //private Table tableOfCards;
+    //private com.memoryGame.Logic log;
+    //private com.memoryGame.Table tableOfCards;
 
     private void createJContents() {
         button = new Buttons();
@@ -133,7 +133,7 @@ public class GUI {
         JPanel labelOfLevelPanel = new JPanel();
         labelOfLevelPanel.add(label.levelOfCPU);
 
-        //Panel for difficulty of CPU 1 radio buttons
+        //Panel for difficulty of com.memoryGame.CPU 1 radio buttons
         JPanel difficultyOfCPUPanel = new JPanel(new GridLayout(1, 0, 2, 2));
         difficultyOfCPUPanel.add(radiobutton.easyCPU);
         radiobutton.easyCPU.setSelected(true);
@@ -144,7 +144,7 @@ public class GUI {
         difficultyGroup.add(radiobutton.easyCPU);
         difficultyGroup.add(radiobutton.normalCPU);
         difficultyGroup.add(radiobutton.difficultCPU);
-        //Panel for difficulty of CPU 2 radio buttons
+        //Panel for difficulty of com.memoryGame.CPU 2 radio buttons
         JPanel difficultyOfCPUPanel2 = new JPanel(new GridLayout(1, 0, 2, 2));
         difficultyOfCPUPanel2.add(radiobutton.easyCPU2);
         radiobutton.easyCPU2.setSelected(true);
@@ -155,7 +155,7 @@ public class GUI {
         difficultyGroup2.add(radiobutton.easyCPU2);
         difficultyGroup2.add(radiobutton.normalCPU2);
         difficultyGroup2.add(radiobutton.difficultCPU2);
-        //Panel for difficulty of CPU 3 radio buttons
+        //Panel for difficulty of com.memoryGame.CPU 3 radio buttons
         JPanel difficultyOfCPUPanel3 = new JPanel(new GridLayout(1, 0, 2, 2));
         difficultyOfCPUPanel3.add(radiobutton.easyCPU3);
         radiobutton.easyCPU3.setSelected(true);
@@ -166,15 +166,15 @@ public class GUI {
         difficultyGroup3.add(radiobutton.easyCPU3);
         difficultyGroup3.add(radiobutton.normalCPU3);
         difficultyGroup3.add(radiobutton.difficultCPU3);
-        //Panel for label and difficulty radio buttons of CPU 1
+        //Panel for label and difficulty radio buttons of com.memoryGame.CPU 1
         JPanel panel1 = new JPanel();
         panel1.add(label.levelCpu1);
         panel1.add(difficultyOfCPUPanel);
-        //Panel for label and difficulty radio buttons of CPU 2
+        //Panel for label and difficulty radio buttons of com.memoryGame.CPU 2
         JPanel panel2 = new JPanel();
         panel2.add(label.levelCpu2);
         panel2.add(difficultyOfCPUPanel2);
-        //Panel for label and difficulty radio buttons of CPU 3
+        //Panel for label and difficulty radio buttons of com.memoryGame.CPU 3
         JPanel panel3 = new JPanel();
         panel3.add(label.levelCpu3);
         panel3.add(difficultyOfCPUPanel3);
@@ -245,7 +245,7 @@ public class GUI {
         GridLayout grid =new GridLayout(0,4,10,5);
         gameFrame.setLayout(grid);
         for (int i=0;i<NUM_BUTTONS;i++){
-            buttons[i]=new JButton("Card "+(i+1));
+            buttons[i]=new JButton("com.memoryGame.Card "+(i+1));
             buttons[i].setFocusPainted(false);
             buttons[i].setPreferredSize(dimension);
             gameFrame.add(buttons[i]);
@@ -290,24 +290,24 @@ public class GUI {
             textField.textP4.setText(" ");
         }
         if (radiobutton.cpu1.isSelected()) {
-            textField.textP1.setText("CPU 1");
+            textField.textP1.setText("com.memoryGame.CPU 1");
             textField.textP1.setEnabled(false);
         }
         if (radiobutton.cpu2.isSelected()) {
-            textField.textP1.setText("CPU 1");
+            textField.textP1.setText("com.memoryGame.CPU 1");
             textField.textP1.setEnabled(false);
 
-            textField.textP2.setText("CPU 2");
+            textField.textP2.setText("com.memoryGame.CPU 2");
             textField.textP2.setEnabled(false);
         }
         if (radiobutton.cpu3.isSelected()) {
-            textField.textP1.setText("CPU 1");
+            textField.textP1.setText("com.memoryGame.CPU 1");
             textField.textP1.setEnabled(false);
 
-            textField.textP2.setText("CPU 2");
+            textField.textP2.setText("com.memoryGame.CPU 2");
             textField.textP2.setEnabled(false);
 
-            textField.textP3.setText("CPU 3");
+            textField.textP3.setText("com.memoryGame.CPU 3");
             textField.textP3.setEnabled(false);
         }
     }

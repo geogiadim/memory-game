@@ -1,3 +1,5 @@
+package com.memoryGame;
+
 /**
  * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
  *
@@ -55,7 +57,7 @@ public class Table {
      * @param y the row on which the card is inserted
      */
     public void openCard(int x, int y) {
-        //UI
+        //com.memoryGame.UI
         tableOfCards[x][y].setIsOpen(true);
     }
 
@@ -66,7 +68,7 @@ public class Table {
      * @param y the column on which the card is inserted
      */
     public void closeCard(int x, int y) {
-        //UI
+        //com.memoryGame.UI
         tableOfCards[x][y].setIsOpen(false);
     }
 
