@@ -245,7 +245,7 @@ public class GUI {
         GridLayout grid =new GridLayout(0,4,10,5);
         gameFrame.setLayout(grid);
         for (int i=0;i<NUM_BUTTONS;i++){
-            buttons[i]=new JButton("com.memoryGame.Card "+(i+1));
+            buttons[i]=new JButton("Card "+(i+1));
             buttons[i].setFocusPainted(false);
             buttons[i].setPreferredSize(dimension);
             gameFrame.add(buttons[i]);
@@ -290,24 +290,24 @@ public class GUI {
             textField.textP4.setText(" ");
         }
         if (radiobutton.cpu1.isSelected()) {
-            textField.textP1.setText("com.memoryGame.CPU 1");
+            textField.textP1.setText("CPU 1");
             textField.textP1.setEnabled(false);
         }
         if (radiobutton.cpu2.isSelected()) {
-            textField.textP1.setText("com.memoryGame.CPU 1");
+            textField.textP1.setText("CPU 1");
             textField.textP1.setEnabled(false);
 
-            textField.textP2.setText("com.memoryGame.CPU 2");
+            textField.textP2.setText("CPU 2");
             textField.textP2.setEnabled(false);
         }
         if (radiobutton.cpu3.isSelected()) {
-            textField.textP1.setText("com.memoryGame.CPU 1");
+            textField.textP1.setText("CPU 1");
             textField.textP1.setEnabled(false);
 
-            textField.textP2.setText("com.memoryGame.CPU 2");
+            textField.textP2.setText("CPU 2");
             textField.textP2.setEnabled(false);
 
-            textField.textP3.setText("com.memoryGame.CPU 3");
+            textField.textP3.setText("CPU 3");
             textField.textP3.setEnabled(false);
         }
     }

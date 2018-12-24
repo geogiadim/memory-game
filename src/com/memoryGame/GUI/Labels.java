@@ -19,10 +19,10 @@ class Labels {
         chooseNumOfPlayers = makeLabel("Select Number of Players", FONT_SIZE_LARGE);
         writeNames= makeLabel("Write the names of the players",FONT_SIZE_LARGE);
 
-        levelOfCPU=makeLabel("Choose the level of com.memoryGame.CPU",FONT_SIZE_MEDIUM);
-        levelCpu1=makeLabel("com.memoryGame.CPU 1: ",FONT_SIZE_SMALL);
-        levelCpu2=makeLabel("com.memoryGame.CPU 2: ",FONT_SIZE_SMALL);
-        levelCpu3=makeLabel("com.memoryGame.CPU 3: ",FONT_SIZE_SMALL);
+        levelOfCPU=makeLabel("Choose the level of CPU",FONT_SIZE_MEDIUM);
+        levelCpu1=makeLabel("CPU 1: ",FONT_SIZE_SMALL);
+        levelCpu2=makeLabel("CPU 2: ",FONT_SIZE_SMALL);
+        levelCpu3=makeLabel("CPU 3: ",FONT_SIZE_SMALL);
     }
 
     private JLabel makeLabel(String name, int font_size) {

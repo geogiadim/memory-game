@@ -20,14 +20,14 @@ class RadioButtons {
 
     void setRadioButtonName() {
         //Make 4 com.memoryGame.Player Number Radio Buttons
-        p1 = makeRadioButton("1 com.memoryGame.Player");
+        p1 = makeRadioButton("1 Player");
         p2 = makeRadioButton("2 Players");
         p3 = makeRadioButton("3 Players");
         p4 = makeRadioButton("4 Players");
 
         //Make 4 com.memoryGame.CPU Number Radio Buttons
-        cpu0 = makeRadioButton("NO com.memoryGame.CPU");
-        cpu1 = makeRadioButton("1 com.memoryGame.CPU");
+        cpu0 = makeRadioButton("NO CPU");
+        cpu1 = makeRadioButton("1 CPU");
         cpu2 = makeRadioButton("2 CPUs");
         cpu3 = makeRadioButton("3 CPUs");
 
