@@ -21,6 +21,7 @@ public class Main {
         } catch (UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        GUI.createGUI();
+        //GUI.createGUI();
+        Logic l=new Logic();
     }
 }

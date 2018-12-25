@@ -7,7 +7,7 @@ package com.memoryGame;
  */
 public class DrawTableUI {
 
-    //Char list for com.memoryGame.Card Value.
+    //Char list for Card Value.
     private final static char[] LETTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X'};
 
     //Strings in place of spaces in print commands.
@@ -23,7 +23,7 @@ public class DrawTableUI {
      * @param previewMode true if cards have to be opened and false if have to be closed
      */
     public static void showTable(Table newTable, boolean previewMode) {
-        //com.memoryGame.Card Drawing.
+        //Card Drawing.
         for (int i = 0; i < newTable.sizeX(); i++) {
             for (int lines = 0; lines < 4; lines++) {
                 System.out.println();

@@ -9,8 +9,9 @@ class Buttons {
     //Secondary Buttons
     JButton nextButton, backButton;
     //Card Buttons
-    JButton[] cardButtons;
+    JButton[] cardButtons,openCardButtons;
     private final static int NUM_BUTTONS=24;
+
 
     //Width, Height, Font size of Mode Buttons
     private final static int WIDTH_MODE=250;
@@ -55,9 +56,14 @@ class Buttons {
             cardButtons[i]= makeButton("Card "+(i+1),WIDTH_CARD,HEIGHT_CARD,FONT_GAME);
 
         }
+        //make open card buttons
+        openCardButtons=new JButton[NUM_BUTTONS];
+        for (int i=0;i<NUM_BUTTONS;i++){
+            openCardButtons[i]= makeButton(" "+i,WIDTH_CARD,HEIGHT_CARD,FONT_GAME);
+        }
     }
 
-    private JButton makeButton(String name, int width, int height, Font font) {
+    private static JButton makeButton(String name, int width, int height, Font font) {
         Dimension dimension = new Dimension(width, height);
         JButton button = new JButton(name);
         button.setFocusPainted(false);

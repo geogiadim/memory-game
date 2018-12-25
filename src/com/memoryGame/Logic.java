@@ -28,6 +28,7 @@ public class Logic {
      *
      */
     public Logic() {
+        GUI.createGUI();
         if (GUIConnectionToLogic.getGameMode()==1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
@@ -72,10 +73,19 @@ public class Logic {
     private void basicDoubleGame() {
         createPlayers();
 
-        /*initTablePairs(1);
+        initTablePairs(1);
         shuffleTable();
 
-        int tries = 0;
+        GUI.showCards(true);
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        GUI.clearFrame();
+        GUI.showCards(false);
+
+        /*int tries = 0;
         int numberOfPairedCards = 0;
 
         UI.showCardsPreview(newTable);
@@ -106,10 +116,20 @@ public class Logic {
     private void tripleGame() {
         createPlayers();
 
-        /*initTablePairs(3);
+        initTablePairs(3);
         shuffleTable();
 
-        int tries = 0;
+        GUI.showCards(true);
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        GUI.clearFrame();
+        GUI.showCards(false);
+
+
+        /*int tries = 0;
         int numberOfPairedCards = 0;
 
         UI.showCardsPreview(newTable);

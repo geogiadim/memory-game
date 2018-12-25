@@ -1,6 +1,8 @@
 package com.memoryGame.GUI;
+import com.memoryGame.DrawTableUI;
 import com.memoryGame.Logic;
 import com.memoryGame.Player;
+import com.memoryGame.Table;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -14,6 +16,7 @@ public class GUI {
     private static TextField textField;
 
     private final static int NUM_BUTTONS=24;
+
 
     static ActionListenerRadioButtons radioButtonListener;
     static ActionListenerButtons buttonListener;
@@ -63,7 +66,7 @@ public class GUI {
         gameFrame= new JFrame("Memory Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GUI.frame4GamePlay(gameFrame.getContentPane());
+        GUI.frame4GamePlay(gameFrame.getContentPane(),true);
 
         gameFrame.setResizable(false);
         gameFrame.pack();
@@ -80,7 +83,7 @@ public class GUI {
         frame.setLocation(x, y);
     }
 
-    static void clearFrame() {
+    public static void clearFrame() {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();
     }
@@ -211,7 +214,7 @@ public class GUI {
         numOfFrame = 3;
         //Panel for labels and text fields for players names
         JPanel textFieldPanel = new JPanel(new GridLayout(2, 4, 2, 2));
-        TitledBorder border = BorderFactory.createTitledBorder("Players Names");
+        TitledBorder border = BorderFactory.createTitledBorder("");
         textFieldPanel.setBorder(border);
 
         textFieldPanel.add(textField.labelP1);
@@ -239,7 +242,7 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
-    private static void frame4GamePlay(Container pane){
+    static void frame4GamePlay(Container pane, boolean preview){
         numOfFrame=4;
         JPanel messagePanel=new JPanel();
         messagePanel.add(label.message);
@@ -247,10 +250,16 @@ public class GUI {
         JPanel gamePanel=new JPanel(new GridLayout(0,4,10,5));
         TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
         gamePanel.setBorder(border);
-        for (int i=0;i<NUM_BUTTONS;i++){
-            gamePanel.add(button.cardButtons[i]);
+        if (!preview) {
+            for (int i = 0; i < NUM_BUTTONS; i++) {
+                gamePanel.add(button.cardButtons[i]);
+            }
         }
-
+        else {
+            for (int i = 0; i < NUM_BUTTONS; i++) {
+                gamePanel.add(button.openCardButtons[i]);
+            }
+        }
         JPanel playerPanel= new JPanel();
         TitledBorder border2 = BorderFactory.createTitledBorder("");
         playerPanel.setBorder(border2);
@@ -337,4 +346,9 @@ public class GUI {
             ActionListenerRadioButtons.setEnabledLevelCPU3();
         }
     }
+
+    public static void showCards(boolean previewMode) {
+        DrawTableGUI.showTable(previewMode);
+    }
+
 }
