@@ -16,19 +16,12 @@ public class Logic {
     private Table newTable,newTable2;
     private Player player1, player2,player3, player4;
 
-    private int x1 = 0;
-    private int y1 = 0;
-    private int x2 = 0;
-    private int y2 = 0;
-    private int x3 = 0;
-    private int y3 = 0;
-
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
      *
      */
     public Logic() {
-        GUI.createGUI();
+        //GUI.createGUI();
         if (GUIConnectionToLogic.getGameMode()==1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
@@ -72,42 +65,32 @@ public class Logic {
      */
     private void basicDoubleGame() {
         createPlayers();
+        GUI.createFrame2();
 
         initTablePairs(1);
         shuffleTable();
 
-        GUI.showCards(true);
-        try {
-            Thread.sleep(5 * 1000);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        GUI.clearFrame();
+        //delay
         GUI.showCards(false);
 
-        /*int tries = 0;
-        int numberOfPairedCards = 0;
-
-        UI.showCardsPreview(newTable);
-
+        /*int numberOfPairedCards = 0;
         do {
-            checkAllCardConditions(2);
             //If Cards are same!
+
             if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
                 newTable.unableCard(x1, y1);
                 newTable.unableCard(x2, y2);
                 numberOfPairedCards += 2;
-                tries++;
-                UI.showCorrectOrNot(true);
+                player1.increaseNumOfTries();
+                player1.increaseNumberOfPairs();
             } //else Cards are not same!
             else {
                 newTable.closeCard(x1, y1);
                 newTable.closeCard(x2, y2);
-                tries++;
-                UI.showCorrectOrNot(false);
+                player1.increaseNumOfTries();
             }
-        } while (numberOfPairedCards < newTable.sizeOfTable());
-        UI.congrats(tries);*/
+        }while (numberOfPairedCards<newTable.sizeOfTable());
+        //GUI.array with results and game over*/
     }
 
     /**
@@ -115,27 +98,16 @@ public class Logic {
      */
     private void tripleGame() {
         createPlayers();
+        GUI.createFrame2();
 
         initTablePairs(3);
         shuffleTable();
 
-        GUI.showCards(true);
-        try {
-            Thread.sleep(5 * 1000);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        GUI.clearFrame();
+        //delay
         GUI.showCards(false);
 
-
-        /*int tries = 0;
-        int numberOfPairedCards = 0;
-
-        UI.showCardsPreview(newTable);
-
+        /*int numberOfPairedCards = 0;
         do {
-            checkAllCardConditions(3);
             //If Cards are same!
             if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)
                     && newTable.getCardValue(x1, y1) == newTable.getCardValue(x3, y3)) {
@@ -143,69 +115,21 @@ public class Logic {
                 newTable.unableCard(x2, y2);
                 newTable.unableCard(x3, y3);
                 numberOfPairedCards += 3;
-                tries++;
-                UI.showCorrectOrNot(true);
+                player1.increaseNumOfTries();
+                player1.increaseNumberOfPairs();
             } //else Cards are not same!
             else {
                 newTable.closeCard(x1, y1);
                 newTable.closeCard(x2, y2);
                 newTable.closeCard(x3, y3);
-                tries++;
-                UI.showCorrectOrNot(false);
+                player1.increaseNumOfTries();
             }
         } while (numberOfPairedCards < newTable.sizeOfTable());
-        UI.congrats(tries);*/
+        //GUI.array with results and game over*/
     }
 
     private void duelGame(){
         createPlayers();
-    }
-
-    /**
-     * Asks through the class Ui the player the coordinates of his/her choice card and
-     * checks all the possible conditions in order given coordinates to be valid.
-     *
-     * @param maxCards how many times have to be appeared each card in the table.
-     */
-    private void checkAllCardConditions(int maxCards) {
-        boolean wrongXY;
-
-        for (int cardNo = 0; cardNo < maxCards; cardNo++) {
-            do { //False com.memoryGame.Card Checking!
-                wrongXY = false;
-                UI.clsIntroShowCards(newTable);
-                UI.userChoice(cardNo);
-                //Out Of Bounds!
-                if (UI.getX(cardNo) > newTable.sizeX() - 1 || UI.getX(cardNo) < 0
-                        || UI.getY(cardNo) > newTable.sizeY() - 1 || UI.getY(cardNo) < 0) {
-                    UI.choiceOutOfBounds(newTable);
-                    wrongXY = true;
-                } //Choice is Open!
-                else if (newTable.isCardOpen(UI.getX(cardNo), UI.getY(cardNo))) {
-                    UI.choiceIsOpen();
-                    wrongXY = true;
-                } //Choice is Paired!
-                else if (newTable.isCardPaired(UI.getX(cardNo), UI.getY(cardNo))) {
-                    UI.choiceIsPaired();
-                    wrongXY = true;
-                }
-            } while (wrongXY);
-
-            if (cardNo == 0) {
-                x1 = UI.getX(cardNo);
-                y1 = UI.getY(cardNo);
-                newTable.openCard(x1, y1);
-            } else if (cardNo == 1) {
-                x2 = UI.getX(cardNo);
-                y2 = UI.getY(cardNo);
-                newTable.openCard(x2, y2);
-            } else if (cardNo == 2) {
-                x3 = UI.getX(cardNo);
-                y3 = UI.getY(cardNo);
-                newTable.openCard(x3, y3);
-            }
-            UI.clsIntroShowCards(newTable);
-        }
     }
 
     /**

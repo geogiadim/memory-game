@@ -50,16 +50,17 @@ class Buttons {
         backButton = makeButton("Back",WIDTH_SECONDARY,HEIGHT_SECONDARY,FONT_SECONDARY);
         backButton.setMnemonic(backButton.getText().charAt(0));
 
-        //make card buttons
+        //make closed card buttons
         cardButtons=new JButton[NUM_BUTTONS];
         for (int i=0;i<NUM_BUTTONS;i++){
             cardButtons[i]= makeButton("Card "+(i+1),WIDTH_CARD,HEIGHT_CARD,FONT_GAME);
 
         }
-        //make open card buttons
+        //make opened card buttons
         openCardButtons=new JButton[NUM_BUTTONS];
-        for (int i=0;i<NUM_BUTTONS;i++){
-            openCardButtons[i]= makeButton(" "+i,WIDTH_CARD,HEIGHT_CARD,FONT_GAME);
+        for (int i=0;i<NUM_BUTTONS;i++) {
+            openCardButtons[i] = makeButton(" " + i, WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
+            openCardButtons[i].setEnabled(false);
         }
     }
 

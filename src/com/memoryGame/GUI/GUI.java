@@ -1,8 +1,4 @@
 package com.memoryGame.GUI;
-import com.memoryGame.DrawTableUI;
-import com.memoryGame.Logic;
-import com.memoryGame.Player;
-import com.memoryGame.Table;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -62,7 +58,7 @@ public class GUI {
         frame.setVisible(true);
     }
 
-     static void createFrame2(){
+     public static void createFrame2(){
         gameFrame= new JFrame("Memory Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -72,7 +68,7 @@ public class GUI {
         gameFrame.pack();
         setFrameOnCenter(gameFrame);
         gameFrame.setVisible(true);
-    }
+     }
 
     private static void setFrameOnCenter(JFrame frame) {
         Toolkit t = Toolkit.getDefaultToolkit();
@@ -83,7 +79,7 @@ public class GUI {
         frame.setLocation(x, y);
     }
 
-    public static void clearFrame() {
+    static void clearFrame(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();
     }
@@ -247,7 +243,7 @@ public class GUI {
         JPanel messagePanel=new JPanel();
         messagePanel.add(label.message);
 
-        JPanel gamePanel=new JPanel(new GridLayout(0,4,10,5));
+        JPanel gamePanel=new JPanel(new GridLayout(0,6,10,5));
         TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
         gamePanel.setBorder(border);
         if (!preview) {
@@ -299,10 +295,10 @@ public class GUI {
 
     private static void checkForTextField2() {
         if (radiobutton.cpu0.isSelected()) {
-            textField.textP1.setText(" ");
-            textField.textP2.setText(" ");
-            textField.textP3.setText(" ");
-            textField.textP4.setText(" ");
+            textField.textP1.setText("Player 1");
+            textField.textP2.setText("Player 2");
+            textField.textP3.setText("Player 3");
+            textField.textP4.setText("Player 4");
         }
         if (radiobutton.cpu1.isSelected()) {
             textField.textP1.setText("CPU 1");
@@ -332,6 +328,10 @@ public class GUI {
             radiobutton.cpu1.setEnabled(false);
             radiobutton.cpu2.setEnabled(false);
             radiobutton.cpu3.setEnabled(false);
+
+            radiobutton.p2.setSelected(false);
+            radiobutton.p3.setSelected(false);
+            radiobutton.p4.setSelected(false);
         }
         if (radiobutton.cpu0.isSelected()) {
             ActionListenerRadioButtons.setEnabledLevelCPU0();

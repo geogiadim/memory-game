@@ -13,23 +13,23 @@ class TextField {
 
     //Font for Text Field Labels
     private final static Font FONT_TEXTFIELD_LABEL = new Font(Font.SANS_SERIF, Font.ITALIC, 16);
-    private final static String SPACE = " ";
+    //private final static String SPACE = " ";
 
     TextField() {
         labelP1 = new JLabel("1st Player");
         labelP1.setFont(FONT_TEXTFIELD_LABEL);
-        textP1 = new JTextField(SPACE);
+        textP1 = new JTextField("Player 1");
 
         labelP2 = new JLabel("2nd Player");
         labelP2.setFont(FONT_TEXTFIELD_LABEL);
-        textP2 = new JTextField(SPACE);
+        textP2 = new JTextField("Player 2");
 
         labelP3 = new JLabel("3rd Player");
         labelP3.setFont(FONT_TEXTFIELD_LABEL);
-        textP3 = new JTextField(SPACE);
+        textP3 = new JTextField("Player 3");
 
         labelP4 = new JLabel("4th Player");
         labelP4.setFont(FONT_TEXTFIELD_LABEL);
-        textP4 = new JTextField(SPACE);
+        textP4 = new JTextField("Player 4");
     }
 }

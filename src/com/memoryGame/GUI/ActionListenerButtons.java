@@ -1,5 +1,7 @@
 package com.memoryGame.GUI;
 
+import com.memoryGame.Logic;
+
 class ActionListenerButtons {
     ActionListenerButtons(){
         addButtonsActList();
@@ -7,23 +9,27 @@ class ActionListenerButtons {
     private void addButtonsActList() {
         GUI.getButton().basicButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
-            System.out.println("1");
+            GUI.getButton().basicButton.setSelected(true);
         });
         GUI.getButton().doubleButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
-            System.out.println("2");
+            GUI.getButton().doubleButton.setSelected(true);
         });
         GUI.getButton().tripleButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
-            System.out.println("3");
+            GUI.getButton().tripleButton.setSelected(true);
         });
         GUI.getButton().duelButton.addActionListener(actionEvent -> {
             // selectNumOfPlayers();
         });
 
         GUI.getButton().backButton.addActionListener(actionEvent -> {
-            GUI.clearFrame();
+            GUI.clearFrame(GUI.getFrame());
             if (GUI.getNumOfFrame()== 2) {
+                GUI.getButton().basicButton.setSelected(false);
+                GUI.getButton().doubleButton.setSelected(false);
+                GUI.getButton().tripleButton.setSelected(false);
+                GUI.getButton().duelButton.setSelected(false);
                 GUI.frame1GameMode(GUI.getFrame().getContentPane());
             }
             else if (GUI.getNumOfFrame() == 3) {
@@ -33,20 +39,20 @@ class ActionListenerButtons {
         });
 
         GUI.getButton().nextButton.addActionListener(actionEvent -> {
-            GUI.clearFrame();
+            GUI.clearFrame(GUI.getFrame());
             if (GUI.getNumOfFrame()== 2) {
                 GUI.frame3PlayersName(GUI.getFrame().getContentPane());
             }
             else if (GUI.getNumOfFrame()==3){
                 GUI.getFrame().setVisible(false);
-                GUI.createFrame2();
+                Logic l=new Logic();
             }
             GUI.getFrame().validate();
         });
     }
 
     private void selectNumOfPlayers() {
-        GUI.clearFrame();
+        GUI.clearFrame(GUI.getFrame());
         GUI.frame2PlayerChoice(GUI.getFrame().getContentPane());
         GUI.getFrame().validate();
     }
