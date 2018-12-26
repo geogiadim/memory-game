@@ -7,11 +7,11 @@ class ActionListenerRadioButtons {
     }
 
     static void addRadButActList() {
-            RadioButtons.p1.addActionListener(actionEvent -> {
-            GUI.getTextField().textP1.setEnabled(true);
-            GUI.getTextField().textP2.setEnabled(false);
-            GUI.getTextField().textP3.setEnabled(false);
-            GUI.getTextField().textP4.setEnabled(false);
+        RadioButtons.p1.addActionListener(actionEvent -> {
+            TextField.textP1.setEnabled(true);
+            TextField.textP2.setEnabled(false);
+            TextField.textP3.setEnabled(false);
+            TextField.textP4.setEnabled(false);
 
             RadioButtons.cpu0.setSelected(true);
             RadioButtons.cpu0.setEnabled(true);
@@ -21,10 +21,10 @@ class ActionListenerRadioButtons {
         });
 
         RadioButtons.p2.addActionListener(actionEvent -> {
-            GUI.getTextField().textP1.setEnabled(true);
-            GUI.getTextField().textP2.setEnabled(true);
-            GUI.getTextField().textP3.setEnabled(false);
-            GUI.getTextField().textP4.setEnabled(false);
+            TextField.textP1.setEnabled(true);
+            TextField.textP2.setEnabled(true);
+            TextField.textP3.setEnabled(false);
+            TextField.textP4.setEnabled(false);
 
             RadioButtons.cpu0.setSelected(true);
             RadioButtons.cpu0.setEnabled(true);
@@ -34,10 +34,10 @@ class ActionListenerRadioButtons {
         });
 
         RadioButtons.p3.addActionListener(actionEvent -> {
-            GUI.getTextField().textP1.setEnabled(true);
-            GUI.getTextField().textP2.setEnabled(true);
-            GUI.getTextField().textP3.setEnabled(true);
-            GUI.getTextField().textP4.setEnabled(false);
+            TextField.textP1.setEnabled(true);
+            TextField.textP2.setEnabled(true);
+            TextField.textP3.setEnabled(true);
+            TextField.textP4.setEnabled(false);
 
             RadioButtons.cpu0.setSelected(true);
             RadioButtons.cpu0.setEnabled(true);
@@ -47,10 +47,10 @@ class ActionListenerRadioButtons {
         });
 
         RadioButtons.p4.addActionListener(actionEvent -> {
-            GUI.getTextField().textP1.setEnabled(true);
-            GUI.getTextField().textP2.setEnabled(true);
-            GUI.getTextField().textP3.setEnabled(true);
-            GUI.getTextField().textP4.setEnabled(true);
+            TextField.textP1.setEnabled(true);
+            TextField.textP2.setEnabled(true);
+            TextField.textP3.setEnabled(true);
+            TextField.textP4.setEnabled(true);
 
             RadioButtons.cpu0.setSelected(true);
             RadioButtons.cpu0.setEnabled(true);
