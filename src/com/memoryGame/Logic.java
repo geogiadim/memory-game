@@ -1,4 +1,5 @@
 package com.memoryGame;
+
 import com.memoryGame.GUI.GUI;
 import com.memoryGame.GUI.GUIConnectionToLogic;
 
@@ -13,50 +14,45 @@ import java.util.Random;
  */
 public class Logic {
 
-    private Table newTable,newTable2;
-    private Player player1, player2,player3, player4;
+    private Table newTable, newTable2;
+    private Player player1, player2, player3, player4;
 
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
-     *
      */
-    public Logic() {
-        //GUI.createGUI();
-        if (GUIConnectionToLogic.getGameMode()==1) {
+    public Logic(int mode) {
+        if (mode == 1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
-        }
-        else if (GUIConnectionToLogic.getGameMode()==2) {
+        } else if (mode == 2) {
             newTable = new Table(6, 8);
             basicDoubleGame();
-        }
-        else if (GUIConnectionToLogic.getGameMode()==3) {
+        } else if (mode == 3) {
             newTable = new Table(6, 6);
             tripleGame();
-        }
-        else if (GUIConnectionToLogic.getGameMode()==4){
-            newTable=new Table (6,4);
-            newTable2=new Table(6,4);
+        } else if (mode == 4) {
+            newTable = new Table(6, 4);
+            newTable2 = new Table(6, 4);
             duelGame();
         }
     }
 
-    private void createPlayers(){
-        switch (GUIConnectionToLogic.getNumOfPlayers()){
+    private void createPlayers() {
+        switch (GUIConnectionToLogic.getNumOfPlayers()) {
             case 1:
-                player1=new Player(GUIConnectionToLogic.getNameOfPlayer1());
+                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
             case 2:
-                player1=new Player(GUIConnectionToLogic.getNameOfPlayer1());
-                player2=new Player(GUIConnectionToLogic.getNameOfPlayer2());
+                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
+                player2 = new Player(GUIConnectionToLogic.getNameOfPlayer2());
             case 3:
-                player1=new Player(GUIConnectionToLogic.getNameOfPlayer1());
-                player2=new Player(GUIConnectionToLogic.getNameOfPlayer2());
-                player3=new Player(GUIConnectionToLogic.getNameOfPlayer3());
+                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
+                player2 = new Player(GUIConnectionToLogic.getNameOfPlayer2());
+                player3 = new Player(GUIConnectionToLogic.getNameOfPlayer3());
             case 4:
-                player1=new Player(GUIConnectionToLogic.getNameOfPlayer1());
-                player2=new Player(GUIConnectionToLogic.getNameOfPlayer2());
-                player3=new Player(GUIConnectionToLogic.getNameOfPlayer3());
-                player4=new Player(GUIConnectionToLogic.getNameOfPlayer4());
+                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
+                player2 = new Player(GUIConnectionToLogic.getNameOfPlayer2());
+                player3 = new Player(GUIConnectionToLogic.getNameOfPlayer3());
+                player4 = new Player(GUIConnectionToLogic.getNameOfPlayer4());
         }
     }
 
@@ -65,13 +61,12 @@ public class Logic {
      */
     private void basicDoubleGame() {
         createPlayers();
-        GUI.createFrame2();
 
         initTablePairs(1);
         shuffleTable();
 
-        //delay
-        GUI.showCards(false);
+        GUI.showCards(newTable, true);
+        //GUI.showCards(newTable, false);
 
         /*int numberOfPairedCards = 0;
         do {
@@ -98,13 +93,12 @@ public class Logic {
      */
     private void tripleGame() {
         createPlayers();
-        GUI.createFrame2();
 
         initTablePairs(3);
         shuffleTable();
 
-        //delay
-        GUI.showCards(false);
+        GUI.showCards(newTable, true);
+        //GUI.showCards(newTable, false);
 
         /*int numberOfPairedCards = 0;
         do {
@@ -128,7 +122,7 @@ public class Logic {
         //GUI.array with results and game over*/
     }
 
-    private void duelGame(){
+    private void duelGame() {
         createPlayers();
     }
 

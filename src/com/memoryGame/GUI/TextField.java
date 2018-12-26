@@ -1,18 +1,15 @@
 package com.memoryGame.GUI;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import java.awt.*;
 
 class TextField {
-    //Player Name Text Fields
-    JTextField textP1, textP2, textP3, textP4;
-
-    //Labels for Text Fields
-    JLabel labelP1, labelP2, labelP3, labelP4;
-
     //Font for Text Field Labels
     private final static Font FONT_TEXTFIELD_LABEL = new Font(Font.SANS_SERIF, Font.ITALIC, 16);
+    //Player Name Text Fields
+    JTextField textP1, textP2, textP3, textP4;
+    //Labels for Text Fields
+    JLabel labelP1, labelP2, labelP3, labelP4;
     //private final static String SPACE = " ";
 
     TextField() {

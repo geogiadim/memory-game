@@ -2,8 +2,64 @@ package com.memoryGame.GUI;
 
 class ActionListenerRadioButtons {
 
-    ActionListenerRadioButtons(){
+    ActionListenerRadioButtons() {
         addRadButActList();
+    }
+
+    static void setEnabledLevelCPU0() {
+        GUI.getRadioButtons().easyCPU.setEnabled(false);
+        GUI.getRadioButtons().normalCPU.setEnabled(false);
+        GUI.getRadioButtons().difficultCPU.setEnabled(false);
+
+        GUI.getRadioButtons().easyCPU2.setEnabled(false);
+        GUI.getRadioButtons().normalCPU2.setEnabled(false);
+        GUI.getRadioButtons().difficultCPU2.setEnabled(false);
+
+        GUI.getRadioButtons().easyCPU3.setEnabled(false);
+        GUI.getRadioButtons().normalCPU3.setEnabled(false);
+        GUI.getRadioButtons().difficultCPU3.setEnabled(false);
+    }
+
+    static void setEnabledLevelCPU1() {
+        GUI.getRadioButtons().easyCPU.setEnabled(true);
+        GUI.getRadioButtons().normalCPU.setEnabled(true);
+        GUI.getRadioButtons().difficultCPU.setEnabled(true);
+
+        GUI.getRadioButtons().easyCPU2.setEnabled(false);
+        GUI.getRadioButtons().normalCPU2.setEnabled(false);
+        GUI.getRadioButtons().difficultCPU2.setEnabled(false);
+
+        GUI.getRadioButtons().easyCPU3.setEnabled(false);
+        GUI.getRadioButtons().normalCPU3.setEnabled(false);
+        GUI.getRadioButtons().difficultCPU3.setEnabled(false);
+    }
+
+    static void setEnabledLevelCPU2() {
+        GUI.getRadioButtons().easyCPU.setEnabled(true);
+        GUI.getRadioButtons().normalCPU.setEnabled(true);
+        GUI.getRadioButtons().difficultCPU.setEnabled(true);
+
+        GUI.getRadioButtons().easyCPU2.setEnabled(true);
+        GUI.getRadioButtons().normalCPU2.setEnabled(true);
+        GUI.getRadioButtons().difficultCPU2.setEnabled(true);
+
+        GUI.getRadioButtons().easyCPU3.setEnabled(false);
+        GUI.getRadioButtons().normalCPU3.setEnabled(false);
+        GUI.getRadioButtons().difficultCPU3.setEnabled(false);
+    }
+
+    static void setEnabledLevelCPU3() {
+        GUI.getRadioButtons().easyCPU.setEnabled(true);
+        GUI.getRadioButtons().normalCPU.setEnabled(true);
+        GUI.getRadioButtons().difficultCPU.setEnabled(true);
+
+        GUI.getRadioButtons().easyCPU2.setEnabled(true);
+        GUI.getRadioButtons().normalCPU2.setEnabled(true);
+        GUI.getRadioButtons().difficultCPU2.setEnabled(true);
+
+        GUI.getRadioButtons().easyCPU3.setEnabled(true);
+        GUI.getRadioButtons().normalCPU3.setEnabled(true);
+        GUI.getRadioButtons().difficultCPU3.setEnabled(true);
     }
 
     private void addRadButActList() {
@@ -75,61 +131,5 @@ class ActionListenerRadioButtons {
             setEnabledLevelCPU3();
             System.out.println("0");
         });
-    }
-
-    static void setEnabledLevelCPU0 (){
-        GUI.getRadioButtons().easyCPU.setEnabled(false);
-        GUI.getRadioButtons().normalCPU.setEnabled(false);
-        GUI.getRadioButtons().difficultCPU.setEnabled(false);
-
-        GUI.getRadioButtons().easyCPU2.setEnabled(false);
-        GUI.getRadioButtons().normalCPU2.setEnabled(false);
-        GUI.getRadioButtons().difficultCPU2.setEnabled(false);
-
-        GUI.getRadioButtons().easyCPU3.setEnabled(false);
-        GUI.getRadioButtons().normalCPU3.setEnabled(false);
-        GUI.getRadioButtons().difficultCPU3.setEnabled(false);
-    }
-
-    static void setEnabledLevelCPU1(){
-        GUI.getRadioButtons().easyCPU.setEnabled(true);
-        GUI.getRadioButtons().normalCPU.setEnabled(true);
-        GUI.getRadioButtons().difficultCPU.setEnabled(true);
-
-        GUI.getRadioButtons().easyCPU2.setEnabled(false);
-        GUI.getRadioButtons().normalCPU2.setEnabled(false);
-        GUI.getRadioButtons().difficultCPU2.setEnabled(false);
-
-        GUI.getRadioButtons().easyCPU3.setEnabled(false);
-        GUI.getRadioButtons().normalCPU3.setEnabled(false);
-        GUI.getRadioButtons().difficultCPU3.setEnabled(false);
-    }
-
-    static void setEnabledLevelCPU2(){
-        GUI.getRadioButtons().easyCPU.setEnabled(true);
-        GUI.getRadioButtons().normalCPU.setEnabled(true);
-        GUI.getRadioButtons().difficultCPU.setEnabled(true);
-
-        GUI.getRadioButtons().easyCPU2.setEnabled(true);
-        GUI.getRadioButtons().normalCPU2.setEnabled(true);
-        GUI.getRadioButtons().difficultCPU2.setEnabled(true);
-
-        GUI.getRadioButtons().easyCPU3.setEnabled(false);
-        GUI.getRadioButtons().normalCPU3.setEnabled(false);
-        GUI.getRadioButtons().difficultCPU3.setEnabled(false);
-    }
-
-    static void setEnabledLevelCPU3(){
-        GUI.getRadioButtons().easyCPU.setEnabled(true);
-        GUI.getRadioButtons().normalCPU.setEnabled(true);
-        GUI.getRadioButtons().difficultCPU.setEnabled(true);
-
-        GUI.getRadioButtons().easyCPU2.setEnabled(true);
-        GUI.getRadioButtons().normalCPU2.setEnabled(true);
-        GUI.getRadioButtons().difficultCPU2.setEnabled(true);
-
-        GUI.getRadioButtons().easyCPU3.setEnabled(true);
-        GUI.getRadioButtons().normalCPU3.setEnabled(true);
-        GUI.getRadioButtons().difficultCPU3.setEnabled(true);
     }
 }

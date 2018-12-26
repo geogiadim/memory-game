@@ -1,55 +1,63 @@
 package com.memoryGame.GUI;
 
+import com.memoryGame.Logic;
+import com.memoryGame.Table;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class GUI {
+    static ActionListenerRadioButtons radioButtonListener;
+    static ActionListenerButtons buttonListener;
     private static JFrame frame, gameFrame;
-    private static Buttons button;
+    //    private static Buttons button;
     private static Labels label;
     private static RadioButtons radiobutton;
     private static TextField textField;
-
-    private final static int NUM_BUTTONS=24;
-
-
-    static ActionListenerRadioButtons radioButtonListener;
-    static ActionListenerButtons buttonListener;
-
     private static int numOfFrame = 0;
 
     //private com.memoryGame.Logic log;
     //private com.memoryGame.Table tableOfCards;
 
-    private void createJContents() {
-        button = new Buttons();
-        button.setButtonsName();
-        buttonListener=new ActionListenerButtons();
+    private static void createJContents() {
+        Buttons.setButtonsName();
+        buttonListener = new ActionListenerButtons();
 
-        label = new Labels();
-        label.setLabelName();
+        Labels.setLabelName();
 
         radiobutton = new RadioButtons();
         radiobutton.setRadioButtonName();
-        radioButtonListener=new ActionListenerRadioButtons();
+        radioButtonListener = new ActionListenerRadioButtons();
 
         textField = new TextField();
     }
 
-    static RadioButtons getRadioButtons() {return radiobutton;}
-    static TextField getTextField() {return textField;}
-    static Buttons getButton() {return button;}
-    static JFrame getFrame() {return frame;}
-    static JFrame getGameFrame(){return gameFrame;}
-    static int getNumOfFrame() {return numOfFrame;}
+    static RadioButtons getRadioButtons() {
+        return radiobutton;
+    }
+
+    static TextField getTextField() {
+        return textField;
+    }
+
+    static JFrame getFrame() {
+        return frame;
+    }
+
+    static JFrame getGameFrame() {
+        return gameFrame;
+    }
+
+    static int getNumOfFrame() {
+        return numOfFrame;
+    }
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GUI gui = new GUI();
-        gui.createJContents();
+        GUI.createJContents();
         GUI.frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
@@ -58,17 +66,18 @@ public class GUI {
         frame.setVisible(true);
     }
 
-     public static void createFrame2(){
-        gameFrame= new JFrame("Memory Game");
+    static void createFrame2() {
+        gameFrame = new JFrame("Memory Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GUI.frame4GamePlay(gameFrame.getContentPane(),true);
+        //Create a Logic Object
+        Logic logic = new Logic(GUIConnectionToLogic.getGameMode());
 
         gameFrame.setResizable(false);
         gameFrame.pack();
         setFrameOnCenter(gameFrame);
         gameFrame.setVisible(true);
-     }
+    }
 
     private static void setFrameOnCenter(JFrame frame) {
         Toolkit t = Toolkit.getDefaultToolkit();
@@ -87,13 +96,13 @@ public class GUI {
     static void frame1GameMode(Container pane) {
         numOfFrame = 1;
         JPanel gmLabelPanel = new JPanel();
-        gmLabelPanel.add(label.chooseGameMode);
+        gmLabelPanel.add(Labels.chooseGameMode);
 
         JPanel gmButtonsPanel = new JPanel();
-        gmButtonsPanel.add(button.basicButton);
-        gmButtonsPanel.add(button.doubleButton);
-        gmButtonsPanel.add(button.tripleButton);
-        gmButtonsPanel.add(button.duelButton);
+        gmButtonsPanel.add(Buttons.basicButton);
+        gmButtonsPanel.add(Buttons.doubleButton);
+        gmButtonsPanel.add(Buttons.tripleButton);
+        gmButtonsPanel.add(Buttons.duelButton);
 
         pane.add(gmLabelPanel, BorderLayout.PAGE_START);
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
@@ -131,7 +140,7 @@ public class GUI {
 
         //Panel for label of level of cpu
         JPanel labelOfLevelPanel = new JPanel();
-        labelOfLevelPanel.add(label.levelOfCPU);
+        labelOfLevelPanel.add(Labels.levelOfCPU);
 
         //Panel for difficulty of com.memoryGame.CPU 1 radio buttons
         JPanel difficultyOfCPUPanel = new JPanel(new GridLayout(1, 0, 2, 2));
@@ -168,15 +177,15 @@ public class GUI {
         difficultyGroup3.add(radiobutton.difficultCPU3);
         //Panel for label and difficulty radio buttons of com.memoryGame.CPU 1
         JPanel panel1 = new JPanel();
-        panel1.add(label.levelCpu1);
+        panel1.add(Labels.levelCpu1);
         panel1.add(difficultyOfCPUPanel);
         //Panel for label and difficulty radio buttons of com.memoryGame.CPU 2
         JPanel panel2 = new JPanel();
-        panel2.add(label.levelCpu2);
+        panel2.add(Labels.levelCpu2);
         panel2.add(difficultyOfCPUPanel2);
         //Panel for label and difficulty radio buttons of com.memoryGame.CPU 3
         JPanel panel3 = new JPanel();
-        panel3.add(label.levelCpu3);
+        panel3.add(Labels.levelCpu3);
         panel3.add(difficultyOfCPUPanel3);
         //Panel for label and choices of difficulty of all CPUs
         JPanel levelPanel = new JPanel(new GridLayout(4, 0, 2, 2));
@@ -185,19 +194,19 @@ public class GUI {
         levelPanel.add(panel2, BorderLayout.CENTER);
         levelPanel.add(panel3, BorderLayout.PAGE_END);
         //Panel includes all previous panels
-        JPanel choicePanel = new JPanel(new GridLayout(1,3,2,2));
+        JPanel choicePanel = new JPanel(new GridLayout(1, 3, 2, 2));
         choicePanel.add(numOfPlayersPanel);
         choicePanel.add(numOfCPUsPanel);
         choicePanel.add(levelPanel);
 
         //Panel for title of the frame
         JPanel selectPlayersPanel = new JPanel();
-        selectPlayersPanel.add(label.chooseNumOfPlayers);
+        selectPlayersPanel.add(Labels.chooseNumOfPlayers);
 
         //Panel for back and next buttons
         JPanel backNextPanel = new JPanel();
-        backNextPanel.add(button.backButton);
-        backNextPanel.add(button.nextButton);
+        backNextPanel.add(Buttons.backButton);
+        backNextPanel.add(Buttons.nextButton);
 
         checkForRadioButtons();
 
@@ -225,11 +234,11 @@ public class GUI {
 
         //Panel for Title of frame
         JPanel writePlayersNamePanel = new JPanel();
-        writePlayersNamePanel.add(label.writeNames);
+        writePlayersNamePanel.add(Labels.writeNames);
         //Panel for back and next buttons
         JPanel backNextPanel = new JPanel();
-        backNextPanel.add(button.backButton);
-        backNextPanel.add(button.nextButton);
+        backNextPanel.add(Buttons.backButton);
+        backNextPanel.add(Buttons.nextButton);
 
         checkForTextField();
         checkForTextField2();
@@ -238,32 +247,41 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
-    static void frame4GamePlay(Container pane, boolean preview){
-        numOfFrame=4;
-        JPanel messagePanel=new JPanel();
-        messagePanel.add(label.message);
 
-        JPanel gamePanel=new JPanel(new GridLayout(0,6,10,5));
+    private static void frame4GamePlay(Container pane, Table tableOfCards, boolean preview) {
+        numOfFrame = 4;
+
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(Labels.message);
+
+        JPanel gamePanel = new JPanel(new GridLayout(tableOfCards.sizeX(), tableOfCards.sizeY(), 10, 5));
         TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
         gamePanel.setBorder(border);
-        if (!preview) {
-            for (int i = 0; i < NUM_BUTTONS; i++) {
-                gamePanel.add(button.cardButtons[i]);
+
+        Buttons.setCardButtons(tableOfCards);
+
+        if (preview) {
+            for (int i = 0; i < tableOfCards.sizeX(); i++) {
+                for (int j = 0; j < tableOfCards.sizeY(); j++) {
+                    gamePanel.add(Buttons.openCardButtons[i][j]);
+                }
+            }
+        } else {
+            for (int i = 0; i < tableOfCards.sizeX(); i++) {
+                for (int j = 0; j < tableOfCards.sizeY(); j++) {
+                    gamePanel.add(Buttons.cardButtons[i][j]);
+                }
             }
         }
-        else {
-            for (int i = 0; i < NUM_BUTTONS; i++) {
-                gamePanel.add(button.openCardButtons[i]);
-            }
-        }
-        JPanel playerPanel= new JPanel();
+
+        JPanel playerPanel = new JPanel();
         TitledBorder border2 = BorderFactory.createTitledBorder("");
         playerPanel.setBorder(border2);
-        playerPanel.add(label.turnOfPlayer);
+        playerPanel.add(Labels.turnOfPlayer);
 
-        pane.add(messagePanel,BorderLayout.PAGE_START);
+        pane.add(messagePanel, BorderLayout.PAGE_START);
         pane.add(gamePanel, BorderLayout.CENTER);
-        pane.add(playerPanel,BorderLayout.PAGE_END);
+        pane.add(playerPanel, BorderLayout.PAGE_END);
     }
 
     private static void checkForTextField() {
@@ -347,8 +365,8 @@ public class GUI {
         }
     }
 
-    public static void showCards(boolean previewMode) {
-        DrawTableGUI.showTable(previewMode);
+    public static void showCards(Table tableOfCards, boolean previewMode) {
+        frame4GamePlay(gameFrame.getContentPane(), tableOfCards, previewMode);
     }
 
 }

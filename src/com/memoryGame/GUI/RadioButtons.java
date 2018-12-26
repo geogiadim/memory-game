@@ -4,19 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 class RadioButtons {
+    //Font for Radio Buttons
+    private final static Font FONT_RADIOBUTTON = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
     //Player Number Radio Buttons
     JRadioButton p1, p2, p3, p4;
-
     //CPU Number Radio Buttons
     JRadioButton cpu0, cpu1, cpu2, cpu3;
-
     //CPU Difficulty Radio Buttons
     JRadioButton easyCPU, normalCPU, difficultCPU;
     JRadioButton easyCPU2, normalCPU2, difficultCPU2;
     JRadioButton easyCPU3, normalCPU3, difficultCPU3;
-
-    //Font for Radio Buttons
-    private final static Font FONT_RADIOBUTTON = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
 
     void setRadioButtonName() {
         //Make 4 com.memoryGame.Player Number Radio Buttons
@@ -32,7 +29,7 @@ class RadioButtons {
         cpu3 = makeRadioButton("3 CPUs");
 
         //Make CPU1 Radio Buttons
-        easyCPU  = makeRadioButton("Easy");
+        easyCPU = makeRadioButton("Easy");
         normalCPU = makeRadioButton("Normal");
         difficultCPU = makeRadioButton("Difficult");
 
