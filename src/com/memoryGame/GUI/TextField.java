@@ -12,7 +12,7 @@ class TextField {
     JLabel labelP1, labelP2, labelP3, labelP4;
     //private final static String SPACE = " ";
 
-    TextField() {
+    TextField(){
         labelP1 = new JLabel("1st Player");
         labelP1.setFont(FONT_TEXTFIELD_LABEL);
         textP1 = new JTextField("Player 1");

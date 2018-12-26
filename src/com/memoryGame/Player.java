@@ -4,7 +4,7 @@ public class Player {
     private String name;
     private int pairs, tries;
 
-    public Player(String name) {
+    Player(String name) {
         this.name = name;
         pairs = 0;
         tries = 0;

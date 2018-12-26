@@ -31,15 +31,6 @@ class Buttons {
     //Card Buttons
     static JButton[][] cardButtons, openCardButtons;
 
-    private static JButton makeButton(String name, int width, int height, Font font) {
-        Dimension dimension = new Dimension(width, height);
-        JButton button = new JButton(name);
-        button.setFocusPainted(false);
-        button.setPreferredSize(dimension);
-        button.setFont(font);
-        return button;
-    }
-
     static void setButtonsName() {
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
         basicButton = makeButton("Basic Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE);
@@ -56,7 +47,6 @@ class Buttons {
         nextButton.setMnemonic(nextButton.getText().charAt(0));
         backButton = makeButton("Back", WIDTH_SECONDARY, HEIGHT_SECONDARY, FONT_SECONDARY);
         backButton.setMnemonic(backButton.getText().charAt(0));
-
     }
 
     static void setCardButtons(Table tableOfCards) {
@@ -67,7 +57,7 @@ class Buttons {
         cardButtons = new JButton[sizeX][sizeY];
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                cardButtons[i][j] = makeButton("Card " + (i + 1) + " " + (j + 1), WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
+                cardButtons[i][j] = makeButton("Card " + (i + 1) + "-" + (j + 1), WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
             }
         }
         //make opened card buttons
@@ -78,5 +68,14 @@ class Buttons {
                 openCardButtons[i][j].setEnabled(false);
             }
         }
+    }
+
+    private static JButton makeButton(String name, int width, int height, Font font) {
+        Dimension dimension = new Dimension(width, height);
+        JButton button = new JButton(name);
+        button.setFocusPainted(false);
+        button.setPreferredSize(dimension);
+        button.setFont(font);
+        return button;
     }
 }

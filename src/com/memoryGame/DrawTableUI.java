@@ -22,7 +22,7 @@ public class DrawTableUI {
      * @param newTable    the table with the cards
      * @param previewMode true if cards have to be opened and false if have to be closed
      */
-    public static void showTable(Table newTable, boolean previewMode) {
+    static void showTable(Table newTable, boolean previewMode) {
         //com.memoryGame.Card Drawing.
         for (int i = 0; i < newTable.sizeX(); i++) {
             for (int lines = 0; lines < 4; lines++) {

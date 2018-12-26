@@ -5,7 +5,7 @@ class ActionListenerButtons {
         addButtonsActList();
     }
 
-    private void addButtonsActList() {
+    static void addButtonsActList() {
         Buttons.basicButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
             Buttons.basicButton.setSelected(true);
@@ -49,7 +49,7 @@ class ActionListenerButtons {
         });
     }
 
-    private void selectNumOfPlayers() {
+    private static void selectNumOfPlayers() {
         GUI.clearFrame(GUI.getFrame());
         GUI.frame2PlayerChoice(GUI.getFrame().getContentPane());
         GUI.getFrame().validate();

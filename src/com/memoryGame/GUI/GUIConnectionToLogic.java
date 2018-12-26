@@ -2,7 +2,7 @@ package com.memoryGame.GUI;
 
 public class GUIConnectionToLogic {
     private static int mode = 0;
-    private static int numOfPlayers = 0, numOfCPUs = 0;
+    private static int numOfPlayers = 0; //numOfCPUs = 0;
     private static String name1, name2, name3, name4;
 
     public static int getGameMode() {
@@ -19,30 +19,30 @@ public class GUIConnectionToLogic {
     }
 
     public static int getNumOfPlayers() {
-        if (GUI.getRadioButtons().p1.isSelected()) {
+        if (RadioButtons.p1.isSelected()) {
             numOfPlayers = 1;
-        } else if (GUI.getRadioButtons().p2.isSelected()) {
+        } else if (RadioButtons.p2.isSelected()) {
             numOfPlayers = 2;
-        } else if (GUI.getRadioButtons().p3.isSelected()) {
+        } else if (RadioButtons.p3.isSelected()) {
             numOfPlayers = 3;
-        } else if (GUI.getRadioButtons().p4.isSelected()) {
+        } else if (RadioButtons.p4.isSelected()) {
             numOfPlayers = 4;
         }
         return numOfPlayers;
     }
 
-    public static int getNumOfCPUs() {
-        if (GUI.getRadioButtons().cpu0.isSelected()) {
+   /* public static int getNumOfCPUs() {
+        if (RadioButtons.cpu0.isSelected()) {
             numOfCPUs = 0;
-        } else if (GUI.getRadioButtons().cpu1.isSelected()) {
+        } else if (RadioButtons.cpu1.isSelected()) {
             numOfCPUs = 1;
-        } else if (GUI.getRadioButtons().cpu2.isSelected()) {
+        } else if (RadioButtons.cpu2.isSelected()) {
             numOfCPUs = 2;
-        } else if (GUI.getRadioButtons().cpu3.isSelected()) {
+        } else if (RadioButtons.cpu3.isSelected()) {
             numOfCPUs = 3;
         }
         return numOfCPUs;
-    }
+    }*/
 
     public static String getNameOfPlayer1() {
         name1 = GUI.getTextField().textP1.getText();

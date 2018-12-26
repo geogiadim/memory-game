@@ -7,15 +7,15 @@ class RadioButtons {
     //Font for Radio Buttons
     private final static Font FONT_RADIOBUTTON = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
     //Player Number Radio Buttons
-    JRadioButton p1, p2, p3, p4;
+    static JRadioButton p1, p2, p3, p4;
     //CPU Number Radio Buttons
-    JRadioButton cpu0, cpu1, cpu2, cpu3;
+    static JRadioButton cpu0, cpu1, cpu2, cpu3;
     //CPU Difficulty Radio Buttons
-    JRadioButton easyCPU, normalCPU, difficultCPU;
-    JRadioButton easyCPU2, normalCPU2, difficultCPU2;
-    JRadioButton easyCPU3, normalCPU3, difficultCPU3;
+    static JRadioButton easyCPU, normalCPU, difficultCPU;
+    static JRadioButton easyCPU2, normalCPU2, difficultCPU2;
+    static JRadioButton easyCPU3, normalCPU3, difficultCPU3;
 
-    void setRadioButtonName() {
+    static void setRadioButtonName() {
         //Make 4 com.memoryGame.Player Number Radio Buttons
         p1 = makeRadioButton("1 Player");
         p2 = makeRadioButton("2 Players");
@@ -44,7 +44,7 @@ class RadioButtons {
         difficultCPU3 = makeRadioButton("Difficult");
     }
 
-    private JRadioButton makeRadioButton(String name) {
+    private static JRadioButton makeRadioButton(String name) {
         JRadioButton radioButton = new JRadioButton(name);
         radioButton.setFocusPainted(false);
         radioButton.setFont(FONT_RADIOBUTTON);

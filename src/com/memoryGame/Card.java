@@ -24,7 +24,7 @@ public class Card {
      *
      * @return true if it is opened and false if it is closed.
      */
-    public boolean getIsOpen() {
+    boolean getIsOpen() {
         return isOpen;
     }
 
@@ -33,7 +33,7 @@ public class Card {
      *
      * @param mode true if it is opened false if it is closed
      */
-    public void setIsOpen(boolean mode) {
+    void setIsOpen(boolean mode) {
         isOpen = mode;
     }
 
@@ -42,7 +42,7 @@ public class Card {
      *
      * @return the letter of the card
      */
-    public int getValue() {
+    int getValue() {
         return valueOfCard;
     }
 
@@ -51,14 +51,14 @@ public class Card {
      *
      * @param value the letter that is represented by the card
      */
-    public void setValue(int value) {
+    void setValue(int value) {
         valueOfCard = value;
     }
 
     /**
      * Sets the card as paired
      */
-    public void setPairedTrue() {
+    void setPairedTrue() {
         isPaired = true;
     }
 
@@ -67,7 +67,7 @@ public class Card {
      *
      * @return true if it is paired and false if it is unpaired
      */
-    public boolean getIsPaired() {
+    boolean getIsPaired() {
         return isPaired;
     }
 }

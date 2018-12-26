@@ -35,7 +35,7 @@ public class Table {
      * @param y the row on which the card is inserted
      * @param v the value of the card
      */
-    public void setCardValue(int x, int y, int v) {
+    void setCardValue(int x, int y, int v) {
         tableOfCards[x][y].setValue(v);
     }
 
@@ -90,7 +90,7 @@ public class Table {
      * @param y the column on which the card is inserted
      * @return true if the card is open and false if it is closed
      */
-    public boolean isCardOpen(int x, int y) {
+    boolean isCardOpen(int x, int y) {
         return tableOfCards[x][y].getIsOpen();
     }
 
@@ -101,7 +101,7 @@ public class Table {
      * @param y the column on which the card is inserted
      * @return true if the card is paired and false if it is unpaired
      */
-    public boolean isCardPaired(int x, int y) {
+    boolean isCardPaired(int x, int y) {
         return tableOfCards[x][y].getIsPaired();
     }
 
