@@ -65,7 +65,7 @@ public class Logic {
         initTablePairs(1);
         shuffleTable();
 
-        GUI.showCards(newTable, true);
+        GUI.showCards(newTable);
         //GUI.showCards(newTable, false);
 
         /*int numberOfPairedCards = 0;
@@ -97,7 +97,7 @@ public class Logic {
         initTablePairs(3);
         shuffleTable();
 
-        GUI.showCards(newTable, true);
+        GUI.showCards(newTable);
         //GUI.showCards(newTable, false);
 
         /*int numberOfPairedCards = 0;

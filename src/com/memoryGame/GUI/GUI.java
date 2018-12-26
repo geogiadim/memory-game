@@ -17,8 +17,7 @@ public class GUI {
     private static TextField textField;
     private static int numOfFrame = 0;
 
-    //private com.memoryGame.Logic log;
-    //private com.memoryGame.Table tableOfCards;
+    private final static int PREVIEW_DELAY = 3;
 
     private static void createJContents() {
         Buttons.setButtonsName();
@@ -365,8 +364,20 @@ public class GUI {
         }
     }
 
-    public static void showCards(Table tableOfCards, boolean previewMode) {
-        frame4GamePlay(gameFrame.getContentPane(), tableOfCards, previewMode);
+    public static void showCards(Table tableOfCards) {
+        frame4GamePlay(gameFrame.getContentPane(), tableOfCards, true);
+        Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
+            System.out.println("Now");
+            clearFrame(gameFrame);
+            frame4GamePlay(gameFrame.getContentPane(), tableOfCards, false);
+            gameFrame.getContentPane().validate();
+        });
+
+        timer.setRepeats(false);
+        timer.start();
     }
 
+    static int getCardPreviewDelay() {
+        return PREVIEW_DELAY;
+    }
 }

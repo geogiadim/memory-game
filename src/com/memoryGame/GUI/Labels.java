@@ -24,8 +24,8 @@ class Labels {
         levelCpu2 = makeLabel("CPU 2: ", FONT_SIZE_SMALL);
         levelCpu3 = makeLabel("CPU 3: ", FONT_SIZE_SMALL);
 
-        message = makeLabel("Select one card", FONT_SIZE_MEDIUM);
-        turnOfPlayer = makeLabel("It's the turn of Player 1", FONT_SIZE_MEDIUM);
+        message = makeLabel("Showing Cards for " + GUI.getCardPreviewDelay() + " seconds", FONT_SIZE_MEDIUM);
+        turnOfPlayer = makeLabel(String.valueOf(GUI.getCardPreviewDelay()), FONT_SIZE_MEDIUM);
     }
 
     private static JLabel makeLabel(String name, int font_size) {
