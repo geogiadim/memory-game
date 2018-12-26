@@ -10,7 +10,6 @@ public class Card {
     private int valueOfCard;
     private boolean isOpen;
     private boolean isPaired;
-    // private JButton card;
 
     /**
      * Creates a card and set it as closed and unpaired.
@@ -18,7 +17,6 @@ public class Card {
     public Card() {
         isOpen = false;
         isPaired = false;
-        //card=new JButton(name);
     }
 
     /**

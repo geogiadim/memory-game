@@ -1,32 +1,35 @@
 package com.memoryGame.GUI;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import java.awt.*;
 
 class TextField {
+    //Player Name Text Fields
+    JTextField textP1, textP2, textP3, textP4;
+
+    //Labels for Text Fields
+    JLabel labelP1, labelP2, labelP3, labelP4;
+
     //Font for Text Field Labels
     private final static Font FONT_TEXTFIELD_LABEL = new Font(Font.SANS_SERIF, Font.ITALIC, 16);
-    private final static String SPACE = " ";
-    //com.memoryGame.Player Name Text Fields
-    static JTextField textP1, textP2, textP3, textP4;
-    //Labels for Text Fields
-    static JLabel labelP1, labelP2, labelP3, labelP4;
+    //private final static String SPACE = " ";
 
-    static void setTextFields() {
-        labelP1 = new JLabel("1st com.memoryGame.Player");
+    TextField() {
+        labelP1 = new JLabel("1st Player");
         labelP1.setFont(FONT_TEXTFIELD_LABEL);
-        textP1 = new JTextField(SPACE);
+        textP1 = new JTextField("Player 1");
 
-        labelP2 = new JLabel("2nd com.memoryGame.Player");
+        labelP2 = new JLabel("2nd Player");
         labelP2.setFont(FONT_TEXTFIELD_LABEL);
-        textP2 = new JTextField(SPACE);
+        textP2 = new JTextField("Player 2");
 
-        labelP3 = new JLabel("3rd com.memoryGame.Player");
+        labelP3 = new JLabel("3rd Player");
         labelP3.setFont(FONT_TEXTFIELD_LABEL);
-        textP3 = new JTextField(SPACE);
+        textP3 = new JTextField("Player 3");
 
-        labelP4 = new JLabel("4th com.memoryGame.Player");
+        labelP4 = new JLabel("4th Player");
         labelP4.setFont(FONT_TEXTFIELD_LABEL);
-        textP4 = new JTextField(SPACE);
+        textP4 = new JTextField("Player 4");
     }
 }

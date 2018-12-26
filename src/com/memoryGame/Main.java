@@ -1,7 +1,5 @@
 package com.memoryGame;
-
 import com.memoryGame.GUI.GUI;
-
 import javax.swing.*;
 
 /**
@@ -12,7 +10,8 @@ import javax.swing.*;
 
 public class Main {
     /**
-     * Sets Look of com.memoryGame.GUI to System Default and calls the com.memoryGame.GUI creator.
+     * Passes the game mode to com.memoryGame.Logic class, either from cmd args or from player interaction with com.memoryGame.UI class.
+     * Finally, when the game is over exits the game.
      *
      * @param args the command line arguments as an array of String objects
      */
@@ -23,5 +22,6 @@ public class Main {
             ex.printStackTrace();
         }
         GUI.createGUI();
+        //Logic l=new Logic();
     }
 }
