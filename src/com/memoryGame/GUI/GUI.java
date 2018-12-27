@@ -223,6 +223,7 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
+    public static void createCards(Table tableOfCards){Buttons.setCardButtons(tableOfCards);}
 
     private static void frame4GamePlay(Container pane, Table tableOfCards, boolean preview) {
         numOfFrame = 4;
@@ -232,8 +233,6 @@ public class GUI {
         JPanel gamePanel = new JPanel(new GridLayout(tableOfCards.sizeX(), tableOfCards.sizeY(), 10, 5));
         TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
         gamePanel.setBorder(border);
-
-        Buttons.setCardButtons(tableOfCards);
 
         if (preview) {
             for (int i = 0; i < tableOfCards.sizeX(); i++) {
@@ -340,8 +339,14 @@ public class GUI {
         }
     }
 
-    public static void showCards(Table tableOfCards) {
-        frame4GamePlay(gameFrame.getContentPane(), tableOfCards, true);
+    public static void showCards(Table tableOfCards, boolean preview) {
+        //clearFrame(gameFrame);
+        frame4GamePlay(gameFrame.getContentPane(), tableOfCards, preview);
+        //gameFrame.getContentPane().validate();
+        delayForPreview(tableOfCards);
+    }
+
+    public static void delayForPreview(Table tableOfCards){
         Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
             System.out.println("Now");
             clearFrame(gameFrame);

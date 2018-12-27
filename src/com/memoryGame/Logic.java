@@ -65,8 +65,10 @@ public class Logic {
         initTablePairs(1);
         shuffleTable();
 
-        GUI.showCards(newTable);
-        //GUI.showCards(newTable, false);
+        GUI.createCards(newTable);
+        GUI.showCards(newTable,true);
+        //GUI.delay(newTable);
+        //GUI.showCards(newTable,false);
 
         /*int numberOfPairedCards = 0;
         do {
@@ -97,8 +99,10 @@ public class Logic {
         initTablePairs(3);
         shuffleTable();
 
-        GUI.showCards(newTable);
-        //GUI.showCards(newTable, false);
+        GUI.createCards(newTable);
+        GUI.showCards(newTable,true);
+        //GUI.delay(newTable);
+        //GUI.showCards(newTable,false);
 
         /*int numberOfPairedCards = 0;
         do {
