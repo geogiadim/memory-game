@@ -4,8 +4,9 @@ public class GUIConnectionToLogic {
     private static int mode = 0;
     private static int numOfPlayers = 0; //numOfCPUs = 0;
     private static String name1, name2, name3, name4;
+    //private static int x1,y1;
 
-    public static int getGameMode() {
+    static int getGameMode() {
         if (Buttons.basicButton.isSelected()) {
             mode = 1;
         } else if (Buttons.doubleButton.isSelected()) {
@@ -63,4 +64,10 @@ public class GUIConnectionToLogic {
         name4 = TextField.textP4.getText();
         return name4;
     }
+
+    //static void setX(int x){x1=x;}
+    //static void setY(int y) {y1=y;}
+    //public static int getX(){return x1;}
+    //public static int getY(){return y1;}
+
 }

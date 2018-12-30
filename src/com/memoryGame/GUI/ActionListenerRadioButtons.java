@@ -75,6 +75,15 @@ class ActionListenerRadioButtons {
             setEnabledLevelCPU3();
             System.out.println("0");
         });
+
+        RadioButtons.no.addActionListener(actionEvent ->{
+            GUI.getTextField().textP2.setEnabled(true);
+            GUI.getTextField().textP2.setText("Player 2");
+        });
+        RadioButtons.yes.addActionListener(actionEvent ->{
+            GUI.getTextField().textP2.setEnabled(false);
+            GUI.getTextField().textP2.setText("CPU");
+        });
     }
 
     static void setEnabledLevelCPU0() {

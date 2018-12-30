@@ -10,7 +10,7 @@ class Labels {
     private static final int FONT_SIZE_MEDIUM = 18;
     private static final int FONT_SIZE_SMALL = 12;
     static JLabel chooseGameMode, chooseNumOfPlayers;
-    static JLabel writeNames, levelOfCPU;
+    static JLabel writeNames, levelOfCPU, duelCPU;
     static JLabel levelCpu1, levelCpu2, levelCpu3;
     static JLabel message, turnOfPlayer;
 
@@ -23,6 +23,8 @@ class Labels {
         levelCpu1 = makeLabel("CPU 1: ", FONT_SIZE_SMALL);
         levelCpu2 = makeLabel("CPU 2: ", FONT_SIZE_SMALL);
         levelCpu3 = makeLabel("CPU 3: ", FONT_SIZE_SMALL);
+
+        duelCPU = makeLabel("Do you want to play against CPU ?",FONT_SIZE_MEDIUM);
 
         message = makeLabel("Showing Cards for " + GUI.getCardPreviewDelay() + " seconds", FONT_SIZE_MEDIUM);
         turnOfPlayer = makeLabel(String.valueOf(GUI.getCardPreviewDelay()), FONT_SIZE_MEDIUM);
