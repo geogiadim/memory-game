@@ -5,10 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 
 class ActionListenerButtons {
-    ActionListenerButtons() {
-        addButtonsActList();
-    }
-
     static void addButtonsActList() {
         Buttons.basicButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();

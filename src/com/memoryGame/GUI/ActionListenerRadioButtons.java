@@ -1,11 +1,6 @@
 package com.memoryGame.GUI;
 
 class ActionListenerRadioButtons {
-
-    ActionListenerRadioButtons() {
-        addRadButActList();
-    }
-
     static void addRadButActList() {
             RadioButtons.p1.addActionListener(actionEvent -> {
             GUI.getTextField().textP1.setEnabled(true);

@@ -268,7 +268,7 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(backNextPanel, BorderLayout.PAGE_END);
     }
-    //public static void createCards(Table tableOfCards){Buttons.setCardButtons(tableOfCards);}
+    //private static void createCards(Table tableOfCards){Buttons.setCardButtons(tableOfCards);}
 
     private static void frame4GamePlay(Container pane, Table tableOfCards, boolean preview) {
         numOfFrame = 4;
@@ -278,21 +278,8 @@ public class GUI {
         JPanel gamePanel = new JPanel(new GridLayout(tableOfCards.sizeX(), tableOfCards.sizeY(), 10, 5));
         TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
         gamePanel.setBorder(border);
-
         Buttons.setCardButtons(tableOfCards);
-        if (preview) {
-            for (int i = 0; i < tableOfCards.sizeX(); i++) {
-                for (int j = 0; j < tableOfCards.sizeY(); j++) {
-                    gamePanel.add(Buttons.openCardButtons[i][j]);
-                }
-            }
-        } else {
-            for (int i = 0; i < tableOfCards.sizeX(); i++) {
-                for (int j = 0; j < tableOfCards.sizeY(); j++) {
-                    gamePanel.add(Buttons.cardButtons[i][j]);
-                }
-            }
-        }
+        previewCheck(tableOfCards,preview,gamePanel);
 
         JPanel playerPanel = new JPanel();
         TitledBorder border2 = BorderFactory.createTitledBorder("");
@@ -306,8 +293,53 @@ public class GUI {
         ActionListenerButtons.addCardButtonsActList(tableOfCards,gamePanel,pane);
     }
 
-    static void frame3GamePlayDuel(Container pane){
+    private static void frame3GamePlayDuel(Container pane, Table tableOfCards1,Table tableOfCards2, boolean preview){
+        numOfDuelFrame=3;
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(Labels.message);
 
+        JPanel table1Panel1= new JPanel(new GridLayout(tableOfCards1.sizeX(),tableOfCards1.sizeY(),10,5));
+        TitledBorder border = BorderFactory.createTitledBorder("Table 1");
+        table1Panel1.setBorder(border);
+        Buttons.setCardButtons(tableOfCards1);
+        previewCheck(tableOfCards1,preview,table1Panel1);
+
+        JPanel table1Panel2= new JPanel(new GridLayout(tableOfCards2.sizeX(),tableOfCards2.sizeY(),10,5));
+        TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
+        table1Panel2.setBorder(border2);
+        Buttons.setCardButtons(tableOfCards2);
+        previewCheck(tableOfCards2,preview,table1Panel2);
+
+        JPanel gamePanel = new JPanel(new GridLayout(1, 0, 10, 10));
+        gamePanel.add(table1Panel1);
+        gamePanel.add(table1Panel2);
+
+        JPanel playerPanel = new JPanel();
+        TitledBorder border3 = BorderFactory.createTitledBorder("");
+        playerPanel.setBorder(border3);
+        playerPanel.add(Labels.turnOfPlayer);
+
+        pane.add(messagePanel, BorderLayout.PAGE_START);
+        pane.add(gamePanel, BorderLayout.CENTER);
+        pane.add(playerPanel, BorderLayout.PAGE_END);
+        //ActionListenerButtons.addCardButtonsActList(tableOfCards2,table1Panel1,pane);
+        //ActionListenerButtons.addCardButtonsActList(tableOfCards2,table1Panel2,pane);
+    }
+
+    private static void previewCheck(Table tableOfCards, boolean preview, JPanel gamePanel){
+        if (preview) {
+            for (int i = 0; i < tableOfCards.sizeX(); i++) {
+                for (int j = 0; j < tableOfCards.sizeY(); j++) {
+                    gamePanel.add(Buttons.openCardButtons[i][j]);
+                }
+            }
+        } else {
+            for (int i = 0; i < tableOfCards.sizeX(); i++) {
+                for (int j = 0; j < tableOfCards.sizeY(); j++) {
+                    gamePanel.add(Buttons.cardButtons[i][j]);
+                }
+            }
+        }
     }
 
     private static void checksForDuel (){
@@ -406,18 +438,37 @@ public class GUI {
         //clearFrame(gameFrame);
         frame4GamePlay(gameFrame.getContentPane(), tableOfCards, preview);
         //gameFrame.getContentPane().validate();
-        delayForPreview(tableOfCards);
+        delayForPreview(tableOfCards, tableOfCards, false);
     }
 
-    private static void delayForPreview(Table tableOfCards){
-        Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
-            System.out.println("Now");
-            clearFrame(gameFrame);
-            frame4GamePlay(gameFrame.getContentPane(), tableOfCards, false);
-            gameFrame.getContentPane().validate();
-        });
-        timer.setRepeats(false);
-        timer.start();
+    private static void delayForPreview(Table tableOfCards1,Table tableOfCards2, boolean isDuel){
+        if (!isDuel) {
+            Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
+                System.out.println("Now");
+                clearFrame(gameFrame);
+                frame4GamePlay(gameFrame.getContentPane(), tableOfCards1, false);
+                gameFrame.getContentPane().validate();
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+        else{
+            Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
+                System.out.println("Now");
+                clearFrame(gameFrame);
+                frame3GamePlayDuel(gameFrame.getContentPane(), tableOfCards1,tableOfCards2, false);
+                gameFrame.getContentPane().validate();
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+    }
+
+    public static void showCardsDuel(Table tableOfCards1,Table tableOfCards2, boolean preview) {
+        //clearFrame(gameFrame);
+        frame3GamePlayDuel(gameFrame.getContentPane(), tableOfCards1,tableOfCards2, preview);
+        //gameFrame.getContentPane().validate();
+        delayForPreview(tableOfCards1,tableOfCards2,true);
     }
 
     static int getCardPreviewDelay() {return PREVIEW_DELAY;}
