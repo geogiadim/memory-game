@@ -17,6 +17,13 @@ public class Logic {
     private Table newTable, newTable2;
     private Player player1, player2, player3, player4;
 
+    /*private int x1 = 0;
+    private int y1 = 0;
+    private int x2 = 0;
+    private int y2 = 0;
+    private int x3 = 0;
+    private int y3 = 0;*/
+
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
      */
@@ -65,15 +72,16 @@ public class Logic {
         initTablePairs(1);
         shuffleTable();
 
-        GUI.createCards(newTable);
+        //GUI.createCards(newTable);
         GUI.showCards(newTable,true);
         //GUI.delay(newTable);
         //GUI.showCards(newTable,false);
 
         /*int numberOfPairedCards = 0;
         do {
+            //getXY1();
+            //getXY2();
             //If Cards are same!
-
             if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
                 newTable.unableCard(x1, y1);
                 newTable.unableCard(x2, y2);
@@ -99,13 +107,16 @@ public class Logic {
         initTablePairs(3);
         shuffleTable();
 
-        GUI.createCards(newTable);
+        //GUI.createCards(newTable);
         GUI.showCards(newTable,true);
         //GUI.delay(newTable);
         //GUI.showCards(newTable,false);
 
         /*int numberOfPairedCards = 0;
         do {
+            //getXY1();
+            //getXY2();
+            //getXY3();
             //If Cards are same!
             if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)
                     && newTable.getCardValue(x1, y1) == newTable.getCardValue(x3, y3)) {
@@ -128,7 +139,22 @@ public class Logic {
 
     private void duelGame() {
         createPlayers();
+        //GUI.showCards(newTable,true);
+        //GUI.showCards(newTable2,true);
     }
+
+    /*private void getXY1(){
+        x1= GUIConnectionToLogic.getX();
+        y1= GUIConnectionToLogic.getY();
+    }
+    private void getXY2(){
+        x2= GUIConnectionToLogic.getX();
+        y2= GUIConnectionToLogic.getY();
+    }
+    private void getXY3(){
+        x3= GUIConnectionToLogic.getX();
+        y3= GUIConnectionToLogic.getY();
+    }*/
 
     /**
      * Fills the table with different cards

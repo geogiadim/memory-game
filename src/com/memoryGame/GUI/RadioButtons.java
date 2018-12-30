@@ -9,7 +9,7 @@ class RadioButtons {
     //Player Number Radio Buttons
     static JRadioButton p1, p2, p3, p4;
     //CPU Number Radio Buttons
-    static JRadioButton cpu0, cpu1, cpu2, cpu3;
+    static JRadioButton cpu0, cpu1, cpu2, cpu3, yes, no;
     //CPU Difficulty Radio Buttons
     static JRadioButton easyCPU, normalCPU, difficultCPU;
     static JRadioButton easyCPU2, normalCPU2, difficultCPU2;
@@ -42,6 +42,10 @@ class RadioButtons {
         easyCPU3 = makeRadioButton("Easy");
         normalCPU3 = makeRadioButton("Normal");
         difficultCPU3 = makeRadioButton("Difficult");
+
+        //Make yes or no Radio Buttons
+        yes= makeRadioButton("Yes");
+        no=makeRadioButton("No");
     }
 
     private static JRadioButton makeRadioButton(String name) {
