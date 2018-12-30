@@ -26,8 +26,8 @@ class Labels {
 
         duelCPU = makeLabel("Do you want to play against CPU ?",FONT_SIZE_MEDIUM);
 
-        message = makeLabel("Showing Cards for " + GUI.getCardPreviewDelay() + " seconds", FONT_SIZE_MEDIUM);
-        turnOfPlayer = makeLabel(String.valueOf(GUI.getCardPreviewDelay()), FONT_SIZE_MEDIUM);
+        message = makeLabel("Showing Cards for " + DelaysInGUI.getCardPreviewDelay() + " seconds", FONT_SIZE_MEDIUM);
+        turnOfPlayer = makeLabel(String.valueOf(DelaysInGUI.getCardPreviewDelay()), FONT_SIZE_MEDIUM);
     }
 
     private static JLabel makeLabel(String name, int font_size) {

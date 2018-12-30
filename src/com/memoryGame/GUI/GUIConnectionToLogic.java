@@ -46,22 +46,22 @@ public class GUIConnectionToLogic {
     }*/
 
     public static String getNameOfPlayer1() {
-        name1 = GUI.getTextField().textP1.getText();
+        name1 = TextField.textP1.getText();
         return name1;
     }
 
     public static String getNameOfPlayer2() {
-        name2 = GUI.getTextField().textP2.getText();
+        name2 = TextField.textP2.getText();
         return name2;
     }
 
     public static String getNameOfPlayer3() {
-        name3 = GUI.getTextField().textP3.getText();
+        name3 = TextField.textP3.getText();
         return name3;
     }
 
     public static String getNameOfPlayer4() {
-        name4 = GUI.getTextField().textP4.getText();
+        name4 = TextField.textP4.getText();
         return name4;
     }
 
