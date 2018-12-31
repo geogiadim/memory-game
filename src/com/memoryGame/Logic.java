@@ -70,7 +70,7 @@ public class Logic {
         createPlayers();
 
         initTablePairs(1);
-        shuffleTable();
+        shuffleTable(newTable);
 
         //GUI.createCards(newTable);
         GUI.showCards(newTable,true);
@@ -105,7 +105,7 @@ public class Logic {
         createPlayers();
 
         initTablePairs(3);
-        shuffleTable();
+        shuffleTable(newTable);
 
         //GUI.createCards(newTable);
         GUI.showCards(newTable,true);
@@ -139,8 +139,13 @@ public class Logic {
 
     private void duelGame() {
         createPlayers();
-        //GUI.showCards(newTable,true);
-        //GUI.showCards(newTable2,true);
+
+        initDuelTable(newTable);
+        shuffleTable(newTable);
+        initDuelTable(newTable2);
+        shuffleTable(newTable2);
+
+        GUI.showCardsDuel(newTable,newTable2,true);
     }
 
     /*private void getXY1(){
@@ -183,10 +188,20 @@ public class Logic {
         }
     }
 
+    private void initDuelTable(Table newTable){
+        int value=0;
+        for (int i=0; i<newTable.sizeX();i++){
+            for (int j=1;j<=newTable.sizeY();j++){
+                newTable.setCardValue(i,j-1,value);
+                value++;
+            }
+        }
+    }
+
     /**
      * Shuffles the table with the cards
      */
-    private void shuffleTable() {
+    private void shuffleTable(Table newTable) {
         Random rnd;
         rnd = new Random();
         //Fisher Yates shuffle algorithm for 2D arrays

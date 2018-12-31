@@ -49,17 +49,14 @@ public class GUIConnectionToLogic {
         name1 = TextField.textP1.getText();
         return name1;
     }
-
     public static String getNameOfPlayer2() {
         name2 = TextField.textP2.getText();
         return name2;
     }
-
     public static String getNameOfPlayer3() {
         name3 = TextField.textP3.getText();
         return name3;
     }
-
     public static String getNameOfPlayer4() {
         name4 = TextField.textP4.getText();
         return name4;

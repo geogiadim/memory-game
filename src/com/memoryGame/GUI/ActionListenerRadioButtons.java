@@ -1,11 +1,6 @@
 package com.memoryGame.GUI;
 
 class ActionListenerRadioButtons {
-
-    ActionListenerRadioButtons() {
-        addRadButActList();
-    }
-
     static void addRadButActList() {
         RadioButtons.p1.addActionListener(actionEvent -> {
             TextField.textP1.setEnabled(true);
@@ -77,12 +72,12 @@ class ActionListenerRadioButtons {
         });
 
         RadioButtons.no.addActionListener(actionEvent ->{
-            GUI.getTextField().textP2.setEnabled(true);
-            GUI.getTextField().textP2.setText("Player 2");
+            TextField.textP2.setEnabled(true);
+            TextField.textP2.setText("Player 2");
         });
         RadioButtons.yes.addActionListener(actionEvent ->{
-            GUI.getTextField().textP2.setEnabled(false);
-            GUI.getTextField().textP2.setText("CPU");
+            TextField.textP2.setEnabled(false);
+            TextField.textP2.setText("CPU");
         });
     }
 
