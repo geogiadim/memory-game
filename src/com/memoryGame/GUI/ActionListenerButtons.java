@@ -2,6 +2,7 @@ package com.memoryGame.GUI;
 import com.memoryGame.Table;
 
 class ActionListenerButtons {
+
     static void addButtonsActList() {
         Buttons.basicButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
@@ -52,9 +53,10 @@ class ActionListenerButtons {
                 final int x = i;
                 final int y = j;
                 Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
-                    Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
-                    Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y,table);
-                    //System.out.println("Pressed card " + (x + 1) + "-" + (y + 1));
+                    if (!GUIConnectionToLogic.inDelay()){
+                        System.out.println("In Coords giving");
+                        GUIConnectionToLogic.setCoords(x,y, table);
+                    }
                 });
             }
         }

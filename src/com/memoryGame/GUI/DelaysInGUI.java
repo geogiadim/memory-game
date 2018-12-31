@@ -35,4 +35,5 @@ class DelaysInGUI {
         }
     }
     static int getCardPreviewDelay() {return PREVIEW_DELAY;}
+
 }

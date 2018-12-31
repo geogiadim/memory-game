@@ -8,22 +8,26 @@ public class GUIConnectionToLogic {
     private static int mode = 0;
     private static int numOfPlayers = 0; //numOfCPUs = 0;
     private static String name1, name2, name3, name4;
+    private static int x1, y1;
     private static int[] arrayCoordsX;
     private static int[] arrayCoordsY;
     private static int cardNo = 0;
     private static int maxCardNo;
     private static int numOfPairedCards = 0;
     private static boolean inDelay = false;
-    //private static int x1,y1;
 
     static int getGameMode() {
         if (Buttons.basicButton.isSelected()) {
+            maxCardNo = 2;
             mode = 1;
         } else if (Buttons.doubleButton.isSelected()) {
+            maxCardNo = 2;
             mode = 2;
         } else if (Buttons.tripleButton.isSelected()) {
+            maxCardNo = 3;
             mode = 3;
         } else if (Buttons.duelButton.isSelected()) {
+//            maxCardNo = ;
             mode = 4;
         }
         return mode;
@@ -80,11 +84,11 @@ public class GUIConnectionToLogic {
     }
 
     static void setCoords(int x, int y, Table table) {
-        arrayCoordsX[cardNo] = x;
-        arrayCoordsY[cardNo] = y;
-        Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
-        Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y, table);
-        System.out.println(cardNo);
+            arrayCoordsX[cardNo] = x;
+            arrayCoordsY[cardNo] = y;
+            Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
+            Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y, table);
+            System.out.println(cardNo);
         if (cardNo == maxCardNo - 1){
             if (GUIConnectionToLogic.checkCardsMatch()){
                 numOfPairedCards++;
@@ -119,5 +123,4 @@ public class GUIConnectionToLogic {
     static boolean inDelay() {
         return inDelay;
     }
-
 }

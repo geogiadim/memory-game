@@ -31,8 +31,8 @@ public class GUI {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GUI.createJContents();
-        GUI.frame1GameMode(frame.getContentPane());
+        createJContents();
+        frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
         frame.pack();
@@ -45,6 +45,7 @@ public class GUI {
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Create a Logic Object
         logic = new Logic(GUIConnectionToLogic.getGameMode());
+        GUIConnectionToLogic.initArrayCoords();
 
         gameFrame.setResizable(false);
         gameFrame.pack();
@@ -265,6 +266,7 @@ public class GUI {
         pane.add(Panels.gamePanel, BorderLayout.CENTER);
         pane.add(Panels.playerPanel, BorderLayout.PAGE_END);
         ActionListenerButtons.addCardButtonsActList(tableOfCards);
+
     }
 
     static void frame3GamePlayDuel(Container pane, Table tableOfCards1,Table tableOfCards2, boolean preview){
