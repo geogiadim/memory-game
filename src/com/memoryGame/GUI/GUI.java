@@ -21,11 +21,6 @@ public class GUI {
         Panels.makePanels();
     }
 
-    static void clearPanel (JPanel panel){
-        panel.removeAll();
-        panel.repaint();
-    }
-
     static JFrame getFrame() {return frame;}
     static JFrame getGameFrame() {return gameFrame;}
     static int getNumOfFrame() {return numOfFrame;}
@@ -69,6 +64,10 @@ public class GUI {
     static void clearFrame(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();
+    }
+    static void clearPanel (JPanel panel){
+        panel.removeAll();
+        panel.repaint();
     }
 
     static void frame1GameMode(Container pane) {
