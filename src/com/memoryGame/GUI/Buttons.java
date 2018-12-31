@@ -29,10 +29,13 @@ class Buttons {
     static JButton nextButton, backButton;
     //Card Buttons
     static JButton[][] cardButtons, openCardButtons;
-    private static ImageIcon icon;
+
+    private final static ImageIcon ICON_BLUE = new ImageIcon("images/closed-card-blue.png");
+    private final static ImageIcon ICON_RED =  new ImageIcon("images/closed-card-red.png");
+    private final static ImageIcon ICON_GREEN = new ImageIcon("images/closed-card-green.png");
+    private final static ImageIcon ICON_BLACK = new ImageIcon("images/closed-card-black.png");
 
     static void setButtonsName() {
-        icon= new ImageIcon("images/closed-card.jpg");
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
         basicButton = makeButton("Basic Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE,false);
         basicButton.setMnemonic(basicButton.getText().charAt(1));
@@ -58,7 +61,7 @@ class Buttons {
         cardButtons = new JButton[sizeX][sizeY];
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                cardButtons[i][j] = makeButton("Card " + (i + 1) + "-" + (j + 1), WIDTH_CARD, HEIGHT_CARD, FONT_GAME,true);
+                cardButtons[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME,true);
             }
         }
         //make opened card buttons
@@ -76,9 +79,31 @@ class Buttons {
         JButton button = new JButton(name);
         button.setFocusPainted(false);
         button.setFocusable(false);
-        if (isClosed) button.setIcon(icon);
+        if (isClosed) setCardIcon(button);
         button.setPreferredSize(dimension);
         button.setFont(font);
         return button;
+    }
+
+    private static void setCardIcon(JButton button){
+        button.setOpaque(false);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        switch (GUIConnectionToLogic.getGameMode()){
+            case 1:
+                button.setIcon(ICON_BLUE);
+                break;
+            case 2:
+                button.setIcon(ICON_RED);
+                break;
+            case 3:
+                button.setIcon(ICON_GREEN);
+                break;
+            case 4:
+                button.setIcon(ICON_BLACK);
+                break;
+            default:
+                break;
+        }
     }
 }
