@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class GUI {
     private static JFrame frame, gameFrame;
-    static Logic logic;
+    private static Logic logic;
     private static int numOfFrame = 0,numOfDuelFrame = 0;
 
     private static void createJContents() {
@@ -31,8 +31,8 @@ public class GUI {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GUI.createJContents();
-        GUI.frame1GameMode(frame.getContentPane());
+        createJContents();
+        frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
         frame.pack();
@@ -266,6 +266,7 @@ public class GUI {
         pane.add(Panels.gamePanel, BorderLayout.CENTER);
         pane.add(Panels.playerPanel, BorderLayout.PAGE_END);
         ActionListenerButtons.addCardButtonsActList(tableOfCards);
+
     }
 
     static void frame3GamePlayDuel(Container pane, Table tableOfCards1,Table tableOfCards2, boolean preview){

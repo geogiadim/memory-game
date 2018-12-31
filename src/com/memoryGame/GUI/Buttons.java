@@ -73,6 +73,7 @@ class Buttons {
         Dimension dimension = new Dimension(width, height);
         JButton button = new JButton(name);
         button.setFocusPainted(false);
+        button.setFocusable(false);
         button.setPreferredSize(dimension);
         button.setFont(font);
         return button;

@@ -67,9 +67,6 @@ public class Logic {
 
         GUI.showCards(newTable, true);
 
-        int numberOfPairedCards = 0;
-        do {
-        } while (numberOfPairedCards < newTable.sizeOfTable());
         //GUI.array with results and game over
     }
 
@@ -135,13 +132,8 @@ public class Logic {
         initTablePairs(3);
         shuffleTable(newTable);
 
-        //GUI.createCards(newTable);
         GUI.showCards(newTable, true);
-        //GUI.delay(newTable);
-        //GUI.showCards(newTable,false);
 
-
-//        } while (numberOfPairedCards < newTable.sizeOfTable());
         //GUI.array with results and game over*/
     }
 
