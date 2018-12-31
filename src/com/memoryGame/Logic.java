@@ -15,19 +15,23 @@ import java.util.Random;
 public class Logic {
 
     private Table newTable, newTable2;
-    private Player player1, player2, player3, player4;
+    private Player[] players;
+    private int playerTurn = 0;
+    private int maxPlayers;
+    private int mode;
 
-    /*private int x1 = 0;
-    private int y1 = 0;
-    private int x2 = 0;
-    private int y2 = 0;
-    private int x3 = 0;
-    private int y3 = 0;*/
+//    private int x1 = 0;
+//    private int y1 = 0;
+//    private int x2 = 0;
+//    private int y2 = 0;
+//    private int x3 = 0;
+//    private int y3 = 0;
 
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
      */
     public Logic(int mode) {
+        this.mode = mode;
         if (mode == 1) {
             newTable = new Table(4, 6);
             basicDoubleGame();
@@ -45,21 +49,10 @@ public class Logic {
     }
 
     private void createPlayers() {
-        switch (GUIConnectionToLogic.getNumOfPlayers()) {
-            case 1:
-                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
-            case 2:
-                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
-                player2 = new Player(GUIConnectionToLogic.getNameOfPlayer2());
-            case 3:
-                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
-                player2 = new Player(GUIConnectionToLogic.getNameOfPlayer2());
-                player3 = new Player(GUIConnectionToLogic.getNameOfPlayer3());
-            case 4:
-                player1 = new Player(GUIConnectionToLogic.getNameOfPlayer1());
-                player2 = new Player(GUIConnectionToLogic.getNameOfPlayer2());
-                player3 = new Player(GUIConnectionToLogic.getNameOfPlayer3());
-                player4 = new Player(GUIConnectionToLogic.getNameOfPlayer4());
+        maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
+        players = new Player[maxPlayers];
+        for (int i = 0; i < maxPlayers; i++) {
+            players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
         }
     }
 
@@ -72,30 +65,65 @@ public class Logic {
         initTablePairs(1);
         shuffleTable(newTable);
 
-        //GUI.createCards(newTable);
-        GUI.showCards(newTable,true);
-        //GUI.delay(newTable);
-        //GUI.showCards(newTable,false);
+        GUI.showCards(newTable, true);
 
-        /*int numberOfPairedCards = 0;
+        int numberOfPairedCards = 0;
         do {
-            //getXY1();
-            //getXY2();
-            //If Cards are same!
-            if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
+        } while (numberOfPairedCards < newTable.sizeOfTable());
+        //GUI.array with results and game over
+    }
+
+    public boolean checkCards(int[] coordsX, int[] coordsY) {
+        boolean state;
+
+        int x1 = coordsX[0];
+        int x2 = coordsX[1];
+        int y1 = coordsY[0];
+        int y2 = coordsY[1];
+        if (mode == 3) {
+            int x3 = coordsX[2];
+            int y3 = coordsY[2];
+
+            if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)
+                    && newTable.getCardValue(x1, y1) == newTable.getCardValue(x3, y3)) {
                 newTable.unableCard(x1, y1);
                 newTable.unableCard(x2, y2);
-                numberOfPairedCards += 2;
-                player1.increaseNumOfTries();
-                player1.increaseNumberOfPairs();
+                newTable.unableCard(x3, y3);
+
+                players[playerTurn].increaseNumOfTries();
+                players[playerTurn].increaseNumberOfPairs();
+                state = true;
             } //else Cards are not same!
             else {
                 newTable.closeCard(x1, y1);
                 newTable.closeCard(x2, y2);
-                player1.increaseNumOfTries();
+                newTable.closeCard(x3, y3);
+                players[playerTurn].increaseNumOfTries();
+                state = false;
             }
-        }while (numberOfPairedCards<newTable.sizeOfTable());
-        //GUI.array with results and game over*/
+        } else {
+
+            if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
+                newTable.unableCard(x1, y1);
+                newTable.unableCard(x2, y2);
+
+
+                players[playerTurn].increaseNumOfTries();
+                players[playerTurn].increaseNumberOfPairs();
+                state = true;
+            } //else Cards are not same!
+            else {
+                newTable.closeCard(x1, y1);
+                newTable.closeCard(x2, y2);
+                players[playerTurn].increaseNumOfTries();
+                state = false;
+            }
+        }
+
+        if (playerTurn < maxPlayers - 1) playerTurn++;
+        else playerTurn = 0;
+
+        return state;
     }
 
     /**
@@ -108,32 +136,12 @@ public class Logic {
         shuffleTable(newTable);
 
         //GUI.createCards(newTable);
-        GUI.showCards(newTable,true);
+        GUI.showCards(newTable, true);
         //GUI.delay(newTable);
         //GUI.showCards(newTable,false);
 
-        /*int numberOfPairedCards = 0;
-        do {
-            //getXY1();
-            //getXY2();
-            //getXY3();
-            //If Cards are same!
-            if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)
-                    && newTable.getCardValue(x1, y1) == newTable.getCardValue(x3, y3)) {
-                newTable.unableCard(x1, y1);
-                newTable.unableCard(x2, y2);
-                newTable.unableCard(x3, y3);
-                numberOfPairedCards += 3;
-                player1.increaseNumOfTries();
-                player1.increaseNumberOfPairs();
-            } //else Cards are not same!
-            else {
-                newTable.closeCard(x1, y1);
-                newTable.closeCard(x2, y2);
-                newTable.closeCard(x3, y3);
-                player1.increaseNumOfTries();
-            }
-        } while (numberOfPairedCards < newTable.sizeOfTable());
+
+//        } while (numberOfPairedCards < newTable.sizeOfTable());
         //GUI.array with results and game over*/
     }
 
@@ -145,7 +153,7 @@ public class Logic {
         initDuelTable(newTable2);
         shuffleTable(newTable2);
 
-        GUI.showCardsDuel(newTable,newTable2,true);
+        GUI.showCardsDuel(newTable, newTable2, true);
     }
 
     /*private void getXY1(){
@@ -188,11 +196,11 @@ public class Logic {
         }
     }
 
-    private void initDuelTable(Table newTable){
-        int value=0;
-        for (int i=0; i<newTable.sizeX();i++){
-            for (int j=1;j<=newTable.sizeY();j++){
-                newTable.setCardValue(i,j-1,value);
+    private void initDuelTable(Table newTable) {
+        int value = 0;
+        for (int i = 0; i < newTable.sizeX(); i++) {
+            for (int j = 1; j <= newTable.sizeY(); j++) {
+                newTable.setCardValue(i, j - 1, value);
                 value++;
             }
         }

@@ -33,11 +33,11 @@ class Panels {
         GUI.getGameFrame().getContentPane().validate();
         GUI.getGameFrame().getContentPane().repaint();
     }
-    static void removeButton(JPanel panel, JButton[][] button, int i,int j){
+    static void removeCardButton(JPanel panel, JButton[][] button, int i,int j){
         panel.remove(button[i][j]);
         GUI.getGameFrame().repaint();
     }
-    static void addButton(JPanel panel, JButton[][] button,int x,int y, Table table){
+    static void addCardButton(JPanel panel, JButton[][] button,int x,int y, Table table){
         panel.add(button[x][y], x * table.sizeY() + y);
         GUI.getGameFrame().validate();
         GUI.getGameFrame().repaint();

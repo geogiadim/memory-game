@@ -21,10 +21,16 @@ public class GUI {
         Panels.makePanels();
     }
 
+    static void clearPanel (JPanel panel){
+        panel.removeAll();
+        panel.repaint();
+    }
+
     static JFrame getFrame() {return frame;}
     static JFrame getGameFrame() {return gameFrame;}
     static int getNumOfFrame() {return numOfFrame;}
     static int getNumOfDuelFrame() {return  numOfDuelFrame;}
+    static Logic getLogic(){return logic;}
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -44,6 +50,7 @@ public class GUI {
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Create a Logic Object
         logic = new Logic(GUIConnectionToLogic.getGameMode());
+        GUIConnectionToLogic.initArrayCoords();
 
         gameFrame.setResizable(false);
         gameFrame.pack();

@@ -53,8 +53,18 @@ class ActionListenerButtons {
                 final int x = i;
                 final int y = j;
                 Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
-                    Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
-                    Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y,table);
+                    if (GUIConnectionToLogic.isBelowCardMax()){
+                    GUIConnectionToLogic.setCoords(x,y);
+                    Panels.removeCardButton(Panels.gamePanel,Buttons.cardButtons,x,y);
+                    Panels.addCardButton(Panels.gamePanel,Buttons.openCardButtons,x,y,table);}
+                    else {
+                        if (GUIConnectionToLogic.checkCardsMatch()){
+                            System.out.println("You found a pair!");
+                        } else {
+                            Panels.removeCardButton(Panels.gamePanel,Buttons.openCardButtons,x,y);
+                            Panels.addCardButton(Panels.gamePanel,Buttons.cardButtons,x,y,table);
+                        }
+                    }
                     //System.out.println("Pressed card " + (x + 1) + "-" + (y + 1));
                 });
             }
