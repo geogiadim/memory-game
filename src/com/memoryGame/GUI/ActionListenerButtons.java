@@ -46,7 +46,7 @@ class ActionListenerButtons {
             GUI.getFrame().validate();
         });
     }
-    static void addCardButtonsActList(Table table) {
+    /*static void addCardButtonsActList(Table table) {
         for (int i = 0; i < table.sizeX(); i++) {
             for (int j = 0; j < table.sizeY(); j++) {
                 final int x = i;
@@ -55,6 +55,20 @@ class ActionListenerButtons {
                     Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
                     Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y,table);
                     //System.out.println("Pressed card " + (x + 1) + "-" + (y + 1));
+                });
+            }
+        }
+    }*/
+    static void addCardButtonsActList(Table table) {
+        for (int i = 0; i < table.sizeX(); i++) {
+            for (int j = 0; j < table.sizeY(); j++) {
+                final int x = i;
+                final int y = j;
+                Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
+                    if (!GUIConnectionToLogic.inDelay()){
+                        System.out.println("In Coords giving");
+                        GUIConnectionToLogic.setCoords(x,y, table);
+                    }
                 });
             }
         }

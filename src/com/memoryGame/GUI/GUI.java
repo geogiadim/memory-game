@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class GUI {
     private static JFrame frame, gameFrame;
-    static Logic logic;
+    private static Logic logic;
     private static int numOfFrame = 0,numOfDuelFrame = 0;
 
     private static void createJContents() {
@@ -25,6 +25,7 @@ public class GUI {
     static JFrame getGameFrame() {return gameFrame;}
     static int getNumOfFrame() {return numOfFrame;}
     static int getNumOfDuelFrame() {return  numOfDuelFrame;}
+    static Logic getLogic(){return logic;}
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
