@@ -54,10 +54,8 @@ class ActionListenerButtons {
                 final int x = i;
                 final int y = j;
                 Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
-                    if (!GUIConnectionToLogic.inDelay()){
-                        System.out.println("In Coordinates giving");
+                    if (!GUIConnectionToLogic.inDelay())
                         GUIConnectionToLogic.setCoordinates(x,y, table);
-                    }
                 });
             }
         }

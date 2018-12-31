@@ -58,7 +58,7 @@ class Buttons {
         cardButtons = new JButton[sizeX][sizeY];
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                cardButtons[i][j] = makeButton("Card " + (i + 1) + "-" + (j + 1), WIDTH_CARD, HEIGHT_CARD, FONT_GAME,true);
+                cardButtons[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME,true);
             }
         }
         //make opened card buttons
