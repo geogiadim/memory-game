@@ -1,8 +1,5 @@
 package com.memoryGame.GUI;
-
 import com.memoryGame.Table;
-import javax.swing.*;
-import java.awt.*;
 
 class ActionListenerButtons {
     static void addButtonsActList() {
@@ -49,18 +46,14 @@ class ActionListenerButtons {
             GUI.getFrame().validate();
         });
     }
-    static void addCardButtonsActList(Table table, JPanel panel, Container container) {
+    static void addCardButtonsActList(Table table) {
         for (int i = 0; i < table.sizeX(); i++) {
             for (int j = 0; j < table.sizeY(); j++) {
                 final int x = i;
                 final int y = j;
                 Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
-                    panel.remove(Buttons.cardButtons[x][y]);
-                    container.repaint();
-
-                    panel.add(Buttons.openCardButtons[x][y], x * table.sizeY() + y);
-                    container.validate();
-                    container.repaint();
+                    Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
+                    Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y,table);
                     //System.out.println("Pressed card " + (x + 1) + "-" + (y + 1));
                 });
             }
