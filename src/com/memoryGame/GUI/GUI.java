@@ -45,7 +45,7 @@ public class GUI {
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Create a Logic Object
         logic = new Logic(GUIConnectionToLogic.getGameMode());
-        GUIConnectionToLogic.initArrayCoords();
+        GUIConnectionToLogic.initArrayCoordinates();
 
         gameFrame.setResizable(false);
         gameFrame.pack();
@@ -266,7 +266,6 @@ public class GUI {
         pane.add(Panels.gamePanel, BorderLayout.CENTER);
         pane.add(Panels.playerPanel, BorderLayout.PAGE_END);
         ActionListenerButtons.addCardButtonsActList(tableOfCards);
-
     }
 
     static void frame3GamePlayDuel(Container pane, Table tableOfCards1,Table tableOfCards2, boolean preview){
@@ -298,16 +297,12 @@ public class GUI {
     }
 
     public static void showCards(Table tableOfCards, boolean preview) {
-        //clearFrame(gameFrame);
         frame4GamePlay(gameFrame.getContentPane(), tableOfCards, preview);
-        //gameFrame.getContentPane().validate();
         DelaysInGUI.delayForPreview(tableOfCards, tableOfCards, false);
     }
 
     public static void showCardsDuel(Table tableOfCards1,Table tableOfCards2, boolean preview) {
-        //clearFrame(gameFrame);
         frame3GamePlayDuel(gameFrame.getContentPane(), tableOfCards1,tableOfCards2, preview);
-        //gameFrame.getContentPane().validate();
         DelaysInGUI.delayForPreview(tableOfCards1,tableOfCards2,true);
     }
 }

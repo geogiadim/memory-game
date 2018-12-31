@@ -24,6 +24,5 @@ public class Main {
             ex.printStackTrace();
         }
         GUI.createGUI();
-        //Logic l=new Logic();
     }
 }

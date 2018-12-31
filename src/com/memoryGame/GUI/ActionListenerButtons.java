@@ -47,20 +47,7 @@ class ActionListenerButtons {
             GUI.getFrame().validate();
         });
     }
-    /*static void addCardButtonsActList(Table table) {
-        for (int i = 0; i < table.sizeX(); i++) {
-            for (int j = 0; j < table.sizeY(); j++) {
-                final int x = i;
-                final int y = j;
-                Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
-                    if (!GUIConnectionToLogic.inDelay()){
-                        System.out.println("In Coords giving");
-                        GUIConnectionToLogic.setCoords(x,y, table);
-                    }
-                });
-            }
-        }
-    }*/
+
     static void addCardButtonsActList(Table table) {
         for (int i = 0; i < table.sizeX(); i++) {
             for (int j = 0; j < table.sizeY(); j++) {
@@ -68,8 +55,8 @@ class ActionListenerButtons {
                 final int y = j;
                 Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
                     if (!GUIConnectionToLogic.inDelay()){
-                        System.out.println("In Coords giving");
-                        GUIConnectionToLogic.setCoords(x,y, table);
+                        System.out.println("In Coordinates giving");
+                        GUIConnectionToLogic.setCoordinates(x,y, table);
                     }
                 });
             }

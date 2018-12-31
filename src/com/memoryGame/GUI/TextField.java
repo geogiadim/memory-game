@@ -10,7 +10,6 @@ class TextField {
     static JTextField textP1, textP2, textP3, textP4;
     //Labels for Text Fields
     static JLabel labelP1, labelP2, labelP3, labelP4;
-    //private final static String SPACE = " ";
 
     static void makeTextField(){
         labelP1 = new JLabel("1st Player");

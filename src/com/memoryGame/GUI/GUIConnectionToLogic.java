@@ -9,8 +9,8 @@ public class GUIConnectionToLogic {
     private static int numOfPlayers = 0; //numOfCPUs = 0;
     private static String name1, name2, name3, name4;
     private static int x1, y1;
-    private static int[] arrayCoordsX;
-    private static int[] arrayCoordsY;
+    private static int[] arrayCoordinatesX;
+    private static int[] arrayCoordinatesY;
     private static int cardNo = 0;
     private static int maxCardNo;
     private static int numOfPairedCards = 0;
@@ -27,7 +27,7 @@ public class GUIConnectionToLogic {
             maxCardNo = 3;
             mode = 3;
         } else if (Buttons.duelButton.isSelected()) {
-//            maxCardNo = ;
+            //maxCardNo = ;
             mode = 4;
         }
         return mode;
@@ -78,14 +78,14 @@ public class GUIConnectionToLogic {
         }
     }
 
-    static void initArrayCoords() {
-        arrayCoordsX = new int[maxCardNo];
-        arrayCoordsY = new int[maxCardNo];
+    static void initArrayCoordinates() {
+        arrayCoordinatesX = new int[maxCardNo];
+        arrayCoordinatesY = new int[maxCardNo];
     }
 
-    static void setCoords(int x, int y, Table table) {
-            arrayCoordsX[cardNo] = x;
-            arrayCoordsY[cardNo] = y;
+    static void setCoordinates(int x, int y, Table table) {
+            arrayCoordinatesX[cardNo] = x;
+            arrayCoordinatesY[cardNo] = y;
             Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
             Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y, table);
             System.out.println(cardNo);
@@ -93,19 +93,17 @@ public class GUIConnectionToLogic {
             if (GUIConnectionToLogic.checkCardsMatch()){
                 numOfPairedCards++;
                 inDelay = true;
-                Timer timer = new Timer(2000, actionEvent -> {
-                    inDelay = false;
-                });
+                Timer timer = new Timer(2000, actionEvent -> inDelay = false);
                 timer.setRepeats(false);
                 timer.start();
             } else {
                 inDelay = true;
                 Timer timer = new Timer(2000, actionEvent -> {
                     for (int i = 0;i < maxCardNo; i++) {
-                        Panels.removeButton(Panels.gamePanel, Buttons.openCardButtons, arrayCoordsX[i], arrayCoordsY[i]);
-                        System.out.println("removed " + (arrayCoordsX[i] + 1) + (arrayCoordsY[i] + 1));
-                        Panels.addButton(Panels.gamePanel, Buttons.cardButtons, arrayCoordsX[i], arrayCoordsY[i], table);
-                        System.out.println("added " + (arrayCoordsX[i] + 1) + (arrayCoordsY[i] + 1));
+                        Panels.removeButton(Panels.gamePanel, Buttons.openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
+                        System.out.println("removed " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
+                        Panels.addButton(Panels.gamePanel, Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
+                        System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
                         inDelay = false;
                     }
                 });
@@ -116,11 +114,7 @@ public class GUIConnectionToLogic {
         } else cardNo++;
     }
 
-    private static boolean checkCardsMatch(){
-        return GUI.getLogic().checkCards(arrayCoordsX, arrayCoordsY);
-    }
+    private static boolean checkCardsMatch() {return GUI.getLogic().checkCards(arrayCoordinatesX, arrayCoordinatesY);}
 
-    static boolean inDelay() {
-        return inDelay;
-    }
+    static boolean inDelay() {return inDelay;}
 }

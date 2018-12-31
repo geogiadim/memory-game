@@ -43,7 +43,5 @@ class Panels {
         GUI.getGameFrame().repaint();
     }
 
-    static void disableButon(JPanel panel, JButton[][] button,int x, int y){
-
-    }
+    //static void disableButton(JPanel panel, JButton[][] button,int x, int y){}
 }

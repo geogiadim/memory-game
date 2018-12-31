@@ -20,13 +20,6 @@ public class Logic {
     private int maxPlayers;
     private int mode;
 
-//    private int x1 = 0;
-//    private int y1 = 0;
-//    private int x2 = 0;
-//    private int y2 = 0;
-//    private int x3 = 0;
-//    private int y3 = 0;
-
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
      */
@@ -70,16 +63,16 @@ public class Logic {
         //GUI.array with results and game over
     }
 
-    public boolean checkCards(int[] coordsX, int[] coordsY) {
+    public boolean checkCards(int[] coordinatesX, int[] coordinatesY) {
         boolean state;
 
-        int x1 = coordsX[0];
-        int x2 = coordsX[1];
-        int y1 = coordsY[0];
-        int y2 = coordsY[1];
+        int x1 = coordinatesX[0];
+        int x2 = coordinatesX[1];
+        int y1 = coordinatesY[0];
+        int y2 = coordinatesY[1];
         if (mode == 3) {
-            int x3 = coordsX[2];
-            int y3 = coordsY[2];
+            int x3 = coordinatesX[2];
+            int y3 = coordinatesY[2];
 
             if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)
                     && newTable.getCardValue(x1, y1) == newTable.getCardValue(x3, y3)) {
@@ -147,19 +140,6 @@ public class Logic {
 
         GUI.showCardsDuel(newTable, newTable2, true);
     }
-
-    /*private void getXY1(){
-        x1= GUIConnectionToLogic.getX();
-        y1= GUIConnectionToLogic.getY();
-    }
-    private void getXY2(){
-        x2= GUIConnectionToLogic.getX();
-        y2= GUIConnectionToLogic.getY();
-    }
-    private void getXY3(){
-        x3= GUIConnectionToLogic.getX();
-        y3= GUIConnectionToLogic.getY();
-    }*/
 
     /**
      * Fills the table with different cards
