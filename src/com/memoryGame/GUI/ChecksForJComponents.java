@@ -4,21 +4,13 @@ import com.memoryGame.Table;
 import javax.swing.*;
 
 class ChecksForJComponents {
-    static void previewCheck(Table tableOfCards, boolean preview, JPanel gamePanel){
-        if (preview) {
-            for (int i = 0; i < tableOfCards.sizeX(); i++) {
-                for (int j = 0; j < tableOfCards.sizeY(); j++) {
-                    gamePanel.add(Buttons.openCardButtons[i][j]);
-                }
-            }
-        } else {
-            for (int i = 0; i < tableOfCards.sizeX(); i++) {
-                for (int j = 0; j < tableOfCards.sizeY(); j++) {
-                    gamePanel.add(Buttons.cardButtons[i][j]);
-                }
-            }
-        }
-    }
+//    static void previewCheck(Table tableOfCards, JPanel gamePanel){
+//        for (int i = 0; i < tableOfCards.sizeX(); i++) {
+//            for (int j = 0; j < tableOfCards.sizeY(); j++) {
+//                gamePanel.add(Buttons.openCardButtons[i][j]);
+//            }
+//        }
+//    }
 
 //    static void checksForDuel (){
 //        if (RadioButtons.yesOrNo[0].isSelected()){

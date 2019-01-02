@@ -22,6 +22,10 @@ class Panels {
         backNextPanel.add(Buttons.nextButton);
     }
 
+    static void removeAllCardButtons(){
+        GUI.getGamePanel().removeAll();
+    }
+
     static void removeCardButton(JButton[][] button, int i,int j){
         GUI.getGamePanel().remove(button[i][j]);
         GUI.getGameFrame().repaint();
@@ -30,5 +34,13 @@ class Panels {
         GUI.getGamePanel().add(button[x][y], x * table.sizeY() + y);
         GUI.getGameFrame().validate();
         GUI.getGameFrame().repaint();
+    }
+
+    static void addAllCardButtons(JButton[][] button, Table table) {
+        for (int i = 0; i < table.sizeX(); i++) {
+            for (int j = 0; j < table.sizeY(); j++) {
+                Panels.addCardButton(Buttons.openCardButtons,i,j,table);
+            }
+        }
     }
 }

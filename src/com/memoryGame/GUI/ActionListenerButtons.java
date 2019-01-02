@@ -43,6 +43,7 @@ class ActionListenerButtons {
                 GUI.frame3PlayersName(GUI.getFrame().getContentPane());
             } else if (GUI.getNumOfFrame() == 3 || GUI.getNumOfDuelFrame()==2) {
                 GUI.getFrame().setVisible(false);
+                GUI.getFrame().dispose();
                 //Make new frame for Cards
                 GUI.createFrame2();
             }

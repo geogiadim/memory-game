@@ -64,9 +64,11 @@ class Labels {
 
     static void setTopMessageWrong(){
         topMessage.setText("Wrong choice!!!");
+        GUI.repaintMessagePanel();
     }
 
     static void setTopMessageCorrect(){
         topMessage.setText("Correct choice!!!");
+        GUI.repaintMessagePanel();
     }
 }

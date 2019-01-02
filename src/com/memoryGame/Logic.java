@@ -1,6 +1,5 @@
 package com.memoryGame;
 
-import com.memoryGame.GUI.GUI;
 import com.memoryGame.GUI.GUIConnectionToLogic;
 
 import java.util.Random;
@@ -43,6 +42,7 @@ public class Logic {
 
     private void createPlayers() {
         maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
+        System.out.println(maxPlayers);
         players = new Player[maxPlayers];
         for (int i = 0; i < maxPlayers; i++) {
             players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
@@ -59,8 +59,7 @@ public class Logic {
         initTablePairs(1);
         shuffleTable(newTable);
 
-        GUI.showCards(newTable, true);
-
+        GUIConnectionToLogic.beginGamePlay(newTable);
         //GUI.array with results and game over
     }
 
@@ -123,7 +122,7 @@ public class Logic {
         initTablePairs(3);
         shuffleTable(newTable);
 
-        GUI.showCards(newTable, true);
+        GUIConnectionToLogic.beginGamePlay(newTable);
 
         //GUI.array with results and game over*/
     }
@@ -136,7 +135,7 @@ public class Logic {
         initDuelTable(newTable2);
         shuffleTable(newTable2);
 
-        GUI.showCardsDuel(newTable, newTable2, true);
+        GUIConnectionToLogic.beginGamePlayDuel(newTable, newTable2);
     }
 
     /**

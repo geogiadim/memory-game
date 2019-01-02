@@ -2,20 +2,17 @@ package com.memoryGame.GUI;
 import com.memoryGame.Table;
 
 import javax.swing.*;
-import java.awt.*;
 
 class DelaysInGUI {
-    private final static int PREVIEW_DELAY = 5;
+    private final static int PREVIEW_DELAY = 1;
 
-    static void delayForPreview(Table tableOfCards1, Table tableOfCards2, boolean isDuel, JPanel messagePanel, JPanel gamePanel){
+    static void delayForPreview(Table tableOfCards1, Table tableOfCards2, boolean isDuel){
         Labels.setTopMessagePreview();
         if (!isDuel) {
             Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
-                GUI.clearFrame(GUI.getGameFrame());
-                if (GUIConnectionToLogic.getGameMode()==3){Panels.addMessage(messagePanel,Labels.ruleTriple);}
-                else Panels.addMessage(messagePanel, Labels.ruleBasicDouble);
-                GUI.clearPanel(gamePanel);
-                GUI.frame4GamePlay(GUI.getGameFrame().getContentPane(), tableOfCards1, false);
+                Labels.setTopMessageRules();
+                Panels.removeAllCardButtons();
+                Panels.addAllCardButtons(Buttons.cardButtons,tableOfCards1);
                 GUI.getGameFrame().getContentPane().validate();
             });
             timer.setRepeats(false);
@@ -24,15 +21,19 @@ class DelaysInGUI {
         else{
             Timer timer = new Timer(PREVIEW_DELAY * 1000, actionEvent -> {
                 GUI.clearFrame(GUI.getGameFrame());
-                Panels.removeMessage(messagePanel,Labels.previewMessage);
-                Panels.addMessage(messagePanel, Labels.ruleDuel);
-                GUI.clearPanel(gamePanel);
-                GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), tableOfCards1,tableOfCards2, false);
+                Labels.setTopMessageRules();
+
+                GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), tableOfCards1,tableOfCards2);
                 GUI.getGameFrame().getContentPane().validate();
             });
             timer.setRepeats(false);
             timer.start();
         }
     }
+
+    static void delayForPreview(Table tableOfCards){
+        delayForPreview(tableOfCards, tableOfCards, false);
+    }
+
     static int getCardPreviewDelay() {return PREVIEW_DELAY;}
 }

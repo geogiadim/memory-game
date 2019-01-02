@@ -1,14 +1,13 @@
 package com.memoryGame.GUI;
 
+import com.memoryGame.Logic;
 import com.memoryGame.Table;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GUIConnectionToLogic {
     private static int mode = 0;
     private static int numOfPlayers = 0; //numOfCPUs = 0;
-    private static int x1, y1;
     private static int[] arrayCoordinatesX;
     private static int[] arrayCoordinatesY;
     private static int cardNo = 0;
@@ -16,6 +15,7 @@ public class GUIConnectionToLogic {
     private static int numOfPairedCards = 0;
     private static boolean inDelay = false;
     private static final int MESSAGE_DELAY=2;
+    private static Logic logic;
 
     static int getGameMode() {
         if (Buttons.basicButton.isSelected()) {
@@ -51,7 +51,7 @@ public class GUIConnectionToLogic {
         return TextField.textPlayerNames[i].getText();
     }
 
-    static void initArrayCoordinates() {
+    private static void initArrayCoordinates() {
         arrayCoordinatesX = new int[maxCardNo];
         arrayCoordinatesY = new int[maxCardNo];
     }
@@ -62,41 +62,54 @@ public class GUIConnectionToLogic {
         Panels.removeCardButton(Buttons.cardButtons,x,y);
         Panels.addCardButton(Buttons.openCardButtons,x,y, table);
 
+        //If final Card choice
         if (cardNo == maxCardNo - 1){
+            //if Cards match
             if (GUIConnectionToLogic.checkCardsMatch()){
                 numOfPairedCards++;
                 inDelay = true;
-                Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
-                    GUI.clearPanel(Panels.messagePanel);
-                    Labels.setTopMessageRules();
-                    inDelay = false;
-                });
-                Panels.addMessage(Panels.messagePanel,Labels.correct);
-                Labels.
+                Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> inDelay = false);
+                Labels.setTopMessageCorrect();
                 timer.setRepeats(false);
                 timer.start();
+                //if Cards don't match
             } else {
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
                     for (int i = 0;i < maxCardNo; i++) {
-                        Panels.removeCardButton(Panels.gamePanel, Buttons.openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
+                        Panels.removeCardButton(Buttons.openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
                         //System.out.println("removed " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
-                        Panels.addCardButton(Panels.gamePanel, Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
+                        Panels.addCardButton(Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
                         //System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
-                        Labels.setTopMessageRules();
                         inDelay = false;
                     }
                 });
-                GUI.clearPanel(Panels.messagePanel);
-                Panels.addMessage(Panels.messagePanel,Labels.wrong);
+                Labels.setTopMessageWrong();
                 timer.setRepeats(false);
                 timer.start();
             }
+            Labels.setTopMessageRules();
             cardNo = 0;
         } else cardNo++;
     }
 
-    private static boolean checkCardsMatch() {return GUI.getLogic().checkCards(arrayCoordinatesX, arrayCoordinatesY);}
+    private static boolean checkCardsMatch() {return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);}
 
     static boolean inDelay() {return inDelay;}
+
+    public static void beginGamePlay(Table newTable) {
+        initArrayCoordinates();
+        GUI.frame4GamePlay(GUI.getFrame().getContentPane(), newTable);
+        DelaysInGUI.delayForPreview(newTable);
+    }
+
+    public static void beginGamePlayDuel(Table newTable, Table newTable2) {
+        initArrayCoordinates();
+        GUI.frame3GamePlayDuel(GUI.getFrame().getContentPane(), newTable, newTable2);
+        DelaysInGUI.delayForPreview(newTable, newTable2, true);
+    }
+
+    static void begin(){
+        logic = new Logic(getGameMode());
+    }
 }

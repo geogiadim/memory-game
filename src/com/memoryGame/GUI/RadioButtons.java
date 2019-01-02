@@ -22,6 +22,7 @@ class RadioButtons {
             if (i == 0) player[i] = makeRadioButton("1 Player");
             else player[i] = makeRadioButton((i + 1) + " Players");
         }
+        player[0].setSelected(true);
 
         //Make 4 CPU Number Radio Buttons
         cpu = new JRadioButton[4];
@@ -29,11 +30,13 @@ class RadioButtons {
             if (i == 0) cpu[i] = makeRadioButton("NO CPU");
             else cpu[i] = makeRadioButton(i + " CPU");
         }
+        cpu[0].setSelected(true);
 
         //Make CPU1 Radio Buttons
         diffCPU = new JRadioButton[3][3];
         for (int i = 0; i < diffCPU.length; i++) {
             diffCPU[i][0] = makeRadioButton("Easy");
+            diffCPU[i][0].setSelected(true);
         }
 
         for (int i = 0; i < diffCPU.length; i++) {
