@@ -7,45 +7,48 @@ class RadioButtons {
     //Font for Radio Buttons
     private final static Font FONT_RADIOBUTTON = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
     //Player Number Radio Buttons
-    static JRadioButton p1, p2, p3, p4;
+    static JRadioButton[] player;
     //CPU Number Radio Buttons
-    static JRadioButton cpu0, cpu1, cpu2, cpu3, yes, no;
+    static JRadioButton[] cpu;
+    static JRadioButton[] yesOrNo;
     //CPU Difficulty Radio Buttons
-    static JRadioButton easyCPU, normalCPU, difficultCPU;
-    static JRadioButton easyCPU2, normalCPU2, difficultCPU2;
-    static JRadioButton easyCPU3, normalCPU3, difficultCPU3;
+    static JRadioButton[][] diffCPU;
 
-    static void setRadioButtonName() {
-        //Make 4 com.memoryGame.Player Number Radio Buttons
-        p1 = makeRadioButton("1 Player");
-        p2 = makeRadioButton("2 Players");
-        p3 = makeRadioButton("3 Players");
-        p4 = makeRadioButton("4 Players");
+    static void setRadioButtons() {
+
+        //Make 4 Player Number Radio Buttons
+        player = new JRadioButton[4];
+        for (int i = 0; i < player.length; i++) {
+            if (i == 0) player[i] = makeRadioButton("1 Player");
+            else player[i] = makeRadioButton((i + 1) + " Players");
+        }
 
         //Make 4 CPU Number Radio Buttons
-        cpu0 = makeRadioButton("NO CPU");
-        cpu1 = makeRadioButton("1 CPU");
-        cpu2 = makeRadioButton("2 CPUs");
-        cpu3 = makeRadioButton("3 CPUs");
+        cpu = new JRadioButton[4];
+        for (int i = 0; i < cpu.length; i++) {
+            if (i == 0) cpu[i] = makeRadioButton("NO CPU");
+            else cpu[i] = makeRadioButton(i + " CPU");
+        }
 
         //Make CPU1 Radio Buttons
-        easyCPU = makeRadioButton("Easy");
-        normalCPU = makeRadioButton("Normal");
-        difficultCPU = makeRadioButton("Difficult");
+        diffCPU = new JRadioButton[3][3];
+        for (int i = 0; i < diffCPU.length; i++) {
+            diffCPU[i][0] = makeRadioButton("Easy");
+        }
 
-        //Make CPU2 Radio Buttons
-        easyCPU2 = makeRadioButton("Easy");
-        normalCPU2 = makeRadioButton("Normal");
-        difficultCPU2 = makeRadioButton("Difficult");
+        for (int i = 0; i < diffCPU.length; i++) {
+            diffCPU[i][1] = makeRadioButton("Normal");
+        }
 
-        //Make CPU3 Radio Buttons
-        easyCPU3 = makeRadioButton("Easy");
-        normalCPU3 = makeRadioButton("Normal");
-        difficultCPU3 = makeRadioButton("Difficult");
-
+        for (int i = 0; i < diffCPU.length; i++) {
+            diffCPU[i][2] = makeRadioButton("Hard");
+        }
+    }
+    static void setRadioButtonsDuel(){
         //Make yes or no Radio Buttons
-        yes= makeRadioButton("Yes");
-        no=makeRadioButton("No");
+        yesOrNo = new JRadioButton[2];
+        yesOrNo[0] = makeRadioButton("Yes");
+        yesOrNo[1] = makeRadioButton("No");
     }
 
     private static JRadioButton makeRadioButton(String name) {

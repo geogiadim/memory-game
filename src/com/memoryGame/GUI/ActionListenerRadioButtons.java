@@ -1,127 +1,121 @@
 package com.memoryGame.GUI;
 
+import javax.swing.*;
+
 class ActionListenerRadioButtons {
     static void addRadButActList() {
-        RadioButtons.p1.addActionListener(actionEvent -> {
-            TextField.textP1.setEnabled(true);
-            TextField.textP2.setEnabled(false);
-            TextField.textP3.setEnabled(false);
-            TextField.textP4.setEnabled(false);
+        RadioButtons.player[0].addActionListener(actionEvent -> {
+            TextField.textPlayerNames[0].setEnabled(true);
+            TextField.textPlayerNames[1].setEnabled(false);
+            TextField.textPlayerNames[2].setEnabled(false);
+            TextField.textPlayerNames[3].setEnabled(false);
 
-            RadioButtons.cpu0.setSelected(true);
-            RadioButtons.cpu0.setEnabled(true);
-            RadioButtons.cpu1.setEnabled(false);
-            RadioButtons.cpu2.setEnabled(false);
-            RadioButtons.cpu3.setEnabled(false);
+            RadioButtons.cpu[0].setSelected(true);
+            RadioButtons.cpu[0].setEnabled(true);
+            RadioButtons.cpu[1].setEnabled(false);
+            RadioButtons.cpu[2].setEnabled(false);
+            RadioButtons.cpu[3].setEnabled(false);
         });
 
-        RadioButtons.p2.addActionListener(actionEvent -> {
-            TextField.textP1.setEnabled(true);
-            TextField.textP2.setEnabled(true);
-            TextField.textP3.setEnabled(false);
-            TextField.textP4.setEnabled(false);
+        RadioButtons.player[1].addActionListener(actionEvent -> {
+            TextField.textPlayerNames[0].setEnabled(true);
+            TextField.textPlayerNames[1].setEnabled(true);
+            TextField.textPlayerNames[2].setEnabled(false);
+            TextField.textPlayerNames[3].setEnabled(false);
 
-            RadioButtons.cpu0.setSelected(true);
-            RadioButtons.cpu0.setEnabled(true);
-            RadioButtons.cpu1.setEnabled(true);
-            RadioButtons.cpu2.setEnabled(false);
-            RadioButtons.cpu3.setEnabled(false);
+            RadioButtons.cpu[0].setSelected(true);
+            RadioButtons.cpu[0].setEnabled(true);
+            RadioButtons.cpu[1].setEnabled(true);
+            RadioButtons.cpu[2].setEnabled(false);
+            RadioButtons.cpu[3].setEnabled(false);
         });
 
-        RadioButtons.p3.addActionListener(actionEvent -> {
-            TextField.textP1.setEnabled(true);
-            TextField.textP2.setEnabled(true);
-            TextField.textP3.setEnabled(true);
-            TextField.textP4.setEnabled(false);
+        RadioButtons.player[2].addActionListener(actionEvent -> {
+            TextField.textPlayerNames[0].setEnabled(true);
+            TextField.textPlayerNames[1].setEnabled(true);
+            TextField.textPlayerNames[2].setEnabled(true);
+            TextField.textPlayerNames[3].setEnabled(false);
 
-            RadioButtons.cpu0.setSelected(true);
-            RadioButtons.cpu0.setEnabled(true);
-            RadioButtons.cpu1.setEnabled(true);
-            RadioButtons.cpu2.setEnabled(true);
-            RadioButtons.cpu3.setEnabled(false);
+            RadioButtons.cpu[0].setSelected(true);
+            RadioButtons.cpu[0].setEnabled(true);
+            RadioButtons.cpu[1].setEnabled(true);
+            RadioButtons.cpu[2].setEnabled(true);
+            RadioButtons.cpu[3].setEnabled(false);
         });
 
-        RadioButtons.p4.addActionListener(actionEvent -> {
-            TextField.textP1.setEnabled(true);
-            TextField.textP2.setEnabled(true);
-            TextField.textP3.setEnabled(true);
-            TextField.textP4.setEnabled(true);
+        RadioButtons.player[3].addActionListener(actionEvent -> {
+            TextField.textPlayerNames[0].setEnabled(true);
+            TextField.textPlayerNames[1].setEnabled(true);
+            TextField.textPlayerNames[2].setEnabled(true);
+            TextField.textPlayerNames[3].setEnabled(true);
 
-            RadioButtons.cpu0.setSelected(true);
-            RadioButtons.cpu0.setEnabled(true);
-            RadioButtons.cpu1.setEnabled(true);
-            RadioButtons.cpu2.setEnabled(true);
-            RadioButtons.cpu3.setEnabled(true);
+            for (JRadioButton radioButton : RadioButtons.cpu) {
+                radioButton.setEnabled(true);
+            }
+            RadioButtons.cpu[0].setSelected(true);
         });
 
-        RadioButtons.cpu0.addActionListener(actionEvent -> setEnabledLevelCPU0());
-        RadioButtons.cpu1.addActionListener(actionEvent -> setEnabledLevelCPU1());
-        RadioButtons.cpu2.addActionListener(actionEvent -> setEnabledLevelCPU2());
-        RadioButtons.cpu3.addActionListener(actionEvent -> setEnabledLevelCPU3());
+        for (int i = 0; i < RadioButtons.cpu.length; i++) {
+            final int x = i;
+            RadioButtons.cpu[i].addActionListener(actionEvent -> setEnabledLevelCPU(x));
+        }
 
-        RadioButtons.no.addActionListener(actionEvent ->{
-            TextField.textP2.setEnabled(true);
-            TextField.textP2.setText("Player 2");
+    }
+    static void addRadButActListDuel(){
+        RadioButtons.yesOrNo[1].addActionListener(actionEvent ->{
+            TextField.textPlayerNames[1].setEnabled(true);
+            TextField.textPlayerNames[1].setText("Player 2");
         });
-        RadioButtons.yes.addActionListener(actionEvent ->{
-            TextField.textP2.setEnabled(false);
-            TextField.textP2.setText("CPU");
+        RadioButtons.yesOrNo[0].addActionListener(actionEvent ->{
+            TextField.textPlayerNames[1].setEnabled(false);
+            TextField.textPlayerNames[1].setText("CPU");
         });
     }
 
-    static void setEnabledLevelCPU0() {
-        RadioButtons.easyCPU.setEnabled(false);
-        RadioButtons.normalCPU.setEnabled(false);
-        RadioButtons.difficultCPU.setEnabled(false);
+    static void setEnabledLevelCPU(int cpuNo){
+        switch (cpuNo){
+            case 0:
+                for (JRadioButton[] radioArray: RadioButtons.diffCPU){
+                    for (JRadioButton radioElement: radioArray){
+                        radioElement.setEnabled(false);
+                    }
+                }
+                break;
+            case 1:
+                for (JRadioButton radioButton : RadioButtons.diffCPU[0]){
+                    radioButton.setEnabled(true);
+                }
 
-        RadioButtons.easyCPU2.setEnabled(false);
-        RadioButtons.normalCPU2.setEnabled(false);
-        RadioButtons.difficultCPU2.setEnabled(false);
+                for (JRadioButton radioButton : RadioButtons.diffCPU[1]) {
+                    radioButton.setEnabled(false);
+                }
 
-        RadioButtons.easyCPU3.setEnabled(false);
-        RadioButtons.normalCPU3.setEnabled(false);
-        RadioButtons.difficultCPU3.setEnabled(false);
-    }
+                for (JRadioButton radioButton : RadioButtons.diffCPU[2]) {
+                    radioButton.setEnabled(false);
+                }
+                break;
+            case 2:
+                for (JRadioButton radioButton : RadioButtons.diffCPU[0]){
+                    radioButton.setEnabled(true);
+                }
 
-    static void setEnabledLevelCPU1() {
-        RadioButtons.easyCPU.setEnabled(true);
-        RadioButtons.normalCPU.setEnabled(true);
-        RadioButtons.difficultCPU.setEnabled(true);
+                for (JRadioButton radioButton : RadioButtons.diffCPU[1]){
+                    radioButton.setEnabled(true);
+                }
 
-        RadioButtons.easyCPU2.setEnabled(false);
-        RadioButtons.normalCPU2.setEnabled(false);
-        RadioButtons.difficultCPU2.setEnabled(false);
-
-        RadioButtons.easyCPU3.setEnabled(false);
-        RadioButtons.normalCPU3.setEnabled(false);
-        RadioButtons.difficultCPU3.setEnabled(false);
-    }
-
-    static void setEnabledLevelCPU2() {
-        RadioButtons.easyCPU.setEnabled(true);
-        RadioButtons.normalCPU.setEnabled(true);
-        RadioButtons.difficultCPU.setEnabled(true);
-
-        RadioButtons.easyCPU2.setEnabled(true);
-        RadioButtons.normalCPU2.setEnabled(true);
-        RadioButtons.difficultCPU2.setEnabled(true);
-
-        RadioButtons.easyCPU3.setEnabled(false);
-        RadioButtons.normalCPU3.setEnabled(false);
-        RadioButtons.difficultCPU3.setEnabled(false);
-    }
-
-    static void setEnabledLevelCPU3() {
-        RadioButtons.easyCPU.setEnabled(true);
-        RadioButtons.normalCPU.setEnabled(true);
-        RadioButtons.difficultCPU.setEnabled(true);
-
-        RadioButtons.easyCPU2.setEnabled(true);
-        RadioButtons.normalCPU2.setEnabled(true);
-        RadioButtons.difficultCPU2.setEnabled(true);
-
-        RadioButtons.easyCPU3.setEnabled(true);
-        RadioButtons.normalCPU3.setEnabled(true);
-        RadioButtons.difficultCPU3.setEnabled(true);
+                for (JRadioButton radioButton : RadioButtons.diffCPU[2]){
+                    radioButton.setEnabled(false);
+                }
+                break;
+            case 3:
+                for (JRadioButton[] radioArray: RadioButtons.diffCPU){
+                    for (JRadioButton radioElement: radioArray){
+                        radioElement.setEnabled(true);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

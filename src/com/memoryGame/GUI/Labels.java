@@ -11,28 +11,34 @@ class Labels {
     private static final int FONT_SIZE_SMALL = 12;
     static JLabel chooseGameMode, chooseNumOfPlayers;
     static JLabel writeNames, levelOfCPU, duelCPU;
-    static JLabel levelCpu1, levelCpu2, levelCpu3;
-    static JLabel previwMessage,correct,wrong,ruleBasicDouble,ruleTriple,ruleDuel, turnOfPlayer;
+    static JLabel[] cpuLevels;
+    static JLabel topMessage, bottomMessage;
 
     static void setLabelName() {
+        topMessage = makeLabel("",FONT_SIZE_MEDIUM);
+        bottomMessage = makeLabel("It is the turn of player: ", FONT_SIZE_MEDIUM);
+    }
+
+    static void setModeLabel(){
         chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);
+    }
+
+    static void setPlayerChoiceLabels(){
         chooseNumOfPlayers = makeLabel("Select Number of Players", FONT_SIZE_LARGE);
-        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
-
         levelOfCPU = makeLabel("Choose the level of CPU", FONT_SIZE_MEDIUM);
-        levelCpu1 = makeLabel("CPU 1: ", FONT_SIZE_SMALL);
-        levelCpu2 = makeLabel("CPU 2: ", FONT_SIZE_SMALL);
-        levelCpu3 = makeLabel("CPU 3: ", FONT_SIZE_SMALL);
+        cpuLevels = new JLabel[3];
+        for (int i= 0; i < cpuLevels.length; i++){
+            cpuLevels[i] = makeLabel("CPU " + (i+1) + ": ", FONT_SIZE_SMALL);
+        }
+    }
 
+    static void setPlayerNamesLabel(){
+        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
+    }
+
+    static void setPlayerChoiceDuelLabels(){
+        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
         duelCPU = makeLabel("Do you want to play against CPU ?",FONT_SIZE_MEDIUM);
-
-        previwMessage = makeLabel("Showing Cards for " + DelaysInGUI.getCardPreviewDelay() + " seconds. Try to remember as many as you can.", FONT_SIZE_MEDIUM);
-        correct = makeLabel("Correct choice!!!",FONT_SIZE_MEDIUM);
-        wrong = makeLabel("Wrong choice!!!",FONT_SIZE_MEDIUM);
-        ruleBasicDouble = makeLabel("You have to choose two cards in each round.",FONT_SIZE_MEDIUM);
-        ruleTriple = makeLabel("You have to choose three cards in each round.", FONT_SIZE_MEDIUM);
-        ruleDuel = makeLabel("You have to chose only one card of your table in each round.",FONT_SIZE_MEDIUM);
-        turnOfPlayer = makeLabel("It is the turn of player: ", FONT_SIZE_MEDIUM);
     }
 
     private static JLabel makeLabel(String name, int font_size) {
@@ -40,5 +46,27 @@ class Labels {
         label.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, font_size));
         label.setForeground(Color.blue);
         return label;
+    }
+
+    static void setTopMessagePreview(){
+        topMessage.setText("Showing Cards for " + DelaysInGUI.getCardPreviewDelay() + " seconds. Try to remember as many as you can.");
+    }
+
+    static void setTopMessageRules(){
+        int mode = GUIConnectionToLogic.getGameMode();
+        if (mode==3)
+            topMessage.setText("You have to choose three cards in each round.");
+        else if (mode==4)
+            topMessage.setText("You have to chose only one card of your table in each round.");
+        else topMessage.setText("You have to choose two cards in each round.");
+        GUI.repaintMessagePanel();
+    }
+
+    static void setTopMessageWrong(){
+        topMessage.setText("Wrong choice!!!");
+    }
+
+    static void setTopMessageCorrect(){
+        topMessage.setText("Correct choice!!!");
     }
 }

@@ -3,7 +3,7 @@ import com.memoryGame.Table;
 
 class ActionListenerButtons {
 
-    static void addButtonsActList() {
+    static void addModeButtonsActList() {
         Buttons.basicButton.addActionListener(actionEvent -> {
             selectNumOfPlayers();
             Buttons.basicButton.setSelected(true);
@@ -20,7 +20,9 @@ class ActionListenerButtons {
             selectPlayersForDuel();
             Buttons.duelButton.setSelected(true);
         });
+    }
 
+    static void addNextBackButtonsActList(){
         Buttons.backButton.addActionListener(actionEvent -> {
             GUI.clearFrame(GUI.getFrame());
             if (GUI.getNumOfFrame() == 2 || GUI.getNumOfDuelFrame()==2) {

@@ -46,6 +46,7 @@ public class Logic {
         players = new Player[maxPlayers];
         for (int i = 0; i < maxPlayers; i++) {
             players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
+            System.out.println(players[i].getName());
         }
     }
 

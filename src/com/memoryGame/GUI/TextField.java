@@ -7,25 +7,30 @@ class TextField {
     //Font for Text Field Labels
     private final static Font FONT_TEXTFIELD_LABEL = new Font(Font.SANS_SERIF, Font.ITALIC, 16);
     //Player Name Text Fields
-    static JTextField textP1, textP2, textP3, textP4;
+    static JTextField[] textPlayerNames;
     //Labels for Text Fields
-    static JLabel labelP1, labelP2, labelP3, labelP4;
+    static JLabel[] labelPlayerNames;
 
-    static void makeTextField(){
-        labelP1 = new JLabel("1st Player");
-        labelP1.setFont(FONT_TEXTFIELD_LABEL);
-        textP1 = new JTextField("Player 1");
+    static void makeTextField(boolean duel){
+        if (duel){
+            textPlayerNames = new JTextField[2];
+            labelPlayerNames = new JLabel[2];
+        } else {
+            textPlayerNames = new JTextField[4];
+            labelPlayerNames = new JLabel[4];
+        }
 
-        labelP2 = new JLabel("2nd Player");
-        labelP2.setFont(FONT_TEXTFIELD_LABEL);
-        textP2 = new JTextField("Player 2");
+        for (int i = 0; i< textPlayerNames.length; i++){
+            labelPlayerNames[i] = new JLabel();
+            labelPlayerNames[i].setFont(FONT_TEXTFIELD_LABEL);
+            textPlayerNames[i] = new JTextField("Player " + (i+1));
+        }
 
-        labelP3 = new JLabel("3rd Player");
-        labelP3.setFont(FONT_TEXTFIELD_LABEL);
-        textP3 = new JTextField("Player 3");
-
-        labelP4 = new JLabel("4th Player");
-        labelP4.setFont(FONT_TEXTFIELD_LABEL);
-        textP4 = new JTextField("Player 4");
+        labelPlayerNames[0].setText("1st Player");
+        labelPlayerNames[1].setText("2nd Player");
+        if (!duel){
+            labelPlayerNames[2].setText("3rd Player");
+            labelPlayerNames[3].setText("4th Player");
+        }
     }
 }

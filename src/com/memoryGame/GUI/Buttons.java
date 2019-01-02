@@ -30,22 +30,24 @@ class Buttons {
     //Card Buttons
     static JButton[][] cardButtons, openCardButtons;
 
-    private final static ImageIcon ICON_BLUE = new ImageIcon("images/closed-card-blue.png");
-    private final static ImageIcon ICON_RED =  new ImageIcon("images/closed-card-red.png");
-    private final static ImageIcon ICON_GREEN = new ImageIcon("images/closed-card-green.png");
-    private final static ImageIcon ICON_BLACK = new ImageIcon("images/closed-card-black.png");
+    private final static String ICON_BLUE = "images/closed-card-blue.png";
+    private final static String ICON_RED =  "images/closed-card-red.png";
+    private final static String ICON_GREEN = "images/closed-card-green.png";
+    private final static String ICON_BLACK = "images/closed-card-black.png";
 
-    static void setButtonsName() {
+    static void setModeButtons() {
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
-        basicButton = makeButton("Basic Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE,false);
+        basicButton = makeButton("Basic Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
         basicButton.setMnemonic(basicButton.getText().charAt(1));
-        doubleButton = makeButton("Double Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE,false);
+        doubleButton = makeButton("Double Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
         doubleButton.setMnemonic(doubleButton.getText().charAt(1));
-        tripleButton = makeButton("Triple Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE,false);
+        tripleButton = makeButton("Triple Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
         tripleButton.setMnemonic(tripleButton.getText().charAt(1));
-        duelButton = makeButton("Duel Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE,false);
+        duelButton = makeButton("Duel Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
         duelButton.setMnemonic(duelButton.getText().charAt(1));
+    }
 
+    static void setNextBackButtons() {
         //Make 2 Secondary Buttons and set the first letter of Buttons text as Mnemonics
         nextButton = makeButton("Next", WIDTH_SECONDARY, HEIGHT_SECONDARY, FONT_SECONDARY,false);
         nextButton.setMnemonic(nextButton.getText().charAt(0));
@@ -91,16 +93,16 @@ class Buttons {
         button.setContentAreaFilled(false);
         switch (GUIConnectionToLogic.getGameMode()){
             case 1:
-                button.setIcon(ICON_BLUE);
+                button.setIcon(new ImageIcon(ICON_BLUE));
                 break;
             case 2:
-                button.setIcon(ICON_RED);
+                button.setIcon(new ImageIcon(ICON_RED));
                 break;
             case 3:
-                button.setIcon(ICON_GREEN);
+                button.setIcon(new ImageIcon(ICON_GREEN));
                 break;
             case 4:
-                button.setIcon(ICON_BLACK);
+                button.setIcon(new ImageIcon(ICON_BLACK));
                 break;
             default:
                 break;
