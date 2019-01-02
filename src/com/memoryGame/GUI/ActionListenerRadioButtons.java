@@ -54,22 +54,10 @@ class ActionListenerRadioButtons {
             RadioButtons.cpu3.setEnabled(true);
         });
 
-        RadioButtons.cpu0.addActionListener(actionEvent -> {
-            setEnabledLevelCPU0();
-            System.out.println("0");
-        });
-        RadioButtons.cpu1.addActionListener(actionEvent -> {
-            setEnabledLevelCPU1();
-            System.out.println("0");
-        });
-        RadioButtons.cpu2.addActionListener(actionEvent -> {
-            setEnabledLevelCPU2();
-            System.out.println("0");
-        });
-        RadioButtons.cpu3.addActionListener(actionEvent -> {
-            setEnabledLevelCPU3();
-            System.out.println("0");
-        });
+        RadioButtons.cpu0.addActionListener(actionEvent -> setEnabledLevelCPU0());
+        RadioButtons.cpu1.addActionListener(actionEvent -> setEnabledLevelCPU1());
+        RadioButtons.cpu2.addActionListener(actionEvent -> setEnabledLevelCPU2());
+        RadioButtons.cpu3.addActionListener(actionEvent -> setEnabledLevelCPU3());
 
         RadioButtons.no.addActionListener(actionEvent ->{
             TextField.textP2.setEnabled(true);

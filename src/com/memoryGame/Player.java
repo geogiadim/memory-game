@@ -10,9 +10,9 @@ public class Player {
         tries = 0;
     }
 
-    public void increaseNumberOfPairs() {pairs++;}
+    void increaseNumberOfPairs() {pairs++;}
 
-    public void increaseNumOfTries() {tries++;}
+    void increaseNumOfTries() {tries++;}
 
     public int getNumberOfPairs() {return pairs;}
 

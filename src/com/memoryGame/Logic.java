@@ -17,7 +17,7 @@ public class Logic {
     private Table newTable, newTable2;
     private Player[] players;
     private int playerTurn = 0;
-    private int maxPlayers;
+    private static int maxPlayers;
     private int mode;
 
     /**
@@ -92,11 +92,9 @@ public class Logic {
                 state = false;
             }
         } else {
-
             if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
                 newTable.unableCard(x1, y1);
                 newTable.unableCard(x2, y2);
-
 
                 players[playerTurn].increaseNumOfTries();
                 players[playerTurn].increaseNumberOfPairs();
@@ -112,7 +110,6 @@ public class Logic {
 
         if (playerTurn < maxPlayers - 1) playerTurn++;
         else playerTurn = 0;
-
         return state;
     }
 
@@ -155,8 +152,7 @@ public class Logic {
                     newTable.setCardValue(i, j, value++);
                 }
             }
-        }
-        //Fills the table with different cards, each card three times
+        }//Fills the table with different cards, each card three times
         else {
             for (int i = 0; i < newTable.sizeX(); i++) {
                 for (int j = 2; j < newTable.sizeY(); j += 3) {

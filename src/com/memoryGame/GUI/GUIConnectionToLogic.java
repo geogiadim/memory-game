@@ -3,6 +3,7 @@ package com.memoryGame.GUI;
 import com.memoryGame.Table;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GUIConnectionToLogic {
     private static int mode = 0;
@@ -15,6 +16,7 @@ public class GUIConnectionToLogic {
     private static int maxCardNo;
     private static int numOfPairedCards = 0;
     private static boolean inDelay = false;
+    private static final int MESSAGE_DEALAY=2;
 
     static int getGameMode() {
         if (Buttons.basicButton.isSelected()) {
@@ -46,19 +48,6 @@ public class GUIConnectionToLogic {
         return numOfPlayers;
     }
 
-   /* public static int getNumOfCPUs() {
-        if (RadioButtons.cpu0.isSelected()) {
-            numOfCPUs = 0;
-        } else if (RadioButtons.cpu1.isSelected()) {
-            numOfCPUs = 1;
-        } else if (RadioButtons.cpu2.isSelected()) {
-            numOfCPUs = 2;
-        } else if (RadioButtons.cpu3.isSelected()) {
-            numOfCPUs = 3;
-        }
-        return numOfCPUs;
-    }*/
-
     public static String getNameOfPlayer(int i) {
         switch (i) {
             case 0:
@@ -88,30 +77,47 @@ public class GUIConnectionToLogic {
             arrayCoordinatesY[cardNo] = y;
             Panels.removeButton(Panels.gamePanel,Buttons.cardButtons,x,y);
             Panels.addButton(Panels.gamePanel,Buttons.openCardButtons,x,y, table);
-            System.out.println(cardNo);
         if (cardNo == maxCardNo - 1){
             if (GUIConnectionToLogic.checkCardsMatch()){
                 numOfPairedCards++;
                 inDelay = true;
-                Timer timer = new Timer(2000, actionEvent -> inDelay = false);
+                Timer timer = new Timer(MESSAGE_DEALAY*1000, actionEvent -> {
+                    inDelay = false;
+                    GUI.clearPanel(Panels.messagePanel);
+                    messagePanelRules();
+                });
+                GUI.clearPanel(Panels.messagePanel);
+                Panels.addMessage(Panels.messagePanel,Labels.correct);
                 timer.setRepeats(false);
                 timer.start();
             } else {
                 inDelay = true;
-                Timer timer = new Timer(2000, actionEvent -> {
+                Timer timer = new Timer(MESSAGE_DEALAY*1000, actionEvent -> {
                     for (int i = 0;i < maxCardNo; i++) {
                         Panels.removeButton(Panels.gamePanel, Buttons.openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
-                        System.out.println("removed " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
+                        //System.out.println("removed " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
                         Panels.addButton(Panels.gamePanel, Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
-                        System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
+                        //System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
+                        GUI.clearPanel(Panels.messagePanel);
+                        messagePanelRules();
                         inDelay = false;
                     }
                 });
+                GUI.clearPanel(Panels.messagePanel);
+                Panels.addMessage(Panels.messagePanel,Labels.wrong);
                 timer.setRepeats(false);
                 timer.start();
             }
             cardNo = 0;
         } else cardNo++;
+    }
+
+    private static void messagePanelRules (){
+        if (mode==3)
+            Panels.addMessage(Panels.messagePanel,Labels.ruleTriple);
+        else if (mode==4)
+            Panels.addMessage(Panels.messagePanel,Labels.ruleDuel);
+        else Panels.addMessage(Panels.messagePanel,Labels.ruleBasicDouble);
     }
 
     private static boolean checkCardsMatch() {return GUI.getLogic().checkCards(arrayCoordinatesX, arrayCoordinatesY);}

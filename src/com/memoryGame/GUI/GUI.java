@@ -249,7 +249,6 @@ public class GUI {
         pane.add(textFieldPanel, BorderLayout.CENTER);
         pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
-    //private static void createCards(Table tableOfCards){Buttons.setCardButtons(tableOfCards);}
 
     static void frame4GamePlay(Container pane, Table tableOfCards, boolean preview) {
         numOfFrame = 4;
