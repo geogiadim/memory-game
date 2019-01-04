@@ -47,8 +47,22 @@ public class GUIConnectionToLogic {
         return numOfPlayers;
     }
 
-    public static String getNameOfPlayer(int i) {
-        return TextField.textPlayerNames[i].getText();
+    public static boolean isCPU(int playerNumber) {
+        return RadioButtons.cpu[playerNumber].isSelected();
+    }
+
+    public static String getNameOfPlayer(int playerNumber) {
+        return TextField.textPlayerNames[playerNumber].getText();
+    }
+
+    public static int getCPUDiff(int playerNumber){
+        int Diff = 0;
+        for (int i = 0; i < RadioButtons.diffCPU[playerNumber].length; i++) {
+            if (RadioButtons.diffCPU[playerNumber][i].isSelected()) {
+                Diff = i+1;
+            }
+        }
+        return Diff;
     }
 
     private static void initArrayCoordinates() {
@@ -99,13 +113,13 @@ public class GUIConnectionToLogic {
 
     public static void beginGamePlay(Table newTable) {
         initArrayCoordinates();
-        GUI.frame4GamePlay(GUI.getFrame().getContentPane(), newTable);
+        GUI.frame4GamePlay(GUI.getGameFrame().getContentPane(), newTable);
         DelaysInGUI.delayForPreview(newTable);
     }
 
     public static void beginGamePlayDuel(Table newTable, Table newTable2) {
         initArrayCoordinates();
-        GUI.frame3GamePlayDuel(GUI.getFrame().getContentPane(), newTable, newTable2);
+        GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), newTable, newTable2);
         DelaysInGUI.delayForPreview(newTable, newTable2, true);
     }
 

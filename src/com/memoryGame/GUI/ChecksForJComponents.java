@@ -1,7 +1,4 @@
 package com.memoryGame.GUI;
-import com.memoryGame.Table;
-
-import javax.swing.*;
 
 class ChecksForJComponents {
 //    static void previewCheck(Table tableOfCards, JPanel gamePanel){

@@ -46,21 +46,21 @@ public class Table {
      */
     public int getCardValue(int x, int y) {return tableOfCards[x][y].getValue();}
 
-    /**
-     * Appears the card
-     *
-     * @param x the row on which the card is inserted
-     * @param y the row on which the card is inserted
-     */
-    public void openCard(int x, int y) {tableOfCards[x][y].setIsOpen(true);}
-
-    /**
-     * Hides the card
-     *
-     * @param x the row on which the card is inserted
-     * @param y the column on which the card is inserted
-     */
-    public void closeCard(int x, int y) {tableOfCards[x][y].setIsOpen(false);}
+//    /**
+//     * Appears the card
+//     *
+//     * @param x the row on which the card is inserted
+//     * @param y the row on which the card is inserted
+//     */
+//    public void openCard(int x, int y) {tableOfCards[x][y].setIsOpen(true);}
+//
+//    /**
+//     * Hides the card
+//     *
+//     * @param x the row on which the card is inserted
+//     * @param y the column on which the card is inserted
+//     */
+//    public void closeCard(int x, int y) {tableOfCards[x][y].setIsOpen(false);}
 
     /**
      * Sets the card as paired and makes it unable to be chosen again.
@@ -68,7 +68,7 @@ public class Table {
      * @param x the row on which the card is inserted
      * @param y the column on which the card is inserted
      */
-    public void unableCard(int x, int y) {
+    void unableCard(int x, int y) {
         tableOfCards[x][y].setPairedTrue();
         tableOfCards[x][y].setIsOpen(false);
     }
@@ -106,7 +106,7 @@ public class Table {
     public int sizeY() {return y;}
 
     /**
-     * Returns the size of the table
+     * Returns the size of the table / Number of Cards
      *
      * @return the size of the table
      */

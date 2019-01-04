@@ -8,30 +8,30 @@ package com.memoryGame;
  */
 public class Card {
     private int valueOfCard;
-    private boolean isOpen;
+//    private boolean isOpen;
     private boolean isPaired;
 
     /**
      * Creates a card and set it as closed and unpaired.
      */
     public Card() {
-        isOpen = false;
+//        isOpen = false;
         isPaired = false;
     }
 
-    /**
-     * Returns true if it is opened and false if it is closed.
-     *
-     * @return true if it is opened and false if it is closed.
-     */
-    boolean getIsOpen() {return isOpen;}
-
-    /**
-     * Sets the card as opened or as closed
-     *
-     * @param mode true if it is opened false if it is closed
-     */
-    void setIsOpen(boolean mode) {isOpen = mode;}
+//    /**
+//     * Returns true if it is opened and false if it is closed.
+//     *
+//     * @return true if it is opened and false if it is closed.
+//     */
+//    boolean getIsOpen() {return isOpen;}
+//
+//    /**
+//     * Sets the card as opened or as closed
+//     *
+//     * @param mode true if it is opened false if it is closed
+//     */
+//    void setIsOpen(boolean mode) {isOpen = mode;}
 
     /**
      * Returns the letter of the card

@@ -24,23 +24,26 @@ class Panels {
 
     static void removeAllCardButtons(){
         GUI.getGamePanel().removeAll();
+        GUI.getGamePanel().validate();
     }
 
     static void removeCardButton(JButton[][] button, int i,int j){
         GUI.getGamePanel().remove(button[i][j]);
-        GUI.getGameFrame().repaint();
+        GUI.getGamePanel().validate();
     }
     static void addCardButton(JButton[][] button,int x,int y, Table table){
         GUI.getGamePanel().add(button[x][y], x * table.sizeY() + y);
-        GUI.getGameFrame().validate();
-        GUI.getGameFrame().repaint();
+        GUI.getGamePanel().validate();
+        GUI.getGamePanel().repaint();
     }
 
     static void addAllCardButtons(JButton[][] button, Table table) {
         for (int i = 0; i < table.sizeX(); i++) {
             for (int j = 0; j < table.sizeY(); j++) {
-                Panels.addCardButton(Buttons.openCardButtons,i,j,table);
+                GUI.getGamePanel().add(button[i][j], i * table.sizeY() + j);
             }
         }
+        GUI.getGamePanel().validate();
+        GUI.getGamePanel().repaint();
     }
 }

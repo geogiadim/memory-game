@@ -1,9 +1,14 @@
 package com.memoryGame;
 
-public class CPU extends Player{
+class CPU extends Player{
     private int diff;
-    public CPU(String name, int diff){
+
+    CPU(String name, int diff){
         super(name);
         this.diff = diff;
+    }
+
+    int getDiff() {
+        return diff;
     }
 }

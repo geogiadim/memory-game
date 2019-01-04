@@ -15,8 +15,8 @@ class Labels {
     static JLabel topMessage, bottomMessage;
 
     static void setLabelName() {
-        topMessage = makeLabel("",FONT_SIZE_MEDIUM);
-        bottomMessage = makeLabel("It is the turn of player: ", FONT_SIZE_MEDIUM);
+        topMessage = makeLabel(" ",FONT_SIZE_MEDIUM);
+        bottomMessage = makeLabel(" ", FONT_SIZE_MEDIUM);
     }
 
     static void setModeLabel(){
@@ -49,7 +49,7 @@ class Labels {
     }
 
     static void setTopMessagePreview(){
-        topMessage.setText("Showing Cards for " + DelaysInGUI.getCardPreviewDelay() + " seconds. Try to remember as many as you can.");
+        topMessage.setText("Showing Cards for " + DelaysInGUI.getPreviewDelay() + " seconds. Try to remember as many as you can.");
     }
 
     static void setTopMessageRules(){
@@ -70,5 +70,14 @@ class Labels {
     static void setTopMessageCorrect(){
         topMessage.setText("Correct choice!!!");
         GUI.repaintMessagePanel();
+    }
+
+    static void setBottomMessageCountdown(int i){
+        bottomMessage.setText(i + "");
+        GUI.repaintMessagePanel();
+    }
+
+    static void setBottomMessagePlayerTurn(int i){
+        bottomMessage.setText("It is the turn of " + GUIConnectionToLogic.getNameOfPlayer(i));
     }
 }

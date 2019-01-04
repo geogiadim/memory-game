@@ -45,7 +45,8 @@ public class Logic {
         System.out.println(maxPlayers);
         players = new Player[maxPlayers];
         for (int i = 0; i < maxPlayers; i++) {
-            players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
+            if (GUIConnectionToLogic.isCPU(i)) players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i),GUIConnectionToLogic.getCPUDiff(i));
+            else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
             System.out.println(players[i].getName());
         }
     }
@@ -70,42 +71,30 @@ public class Logic {
         int x2 = coordinatesX[1];
         int y1 = coordinatesY[0];
         int y2 = coordinatesY[1];
-        if (mode == 3) {
-            int x3 = coordinatesX[2];
-            int y3 = coordinatesY[2];
 
-            if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)
-                    && newTable.getCardValue(x1, y1) == newTable.getCardValue(x3, y3)) {
-                newTable.unableCard(x1, y1);
-                newTable.unableCard(x2, y2);
-                newTable.unableCard(x3, y3);
-
+        if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)){
+            newTable.unableCard(x1, y1);
+            newTable.unableCard(x2, y2);
+            if (mode == 3){
+                int x3 = coordinatesX[2];
+                int y3 = coordinatesY[2];
+                if (newTable.getCardValue(x2, y2) == newTable.getCardValue(x3, y3)){
+                    newTable.unableCard(x3, y3);
+                    players[playerTurn].increaseNumOfTries();
+                    players[playerTurn].increaseNumberOfPairs();
+                    state = true;
+                } else {
+                    players[playerTurn].increaseNumOfTries();
+                    state = false;
+                }
+            } else {
                 players[playerTurn].increaseNumOfTries();
                 players[playerTurn].increaseNumberOfPairs();
                 state = true;
-            } //else Cards are not same!
-            else {
-                newTable.closeCard(x1, y1);
-                newTable.closeCard(x2, y2);
-                newTable.closeCard(x3, y3);
-                players[playerTurn].increaseNumOfTries();
-                state = false;
             }
         } else {
-            if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
-                newTable.unableCard(x1, y1);
-                newTable.unableCard(x2, y2);
-
-                players[playerTurn].increaseNumOfTries();
-                players[playerTurn].increaseNumberOfPairs();
-                state = true;
-            } //else Cards are not same!
-            else {
-                newTable.closeCard(x1, y1);
-                newTable.closeCard(x2, y2);
-                players[playerTurn].increaseNumOfTries();
-                state = false;
-            }
+            players[playerTurn].increaseNumOfTries();
+            state = false;
         }
 
         if (playerTurn < maxPlayers - 1) playerTurn++;

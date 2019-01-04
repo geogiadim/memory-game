@@ -1,6 +1,6 @@
 package com.memoryGame;
 
-public class Player {
+class Player {
     private String name;
     private int pairs, tries;
 
@@ -14,11 +14,11 @@ public class Player {
 
     void increaseNumOfTries() {tries++;}
 
-    public int getNumberOfPairs() {return pairs;}
+    int getNumberOfPairs() {return pairs;}
 
-    public int getNumOfTries() {return tries;}
+    int getNumOfTries() {return tries;}
 
-    public String getName() {return name;}
+    String getName() {return name;}
 
-    public void setName(String n) {name = n;}
+    void setName(String n) {name = n;}
 }
