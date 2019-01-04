@@ -5,15 +5,9 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 class Panels {
-    static JPanel writePlayersNamePanel;
     static JPanel backNextPanel;
 
     private final static TitledBorder border = BorderFactory.createTitledBorder("");
-
-    static void makePanels(){
-        writePlayersNamePanel = new JPanel();
-        writePlayersNamePanel.setBorder(border);
-    }
 
     static void makeNextBackPanel(){
         backNextPanel = new JPanel();

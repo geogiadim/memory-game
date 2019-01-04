@@ -1,6 +1,6 @@
-package com.memoryGame.GUI;
-
-class ChecksForJComponents {
+//package com.memoryGame.GUI;
+//
+//class ChecksForJComponents {
 //    static void previewCheck(Table tableOfCards, JPanel gamePanel){
 //        for (int i = 0; i < tableOfCards.sizeX(); i++) {
 //            for (int j = 0; j < tableOfCards.sizeY(); j++) {
@@ -74,28 +74,28 @@ class ChecksForJComponents {
 //            TextField.textP3.setEnabled(false);
 //        }
 //    }
-
-    static void checkForRadioButtons() {
-        if (RadioButtons.player[0].isSelected()) {
-            RadioButtons.cpu[1].setEnabled(false);
-            RadioButtons.cpu[2].setEnabled(false);
-            RadioButtons.cpu[3].setEnabled(false);
-
-            RadioButtons.player[1].setSelected(false);
-            RadioButtons.player[2].setSelected(false);
-            RadioButtons.player[3].setSelected(false);
-        }
-        if (RadioButtons.cpu[0].isSelected()) {
-            ActionListenerRadioButtons.setEnabledLevelCPU(0);
-        }
-        if (RadioButtons.cpu[1].isSelected()) {
-            ActionListenerRadioButtons.setEnabledLevelCPU(1);
-        }
-        if (RadioButtons.cpu[2].isSelected()) {
-            ActionListenerRadioButtons.setEnabledLevelCPU(2);
-        }
-        if (RadioButtons.cpu[3].isSelected()) {
-            ActionListenerRadioButtons.setEnabledLevelCPU(3);
-        }
-    }
-}
+//
+//    static void checkForRadioButtons() {
+//        if (RadioButtons.player[0].isSelected()) {
+//            RadioButtons.cpu[1].setEnabled(false);
+//            RadioButtons.cpu[2].setEnabled(false);
+//            RadioButtons.cpu[3].setEnabled(false);
+//
+//            RadioButtons.player[1].setSelected(false);
+//            RadioButtons.player[2].setSelected(false);
+//            RadioButtons.player[3].setSelected(false);
+//        }
+//        if (RadioButtons.cpu[0].isSelected()) {
+//            ActionListenerRadioButtons.setEnabledLevelCPU(0);
+//        }
+//        if (RadioButtons.cpu[1].isSelected()) {
+//            ActionListenerRadioButtons.setEnabledLevelCPU(1);
+//        }
+//        if (RadioButtons.cpu[2].isSelected()) {
+//            ActionListenerRadioButtons.setEnabledLevelCPU(2);
+//        }
+//        if (RadioButtons.cpu[3].isSelected()) {
+//            ActionListenerRadioButtons.setEnabledLevelCPU(3);
+//        }
+//    }
+//}

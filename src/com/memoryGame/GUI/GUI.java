@@ -1,5 +1,4 @@
 package com.memoryGame.GUI;
-import com.memoryGame.Logic;
 import com.memoryGame.Table;
 
 import javax.swing.*;
@@ -10,10 +9,6 @@ public class GUI {
     private static JFrame frame, gameFrame;
     private static JPanel messagePanel, gamePanel, playerPanel;
     private static int numOfFrame = 0,numOfDuelFrame = 0;
-
-    private static void createJContents() {
-        Panels.makePanels();
-    }
 
     static JFrame getFrame() {return frame;}
     static JFrame getGameFrame() {return gameFrame;}
@@ -36,7 +31,6 @@ public class GUI {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        createJContents();
         frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
@@ -179,7 +173,7 @@ public class GUI {
         selectPlayersPanel.setBorder(border);
         selectPlayersPanel.add(Labels.chooseNumOfPlayers);
 
-        ChecksForJComponents.checkForRadioButtons();
+//        ChecksForJComponents.checkForRadioButtons();
 
         pane.add(selectPlayersPanel, BorderLayout.PAGE_START);
         pane.add(choicePanel, BorderLayout.CENTER);
@@ -247,6 +241,8 @@ public class GUI {
         //Panel for Title of frame
         JPanel writePlayersNamePanel = new JPanel();
         writePlayersNamePanel.add(Labels.writeNames);
+        final TitledBorder border = BorderFactory.createTitledBorder("");
+        writePlayersNamePanel.setBorder(border);
 
         //Panel for labels and text fields for players names
         JPanel textFieldPanel = new JPanel(new GridLayout(2, 4, 2, 2));
@@ -258,7 +254,8 @@ public class GUI {
             textFieldPanel.add(TextField.textPlayerNames[i]);
         }
 
-        pane.add(Panels.writePlayersNamePanel, BorderLayout.PAGE_START);
+        pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
+
         pane.add(textFieldPanel, BorderLayout.CENTER);
         addNextBackButtons(pane);
     }
