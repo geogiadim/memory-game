@@ -70,17 +70,17 @@ public class Table {
      */
     void unableCard(int x, int y) {
         tableOfCards[x][y].setPairedTrue();
-        tableOfCards[x][y].setIsOpen(false);
+//        tableOfCards[x][y].setIsOpen(false);
     }
 
-    /**
-     * Returns true if the card is open and false if it is closed
-     *
-     * @param x the row on which the card is inserted
-     * @param y the column on which the card is inserted
-     * @return true if the card is open and false if it is closed
-     */
-    boolean isCardOpen(int x, int y) {return tableOfCards[x][y].getIsOpen();}
+//    /**
+//     * Returns true if the card is open and false if it is closed
+//     *
+//     * @param x the row on which the card is inserted
+//     * @param y the column on which the card is inserted
+//     * @return true if the card is open and false if it is closed
+//     */
+//    boolean isCardOpen(int x, int y) {return tableOfCards[x][y].getIsOpen();}
 
     /**
      * Returns true if the card is paired and false if it is unpaired
