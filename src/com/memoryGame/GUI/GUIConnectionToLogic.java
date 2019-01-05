@@ -80,14 +80,16 @@ public class GUIConnectionToLogic {
         if (cardNo == maxCardNo - 1){
             //if Cards match
             if (GUIConnectionToLogic.checkCardsMatch()){
+                Labels.setTopMessageCorrect();
                 numOfPairedCards++;
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> inDelay = false);
-                Labels.setTopMessageCorrect();
+
                 timer.setRepeats(false);
                 timer.start();
                 //if Cards don't match
             } else {
+                Labels.setTopMessageWrong();
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
                     for (int i = 0;i < maxCardNo; i++) {
@@ -98,7 +100,6 @@ public class GUIConnectionToLogic {
                         inDelay = false;
                     }
                 });
-                Labels.setTopMessageWrong();
                 timer.setRepeats(false);
                 timer.start();
             }

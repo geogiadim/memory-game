@@ -12,6 +12,13 @@ class ActionListenerRadioButtons {
         for (int i = 0; i < RadioButtons.cpu.length; i++) {
             final int playerNo = i;
             RadioButtons.cpu[i].addActionListener(actionEvent -> {
+                for (int k = 0; k <= playerNo; k++){
+                    TextField.textPlayerNames[k].setEnabled(true);
+                }
+                for (int k = RadioButtons.cpu.length - 1; k > playerNo; k--){
+                    System.out.println("SET "+ k);
+                    TextField.textPlayerNames[k].setEnabled(false);
+                }
                 for (int j = RadioButtons.cpu.length-1; j > playerNo; j--)
                     RadioButtons.diffCPU[j-1][0].setSelected(true);
                 setEnabledLevelCPU(playerNo);
@@ -34,7 +41,6 @@ class ActionListenerRadioButtons {
                 RadioButtons.diffCPU[i-1][0].setSelected(true);
             }
         }
-//        RadioButtons.cpu[0].setSelected(true);
     }
 
     static void addRadButActListDuel(){

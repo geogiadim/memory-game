@@ -33,4 +33,8 @@ class TextField {
             labelPlayerNames[3].setText("4th Player");
         }
     }
+
+    static void cpuLabel(int i){
+        textPlayerNames[i].setText("CPU");
+    }
 }
