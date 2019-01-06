@@ -5,15 +5,14 @@ import com.memoryGame.GUI.GUI;
 import javax.swing.*;
 
 /**
- * This is the main Class of the project.
+ * This is the main Class of the project, initialising the GUI.
  *
  * @author Giorgos Christidis
  */
 
 public class Main {
     /**
-     * Passes the game mode to com.memoryGame.Logic class, either from cmd args or from player interaction with com.memoryGame.UI class.
-     * Finally, when the game is over exits the game.
+     * Sets Look and Feel for the GUI to system default and calls GUI Class to initialise the first GUI Frame
      *
      * @param args the command line arguments as an array of String objects
      */

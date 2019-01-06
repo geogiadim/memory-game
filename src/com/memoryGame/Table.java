@@ -81,15 +81,15 @@ public class Table {
 //     * @return true if the card is open and false if it is closed
 //     */
 //    boolean isCardOpen(int x, int y) {return tableOfCards[x][y].getIsOpen();}
-
-    /**
-     * Returns true if the card is paired and false if it is unpaired
-     *
-     * @param x the row on which the card is inserted
-     * @param y the column on which the card is inserted
-     * @return true if the card is paired and false if it is unpaired
-     */
-    boolean isCardPaired(int x, int y) {return tableOfCards[x][y].getIsPaired();}
+//
+//    /**
+//     * Returns true if the card is paired and false if it is unpaired
+//     *
+//     * @param x the row on which the card is inserted
+//     * @param y the column on which the card is inserted
+//     * @return true if the card is paired and false if it is unpaired
+//     */
+//    boolean isCardPaired(int x, int y) {return tableOfCards[x][y].getIsPaired();}
 
     /**
      * Returns the number of rows of the table

@@ -25,6 +25,9 @@ class Buttons {
     private final static Font FONT_GAME = new Font(Font.SANS_SERIF, Font.PLAIN, FONT_SIZE_CARD);
     //Mode Buttons
     static JButton basicButton, doubleButton, tripleButton, duelButton;
+    //Language Buttons
+    static JButton enButton, elButton;
+    private final static int HEIGHT_LANG = 60;
     //Secondary Buttons
     static JButton nextButton, backButton;
     //Card Buttons
@@ -34,6 +37,9 @@ class Buttons {
     private final static String ICON_RED =  "images/closed-card-red.png";
     private final static String ICON_GREEN = "images/closed-card-green.png";
     private final static String ICON_BLACK = "images/closed-card-black.png";
+
+    private final static String ICON_EN_LANG = "images/en-lang.png";
+    private final static String ICON_EL_LANG = "images/el-lang.png";
 
     static void setModeButtons() {
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
@@ -45,6 +51,11 @@ class Buttons {
         tripleButton.setMnemonic(tripleButton.getText().charAt(1));
         duelButton = makeButton("Duel Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
         duelButton.setMnemonic(duelButton.getText().charAt(1));
+
+        enButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY, false);
+        enButton.setIcon(new ImageIcon(ICON_EN_LANG));
+        elButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY, false);
+        elButton.setIcon(new ImageIcon(ICON_EL_LANG));
     }
 
     static void setNextBackButtons() {
@@ -76,12 +87,12 @@ class Buttons {
         }
     }
 
-    private static JButton makeButton(String name, int width, int height, Font font,boolean isClosed) {
+    private static JButton makeButton(String name, int width, int height, Font font, boolean isCard) {
         Dimension dimension = new Dimension(width, height);
         JButton button = new JButton(name);
         button.setFocusPainted(false);
         button.setFocusable(false);
-        if (isClosed) setCardIcon(button);
+        if (isCard) setCardIcon(button);
         button.setPreferredSize(dimension);
         button.setFont(font);
         return button;

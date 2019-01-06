@@ -5,6 +5,9 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
+/**
+ *
+ */
 public class GUI {
     private static JFrame frame, gameFrame;
     private static JPanel messagePanel, gamePanel, playerPanel;
@@ -91,8 +94,13 @@ public class GUI {
         gmButtonsPanel.add(Buttons.tripleButton);
         gmButtonsPanel.add(Buttons.duelButton);
 
+        JPanel gmLanguageButtonsPanel = new JPanel();
+        gmLanguageButtonsPanel.add(Buttons.enButton);
+        gmLanguageButtonsPanel.add(Buttons.elButton);
+
         pane.add(gmLabelPanel, BorderLayout.PAGE_START);
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
+        pane.add(gmLanguageButtonsPanel, BorderLayout.PAGE_END);
     }
 
     static void frame2PlayerChoice(Container pane) {

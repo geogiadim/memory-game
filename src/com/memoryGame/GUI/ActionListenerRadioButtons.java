@@ -10,21 +10,30 @@ class ActionListenerRadioButtons {
         }
 
         for (int i = 0; i < RadioButtons.cpu.length; i++) {
-            final int playerNo = i;
+            final int cpuNo = i;
             RadioButtons.cpu[i].addActionListener(actionEvent -> {
-                for (int k = 0; k <= playerNo; k++){
+                for (int k = 0; k <= cpuNo; k++){
                     TextField.textPlayerNames[k].setEnabled(true);
+                    if (k > 0){
+                        TextField.cpuLabel(k);
+                        TextField.textPlayerNames[k].setEnabled(false);
+                        for (int m = 0; m < RadioButtons.diffCPU[k-1].length; m ++){
+                            RadioButtons.diffCPU[k-1][m].setEnabled(true);
+                        }
+                    }
                 }
-                for (int k = RadioButtons.cpu.length - 1; k > playerNo; k--){
-                    System.out.println("SET "+ k);
-                    TextField.textPlayerNames[k].setEnabled(false);
-                }
-                for (int j = RadioButtons.cpu.length-1; j > playerNo; j--)
+
+                for (int j = RadioButtons.cpu.length-1; j > cpuNo; j--){
+                    TextField.textPlayerNames[j].setEnabled(false);
+                    TextField.playerLabel(j);
+                    System.out.println(j);
                     RadioButtons.diffCPU[j-1][0].setSelected(true);
-                setEnabledLevelCPU(playerNo);
+                    for (int m = 0; m < RadioButtons.diffCPU[j-1].length; m++){
+                        RadioButtons.diffCPU[j-1][m].setEnabled(false);
+                    }
+                }
             });
         }
-
     }
 
     private static void setRadioButtonsAndTextFields(int num){
@@ -52,52 +61,5 @@ class ActionListenerRadioButtons {
             TextField.textPlayerNames[1].setEnabled(false);
             TextField.textPlayerNames[1].setText("CPU");
         });
-    }
-
-    private static void setEnabledLevelCPU(int cpuNo){
-        switch (cpuNo){
-            case 0:
-                for (int i = 0; i < RadioButtons.diffCPU.length; i++){
-                    for (int j = 0; j < RadioButtons.diffCPU[i].length; j++){
-                        RadioButtons.diffCPU[i][j].setEnabled(false);
-                    }
-                }
-                break;
-            case 1:
-                for (JRadioButton radioButton : RadioButtons.diffCPU[0]){
-                    radioButton.setEnabled(true);
-                }
-
-                for (JRadioButton radioButton : RadioButtons.diffCPU[1]) {
-                    radioButton.setEnabled(false);
-                }
-
-                for (JRadioButton radioButton : RadioButtons.diffCPU[2]) {
-                    radioButton.setEnabled(false);
-                }
-                break;
-            case 2:
-                for (JRadioButton radioButton : RadioButtons.diffCPU[0]){
-                    radioButton.setEnabled(true);
-                }
-
-                for (JRadioButton radioButton : RadioButtons.diffCPU[1]){
-                    radioButton.setEnabled(true);
-                }
-
-                for (JRadioButton radioButton : RadioButtons.diffCPU[2]){
-                    radioButton.setEnabled(false);
-                }
-                break;
-            case 3:
-                for (JRadioButton[] radioArray: RadioButtons.diffCPU){
-                    for (JRadioButton radioElement: radioArray){
-                        radioElement.setEnabled(true);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
     }
 }

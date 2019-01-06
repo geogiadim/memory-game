@@ -5,8 +5,8 @@ import com.memoryGame.GUI.GUIConnectionToLogic;
 import java.util.Random;
 
 /**
- * This class represents the logic of the game. Creates the table with the cards and separates the game in the three different types.
- * This class is connected to Ui in order to make the game interactive to the player.
+ * This class represents the logic of the game. Creates the table with the cards and separates the game in the four different types.
+ * This class is connected to the GUI package via the GUIConnectionToLogic Class.
  *
  * @author Giorgos Giannios
  * @author Giorgos Christidis
@@ -21,6 +21,8 @@ public class Logic {
 
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
+     *
+     * @param mode The gameMode chosen by the player.
      */
     public Logic(int mode) {
         this.mode = mode;
@@ -40,6 +42,9 @@ public class Logic {
         }
     }
 
+    /**
+     * Creates Player Objects either as normal Users or computer controlled Players.
+     */
     private void createPlayers() {
         maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
         System.out.println(maxPlayers);
@@ -52,7 +57,7 @@ public class Logic {
     }
 
     /**
-     * This is the logic for the Basic and Double game.
+     * This is the initialisation for the Basic and Double Game Modes Table and the transfer of it to the GUI.
      */
     private void basicDoubleGame() {
         createPlayers();
@@ -64,6 +69,13 @@ public class Logic {
         //GUI.array with results and game over
     }
 
+    /**
+     * Checks if Cards given by the parameters as coordinates, have the same value.
+     *
+     * @param coordinatesX Array of X coordinates of Cards.
+     * @param coordinatesY Array of Y coordinates of Cards.
+     * @return True if Cards have the same value. False if the don't.
+     */
     public boolean checkCards(int[] coordinatesX, int[] coordinatesY) {
         boolean state;
 
@@ -103,7 +115,7 @@ public class Logic {
     }
 
     /**
-     * This is the logic for the triple game.
+     * This is the initialisation for the Triple Game Mode Table and the transfer of it to the GUI.
      */
     private void tripleGame() {
         createPlayers();
@@ -116,6 +128,9 @@ public class Logic {
         //GUI.array with results and game over*/
     }
 
+    /**
+     * This is the initialisation for the Duel Game Mode Tables and the transfer of them to the GUI.
+     */
     private void duelGame() {
         createPlayers();
 
@@ -128,7 +143,9 @@ public class Logic {
     }
 
     /**
-     * Fills the table with different cards
+     * Fills the normal Game Mode Tables with different Card values according to the Game Mode.
+     *
+     * @param mode The The gameMode chosen by the player.
      */
     private void initTablePairs(int mode) {
         int value = 0;
@@ -153,6 +170,11 @@ public class Logic {
         }
     }
 
+    /**
+     * Fills the Duel Game Mode Table with different Cards values
+     *
+     * @param newTable The Table of Cards to set Card values.
+     */
     private void initDuelTable(Table newTable) {
         int value = 0;
         for (int i = 0; i < newTable.sizeX(); i++) {
@@ -164,7 +186,9 @@ public class Logic {
     }
 
     /**
-     * Shuffles the table with the cards
+     * Shuffles the Table of Cards.
+     *
+     * @param newTable The Table of Cards to be shuffled.
      */
     private void shuffleTable(Table newTable) {
         Random rnd;
