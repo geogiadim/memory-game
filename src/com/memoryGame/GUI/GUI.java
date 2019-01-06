@@ -308,13 +308,13 @@ public class GUI {
         TitledBorder border = BorderFactory.createTitledBorder("Table 1");
         table1Panel1.setBorder(border);
         Buttons.setCardButtons(tableOfCards1);
-//        ChecksForJComponents.previewCheck(tableOfCards1, table1Panel1);
+        //ChecksForJComponents.previewCheck(tableOfCards1, table1Panel1);
 
         JPanel table1Panel2= new JPanel(cardButtonsLayout);
         TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
         table1Panel2.setBorder(border2);
         Buttons.setCardButtons(tableOfCards2);
-//        ChecksForJComponents.previewCheck(tableOfCards2, table1Panel2);
+        //ChecksForJComponents.previewCheck(tableOfCards2, table1Panel2);
 
         GridLayout layout = new GridLayout(1, 0, 10, 10);
         gamePanel.setLayout(layout);
