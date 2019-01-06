@@ -42,12 +42,12 @@ public class Logic {
 
     private void createPlayers() {
         maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
-        System.out.println(maxPlayers);
+        //System.out.println(maxPlayers);
         players = new Player[maxPlayers];
         for (int i = 0; i < maxPlayers; i++) {
             if (GUIConnectionToLogic.isCPU(i)) players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i),GUIConnectionToLogic.getCPUDiff(i));
             else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
-            System.out.println(players[i].getName());
+            //System.out.println(players[i].getName());
         }
     }
 
@@ -64,6 +64,30 @@ public class Logic {
         //GUI.array with results and game over
     }
 
+    /**
+     * This is the logic for the triple game.
+     */
+    private void tripleGame() {
+        createPlayers();
+
+        initTablePairs(3);
+        shuffleTable(newTable);
+
+        GUIConnectionToLogic.beginGamePlay(newTable);
+        //GUI.array with results and game over*/
+    }
+
+    private void duelGame() {
+        createPlayers();
+
+        initDuelTable(newTable);
+        shuffleTable(newTable);
+        initDuelTable(newTable2);
+        shuffleTable(newTable2);
+
+        GUIConnectionToLogic.beginGamePlayDuel(newTable, newTable2);
+    }
+
     public boolean checkCards(int[] coordinatesX, int[] coordinatesY) {
         boolean state;
 
@@ -75,6 +99,7 @@ public class Logic {
         if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)){
             newTable.unableCard(x1, y1);
             newTable.unableCard(x2, y2);
+            //check for mode 3
             if (mode == 3){
                 int x3 = coordinatesX[2];
                 int y3 = coordinatesY[2];
@@ -100,31 +125,6 @@ public class Logic {
         if (playerTurn < maxPlayers - 1) playerTurn++;
         else playerTurn = 0;
         return state;
-    }
-
-    /**
-     * This is the logic for the triple game.
-     */
-    private void tripleGame() {
-        createPlayers();
-
-        initTablePairs(3);
-        shuffleTable(newTable);
-
-        GUIConnectionToLogic.beginGamePlay(newTable);
-
-        //GUI.array with results and game over*/
-    }
-
-    private void duelGame() {
-        createPlayers();
-
-        initDuelTable(newTable);
-        shuffleTable(newTable);
-        initDuelTable(newTable2);
-        shuffleTable(newTable2);
-
-        GUIConnectionToLogic.beginGamePlayDuel(newTable, newTable2);
     }
 
     /**

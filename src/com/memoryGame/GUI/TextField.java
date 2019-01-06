@@ -25,7 +25,6 @@ class TextField {
             labelPlayerNames[i].setFont(FONT_TEXTFIELD_LABEL);
             textPlayerNames[i] = new JTextField("Player " + (i+1));
         }
-
         labelPlayerNames[0].setText("1st Player");
         labelPlayerNames[1].setText("2nd Player");
         if (!duel){
@@ -34,7 +33,5 @@ class TextField {
         }
     }
 
-    static void cpuLabel(int i){
-        textPlayerNames[i].setText("CPU");
-    }
+    static void cpuLabel(int i) {textPlayerNames[i].setText("CPU");}
 }

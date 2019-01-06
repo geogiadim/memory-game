@@ -15,17 +15,9 @@ public class GUI {
     static int getNumOfFrame() {return numOfFrame;}
     static int getNumOfDuelFrame() {return  numOfDuelFrame;}
 
-    private static JPanel getMessagePanel(){
-        return messagePanel;
-    }
-
-    static JPanel getGamePanel(){
-        return gamePanel;
-    }
-
-    static JPanel getPlayerPanel(){
-        return playerPanel;
-    }
+    private static JPanel getMessagePanel() {return messagePanel;}
+    static JPanel getGamePanel() {return gamePanel;}
+    //static JPanel getPlayerPanel() {return playerPanel;}
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -99,7 +91,6 @@ public class GUI {
         numOfFrame = 2;
 
         Labels.setPlayerChoiceLabels();
-
         RadioButtons.setRadioButtons();
         ActionListenerRadioButtons.addRadButActList();
         TextField.makeTextField(false);
@@ -173,7 +164,7 @@ public class GUI {
         selectPlayersPanel.setBorder(border);
         selectPlayersPanel.add(Labels.chooseNumOfPlayers);
 
-//        ChecksForJComponents.checkForRadioButtons();
+        //ChecksForJComponents.checkForRadioButtons();
 
         pane.add(selectPlayersPanel, BorderLayout.PAGE_START);
         pane.add(choicePanel, BorderLayout.CENTER);
@@ -229,9 +220,7 @@ public class GUI {
         addNextBackButtons(pane);
     }
 
-    private static void addNextBackButtons(Container pane){
-        pane.add(Panels.backNextPanel,BorderLayout.PAGE_END);
-    }
+    private static void addNextBackButtons(Container pane){pane.add(Panels.backNextPanel,BorderLayout.PAGE_END);}
 
     static void frame3PlayersName(Container pane) {
         numOfFrame = 3;
@@ -246,16 +235,10 @@ public class GUI {
 
         //Panel for labels and text fields for players names
         JPanel textFieldPanel = new JPanel(new GridLayout(2, 4, 2, 2));
-        for (int i = 0; i< TextField.labelPlayerNames.length; i++){
-            textFieldPanel.add(TextField.labelPlayerNames[i]);
-        }
-
-        for (int i = 0; i< TextField.textPlayerNames.length; i++){
-            textFieldPanel.add(TextField.textPlayerNames[i]);
-        }
+        for (int i = 0; i< TextField.labelPlayerNames.length; i++) {textFieldPanel.add(TextField.labelPlayerNames[i]);}
+        for (int i = 0; i< TextField.textPlayerNames.length; i++) {textFieldPanel.add(TextField.textPlayerNames[i]);}
 
         pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
-
         pane.add(textFieldPanel, BorderLayout.CENTER);
         addNextBackButtons(pane);
     }
@@ -263,7 +246,7 @@ public class GUI {
     static void frame4GamePlay(Container pane, Table tableOfCards) {
         numOfFrame = 4;
 
-        Labels.setLabelName();
+        Labels.setMessageLabel();
         makeGamePlayPanels();
 
         messagePanel.add(Labels.topMessage);
@@ -278,7 +261,6 @@ public class GUI {
 
         playerPanel.add(Labels.bottomMessage);
         setGamePlayPanes(pane);
-
         ActionListenerButtons.addCardButtonsActList(tableOfCards);
     }
 
@@ -297,7 +279,7 @@ public class GUI {
     static void frame3GamePlayDuel(Container pane, Table tableOfCards1,Table tableOfCards2){
         numOfDuelFrame=3;
 
-        Labels.setLabelName();
+        Labels.setMessageLabel();
         makeGamePlayPanels();
 
         messagePanel.add(Labels.topMessage);

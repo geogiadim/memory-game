@@ -14,14 +14,7 @@ class Labels {
     static JLabel[] cpuLevels;
     static JLabel topMessage, bottomMessage;
 
-    static void setLabelName() {
-        topMessage = makeLabel(" ",FONT_SIZE_MEDIUM);
-        bottomMessage = makeLabel(" ", FONT_SIZE_MEDIUM);
-    }
-
-    static void setModeLabel(){
-        chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);
-    }
+    static void setModeLabel(){chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);}
 
     static void setPlayerChoiceLabels(){
         chooseNumOfPlayers = makeLabel("Select Number of Players", FONT_SIZE_LARGE);
@@ -32,9 +25,12 @@ class Labels {
         }
     }
 
-    static void setPlayerNamesLabel(){
-        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
+    static void setMessageLabel() {
+        topMessage = makeLabel(" ",FONT_SIZE_MEDIUM);
+        bottomMessage = makeLabel(" ", FONT_SIZE_MEDIUM);
     }
+
+    static void setPlayerNamesLabel(){writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);}
 
     static void setPlayerChoiceDuelLabels(){
         writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);

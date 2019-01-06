@@ -8,7 +8,5 @@ class CPU extends Player{
         this.diff = diff;
     }
 
-    int getDiff() {
-        return diff;
-    }
+    int getDiff() {return diff;}
 }

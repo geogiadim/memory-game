@@ -28,7 +28,7 @@ public class GUIConnectionToLogic {
             maxCardNo = 3;
             mode = 3;
         } else if (Buttons.duelButton.isSelected()) {
-            //maxCardNo = ;
+            //maxCardNo = 1;
             mode = 4;
         }
         return mode;
@@ -47,13 +47,9 @@ public class GUIConnectionToLogic {
         return numOfPlayers;
     }
 
-    public static boolean isCPU(int playerNumber) {
-        return RadioButtons.cpu[playerNumber].isSelected();
-    }
+    public static boolean isCPU(int playerNumber) {return RadioButtons.cpu[playerNumber].isSelected();}
 
-    public static String getNameOfPlayer(int playerNumber) {
-        return TextField.textPlayerNames[playerNumber].getText();
-    }
+    public static String getNameOfPlayer(int playerNumber) {return TextField.textPlayerNames[playerNumber].getText();}
 
     public static int getCPUDiff(int playerNumber){
         int Diff = 0;
@@ -79,17 +75,18 @@ public class GUIConnectionToLogic {
         //If final Card choice
         if (cardNo == maxCardNo - 1){
             //if Cards match
-            if (GUIConnectionToLogic.checkCardsMatch()){
-                Labels.setTopMessageCorrect();
+            if (checkCardsMatch()){
                 numOfPairedCards++;
                 inDelay = true;
-                Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> inDelay = false);
-
+                Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
+                    inDelay = false;
+                    Labels.setTopMessageRules();
+                });
+                Labels.setTopMessageCorrect();
                 timer.setRepeats(false);
                 timer.start();
                 //if Cards don't match
             } else {
-                Labels.setTopMessageWrong();
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
                     for (int i = 0;i < maxCardNo; i++) {
@@ -98,12 +95,13 @@ public class GUIConnectionToLogic {
                         Panels.addCardButton(Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
                         //System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
                         inDelay = false;
+                        Labels.setTopMessageRules();
                     }
                 });
+                Labels.setTopMessageWrong();
                 timer.setRepeats(false);
                 timer.start();
             }
-            Labels.setTopMessageRules();
             cardNo = 0;
         } else cardNo++;
     }

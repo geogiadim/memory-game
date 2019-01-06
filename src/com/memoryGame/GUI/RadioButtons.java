@@ -15,7 +15,6 @@ class RadioButtons {
     static JRadioButton[][] diffCPU;
 
     static void setRadioButtons() {
-
         //Make 4 Player Number Radio Buttons
         player = new JRadioButton[4];
         for (int i = 0; i < player.length; i++) {
@@ -38,11 +37,9 @@ class RadioButtons {
             diffCPU[i][0] = makeRadioButton("Easy");
             diffCPU[i][0].setSelected(true);
         }
-
         for (int i = 0; i < diffCPU.length; i++) {
             diffCPU[i][1] = makeRadioButton("Normal");
         }
-
         for (int i = 0; i < diffCPU.length; i++) {
             diffCPU[i][2] = makeRadioButton("Hard");
         }
