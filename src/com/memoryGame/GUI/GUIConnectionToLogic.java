@@ -40,14 +40,8 @@ public class GUIConnectionToLogic {
     public static int getNumOfPlayers() {
         if (mode == 4) return 2;
         else {
-            if (RadioButtons.player[0].isSelected()) {
-                numOfPlayers = 1;
-            } else if (RadioButtons.player[1].isSelected()) {
-                numOfPlayers = 2;
-            } else if (RadioButtons.player[2].isSelected()) {
-                numOfPlayers = 3;
-            } else if (RadioButtons.player[3].isSelected()) {
-                numOfPlayers = 4;
+            for (int i = 0; i < RadioButtons.player.length; i++){
+                if (RadioButtons.player[i].isSelected()) numOfPlayers = i+1;
             }
             return numOfPlayers;
         }

@@ -1,7 +1,5 @@
 package com.memoryGame.GUI;
 
-import com.memoryGame.Table;
-
 import javax.swing.*;
 
 class ActionListenerRadioButtons {
@@ -15,7 +13,6 @@ class ActionListenerRadioButtons {
             final int cpuNo = i;
             RadioButtons.cpu[i].addActionListener(actionEvent -> {
                 for (int k = 0; k <= cpuNo; k++) {
-                    TextField.textPlayerNames[k].setEnabled(true);
                     if (k > 0) {
                         for (int m = 0; m < RadioButtons.diffCPU[k - 1].length; m++) {
                             RadioButtons.diffCPU[k - 1][m].setEnabled(true);
@@ -35,11 +32,9 @@ class ActionListenerRadioButtons {
 
     private static void setRadioButtonsAndTextFields(int num) {
         for (int i = 0; i <= num; i++) {
-            TextField.textPlayerNames[i].setEnabled(true);
             RadioButtons.cpu[i].setEnabled(true);
         }
         for (int i = 3; i > num; i--) {
-            TextField.textPlayerNames[i].setEnabled(false);
             RadioButtons.cpu[i].setEnabled(false);
             for (JRadioButton r : RadioButtons.diffCPU[i - 1]) r.setEnabled(false);
             if (RadioButtons.cpu[i].isSelected()) {
@@ -56,6 +51,7 @@ class ActionListenerRadioButtons {
             for (JRadioButton radioButton : RadioButtons.diffDuel){
                 radioButton.setEnabled(false);
             }
+            RadioButtons.diffDuel[0].setSelected(true);
         });
         RadioButtons.yesOrNo[0].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(false);

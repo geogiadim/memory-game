@@ -235,7 +235,6 @@ public class GUI {
             cpuDiffButtonGroup.add(RadioButtons.diffDuel[i]);
             RadioButtons.diffDuel[i].setEnabled(false);
         }
-        RadioButtons.diffDuel[0].setSelected(true);
 
         JPanel textFieldPanel = new JPanel(new GridLayout(2, 2, 2, 2));
         TitledBorder border = BorderFactory.createTitledBorder("");
@@ -263,6 +262,8 @@ public class GUI {
 
     static void frame3PlayersName(Container pane) {
         numOfFrame = 3;
+        ChecksForJComponents.checkForTextField();
+        ChecksForJComponents.checkForTextField2();
 
         Labels.setPlayerNamesLabel();
 
@@ -283,7 +284,6 @@ public class GUI {
         }
 
         pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
-
         pane.add(textFieldPanel, BorderLayout.CENTER);
         addNextBackButtons(pane);
     }
