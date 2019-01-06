@@ -49,7 +49,7 @@ public class GUIConnectionToLogic {
 
     public static boolean isCPU(int playerNumber) {
         if (mode == 4) return RadioButtons.yesOrNo[0].isSelected();
-        else return RadioButtons.cpu[playerNumber].isSelected();
+        else return (getNumOfPlayers() - playerNumber - 1) < ChecksForJComponents.getNumberOfCPU();
     }
 
     public static String getNameOfPlayer(int playerNumber) {
@@ -65,8 +65,9 @@ public class GUIConnectionToLogic {
                 }
             }
         } else {
-            for (int i = 0; i < RadioButtons.diffCPU[playerNumber].length; i++) {
-                if (RadioButtons.diffCPU[playerNumber][i].isSelected()) {
+            System.out.println(playerNumber);
+            for (int i = 0; i < RadioButtons.diffCPU[playerNumber-1].length; i++) {
+                if (RadioButtons.diffCPU[playerNumber-1][i].isSelected()) {
                     Diff+=1;
                 }
             }

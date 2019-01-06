@@ -1,7 +1,6 @@
 package com.memoryGame;
 
 import com.memoryGame.GUI.GUIConnectionToLogic;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.Random;
 
@@ -55,8 +54,8 @@ public class Logic {
             else players[1] = new Player(GUIConnectionToLogic.getNameOfPlayer(1));
         }
         for (int i = 0; i < maxPlayers; i++) {
-            if (GUIConnectionToLogic.isCPU(i))
-                players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
+            if (GUIConnectionToLogic.isCPU(i)){
+                players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));}
             else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
         }
     }
