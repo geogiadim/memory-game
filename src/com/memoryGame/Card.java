@@ -8,7 +8,7 @@ package com.memoryGame;
  */
 public class Card {
     private int valueOfCard;
-//    private boolean isOpen;
+    //    private boolean isOpen;
     private boolean isPaired;
 
     /**
@@ -38,24 +38,32 @@ public class Card {
      *
      * @return the letter of the card
      */
-    int getValue() {return valueOfCard;}
+    int getValue() {
+        return valueOfCard;
+    }
 
     /**
      * Sets the letter that is represented by the card
      *
      * @param value the letter that is represented by the card
      */
-    void setValue(int value) {valueOfCard = value;}
+    void setValue(int value) {
+        valueOfCard = value;
+    }
 
     /**
      * Sets the card as paired
      */
-    void setPairedTrue() {isPaired = true;}
+    void setPairedTrue() {
+        isPaired = true;
+    }
 
     /**
      * Returns true if it is paired and false if it is unpaired
      *
      * @return true if it is paired and false if it is unpaired
      */
-    boolean getIsPaired() {return isPaired;}
+    boolean getIsPaired() {
+        return isPaired;
+    }
 }

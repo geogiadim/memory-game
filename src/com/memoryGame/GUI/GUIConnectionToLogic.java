@@ -6,6 +6,7 @@ import com.memoryGame.Table;
 import javax.swing.*;
 
 public class GUIConnectionToLogic {
+    private static final int MESSAGE_DELAY = 2;
     private static int mode = 0;
     private static int numOfPlayers = 0; //numOfCPUs = 0;
     private static int[] arrayCoordinatesX;
@@ -14,7 +15,6 @@ public class GUIConnectionToLogic {
     private static int maxCardNo;
     private static int numOfPairedCards = 0;
     private static boolean inDelay = false;
-    private static final int MESSAGE_DELAY=2;
     private static Logic logic;
 
     static int getGameMode() {
@@ -55,11 +55,11 @@ public class GUIConnectionToLogic {
         return TextField.textPlayerNames[playerNumber].getText();
     }
 
-    public static int getCPUDiff(int playerNumber){
+    public static int getCPUDiff(int playerNumber) {
         int Diff = 0;
         for (int i = 0; i < RadioButtons.diffCPU[playerNumber].length; i++) {
             if (RadioButtons.diffCPU[playerNumber][i].isSelected()) {
-                Diff = i+1;
+                Diff = i + 1;
             }
         }
         return Diff;
@@ -73,44 +73,50 @@ public class GUIConnectionToLogic {
     static void setCoordinates(int x, int y, Table table) {
         arrayCoordinatesX[cardNo] = x;
         arrayCoordinatesY[cardNo] = y;
-        Panels.removeCardButton(Buttons.cardButtons,x,y);
-        Panels.addCardButton(Buttons.openCardButtons,x,y, table);
+        Panels.removeCardButton(Buttons.cardButtons, x, y);
+        Panels.addCardButton(Buttons.openCardButtons, x, y, table);
 
         //If final Card choice
-        if (cardNo == maxCardNo - 1){
+        if (cardNo == maxCardNo - 1) {
             //if Cards match
-            if (GUIConnectionToLogic.checkCardsMatch()){
-                Labels.setTopMessageCorrect();
+            if (checkCardsMatch()) {
                 numOfPairedCards++;
                 inDelay = true;
-                Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> inDelay = false);
-
+                Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
+                    inDelay = false;
+                    Labels.setTopMessageRules();
+                });
+                Labels.setTopMessageCorrect();
                 timer.setRepeats(false);
                 timer.start();
                 //if Cards don't match
             } else {
-                Labels.setTopMessageWrong();
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
-                    for (int i = 0;i < maxCardNo; i++) {
+                    for (int i = 0; i < maxCardNo; i++) {
                         Panels.removeCardButton(Buttons.openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
                         //System.out.println("removed " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
                         Panels.addCardButton(Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
                         //System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
                         inDelay = false;
+                        Labels.setTopMessageRules();
                     }
                 });
+                Labels.setTopMessageWrong();
                 timer.setRepeats(false);
                 timer.start();
             }
-            Labels.setTopMessageRules();
             cardNo = 0;
         } else cardNo++;
     }
 
-    private static boolean checkCardsMatch() {return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);}
+    private static boolean checkCardsMatch() {
+        return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);
+    }
 
-    static boolean inDelay() {return inDelay;}
+    static boolean inDelay() {
+        return inDelay;
+    }
 
     public static void beginGamePlay(Table newTable) {
         initArrayCoordinates();
@@ -124,7 +130,7 @@ public class GUIConnectionToLogic {
         DelaysInGUI.delayForPreview(newTable, newTable2, true);
     }
 
-    static void begin(){
+    static void begin() {
         logic = new Logic(getGameMode());
     }
 }

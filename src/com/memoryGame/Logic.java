@@ -13,10 +13,10 @@ import java.util.Random;
  */
 public class Logic {
 
+    private static int maxPlayers;
     private Table newTable, newTable2;
     private Player[] players;
     private int playerTurn = 0;
-    private static int maxPlayers;
     private int mode;
 
     /**
@@ -50,7 +50,8 @@ public class Logic {
         System.out.println(maxPlayers);
         players = new Player[maxPlayers];
         for (int i = 0; i < maxPlayers; i++) {
-            if (GUIConnectionToLogic.isCPU(i)) players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i),GUIConnectionToLogic.getCPUDiff(i));
+            if (GUIConnectionToLogic.isCPU(i))
+                players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
             else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
             System.out.println(players[i].getName());
         }
@@ -84,13 +85,13 @@ public class Logic {
         int y1 = coordinatesY[0];
         int y2 = coordinatesY[1];
 
-        if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)){
+        if (newTable.getCardValue(x1, y1) == newTable.getCardValue(x2, y2)) {
             newTable.unableCard(x1, y1);
             newTable.unableCard(x2, y2);
-            if (mode == 3){
+            if (mode == 3) {
                 int x3 = coordinatesX[2];
                 int y3 = coordinatesY[2];
-                if (newTable.getCardValue(x2, y2) == newTable.getCardValue(x3, y3)){
+                if (newTable.getCardValue(x2, y2) == newTable.getCardValue(x3, y3)) {
                     newTable.unableCard(x3, y3);
                     players[playerTurn].increaseNumOfTries();
                     players[playerTurn].increaseNumberOfPairs();

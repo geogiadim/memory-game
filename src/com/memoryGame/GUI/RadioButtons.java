@@ -47,7 +47,8 @@ class RadioButtons {
             diffCPU[i][2] = makeRadioButton("Hard");
         }
     }
-    static void setRadioButtonsDuel(){
+
+    static void setRadioButtonsDuel() {
         //Make yes or no Radio Buttons
         yesOrNo = new JRadioButton[2];
         yesOrNo[0] = makeRadioButton("Yes");

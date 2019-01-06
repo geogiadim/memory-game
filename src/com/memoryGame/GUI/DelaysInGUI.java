@@ -12,14 +12,14 @@ class DelaysInGUI {
         Labels.setTopMessagePreview();
         Labels.setBottomMessageCountdown(PREVIEW_DELAY);
         if (!isDuel) {
-            Timer timer = new Timer(1000, actionEvent ->  {
+            Timer timer = new Timer(1000, actionEvent -> {
                 Labels.setBottomMessageCountdown(--timesDelayed);
                 if (timesDelayed == 0) {
                     Labels.setTopMessageRules();
                     Labels.setBottomMessagePlayerTurn(0);
                     Panels.removeAllCardButtons();
                     Panels.addAllCardButtons(Buttons.cardButtons, tableOfCards1);
-                    ((Timer)actionEvent.getSource()).stop();
+                    ((Timer) actionEvent.getSource()).stop();
                 }
             });
             timer.setRepeats(true);

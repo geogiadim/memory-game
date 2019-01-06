@@ -1,4 +1,5 @@
 package com.memoryGame.GUI;
+
 import com.memoryGame.Table;
 
 import javax.swing.*;
@@ -11,24 +12,32 @@ import java.awt.*;
 public class GUI {
     private static JFrame frame, gameFrame;
     private static JPanel messagePanel, gamePanel, playerPanel;
-    private static int numOfFrame = 0,numOfDuelFrame = 0;
+    private static int numOfFrame = 0, numOfDuelFrame = 0;
 
-    static JFrame getFrame() {return frame;}
-    static JFrame getGameFrame() {return gameFrame;}
-    static int getNumOfFrame() {return numOfFrame;}
-    static int getNumOfDuelFrame() {return  numOfDuelFrame;}
+    static JFrame getFrame() {
+        return frame;
+    }
 
-    private static JPanel getMessagePanel(){
+    static JFrame getGameFrame() {
+        return gameFrame;
+    }
+
+    static int getNumOfFrame() {
+        return numOfFrame;
+    }
+
+    static int getNumOfDuelFrame() {
+        return numOfDuelFrame;
+    }
+
+    private static JPanel getMessagePanel() {
         return messagePanel;
     }
 
-    static JPanel getGamePanel(){
+    static JPanel getGamePanel() {
         return gamePanel;
     }
-
-    static JPanel getPlayerPanel(){
-        return playerPanel;
-    }
+    //static JPanel getPlayerPanel() {return playerPanel;}
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -67,19 +76,14 @@ public class GUI {
         frame.getContentPane().repaint();
     }
 
-    static void repaintMessagePanel(){
+    static void repaintMessagePanel() {
         getMessagePanel().repaint();
         getMessagePanel().validate();
     }
 
-    static void clearGamePanel(){
-        gamePanel.removeAll();
-        gamePanel.repaint();
-    }
-
     static void frame1GameMode(Container pane) {
         numOfFrame = 1;
-        numOfDuelFrame=0;
+        numOfDuelFrame = 0;
 
         Labels.setModeLabel();
         Buttons.setModeButtons();
@@ -120,7 +124,7 @@ public class GUI {
         JPanel numOfPlayersPanel = new JPanel(new GridLayout(4, 0, 2, 2));
         ButtonGroup playersGroup = new ButtonGroup();
 
-        for (int i=0;i<RadioButtons.player.length;i++){
+        for (int i = 0; i < RadioButtons.player.length; i++) {
             numOfPlayersPanel.add(RadioButtons.player[i]);
             playersGroup.add(RadioButtons.player[i]);
         }
@@ -129,7 +133,7 @@ public class GUI {
         //Panel for CPUs radio buttons
         JPanel numOfCPUsPanel = new JPanel(new GridLayout(4, 0, 2, 2));
         ButtonGroup cpuGroup = new ButtonGroup();
-        for (int i=0;i<RadioButtons.cpu.length;i++){
+        for (int i = 0; i < RadioButtons.cpu.length; i++) {
             numOfCPUsPanel.add(RadioButtons.cpu[i]);
             cpuGroup.add(RadioButtons.cpu[i]);
         }
@@ -144,10 +148,10 @@ public class GUI {
         ButtonGroup[] diffButtonGroup = new ButtonGroup[3];
         GridLayout gridLayout = new GridLayout(1, 0, 2, 2);
 
-        for (int i = 0; i < difficultyOfCPUPanel.length; i++){
+        for (int i = 0; i < difficultyOfCPUPanel.length; i++) {
             difficultyOfCPUPanel[i] = new JPanel(gridLayout);
             diffButtonGroup[i] = new ButtonGroup();
-            for (int j = 0; j< RadioButtons.diffCPU[i].length; j++){
+            for (int j = 0; j < RadioButtons.diffCPU[i].length; j++) {
                 difficultyOfCPUPanel[i].add(RadioButtons.diffCPU[i][j]);
                 diffButtonGroup[i].add(RadioButtons.diffCPU[i][j]);
             }
@@ -156,7 +160,7 @@ public class GUI {
 
         //Panel for label and difficulty radio buttons of all CPUs
         JPanel[] panelLevel = new JPanel[3];
-        for (int i = 0; i< panelLevel.length; i++){
+        for (int i = 0; i < panelLevel.length; i++) {
             panelLevel[i] = new JPanel();
             panelLevel[i].add(Labels.cpuLevels[i]);
             panelLevel[i].add(difficultyOfCPUPanel[i]);
@@ -188,8 +192,8 @@ public class GUI {
         addNextBackButtons(pane);
     }
 
-    static void frame2PlayerChoiceDuel(Container pane){
-        numOfDuelFrame=2;
+    static void frame2PlayerChoiceDuel(Container pane) {
+        numOfDuelFrame = 2;
 
         Labels.setPlayerChoiceDuelLabels();
 
@@ -205,7 +209,7 @@ public class GUI {
         JPanel writePlayersNamePanel = new JPanel();
         writePlayersNamePanel.add(Labels.writeNames);
 
-        JPanel radioButtonsPanel = new JPanel(new GridLayout(1,2,2,2));
+        JPanel radioButtonsPanel = new JPanel(new GridLayout(1, 2, 2, 2));
         radioButtonsPanel.add(RadioButtons.yesOrNo[1]);
         radioButtonsPanel.add(RadioButtons.yesOrNo[0]);
         RadioButtons.yesOrNo[1].setSelected(true);
@@ -214,7 +218,7 @@ public class GUI {
         radioButtonsGroup.add(RadioButtons.yesOrNo[1]);
         radioButtonsGroup.add(RadioButtons.yesOrNo[0]);
 
-        JPanel selectCPUPanel = new JPanel(new GridLayout(1,0,2,2));
+        JPanel selectCPUPanel = new JPanel(new GridLayout(1, 0, 2, 2));
         selectCPUPanel.add(Labels.duelCPU);
         selectCPUPanel.add(radioButtonsPanel);
 
@@ -228,17 +232,17 @@ public class GUI {
         textFieldPanel.add(TextField.textPlayerNames[0]);
         textFieldPanel.add(TextField.textPlayerNames[1]);
 
-        JPanel CPUChoiceAndTextFieldPanel= new JPanel(new GridLayout(2,0,2,2));
+        JPanel CPUChoiceAndTextFieldPanel = new JPanel(new GridLayout(2, 0, 2, 2));
         CPUChoiceAndTextFieldPanel.add(selectCPUPanel);
         CPUChoiceAndTextFieldPanel.add(textFieldPanel);
 
-        pane.add(writePlayersNamePanel,BorderLayout.PAGE_START);
-        pane.add(CPUChoiceAndTextFieldPanel,BorderLayout.CENTER);
+        pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
+        pane.add(CPUChoiceAndTextFieldPanel, BorderLayout.CENTER);
         addNextBackButtons(pane);
     }
 
-    private static void addNextBackButtons(Container pane){
-        pane.add(Panels.backNextPanel,BorderLayout.PAGE_END);
+    private static void addNextBackButtons(Container pane) {
+        pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
     static void frame3PlayersName(Container pane) {
@@ -254,11 +258,11 @@ public class GUI {
 
         //Panel for labels and text fields for players names
         JPanel textFieldPanel = new JPanel(new GridLayout(2, 4, 2, 2));
-        for (int i = 0; i< TextField.labelPlayerNames.length; i++){
+        for (int i = 0; i < TextField.labelPlayerNames.length; i++) {
             textFieldPanel.add(TextField.labelPlayerNames[i]);
         }
 
-        for (int i = 0; i< TextField.textPlayerNames.length; i++){
+        for (int i = 0; i < TextField.textPlayerNames.length; i++) {
             textFieldPanel.add(TextField.textPlayerNames[i]);
         }
 
@@ -271,7 +275,7 @@ public class GUI {
     static void frame4GamePlay(Container pane, Table tableOfCards) {
         numOfFrame = 4;
 
-        Labels.setLabelName();
+        Labels.setMessageLabel();
         makeGamePlayPanels();
 
         messagePanel.add(Labels.topMessage);
@@ -282,7 +286,7 @@ public class GUI {
         gamePanel.setBorder(border);
         Buttons.setCardButtons(tableOfCards);
 
-        Panels.addAllCardButtons(Buttons.openCardButtons,tableOfCards);
+        Panels.addAllCardButtons(Buttons.openCardButtons, tableOfCards);
 
         playerPanel.add(Labels.bottomMessage);
         setGamePlayPanes(pane);
@@ -296,29 +300,29 @@ public class GUI {
         playerPanel = new JPanel();
     }
 
-    private static void setGamePlayPanes(Container pane){
+    private static void setGamePlayPanes(Container pane) {
         pane.add(messagePanel, BorderLayout.PAGE_START);
         pane.add(gamePanel, BorderLayout.CENTER);
         pane.add(playerPanel, BorderLayout.PAGE_END);
     }
 
-    static void frame3GamePlayDuel(Container pane, Table tableOfCards1,Table tableOfCards2){
-        numOfDuelFrame=3;
+    static void frame3GamePlayDuel(Container pane, Table tableOfCards1, Table tableOfCards2) {
+        numOfDuelFrame = 3;
 
-        Labels.setLabelName();
+        Labels.setMessageLabel();
         makeGamePlayPanels();
 
         messagePanel.add(Labels.topMessage);
 
         GridLayout cardButtonsLayout = new GridLayout(tableOfCards1.sizeX(), tableOfCards1.sizeY(), 10, 5);
 
-        JPanel table1Panel1= new JPanel(cardButtonsLayout);
+        JPanel table1Panel1 = new JPanel(cardButtonsLayout);
         TitledBorder border = BorderFactory.createTitledBorder("Table 1");
         table1Panel1.setBorder(border);
         Buttons.setCardButtons(tableOfCards1);
 //        ChecksForJComponents.previewCheck(tableOfCards1, table1Panel1);
 
-        JPanel table1Panel2= new JPanel(cardButtonsLayout);
+        JPanel table1Panel2 = new JPanel(cardButtonsLayout);
         TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
         table1Panel2.setBorder(border2);
         Buttons.setCardButtons(tableOfCards2);
