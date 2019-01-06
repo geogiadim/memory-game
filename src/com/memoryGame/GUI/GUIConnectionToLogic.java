@@ -4,7 +4,6 @@ import com.memoryGame.Logic;
 import com.memoryGame.Table;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GUIConnectionToLogic {
     private static final int MESSAGE_DELAY = 2;
@@ -17,6 +16,7 @@ public class GUIConnectionToLogic {
     private static int numOfPairedCards = 0;
     private static boolean inDelay = false;
     private static Logic logic;
+    private static int playingNowDuel = 0;
     private static int playingNow = 0;
     private static Table tempTable;
 
@@ -131,21 +131,24 @@ public class GUIConnectionToLogic {
                     }
                     inDelay = false;
                     Labels.setTopMessageRules();
+                    Labels.setBottomMessagePlayerTurn(playingNow);
                 });
                 Labels.setTopMessageWrong();
+                if (playingNow < getNumOfPlayers() - 1) playingNow++;
+                else playingNow = 0;
                 timer.setRepeats(false);
                 timer.start();
             }
             cardNo = 0;
         } else {
             cardNo++;
-            if (playingNow < getNumOfPlayers() - 1) playingNow++;
-            else playingNow = 0;
             if (mode == 4) {
+                if (playingNowDuel < getNumOfPlayers() - 1) playingNowDuel++;
+                else playingNowDuel = 0;
+                Labels.setBottomMessagePlayerTurn(playingNowDuel);
                 tempTable = table;
             }
         }
-        Labels.setBottomMessagePlayerTurn(playingNow);
     }
 
     private static boolean checkCardsMatch() {
@@ -173,6 +176,6 @@ public class GUIConnectionToLogic {
     }
 
     static boolean isFirstPlayingNow() {
-        return playingNow == 0;
+        return playingNowDuel == 0;
     }
 }

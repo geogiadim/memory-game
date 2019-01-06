@@ -28,7 +28,7 @@ class Buttons {
     private final static String ICON_BLUE = "images/closed-card-blue.png";
     private final static String ICON_RED = "images/closed-card-red.png";
     private final static String ICON_GREEN = "images/closed-card-green.png";
-    private final static String ICON_BLACK = "images/closed-card-black.png";
+
     private final static String ICON_EN_LANG = "images/en-lang.png";
     private final static String ICON_EL_LANG = "images/el-lang.png";
     //Mode Buttons
@@ -41,28 +41,30 @@ class Buttons {
     static JButton[][] cardButtons, openCardButtons;
     static JButton[][] cardButtonsDuelOne, cardButtonsDuelTwo, openCardButtonsDuelOne, openCardButtonsDuelTwo;
 
+    private static boolean isFirstCards = true;
+
     static void setModeButtons() {
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
-        basicButton = makeButton("Basic Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
+        basicButton = makeButton("Basic Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE);
         basicButton.setMnemonic(basicButton.getText().charAt(1));
-        doubleButton = makeButton("Double Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
+        doubleButton = makeButton("Double Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE);
         doubleButton.setMnemonic(doubleButton.getText().charAt(1));
-        tripleButton = makeButton("Triple Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
+        tripleButton = makeButton("Triple Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE);
         tripleButton.setMnemonic(tripleButton.getText().charAt(1));
-        duelButton = makeButton("Duel Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE, false);
+        duelButton = makeButton("Duel Game", WIDTH_MODE, HEIGHT_MODE, FONT_MODE);
         duelButton.setMnemonic(duelButton.getText().charAt(1));
 
-        enButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY, false);
+        enButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY);
         enButton.setIcon(new ImageIcon(ICON_EN_LANG));
-        elButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY, false);
+        elButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY);
         elButton.setIcon(new ImageIcon(ICON_EL_LANG));
     }
 
     static void setNextBackButtons() {
         //Make 2 Secondary Buttons and set the first letter of Buttons text as Mnemonics
-        nextButton = makeButton("Next", WIDTH_SECONDARY, HEIGHT_SECONDARY, FONT_SECONDARY, false);
+        nextButton = makeButton("Next", WIDTH_SECONDARY, HEIGHT_SECONDARY, FONT_SECONDARY);
         nextButton.setMnemonic(nextButton.getText().charAt(0));
-        backButton = makeButton("Back", WIDTH_SECONDARY, HEIGHT_SECONDARY, FONT_SECONDARY, false);
+        backButton = makeButton("Back", WIDTH_SECONDARY, HEIGHT_SECONDARY, FONT_SECONDARY);
         backButton.setMnemonic(backButton.getText().charAt(0));
     }
 
@@ -76,15 +78,17 @@ class Buttons {
             cards = new JButton[sizeX][sizeY];
             for (int i = 0; i < sizeX; i++) {
                 for (int j = 0; j < sizeY; j++) {
-                    cards[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME, true);
+                    cards[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
+                    setCardIcon(cards[i][j], isFirstCards);
                 }
             }
+            isFirstCards = false;
         } else {
             //make open card buttons
             cards = new JButton[sizeX][sizeY];
             for (int i = 0; i < sizeX; i++) {
                 for (int j = 0; j < sizeY; j++) {
-                    cards[i][j] = makeButton(String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]), WIDTH_CARD, HEIGHT_CARD, FONT_GAME, false);
+                    cards[i][j] = makeButton(String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]), WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
                     cards[i][j].setEnabled(false);
                 }
             }
@@ -92,18 +96,17 @@ class Buttons {
         return cards;
     }
 
-    private static JButton makeButton(String name, int width, int height, Font font, boolean isClosedCard) {
+    private static JButton makeButton(String name, int width, int height, Font font) {
         Dimension dimension = new Dimension(width, height);
         JButton button = new JButton(name);
         button.setFocusPainted(false);
         button.setFocusable(false);
-        if (isClosedCard) setCardIcon(button);
         button.setPreferredSize(dimension);
         button.setFont(font);
         return button;
     }
 
-    private static void setCardIcon(JButton button) {
+    private static void setCardIcon(JButton button, boolean isFirst) {
         button.setOpaque(false);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
@@ -118,7 +121,8 @@ class Buttons {
                 button.setIcon(new ImageIcon(ICON_GREEN));
                 break;
             case 4:
-                button.setIcon(new ImageIcon(ICON_BLACK));
+                if (isFirst) button.setIcon(new ImageIcon(ICON_BLUE));
+                else button.setIcon(new ImageIcon(ICON_RED));
                 break;
             default:
                 break;
