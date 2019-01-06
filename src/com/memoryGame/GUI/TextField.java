@@ -11,8 +11,8 @@ class TextField {
     //Labels for Text Fields
     static JLabel[] labelPlayerNames;
 
-    static void makeTextField(boolean duel){
-        if (duel){
+    static void makeTextField(boolean duel) {
+        if (duel) {
             textPlayerNames = new JTextField[2];
             labelPlayerNames = new JLabel[2];
         } else {
@@ -20,18 +20,26 @@ class TextField {
             labelPlayerNames = new JLabel[4];
         }
 
-        for (int i = 0; i< textPlayerNames.length; i++){
+        for (int i = 0; i < textPlayerNames.length; i++) {
             labelPlayerNames[i] = new JLabel();
             labelPlayerNames[i].setFont(FONT_TEXTFIELD_LABEL);
-            textPlayerNames[i] = new JTextField("Player " + (i+1));
+            textPlayerNames[i] = new JTextField("Player " + (i + 1));
         }
+
         labelPlayerNames[0].setText("1st Player");
         labelPlayerNames[1].setText("2nd Player");
-        if (!duel){
+        if (!duel) {
             labelPlayerNames[2].setText("3rd Player");
             labelPlayerNames[3].setText("4th Player");
         }
     }
 
-    static void cpuLabel(int i) {textPlayerNames[i].setText("CPU");}
+    static void cpuLabel(int i) {
+        textPlayerNames[i].setText("CPU " + (i + 1));
+        textPlayerNames[i].setEnabled(false);
+    }
+
+    static void playerLabel(int i) {
+        textPlayerNames[i].setText("Player " + (i + 1));
+    }
 }

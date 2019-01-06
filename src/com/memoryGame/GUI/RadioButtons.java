@@ -13,6 +13,7 @@ class RadioButtons {
     static JRadioButton[] yesOrNo;
     //CPU Difficulty Radio Buttons
     static JRadioButton[][] diffCPU;
+    static JRadioButton[] diffDuel;
 
     static void setRadioButtons() {
         //Make 4 Player Number Radio Buttons
@@ -44,11 +45,17 @@ class RadioButtons {
             diffCPU[i][2] = makeRadioButton("Hard");
         }
     }
-    static void setRadioButtonsDuel(){
+
+    static void setRadioButtonsDuel() {
         //Make yes or no Radio Buttons
         yesOrNo = new JRadioButton[2];
         yesOrNo[0] = makeRadioButton("Yes");
         yesOrNo[1] = makeRadioButton("No");
+        //Make Difficulty buttons for Duel CPU
+        diffDuel = new JRadioButton[3];
+        diffDuel[0] = makeRadioButton("Easy");
+        diffDuel[1] = makeRadioButton("Normal");
+        diffDuel[2] = makeRadioButton("Hard");
     }
 
     private static JRadioButton makeRadioButton(String name) {

@@ -1,4 +1,5 @@
 package com.memoryGame.GUI;
+
 import com.memoryGame.Table;
 
 class ActionListenerButtons {
@@ -22,10 +23,10 @@ class ActionListenerButtons {
         });
     }
 
-    static void addNextBackButtonsActList(){
+    static void addNextBackButtonsActList() {
         Buttons.backButton.addActionListener(actionEvent -> {
             GUI.clearFrame(GUI.getFrame());
-            if (GUI.getNumOfFrame() == 2 || GUI.getNumOfDuelFrame()==2) {
+            if (GUI.getNumOfFrame() == 2 || GUI.getNumOfDuelFrame() == 2) {
                 Buttons.basicButton.setSelected(false);
                 Buttons.doubleButton.setSelected(false);
                 Buttons.tripleButton.setSelected(false);
@@ -41,7 +42,7 @@ class ActionListenerButtons {
             GUI.clearFrame(GUI.getFrame());
             if (GUI.getNumOfFrame() == 2) {
                 GUI.frame3PlayersName(GUI.getFrame().getContentPane());
-            } else if (GUI.getNumOfFrame() == 3 || GUI.getNumOfDuelFrame()==2) {
+            } else if (GUI.getNumOfFrame() == 3 || GUI.getNumOfDuelFrame() == 2) {
                 GUI.getFrame().setVisible(false);
                 GUI.getFrame().dispose();
                 //Make new frame for Cards
@@ -57,14 +58,37 @@ class ActionListenerButtons {
                 final int x = i;
                 final int y = j;
                 Buttons.cardButtons[i][j].addActionListener(actionEvent -> {
-                    if (!GUIConnectionToLogic.inDelay())
-                        GUIConnectionToLogic.setCoordinates(x,y, table);
+                    if (GUIConnectionToLogic.notInDelay())
+                        GUIConnectionToLogic.setCoordinates(x, y, table, Buttons.cardButtons, Buttons.openCardButtons);
                 });
             }
         }
     }
 
-    private static void selectPlayersForDuel(){
+    static void addCardButtonsActListDuel(Table table1, Table table2){
+        for (int i = 0; i < table1.sizeX(); i++) {
+            for (int j = 0; j < table1.sizeY(); j++) {
+                final int x = i;
+                final int y = j;
+                Buttons.cardButtonsDuelOne[i][j].addActionListener(actionEvent -> {
+                    if (GUIConnectionToLogic.isFirstPlayingNow()){
+                        if (GUIConnectionToLogic.notInDelay()){
+                            GUIConnectionToLogic.setCoordinates(x, y, table1, Buttons.cardButtonsDuelOne, Buttons.openCardButtonsDuelOne);
+                        }
+                    }
+                });
+                Buttons.cardButtonsDuelTwo[i][j].addActionListener(actionEvent -> {
+                    if (!GUIConnectionToLogic.isFirstPlayingNow()){
+                        if (GUIConnectionToLogic.notInDelay()){
+                            GUIConnectionToLogic.setCoordinates(x, y, table2, Buttons.cardButtonsDuelTwo, Buttons.openCardButtonsDuelTwo);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    private static void selectPlayersForDuel() {
         GUI.clearFrame(GUI.getFrame());
         GUI.frame2PlayerChoiceDuel(GUI.getFrame().getContentPane());
         GUI.getFrame().validate();
