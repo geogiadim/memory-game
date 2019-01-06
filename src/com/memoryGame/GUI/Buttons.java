@@ -39,6 +39,7 @@ class Buttons {
     static JButton nextButton, backButton;
     //Card Buttons
     static JButton[][] cardButtons, openCardButtons;
+    static JButton[][] cardButtonsDuelOne, cardButtonsDuelTwo, openCardButtonsDuelOne, openCardButtonsDuelTwo;
 
     static void setModeButtons() {
         //Make 4 Mode Buttons and set the second letter of Buttons text as Mnemonics
@@ -65,33 +66,38 @@ class Buttons {
         backButton.setMnemonic(backButton.getText().charAt(0));
     }
 
-    static void setCardButtons(Table tableOfCards) {
+    private static JButton[][] setCards(Table tableOfCards, boolean isClosed) {
         int sizeX = tableOfCards.sizeX();
         int sizeY = tableOfCards.sizeY();
+        JButton[][] cards;
 
-        //make closed card buttons
-        cardButtons = new JButton[sizeX][sizeY];
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                cardButtons[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME, true);
+        if (isClosed) {
+            //make closed card buttons
+            cards = new JButton[sizeX][sizeY];
+            for (int i = 0; i < sizeX; i++) {
+                for (int j = 0; j < sizeY; j++) {
+                    cards[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME, true);
+                }
+            }
+        } else {
+            //make open card buttons
+            cards = new JButton[sizeX][sizeY];
+            for (int i = 0; i < sizeX; i++) {
+                for (int j = 0; j < sizeY; j++) {
+                    cards[i][j] = makeButton(String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]), WIDTH_CARD, HEIGHT_CARD, FONT_GAME, false);
+                    cards[i][j].setEnabled(false);
+                }
             }
         }
-        //make opened card buttons
-        openCardButtons = new JButton[sizeX][sizeY];
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                openCardButtons[i][j] = makeButton(String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]), WIDTH_CARD, HEIGHT_CARD, FONT_GAME, false);
-                openCardButtons[i][j].setEnabled(false);
-            }
-        }
+        return cards;
     }
 
-    private static JButton makeButton(String name, int width, int height, Font font, boolean isCard) {
+    private static JButton makeButton(String name, int width, int height, Font font, boolean isClosedCard) {
         Dimension dimension = new Dimension(width, height);
         JButton button = new JButton(name);
         button.setFocusPainted(false);
         button.setFocusable(false);
-        if (isCard) setCardIcon(button);
+        if (isClosedCard) setCardIcon(button);
         button.setPreferredSize(dimension);
         button.setFont(font);
         return button;
@@ -117,5 +123,17 @@ class Buttons {
             default:
                 break;
         }
+    }
+
+    static void setCardButtons(Table tableOfCards) {
+        cardButtons = setCards(tableOfCards, true);
+        openCardButtons = setCards(tableOfCards, false);
+    }
+
+    static void setCardButtonsDuel(Table tableOfCards1, Table tableOfCards2) {
+        cardButtonsDuelOne = setCards(tableOfCards1, true);
+        cardButtonsDuelTwo = setCards(tableOfCards2, true);
+        openCardButtonsDuelOne = setCards(tableOfCards1, false);
+        openCardButtonsDuelTwo = setCards(tableOfCards2, false);
     }
 }

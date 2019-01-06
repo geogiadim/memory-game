@@ -4,6 +4,7 @@ import com.memoryGame.Logic;
 import com.memoryGame.Table;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GUIConnectionToLogic {
     private static final int MESSAGE_DELAY = 2;
@@ -16,6 +17,8 @@ public class GUIConnectionToLogic {
     private static int numOfPairedCards = 0;
     private static boolean inDelay = false;
     private static Logic logic;
+    private static int playingNow = 0;
+    private static Table tempTable;
 
     static int getGameMode() {
         if (Buttons.basicButton.isSelected()) {
@@ -28,27 +31,31 @@ public class GUIConnectionToLogic {
             maxCardNo = 3;
             mode = 3;
         } else if (Buttons.duelButton.isSelected()) {
-            //maxCardNo = ;
+            maxCardNo = 2;
             mode = 4;
         }
         return mode;
     }
 
     public static int getNumOfPlayers() {
-        if (RadioButtons.player[0].isSelected()) {
-            numOfPlayers = 1;
-        } else if (RadioButtons.player[1].isSelected()) {
-            numOfPlayers = 2;
-        } else if (RadioButtons.player[2].isSelected()) {
-            numOfPlayers = 3;
-        } else if (RadioButtons.player[3].isSelected()) {
-            numOfPlayers = 4;
+        if (mode == 4) return 2;
+        else {
+            if (RadioButtons.player[0].isSelected()) {
+                numOfPlayers = 1;
+            } else if (RadioButtons.player[1].isSelected()) {
+                numOfPlayers = 2;
+            } else if (RadioButtons.player[2].isSelected()) {
+                numOfPlayers = 3;
+            } else if (RadioButtons.player[3].isSelected()) {
+                numOfPlayers = 4;
+            }
+            return numOfPlayers;
         }
-        return numOfPlayers;
     }
 
     public static boolean isCPU(int playerNumber) {
-        return RadioButtons.cpu[playerNumber].isSelected();
+        if (mode == 4) return RadioButtons.yesOrNo[0].isSelected();
+        else return RadioButtons.cpu[playerNumber].isSelected();
     }
 
     public static String getNameOfPlayer(int playerNumber) {
@@ -57,9 +64,17 @@ public class GUIConnectionToLogic {
 
     public static int getCPUDiff(int playerNumber) {
         int Diff = 0;
-        for (int i = 0; i < RadioButtons.diffCPU[playerNumber].length; i++) {
-            if (RadioButtons.diffCPU[playerNumber][i].isSelected()) {
-                Diff = i + 1;
+        if (mode == 4) {
+            for (int i = 0; i < RadioButtons.diffDuel.length; i++) {
+                if (RadioButtons.diffDuel[i].isSelected()) {
+                    Diff+=1;
+                }
+            }
+        } else {
+            for (int i = 0; i < RadioButtons.diffCPU[playerNumber].length; i++) {
+                if (RadioButtons.diffCPU[playerNumber][i].isSelected()) {
+                    Diff+=1;
+                }
             }
         }
         return Diff;
@@ -70,11 +85,17 @@ public class GUIConnectionToLogic {
         arrayCoordinatesY = new int[maxCardNo];
     }
 
-    static void setCoordinates(int x, int y, Table table) {
+    static void setCoordinates(int x, int y, Table table, JButton[][] cardButtons, JButton[][] openCardButtons) {
         arrayCoordinatesX[cardNo] = x;
         arrayCoordinatesY[cardNo] = y;
-        Panels.removeCardButton(Buttons.cardButtons, x, y);
-        Panels.addCardButton(Buttons.openCardButtons, x, y, table);
+        if (mode == 4){
+            Panels.removeCardButton(cardButtons, x, y, isFirstPlayingNow());
+            Panels.addCardButton(openCardButtons, x, y, table, isFirstPlayingNow());
+        } else {
+            Panels.removeCardButton(cardButtons, x, y);
+            Panels.addCardButton(openCardButtons, x, y, table);
+        }
+
 
         //If final Card choice
         if (cardNo == maxCardNo - 1) {
@@ -93,29 +114,52 @@ public class GUIConnectionToLogic {
             } else {
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
-                    for (int i = 0; i < maxCardNo; i++) {
-                        Panels.removeCardButton(Buttons.openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
-                        //System.out.println("removed " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
-                        Panels.addCardButton(Buttons.cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
-                        //System.out.println("added " + (arrayCoordinatesX[i] + 1) + (arrayCoordinatesY[i] + 1));
-                        inDelay = false;
-                        Labels.setTopMessageRules();
+                    if (mode == 4){
+                        if (!isFirstPlayingNow()){
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelOne, arrayCoordinatesX[0],arrayCoordinatesY[0], true);
+                            Panels.addCardButton(Buttons.cardButtonsDuelOne, arrayCoordinatesX[0], arrayCoordinatesY[0], tempTable, true);
+
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelTwo, arrayCoordinatesX[1],arrayCoordinatesY[1], false);
+                            Panels.addCardButton(Buttons.cardButtonsDuelTwo, arrayCoordinatesX[1], arrayCoordinatesY[1], table, false);
+                        }
+                        else {
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelTwo, arrayCoordinatesX[0],arrayCoordinatesY[0], false);
+                            Panels.addCardButton(Buttons.cardButtonsDuelTwo, arrayCoordinatesX[0], arrayCoordinatesY[0], tempTable, false);
+
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelOne, arrayCoordinatesX[1],arrayCoordinatesY[1], true);
+                            Panels.addCardButton(Buttons.cardButtonsDuelOne, arrayCoordinatesX[1], arrayCoordinatesY[1], table, true);
+                        }
+                    } else {
+                        for (int i = 0; i < maxCardNo; i++) {
+                            Panels.removeCardButton(openCardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i]);
+                            Panels.addCardButton(cardButtons, arrayCoordinatesX[i], arrayCoordinatesY[i], table);
+                        }
                     }
+                    inDelay = false;
+                    Labels.setTopMessageRules();
                 });
                 Labels.setTopMessageWrong();
                 timer.setRepeats(false);
                 timer.start();
             }
             cardNo = 0;
-        } else cardNo++;
+        } else {
+            cardNo++;
+            if (playingNow < getNumOfPlayers() - 1) playingNow++;
+            else playingNow = 0;
+            if (mode == 4) {
+                tempTable = table;
+            }
+        }
+        Labels.setBottomMessagePlayerTurn(playingNow);
     }
 
     private static boolean checkCardsMatch() {
         return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);
     }
 
-    static boolean inDelay() {
-        return inDelay;
+    static boolean notInDelay() {
+        return !inDelay;
     }
 
     public static void beginGamePlay(Table newTable) {
@@ -127,10 +171,14 @@ public class GUIConnectionToLogic {
     public static void beginGamePlayDuel(Table newTable, Table newTable2) {
         initArrayCoordinates();
         GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), newTable, newTable2);
-        DelaysInGUI.delayForPreview(newTable, newTable2, true);
+        DelaysInGUI.delayForPreview(newTable, newTable2);
     }
 
     static void begin() {
         logic = new Logic(getGameMode());
+    }
+
+    static boolean isFirstPlayingNow() {
+        return playingNow == 0;
     }
 }

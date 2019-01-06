@@ -11,6 +11,7 @@ import java.awt.*;
  */
 public class GUI {
     private static JFrame frame, gameFrame;
+    private static JPanel tablePanel1, tablePanel2;
     private static JPanel messagePanel, gamePanel, playerPanel;
     private static int numOfFrame = 0, numOfDuelFrame = 0;
 
@@ -38,6 +39,10 @@ public class GUI {
         return gamePanel;
     }
     //static JPanel getPlayerPanel() {return playerPanel;}
+    static JPanel getGamePanelDuel(boolean isFirst){
+        if (isFirst) return tablePanel1;
+        else return tablePanel2;
+    }
 
     public static void createGUI() {
         frame = new JFrame("Memory Game");
@@ -200,8 +205,8 @@ public class GUI {
         Buttons.setNextBackButtons();
         ActionListenerButtons.addNextBackButtonsActList();
         Panels.makeNextBackPanel();
-        RadioButtons.setRadioButtonsDuel();
 
+        RadioButtons.setRadioButtonsDuel();
         ActionListenerRadioButtons.addRadButActListDuel();
 
         TextField.makeTextField(true);
@@ -212,15 +217,25 @@ public class GUI {
         JPanel radioButtonsPanel = new JPanel(new GridLayout(1, 2, 2, 2));
         radioButtonsPanel.add(RadioButtons.yesOrNo[1]);
         radioButtonsPanel.add(RadioButtons.yesOrNo[0]);
-        RadioButtons.yesOrNo[1].setSelected(true);
 
         ButtonGroup radioButtonsGroup = new ButtonGroup();
         radioButtonsGroup.add(RadioButtons.yesOrNo[1]);
         radioButtonsGroup.add(RadioButtons.yesOrNo[0]);
+        RadioButtons.yesOrNo[1].setSelected(true);
 
         JPanel selectCPUPanel = new JPanel(new GridLayout(1, 0, 2, 2));
         selectCPUPanel.add(Labels.duelCPU);
         selectCPUPanel.add(radioButtonsPanel);
+
+        JPanel selectCPUDiff = new JPanel(new GridLayout(1,0,2,2));
+        ButtonGroup cpuDiffButtonGroup = new ButtonGroup();
+
+        for (int i = 0; i < RadioButtons.diffDuel.length; i++) {
+            selectCPUDiff.add(RadioButtons.diffDuel[i]);
+            cpuDiffButtonGroup.add(RadioButtons.diffDuel[i]);
+            RadioButtons.diffDuel[i].setEnabled(false);
+        }
+        RadioButtons.diffDuel[0].setSelected(true);
 
         JPanel textFieldPanel = new JPanel(new GridLayout(2, 2, 2, 2));
         TitledBorder border = BorderFactory.createTitledBorder("");
@@ -232,8 +247,9 @@ public class GUI {
         textFieldPanel.add(TextField.textPlayerNames[0]);
         textFieldPanel.add(TextField.textPlayerNames[1]);
 
-        JPanel CPUChoiceAndTextFieldPanel = new JPanel(new GridLayout(2, 0, 2, 2));
+        JPanel CPUChoiceAndTextFieldPanel = new JPanel(new GridLayout(3, 0, 2, 2));
         CPUChoiceAndTextFieldPanel.add(selectCPUPanel);
+        CPUChoiceAndTextFieldPanel.add(selectCPUDiff);
         CPUChoiceAndTextFieldPanel.add(textFieldPanel);
 
         pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
@@ -311,32 +327,30 @@ public class GUI {
 
         Labels.setMessageLabel();
         makeGamePlayPanels();
+        Buttons.setCardButtonsDuel(tableOfCards1, tableOfCards2);
 
         messagePanel.add(Labels.topMessage);
 
         GridLayout cardButtonsLayout = new GridLayout(tableOfCards1.sizeX(), tableOfCards1.sizeY(), 10, 5);
 
-        JPanel table1Panel1 = new JPanel(cardButtonsLayout);
-        TitledBorder border = BorderFactory.createTitledBorder("Table 1");
-        table1Panel1.setBorder(border);
-        Buttons.setCardButtons(tableOfCards1);
-//        ChecksForJComponents.previewCheck(tableOfCards1, table1Panel1);
+        tablePanel1 = new JPanel(cardButtonsLayout);
+            TitledBorder border = BorderFactory.createTitledBorder("Table 1");
+            tablePanel1.setBorder(border);
+            Panels.addAllCardButtons(Buttons.openCardButtonsDuelOne, tableOfCards1, true);
 
-        JPanel table1Panel2 = new JPanel(cardButtonsLayout);
-        TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
-        table1Panel2.setBorder(border2);
-        Buttons.setCardButtons(tableOfCards2);
-//        ChecksForJComponents.previewCheck(tableOfCards2, table1Panel2);
+        tablePanel2 = new JPanel(cardButtonsLayout);
+            TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
+            tablePanel2.setBorder(border2);
+            Panels.addAllCardButtons(Buttons.openCardButtonsDuelTwo, tableOfCards1, false);
 
         GridLayout layout = new GridLayout(1, 0, 10, 10);
         gamePanel.setLayout(layout);
-        gamePanel.add(table1Panel1);
-        gamePanel.add(table1Panel2);
+        gamePanel.add(tablePanel1);
+        gamePanel.add(tablePanel2);
 
         playerPanel.add(Labels.bottomMessage);
 
         setGamePlayPanes(pane);
-        //ActionListenerButtons.addCardButtonsActList(tableOfCards2,table1Panel1,pane);
-        //ActionListenerButtons.addCardButtonsActList(tableOfCards2,table1Panel2,pane);
+        ActionListenerButtons.addCardButtonsActListDuel(tableOfCards1, tableOfCards2);
     }
 }

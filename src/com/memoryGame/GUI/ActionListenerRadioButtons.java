@@ -1,5 +1,7 @@
 package com.memoryGame.GUI;
 
+import com.memoryGame.Table;
+
 import javax.swing.*;
 
 class ActionListenerRadioButtons {
@@ -15,8 +17,6 @@ class ActionListenerRadioButtons {
                 for (int k = 0; k <= cpuNo; k++) {
                     TextField.textPlayerNames[k].setEnabled(true);
                     if (k > 0) {
-                        TextField.cpuLabel(k);
-                        TextField.textPlayerNames[k].setEnabled(false);
                         for (int m = 0; m < RadioButtons.diffCPU[k - 1].length; m++) {
                             RadioButtons.diffCPU[k - 1][m].setEnabled(true);
                         }
@@ -24,9 +24,6 @@ class ActionListenerRadioButtons {
                 }
 
                 for (int j = RadioButtons.cpu.length - 1; j > cpuNo; j--) {
-                    TextField.textPlayerNames[j].setEnabled(false);
-                    TextField.playerLabel(j);
-                    System.out.println(j);
                     RadioButtons.diffCPU[j - 1][0].setSelected(true);
                     for (int m = 0; m < RadioButtons.diffCPU[j - 1].length; m++) {
                         RadioButtons.diffCPU[j - 1][m].setEnabled(false);
@@ -56,10 +53,16 @@ class ActionListenerRadioButtons {
         RadioButtons.yesOrNo[1].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(true);
             TextField.textPlayerNames[1].setText("Player 2");
+            for (JRadioButton radioButton : RadioButtons.diffDuel){
+                radioButton.setEnabled(false);
+            }
         });
         RadioButtons.yesOrNo[0].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(false);
             TextField.textPlayerNames[1].setText("CPU");
+            for (JRadioButton radioButton : RadioButtons.diffDuel){
+                radioButton.setEnabled(true);
+            }
         });
     }
 }

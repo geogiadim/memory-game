@@ -49,16 +49,16 @@ class Labels {
     }
 
     static void setTopMessagePreview() {
-        topMessage.setText("Showing Cards for " + DelaysInGUI.getPreviewDelay() + " seconds. Try to remember as many as you can.");
+        topMessage.setText("Showing Cards for " + DelaysInGUI.getPreviewDelay() + " seconds. Remember as many as you can.");
     }
 
     static void setTopMessageRules() {
         int mode = GUIConnectionToLogic.getGameMode();
         if (mode == 3)
-            topMessage.setText("You have to choose three cards in each round.");
+            topMessage.setText("Choose three cards in each round.");
         else if (mode == 4)
-            topMessage.setText("You have to chose only one card of your table in each round.");
-        else topMessage.setText("You have to choose two cards in each round.");
+            topMessage.setText("Choose only one card from your table in each round.");
+        else topMessage.setText("Choose two cards in each round.");
         GUI.repaintMessagePanel();
     }
 
