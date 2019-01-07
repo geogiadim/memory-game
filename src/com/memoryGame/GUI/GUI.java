@@ -15,27 +15,13 @@ public class GUI {
     private static JPanel messagePanel, gamePanel, playerPanel;
     private static int numOfFrame = 0, numOfDuelFrame = 0;
 
-    static JFrame getFrame() {
-        return frame;
-    }
-    static JFrame getGameFrame() {
-        return gameFrame;
-    }
-
+    static JFrame getFrame() {return frame;}
+    static JFrame getGameFrame() {return gameFrame;}
     static JFrame getGameOverFrame(){return gameOverFrame;}
-
-    static int getNumOfFrame() {
-        return numOfFrame;
-    }
-    static int getNumOfDuelFrame() {
-        return numOfDuelFrame;
-    }
-    private static JPanel getMessagePanel() {
-        return messagePanel;
-    }
-    static JPanel getGamePanel() {
-        return gamePanel;
-    }
+    static int getNumOfFrame() {return numOfFrame;}
+    static int getNumOfDuelFrame() {return numOfDuelFrame;}
+    private static JPanel getMessagePanel() {return messagePanel;}
+    static JPanel getGamePanel() {return gamePanel;}
     static JPanel getGamePanelDuel(boolean isFirst){
         if (isFirst) return tablePanel1;
         else return tablePanel2;

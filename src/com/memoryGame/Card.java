@@ -13,9 +13,7 @@ public class Card {
     /**
      * Creates a card and set it as closed and unpaired.
      */
-    public Card() {
-        isPaired = false;
-    }
+    public Card() {isPaired = false;}
 
     /**
      * Returns the letter of the card

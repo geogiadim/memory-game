@@ -165,6 +165,7 @@ public class GUIConnectionToLogic {
             if (numOfPairedCards == table.sizeOfTable()) gameOver();
     }
     private static void gameOver(){
+        logic.createFile();
         Timer timer = new Timer(2* 1000, actionEvent -> {
             GUI.getGameFrame().setVisible(false);
             GUI.getGameFrame().dispose();

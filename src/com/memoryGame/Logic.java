@@ -1,6 +1,7 @@
 package com.memoryGame;
 
 import com.memoryGame.GUI.GUIConnectionToLogic;
+
 import java.util.Random;
 
 /**
@@ -17,8 +18,8 @@ public class Logic {
     private Player[] players;
     private int playerTurn = 0;
     private int mode;
-    private int minSteps,maxPairedCards, winnerIndex;
-
+    private int winnerIndex;
+    private ScoresFIle file;
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
      *
@@ -158,16 +159,36 @@ public class Logic {
         return state;
     }
 
-    private int highScoreInSolo(){
-        minSteps= players[0].getNumOfTries();
-        return  minSteps;
+    public void createFile(){
+        int num= GUIConnectionToLogic.getNumOfPlayers();
+        String name;
+        int index,steps;
+        //if not solo mode
+        if (num>1){
+            //if exists a winner
+            if (isThereAWinner()) {
+                index = getWinnerIndex();
+                name = players[index].getName();
+                file =  new ScoresFIle(name, mode);
+            }//if does not exist
+            else {
+                name="";
+                file =  new ScoresFIle(name, mode);
+            }
+        }//if solo mode
+        else {
+            name = players[0].getName();
+            steps = players[0].getNumOfTries();
+            file =  new ScoresFIle(name,steps,mode);
+        }
     }
+
+    private ScoresFIle getFile(){return file;}
 
     private boolean isThereAWinner (){
         int maxIndex=0;
         int winners=0;
         maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
-        maxPairedCards = players[0].getNumberOfPairs();
         for (int i =1; i<maxPlayers;i++){
             if (players[i].getNumberOfPairs() > players[maxIndex].getNumberOfPairs()){
                 maxIndex = i;
@@ -179,19 +200,11 @@ public class Logic {
                 winners++;
             }
         }
-        return winners>1;
+        return winners==1;
     }
 
     private void setWinnerIndex(int index) {winnerIndex = index;}
     private int getWinnerIndex() {return winnerIndex;}
-
-    private String winnerName (){
-        String name="";
-        if (isThereAWinner()){
-            name= players[getWinnerIndex()].getName();
-        }
-        return name;
-    }
 
     /**
      * Fills the normal Game Mode Tables with different Card values according to the Game Mode.

@@ -39,7 +39,7 @@ class Labels {
 
     static void setGameOverLabel(){
         gameOverLabel= makeLabel("Game Over",FONT_SIZE_HUGE);
-        results= makeLabel("Check in the document <<Memory_Game>> the results of the game",FONT_SIZE_LARGE);
+        results= makeLabel("Check in the document <<Memory-Game-Scores.txt>> the results of the game",FONT_SIZE_MEDIUM);
         results.setForeground(Color.BLACK);
     }
 
