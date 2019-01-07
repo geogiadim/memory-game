@@ -18,10 +18,15 @@ class Labels {
 
     private static ResourceBundle bundle;
 
-    static void setLocale(){
+    static void setLocale() {
 //        Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
-        bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleLabels", locale);
+        try {
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleLabels", locale);
+        } catch (java.util.MissingResourceException e) {
+            Locale defaultLocale = new Locale("en", "US");
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleLabels", defaultLocale);
+        }
     }
 
     static void setModeLabel() {

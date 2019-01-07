@@ -3,11 +3,6 @@ package com.memoryGame.GUI.i18n;
 import java.util.ListResourceBundle;
 
 public class MessageListBundleRadioButtons_el_GR extends ListResourceBundle {
-    @Override
-    protected Object[][] getContents() {
-        return contents;
-    }
-
     private Object[][] contents = {
             {"player1", "1 Παίκτης"},
             {"players", " Παίκτες"},
@@ -19,4 +14,9 @@ public class MessageListBundleRadioButtons_el_GR extends ListResourceBundle {
             {"yesRadioButton", "Ναι"},
             {"noRadioButton", "Όχι"}
     };
+
+    @Override
+    protected Object[][] getContents() {
+        return contents;
+    }
 }

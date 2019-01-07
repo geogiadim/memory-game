@@ -38,8 +38,9 @@ public class GUI {
     static JPanel getGamePanel() {
         return gamePanel;
     }
+
     //static JPanel getPlayerPanel() {return playerPanel;}
-    static JPanel getGamePanelDuel(boolean isFirst){
+    static JPanel getGamePanelDuel(boolean isFirst) {
         if (isFirst) return tablePanel1;
         else return tablePanel2;
     }
@@ -231,7 +232,7 @@ public class GUI {
         selectCPUPanel.add(Labels.duelCPU);
         selectCPUPanel.add(radioButtonsPanel);
 
-        JPanel selectCPUDiff = new JPanel(new GridLayout(1,0,2,2));
+        JPanel selectCPUDiff = new JPanel(new GridLayout(1, 0, 2, 2));
         ButtonGroup cpuDiffButtonGroup = new ButtonGroup();
 
         for (int i = 0; i < RadioButtons.diffDuel.length; i++) {
@@ -338,14 +339,14 @@ public class GUI {
         GridLayout cardButtonsLayout = new GridLayout(tableOfCards1.sizeX(), tableOfCards1.sizeY(), 10, 5);
 
         tablePanel1 = new JPanel(cardButtonsLayout);
-            TitledBorder border = BorderFactory.createTitledBorder("Table 1");
-            tablePanel1.setBorder(border);
-            Panels.addAllCardButtons(Buttons.openCardButtonsDuelOne, tableOfCards1, true);
+        TitledBorder border = BorderFactory.createTitledBorder("Table 1");
+        tablePanel1.setBorder(border);
+        Panels.addAllCardButtons(Buttons.openCardButtonsDuelOne, tableOfCards1, true);
 
         tablePanel2 = new JPanel(cardButtonsLayout);
-            TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
-            tablePanel2.setBorder(border2);
-            Panels.addAllCardButtons(Buttons.openCardButtonsDuelTwo, tableOfCards1, false);
+        TitledBorder border2 = BorderFactory.createTitledBorder("Table 2");
+        tablePanel2.setBorder(border2);
+        Panels.addAllCardButtons(Buttons.openCardButtonsDuelTwo, tableOfCards1, false);
 
         GridLayout layout = new GridLayout(1, 0, 10, 10);
         gamePanel.setLayout(layout);

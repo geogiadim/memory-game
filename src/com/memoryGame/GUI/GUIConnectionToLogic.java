@@ -40,8 +40,8 @@ public class GUIConnectionToLogic {
     public static int getNumOfPlayers() {
         if (mode == 4) return 2;
         else {
-            for (int i = 0; i < RadioButtons.player.length; i++){
-                if (RadioButtons.player[i].isSelected()) numOfPlayers = i+1;
+            for (int i = 0; i < RadioButtons.player.length; i++) {
+                if (RadioButtons.player[i].isSelected()) numOfPlayers = i + 1;
             }
             return numOfPlayers;
         }
@@ -61,14 +61,14 @@ public class GUIConnectionToLogic {
         if (mode == 4) {
             for (int i = 0; i < RadioButtons.diffDuel.length; i++) {
                 if (RadioButtons.diffDuel[i].isSelected()) {
-                    Diff+=1;
+                    Diff += 1;
                 }
             }
         } else {
             System.out.println(playerNumber);
-            for (int i = 0; i < RadioButtons.diffCPU[playerNumber-1].length; i++) {
-                if (RadioButtons.diffCPU[playerNumber-1][i].isSelected()) {
-                    Diff+=1;
+            for (int i = 0; i < RadioButtons.diffCPU[playerNumber - 1].length; i++) {
+                if (RadioButtons.diffCPU[playerNumber - 1][i].isSelected()) {
+                    Diff += 1;
                 }
             }
         }
@@ -84,7 +84,7 @@ public class GUIConnectionToLogic {
         arrayCoordinatesX[cardNo] = x;
         arrayCoordinatesY[cardNo] = y;
 
-        if (mode == 4){
+        if (mode == 4) {
             Panels.removeCardButton(cardButtons, x, y, isFirstPlayingNow());
             Panels.addCardButton(openCardButtons, x, y, table, isFirstPlayingNow());
         } else {
@@ -110,20 +110,19 @@ public class GUIConnectionToLogic {
             } else {
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
-                    if (mode == 4){
+                    if (mode == 4) {
                         //if player 2 playing
-                        if (!isFirstPlayingNow()){
-                            Panels.removeCardButton(Buttons.openCardButtonsDuelOne, arrayCoordinatesX[0],arrayCoordinatesY[0], true);
+                        if (!isFirstPlayingNow()) {
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelOne, arrayCoordinatesX[0], arrayCoordinatesY[0], true);
                             Panels.addCardButton(Buttons.cardButtonsDuelOne, arrayCoordinatesX[0], arrayCoordinatesY[0], tempTable, true);
 
-                            Panels.removeCardButton(Buttons.openCardButtonsDuelTwo, arrayCoordinatesX[1],arrayCoordinatesY[1], false);
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelTwo, arrayCoordinatesX[1], arrayCoordinatesY[1], false);
                             Panels.addCardButton(Buttons.cardButtonsDuelTwo, arrayCoordinatesX[1], arrayCoordinatesY[1], table, false);
-                        }
-                        else {
-                            Panels.removeCardButton(Buttons.openCardButtonsDuelTwo, arrayCoordinatesX[0],arrayCoordinatesY[0], false);
+                        } else {
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelTwo, arrayCoordinatesX[0], arrayCoordinatesY[0], false);
                             Panels.addCardButton(Buttons.cardButtonsDuelTwo, arrayCoordinatesX[0], arrayCoordinatesY[0], tempTable, false);
 
-                            Panels.removeCardButton(Buttons.openCardButtonsDuelOne, arrayCoordinatesX[1],arrayCoordinatesY[1], true);
+                            Panels.removeCardButton(Buttons.openCardButtonsDuelOne, arrayCoordinatesX[1], arrayCoordinatesY[1], true);
                             Panels.addCardButton(Buttons.cardButtonsDuelOne, arrayCoordinatesX[1], arrayCoordinatesY[1], table, true);
                         }
                         Labels.setBottomMessagePlayerTurn(playingNowDuel);
@@ -138,7 +137,7 @@ public class GUIConnectionToLogic {
                     Labels.setTopMessageRules();
                 });
                 Labels.setTopMessageWrong();
-                if (mode != 4){
+                if (mode != 4) {
                     if (playingNow < getNumOfPlayers() - 1) playingNow++;
                     else playingNow = 0;
                 }

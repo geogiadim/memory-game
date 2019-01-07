@@ -19,10 +19,15 @@ class RadioButtons {
 
     private static ResourceBundle bundle;
 
-    static void setLocale(){
+    static void setLocale() {
 //        Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
-        bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleRadioButtons", locale);
+        try {
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleRadioButtons", locale);
+        } catch (java.util.MissingResourceException e) {
+            Locale defaultLocale = new Locale("en", "US");
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleRadioButtons", defaultLocale);
+        }
     }
 
     static void setRadioButtons() {

@@ -26,31 +26,30 @@ class Buttons {
     private final static Font FONT_MODE = new Font(Font.SANS_SERIF, Font.PLAIN, FONT_SIZE_MODE);
     private final static Font FONT_SECONDARY = new Font(Font.SANS_SERIF, Font.PLAIN, FONT_SIZE_GAME);
     private final static Font FONT_GAME = new Font(Font.SANS_SERIF, Font.PLAIN, FONT_SIZE_CARD);
-//    private final static int HEIGHT_LANG = 60;
+    //Card Icons
     private final static String ICON_BLUE = "images/closed-card-blue.png";
     private final static String ICON_RED = "images/closed-card-red.png";
     private final static String ICON_GREEN = "images/closed-card-green.png";
-
-    private static ResourceBundle bundle;
-
-//    private final static String ICON_EN_LANG = "images/en-lang.png";
-//    private final static String ICON_EL_LANG = "images/el-lang.png";
     //Mode Buttons
     static JButton basicButton, doubleButton, tripleButton, duelButton;
-//    //Language Buttons
-//    static JButton enButton, elButton;
     //Secondary Buttons
     static JButton nextButton, backButton;
     //Card Buttons
     static JButton[][] cardButtons, openCardButtons;
     static JButton[][] cardButtonsDuelOne, cardButtonsDuelTwo, openCardButtonsDuelOne, openCardButtonsDuelTwo;
-
+    //ResourceBundle for i18n
+    private static ResourceBundle bundle;
     private static boolean isFirstCards = true;
 
-    static void setLocale(){
+    static void setLocale() {
 //        Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
-        bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleButtons", locale);
+        try {
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleButtons", locale);
+        } catch (java.util.MissingResourceException e) {
+            Locale defaultLocale = new Locale("en", "US");
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleButtons", defaultLocale);
+        }
     }
 
     static void setModeButtons() {

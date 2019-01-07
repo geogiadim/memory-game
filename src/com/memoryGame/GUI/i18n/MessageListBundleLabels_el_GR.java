@@ -3,11 +3,6 @@ package com.memoryGame.GUI.i18n;
 import java.util.ListResourceBundle;
 
 public class MessageListBundleLabels_el_GR extends ListResourceBundle {
-    @Override
-    protected Object[][] getContents() {
-        return contents;
-    }
-
     private Object[][] contents = {
             {"selectGM", "Επιλέξτε Κατηγορία Παιχνιδιού"},
             {"selectNumPlayers", "Επιλέξτε αριθμό Παικτών"},
@@ -24,4 +19,9 @@ public class MessageListBundleLabels_el_GR extends ListResourceBundle {
             {"topCorrect", "Σωστή επιλογή !!!"},
             {"bottomPlayerTurn", "Παίζει ο/η "}
     };
+
+    @Override
+    protected Object[][] getContents() {
+        return contents;
+    }
 }

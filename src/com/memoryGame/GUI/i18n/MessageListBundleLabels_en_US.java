@@ -3,14 +3,9 @@ package com.memoryGame.GUI.i18n;
 import java.util.ListResourceBundle;
 
 public class MessageListBundleLabels_en_US extends ListResourceBundle {
-    @Override
-    protected Object[][] getContents() {
-        return contents;
-    }
-
     private Object[][] contents = {
-            {"selectGM","Select Game mode"},
-            {"selectNumPlayers","Select Number of Players"},
+            {"selectGM", "Select Game mode"},
+            {"selectNumPlayers", "Select Number of Players"},
             {"selectCPULevel", "Choose CPU Level"},
             {"cpuLabel", "CPU "},
             {"writeNames", "Write the names of the players"},
@@ -24,4 +19,9 @@ public class MessageListBundleLabels_en_US extends ListResourceBundle {
             {"topCorrect", "Correct choice !!!"},
             {"bottomPlayerTurn", "It is the turn of "}
     };
+
+    @Override
+    protected Object[][] getContents() {
+        return contents;
+    }
 }
