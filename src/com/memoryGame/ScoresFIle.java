@@ -58,8 +58,6 @@ class ScoresFIle {
                 case 3:
                     highScores[2][1]= name+", ";
                     highScores[2][2]= String.valueOf(steps);
-                default:
-                    int x=1;
             }
         }
         else {
@@ -93,7 +91,7 @@ class ScoresFIle {
                 writer.write("\n\n");
             }
         }catch (IOException e) {
-            System.out.println("Error");
+            System.err.println("Error");
         }
     }
 }

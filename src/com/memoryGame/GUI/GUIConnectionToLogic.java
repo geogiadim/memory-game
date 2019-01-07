@@ -163,8 +163,10 @@ public class GUIConnectionToLogic {
                 tempTable = table;
             }
         }
-        if (mode!=4)
+        if (mode == 1 || mode == 2)
             if (numOfPairedCards == table.sizeOfTable() / 2) gameOver();
+        else if (mode == 3)
+            if (numOfPairedCards == table.sizeOfTable()/ 3) gameOver();
         else
             if (numOfPairedCards == table.sizeOfTable()) gameOver();
     }

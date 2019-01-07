@@ -10,14 +10,13 @@ import java.awt.*;
  *
  */
 public class GUI {
-    private static JFrame frame, gameFrame, gameOverFrame;
+    private static JFrame frame, gameFrame;
     private static JPanel tablePanel1, tablePanel2;
     private static JPanel messagePanel, gamePanel, playerPanel;
     private static int numOfFrame = 0, numOfDuelFrame = 0;
 
     static JFrame getFrame() {return frame;}
     static JFrame getGameFrame() {return gameFrame;}
-    static JFrame getGameOverFrame(){return gameOverFrame;}
     static int getNumOfFrame() {return numOfFrame;}
     static int getNumOfDuelFrame() {return numOfDuelFrame;}
     private static JPanel getMessagePanel() {return messagePanel;}
@@ -56,7 +55,7 @@ public class GUI {
     }
 
     static void createFrame3(){
-        gameOverFrame = new JFrame("Memory Game");
+        JFrame gameOverFrame = new JFrame("Memory Game");
         lastFrame(gameOverFrame.getContentPane());
         setFrame(gameOverFrame);
     }
