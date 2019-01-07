@@ -17,6 +17,7 @@ public class Logic {
     private Player[] players;
     private int playerTurn = 0;
     private int mode;
+    private int minSteps,maxPairedCards, winnerIndex;
 
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
@@ -155,6 +156,41 @@ public class Logic {
             else playerTurn = 0;
         }
         return state;
+    }
+
+    private int highScoreInSolo(){
+        minSteps= players[0].getNumOfTries();
+        return  minSteps;
+    }
+
+    private boolean isThereAWinner (){
+        int maxIndex=0;
+        int winners=0;
+        maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
+        maxPairedCards = players[0].getNumberOfPairs();
+        for (int i =1; i<maxPlayers;i++){
+            if (players[i].getNumberOfPairs() > players[maxIndex].getNumberOfPairs()){
+                maxIndex = i;
+            }
+        }
+        setWinnerIndex(maxIndex);
+        for (int i =0; i<maxPlayers;i++){
+            if (players[i].getNumberOfPairs() == players[maxIndex].getNumberOfPairs()){
+                winners++;
+            }
+        }
+        return winners>1;
+    }
+
+    private void setWinnerIndex(int index) {winnerIndex = index;}
+    private int getWinnerIndex() {return winnerIndex;}
+
+    private String winnerName (){
+        String name="";
+        if (isThereAWinner()){
+            name= players[getWinnerIndex()].getName();
+        }
+        return name;
     }
 
     /**
