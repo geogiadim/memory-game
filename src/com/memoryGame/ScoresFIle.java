@@ -54,7 +54,6 @@ class ScoresFIle {
                 case 2:
                     highScores[1][1]= name+", ";
                     highScores[1][2]= String.valueOf(steps);
-
                 case 3:
                     highScores[2][1]= name+", ";
                     highScores[2][2]= String.valueOf(steps);
