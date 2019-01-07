@@ -1,5 +1,4 @@
 package com.memoryGame.GUI;
-
 import com.memoryGame.Table;
 
 import javax.swing.*;

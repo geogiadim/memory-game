@@ -20,6 +20,20 @@ public class GUIConnectionToLogic {
     private static int playingNow = 0;
     private static Table tempTable;
 
+    static void begin() {logic = new Logic(getGameMode());}
+
+    public static void beginGamePlay(Table newTable) {
+        initArrayCoordinates();
+        GUI.frame4GamePlay(GUI.getGameFrame().getContentPane(), newTable);
+        DelaysInGUI.delayForPreview(newTable);
+    }
+
+    public static void beginGamePlayDuel(Table newTable, Table newTable2) {
+        initArrayCoordinates();
+        GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), newTable, newTable2);
+        DelaysInGUI.delayForPreview(newTable, newTable2);
+    }
+
     static int getGameMode() {
         if (Buttons.basicButton.isSelected()) {
             maxCardNo = 2;
@@ -37,6 +51,8 @@ public class GUIConnectionToLogic {
         return mode;
     }
 
+    public static String getNameOfPlayer(int playerNumber) {return TextField.textPlayerNames[playerNumber].getText();}
+
     public static int getNumOfPlayers() {
         if (mode == 4) return 2;
         else {
@@ -50,10 +66,6 @@ public class GUIConnectionToLogic {
     public static boolean isCPU(int playerNumber) {
         if (mode == 4) return RadioButtons.yesOrNo[0].isSelected();
         else return RadioButtons.cpu[playerNumber].isSelected();
-    }
-
-    public static String getNameOfPlayer(int playerNumber) {
-        return TextField.textPlayerNames[playerNumber].getText();
     }
 
     public static int getCPUDiff(int playerNumber) {
@@ -74,6 +86,8 @@ public class GUIConnectionToLogic {
         return Diff;
     }
 
+    //static int getNumOfPairedCards(){return numOfPairedCards;}
+
     private static void initArrayCoordinates() {
         arrayCoordinatesX = new int[maxCardNo];
         arrayCoordinatesY = new int[maxCardNo];
@@ -89,8 +103,6 @@ public class GUIConnectionToLogic {
             Panels.removeCardButton(cardButtons, x, y);
             Panels.addCardButton(openCardButtons, x, y, table);
         }
-
-
         //If final Card choice
         if (cardNo == maxCardNo - 1) {
             //if Cards match
@@ -149,33 +161,21 @@ public class GUIConnectionToLogic {
                 tempTable = table;
             }
         }
+        if (mode!=4)
+            if (numOfPairedCards == table.sizeOfTable() / 2) gameOver();
+        else
+            if (numOfPairedCards == table.sizeOfTable()) gameOver();
     }
-
-    private static boolean checkCardsMatch() {
-        return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);
+    private static void gameOver(){
+        Timer timer = new Timer(2* 1000, actionEvent -> {
+            GUI.getGameFrame().setVisible(false);
+            GUI.getGameFrame().dispose();
+            GUI.createFrame3();
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
-
-    static boolean notInDelay() {
-        return !inDelay;
-    }
-
-    public static void beginGamePlay(Table newTable) {
-        initArrayCoordinates();
-        GUI.frame4GamePlay(GUI.getGameFrame().getContentPane(), newTable);
-        DelaysInGUI.delayForPreview(newTable);
-    }
-
-    public static void beginGamePlayDuel(Table newTable, Table newTable2) {
-        initArrayCoordinates();
-        GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), newTable, newTable2);
-        DelaysInGUI.delayForPreview(newTable, newTable2);
-    }
-
-    static void begin() {
-        logic = new Logic(getGameMode());
-    }
-
-    static boolean isFirstPlayingNow() {
-        return playingNowDuel == 0;
-    }
+    private static boolean checkCardsMatch() {return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);}
+    static boolean notInDelay() {return !inDelay;}
+    static boolean isFirstPlayingNow() {return playingNowDuel == 0;}
 }

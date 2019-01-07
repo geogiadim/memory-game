@@ -1,7 +1,6 @@
 package com.memoryGame.GUI;
 
 import com.memoryGame.Table;
-
 import javax.swing.*;
 
 class DelaysInGUI {
@@ -45,8 +44,5 @@ class DelaysInGUI {
         timer.start();
     }
 
-    static int getPreviewDelay() {
-        return PREVIEW_DELAY;
-    }
-
+    static int getPreviewDelay() {return PREVIEW_DELAY;}
 }

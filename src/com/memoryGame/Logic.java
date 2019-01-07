@@ -75,63 +75,6 @@ public class Logic {
     }
 
     /**
-     * Checks if Cards given by the parameters as coordinates, have the same value.
-     *
-     * @param coordinatesX Array of X coordinates of Cards.
-     * @param coordinatesY Array of Y coordinates of Cards.
-     * @return True if Cards have the same value. False if the don't.
-     */
-    public boolean checkCards(int[] coordinatesX, int[] coordinatesY) {
-        boolean state;
-
-        int x1 = coordinatesX[0];
-        int x2 = coordinatesX[1];
-        int y1 = coordinatesY[0];
-        int y2 = coordinatesY[1];
-
-        if (mode == 4){
-            playerTurn = maxPlayers - playerTurn - 1;
-            if (tableOfCards.getCardValue(x1,y1) == tableOfCards2.getCardValue(x2,y2)){
-                tableOfCards.unableCard(x1, y1);
-                tableOfCards2.unableCard(x2, y2);
-                players[playerTurn].increaseNumOfTries();
-                players[playerTurn].increaseNumberOfPairs();
-                state = true;
-            } else state = false;
-        }
-        else {
-        if (tableOfCards.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {
-            tableOfCards.unableCard(x1, y1);
-            tableOfCards.unableCard(x2, y2);
-            if (mode == 3) {
-                int x3 = coordinatesX[2];
-                int y3 = coordinatesY[2];
-                if (tableOfCards.getCardValue(x2, y2) == tableOfCards.getCardValue(x3, y3)) {
-                    tableOfCards.unableCard(x3, y3);
-                    players[playerTurn].increaseNumOfTries();
-                    players[playerTurn].increaseNumberOfPairs();
-                    state = true;
-                } else {
-                    players[playerTurn].increaseNumOfTries();
-                    state = false;
-                }
-            } else {
-                players[playerTurn].increaseNumOfTries();
-                players[playerTurn].increaseNumberOfPairs();
-                state = true;
-            }
-        } else {
-            players[playerTurn].increaseNumOfTries();
-            state = false;
-        }
-
-        if (playerTurn < maxPlayers - 1) playerTurn++;
-        else playerTurn = 0;
-        }
-        return state;
-    }
-
-    /**
      * This is the initialisation for the Triple Game Mode Table and the transfer of it to the GUI.
      */
     private void tripleGame() {
@@ -157,6 +100,63 @@ public class Logic {
         shuffleTable(tableOfCards2);
 
         GUIConnectionToLogic.beginGamePlayDuel(tableOfCards, tableOfCards2);
+    }
+
+    /**
+     * Checks if Cards given by the parameters as coordinates, have the same value.
+     *
+     * @param coordinatesX Array of X coordinates of Cards.
+     * @param coordinatesY Array of Y coordinates of Cards.
+     * @return True if Cards have the same value. False if the don't.
+     */
+    public boolean checkCards(int[] coordinatesX, int[] coordinatesY) {
+        boolean state;
+
+        int x1 = coordinatesX[0];
+        int x2 = coordinatesX[1];
+        int y1 = coordinatesY[0];
+        int y2 = coordinatesY[1];
+
+        if (mode == 4){
+            playerTurn = maxPlayers - playerTurn - 1;
+            if (tableOfCards.getCardValue(x1,y1) == tableOfCards2.getCardValue(x2,y2)){
+                tableOfCards.unableCard(x1, y1);
+                tableOfCards2.unableCard(x2, y2);
+                players[playerTurn].increaseNumOfTries();
+                players[playerTurn].increaseNumberOfPairs();
+                state = true;
+            } else state = false;
+        }
+        else {
+            if (tableOfCards.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {
+                tableOfCards.unableCard(x1, y1);
+                tableOfCards.unableCard(x2, y2);
+                if (mode == 3) {
+                    int x3 = coordinatesX[2];
+                    int y3 = coordinatesY[2];
+                    if (tableOfCards.getCardValue(x2, y2) == tableOfCards.getCardValue(x3, y3)) {
+                        tableOfCards.unableCard(x3, y3);
+                        players[playerTurn].increaseNumOfTries();
+                        players[playerTurn].increaseNumberOfPairs();
+                        state = true;
+                    } else {
+                        players[playerTurn].increaseNumOfTries();
+                        state = false;
+                    }
+                } else {
+                    players[playerTurn].increaseNumOfTries();
+                    players[playerTurn].increaseNumberOfPairs();
+                    state = true;
+                }
+            } else {
+                players[playerTurn].increaseNumOfTries();
+                state = false;
+            }
+
+            if (playerTurn < maxPlayers - 1) playerTurn++;
+            else playerTurn = 0;
+        }
+        return state;
     }
 
     /**

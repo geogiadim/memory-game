@@ -10,7 +10,7 @@ import java.awt.*;
  *
  */
 public class GUI {
-    private static JFrame frame, gameFrame;
+    private static JFrame frame, gameFrame, gameOverFrame;
     private static JPanel tablePanel1, tablePanel2;
     private static JPanel messagePanel, gamePanel, playerPanel;
     private static int numOfFrame = 0, numOfDuelFrame = 0;
@@ -18,54 +18,53 @@ public class GUI {
     static JFrame getFrame() {
         return frame;
     }
-
     static JFrame getGameFrame() {
         return gameFrame;
     }
 
+    static JFrame getGameOverFrame(){return gameOverFrame;}
+
     static int getNumOfFrame() {
         return numOfFrame;
     }
-
     static int getNumOfDuelFrame() {
         return numOfDuelFrame;
     }
-
     private static JPanel getMessagePanel() {
         return messagePanel;
     }
-
     static JPanel getGamePanel() {
         return gamePanel;
     }
-    //static JPanel getPlayerPanel() {return playerPanel;}
     static JPanel getGamePanelDuel(boolean isFirst){
         if (isFirst) return tablePanel1;
         else return tablePanel2;
     }
 
-    public static void createGUI() {
-        frame = new JFrame("Memory Game");
+    private static void setFrame(JFrame frame){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame1GameMode(frame.getContentPane());
-
         frame.setResizable(false);
         frame.pack();
         setFrameOnCenter(frame);
         frame.setVisible(true);
     }
 
+    public static void createGUI() {
+        frame = new JFrame("Memory Game");
+        frame1GameMode(frame.getContentPane());
+        setFrame(frame);
+    }
+
     static void createFrame2() {
         gameFrame = new JFrame("Memory Game");
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         GUIConnectionToLogic.begin();
+        setFrame(gameFrame);
+    }
 
-        gameFrame.setResizable(false);
-        gameFrame.pack();
-        setFrameOnCenter(gameFrame);
-        gameFrame.setVisible(true);
+    static void createFrame3(){
+        gameOverFrame = new JFrame("Memory Game");
+        lastFrame(gameOverFrame.getContentPane());
+        setFrame(gameOverFrame);
     }
 
     private static void setFrameOnCenter(JFrame frame) {
@@ -85,6 +84,8 @@ public class GUI {
         getMessagePanel().repaint();
         getMessagePanel().validate();
     }
+
+    //private static void addNextBackButtons(Container pane) {pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);}
 
     static void frame1GameMode(Container pane) {
         numOfFrame = 1;
@@ -116,11 +117,11 @@ public class GUI {
         numOfFrame = 2;
 
         Labels.setPlayerChoiceLabels();
-
         RadioButtons.setRadioButtons();
         ActionListenerRadioButtons.addRadButActList();
         TextField.makeTextField(false);
 
+        //make back and next panel
         Buttons.setNextBackButtons();
         Panels.makeNextBackPanel();
         ActionListenerButtons.addNextBackButtonsActList();
@@ -190,11 +191,9 @@ public class GUI {
         selectPlayersPanel.setBorder(border);
         selectPlayersPanel.add(Labels.chooseNumOfPlayers);
 
-//        ChecksForJComponents.checkForRadioButtons();
-
         pane.add(selectPlayersPanel, BorderLayout.PAGE_START);
         pane.add(choicePanel, BorderLayout.CENTER);
-        addNextBackButtons(pane);
+        pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
     static void frame2PlayerChoiceDuel(Container pane) {
@@ -253,10 +252,6 @@ public class GUI {
 
         pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
         pane.add(CPUChoiceAndTextFieldPanel, BorderLayout.CENTER);
-        addNextBackButtons(pane);
-    }
-
-    private static void addNextBackButtons(Container pane) {
         pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
@@ -285,7 +280,7 @@ public class GUI {
 
         pane.add(writePlayersNamePanel, BorderLayout.PAGE_START);
         pane.add(textFieldPanel, BorderLayout.CENTER);
-        addNextBackButtons(pane);
+        pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
     static void frame4GamePlay(Container pane, Table tableOfCards) {
@@ -293,7 +288,6 @@ public class GUI {
 
         Labels.setMessageLabel();
         makeGamePlayPanels();
-
         messagePanel.add(Labels.topMessage);
 
         GridLayout cardButtonsLayout = new GridLayout(tableOfCards.sizeX(), tableOfCards.sizeY(), 10, 5);
@@ -301,25 +295,12 @@ public class GUI {
         TitledBorder border = BorderFactory.createTitledBorder("Table of Cards");
         gamePanel.setBorder(border);
         Buttons.setCardButtons(tableOfCards);
-
         Panels.addAllCardButtons(Buttons.openCardButtons, tableOfCards);
 
         playerPanel.add(Labels.bottomMessage);
+
         setGamePlayPanes(pane);
-
         ActionListenerButtons.addCardButtonsActList(tableOfCards);
-    }
-
-    private static void makeGamePlayPanels() {
-        messagePanel = new JPanel();
-        gamePanel = new JPanel();
-        playerPanel = new JPanel();
-    }
-
-    private static void setGamePlayPanes(Container pane) {
-        pane.add(messagePanel, BorderLayout.PAGE_START);
-        pane.add(gamePanel, BorderLayout.CENTER);
-        pane.add(playerPanel, BorderLayout.PAGE_END);
     }
 
     static void frame3GamePlayDuel(Container pane, Table tableOfCards1, Table tableOfCards2) {
@@ -332,7 +313,6 @@ public class GUI {
         messagePanel.add(Labels.topMessage);
 
         GridLayout cardButtonsLayout = new GridLayout(tableOfCards1.sizeX(), tableOfCards1.sizeY(), 10, 5);
-
         tablePanel1 = new JPanel(cardButtonsLayout);
             TitledBorder border = BorderFactory.createTitledBorder("Table 1");
             tablePanel1.setBorder(border);
@@ -353,4 +333,29 @@ public class GUI {
         setGamePlayPanes(pane);
         ActionListenerButtons.addCardButtonsActListDuel(tableOfCards1, tableOfCards2);
     }
+
+    private static void lastFrame(Container pane){
+        numOfFrame=5;
+        Labels.setGameOverLabel();
+        JPanel gameOverPanel= new JPanel();
+        gameOverPanel.add(Labels.gameOverLabel);
+        JPanel resultsPanel = new JPanel();
+        resultsPanel.add(Labels.results);
+
+        pane.add(gameOverPanel, BorderLayout.PAGE_START);
+        pane.add(resultsPanel,BorderLayout.CENTER);
+    }
+
+    private static void makeGamePlayPanels() {
+        messagePanel = new JPanel();
+        gamePanel = new JPanel();
+        playerPanel = new JPanel();
+    }
+
+    private static void setGamePlayPanes(Container pane) {
+        pane.add(messagePanel, BorderLayout.PAGE_START);
+        pane.add(gamePanel, BorderLayout.CENTER);
+        pane.add(playerPanel, BorderLayout.PAGE_END);
+    }
+
 }

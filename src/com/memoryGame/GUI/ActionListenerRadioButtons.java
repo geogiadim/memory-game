@@ -19,7 +19,6 @@ class ActionListenerRadioButtons {
                         }
                     }
                 }
-
                 for (int j = RadioButtons.cpu.length - 1; j > cpuNo; j--) {
                     RadioButtons.diffCPU[j - 1][0].setSelected(true);
                     for (int m = 0; m < RadioButtons.diffCPU[j - 1].length; m++) {

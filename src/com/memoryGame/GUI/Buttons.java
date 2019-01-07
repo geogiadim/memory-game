@@ -68,6 +68,18 @@ class Buttons {
         backButton.setMnemonic(backButton.getText().charAt(0));
     }
 
+    static void setCardButtons(Table tableOfCards) {
+        cardButtons = setCards(tableOfCards, true);
+        openCardButtons = setCards(tableOfCards, false);
+    }
+
+    static void setCardButtonsDuel(Table tableOfCards1, Table tableOfCards2) {
+        cardButtonsDuelOne = setCards(tableOfCards1, true);
+        cardButtonsDuelTwo = setCards(tableOfCards2, true);
+        openCardButtonsDuelOne = setCards(tableOfCards1, false);
+        openCardButtonsDuelTwo = setCards(tableOfCards2, false);
+    }
+
     private static JButton[][] setCards(Table tableOfCards, boolean isClosed) {
         int sizeX = tableOfCards.sizeX();
         int sizeY = tableOfCards.sizeY();
@@ -127,17 +139,5 @@ class Buttons {
             default:
                 break;
         }
-    }
-
-    static void setCardButtons(Table tableOfCards) {
-        cardButtons = setCards(tableOfCards, true);
-        openCardButtons = setCards(tableOfCards, false);
-    }
-
-    static void setCardButtonsDuel(Table tableOfCards1, Table tableOfCards2) {
-        cardButtonsDuelOne = setCards(tableOfCards1, true);
-        cardButtonsDuelTwo = setCards(tableOfCards2, true);
-        openCardButtonsDuelOne = setCards(tableOfCards1, false);
-        openCardButtonsDuelTwo = setCards(tableOfCards2, false);
     }
 }

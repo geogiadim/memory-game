@@ -9,14 +9,12 @@ class Labels {
     private static final int FONT_SIZE_LARGE = 30;
     private static final int FONT_SIZE_MEDIUM = 18;
     private static final int FONT_SIZE_SMALL = 12;
-    static JLabel chooseGameMode, chooseNumOfPlayers;
+    static JLabel chooseGameMode, chooseNumOfPlayers, gameOverLabel,results;
     static JLabel writeNames, levelOfCPU, duelCPU;
     static JLabel[] cpuLevels;
     static JLabel topMessage, bottomMessage;
 
-    static void setModeLabel() {
-        chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);
-    }
+    static void setModeLabel() {chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);}
 
     static void setPlayerChoiceLabels() {
         chooseNumOfPlayers = makeLabel("Select Number of Players", FONT_SIZE_LARGE);
@@ -32,14 +30,19 @@ class Labels {
         bottomMessage = makeLabel(" ", FONT_SIZE_MEDIUM);
     }
 
-    static void setPlayerNamesLabel() {
-        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
-    }
+    static void setPlayerNamesLabel() {writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);}
 
     static void setPlayerChoiceDuelLabels() {
         writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
         duelCPU = makeLabel("Do you want to play against CPU ?", FONT_SIZE_MEDIUM);
     }
+
+    static void setGameOverLabel(){
+        gameOverLabel= makeLabel("Game Over",FONT_SIZE_HUGE);
+        results= makeLabel("Check in the document <<Memory_Game>> the results of the game",FONT_SIZE_LARGE);
+        results.setForeground(Color.BLACK);
+    }
+
 
     private static JLabel makeLabel(String name, int font_size) {
         JLabel label = new JLabel(name);
