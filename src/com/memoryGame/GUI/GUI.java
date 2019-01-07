@@ -48,6 +48,10 @@ public class GUI {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Buttons.setLocale();
+        Labels.setLocale();
+        RadioButtons.setLocale();
+        TextField.setLocale();
         frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
@@ -103,13 +107,13 @@ public class GUI {
         gmButtonsPanel.add(Buttons.tripleButton);
         gmButtonsPanel.add(Buttons.duelButton);
 
-        JPanel gmLanguageButtonsPanel = new JPanel();
-        gmLanguageButtonsPanel.add(Buttons.enButton);
-        gmLanguageButtonsPanel.add(Buttons.elButton);
+//        JPanel gmLanguageButtonsPanel = new JPanel();
+//        gmLanguageButtonsPanel.add(Buttons.enButton);
+//        gmLanguageButtonsPanel.add(Buttons.elButton);
 
         pane.add(gmLabelPanel, BorderLayout.PAGE_START);
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
-        pane.add(gmLanguageButtonsPanel, BorderLayout.PAGE_END);
+//        pane.add(gmLanguageButtonsPanel, BorderLayout.PAGE_END);
     }
 
     static void frame2PlayerChoice(Container pane) {

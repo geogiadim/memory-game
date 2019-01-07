@@ -38,6 +38,7 @@ public class Logic {
         } else if (mode == 4) {
             tableOfCards = new Table(6, 4);
             tableOfCards2 = new Table(6, 4);
+            playerTurn = 1;
             duelGame();
         }
     }
@@ -84,19 +85,36 @@ public class Logic {
         boolean state;
 
         int x1 = coordinatesX[0];
-        int x2 = coordinatesX[1];
         int y1 = coordinatesY[0];
+
+        int x2 = coordinatesX[1];
         int y2 = coordinatesY[1];
 
         if (mode == 4){
+            if (playerTurn == 1){
+                if (tableOfCards.getCardValue(x1,y1) == tableOfCards2.getCardValue(x2,y2)){
+                    tableOfCards.unableCard(x1, y1);
+                    tableOfCards2.unableCard(x2, y2);
+                    players[playerTurn].increaseNumOfTries();
+                    players[playerTurn].increaseNumberOfPairs();
+                    state = true;
+                } else {
+                    players[playerTurn].increaseNumOfTries();
+                    state = false;
+                }
+            } else {
+                if (tableOfCards2.getCardValue(x1,y1) == tableOfCards.getCardValue(x2,y2)){
+                    tableOfCards2.unableCard(x1, y1);
+                    tableOfCards.unableCard(x2, y2);
+                    players[playerTurn].increaseNumOfTries();
+                    players[playerTurn].increaseNumberOfPairs();
+                    state = true;
+                } else {
+                    players[playerTurn].increaseNumOfTries();
+                    state = false;
+                }
+            }
             playerTurn = maxPlayers - playerTurn - 1;
-            if (tableOfCards.getCardValue(x1,y1) == tableOfCards2.getCardValue(x2,y2)){
-                tableOfCards.unableCard(x1, y1);
-                tableOfCards2.unableCard(x2, y2);
-                players[playerTurn].increaseNumOfTries();
-                players[playerTurn].increaseNumberOfPairs();
-                state = true;
-            } else state = false;
         }
         else {
         if (tableOfCards.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {

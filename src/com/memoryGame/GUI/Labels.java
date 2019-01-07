@@ -2,6 +2,8 @@ package com.memoryGame.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 class Labels {
     //Different Font sizes
@@ -14,16 +16,24 @@ class Labels {
     static JLabel[] cpuLevels;
     static JLabel topMessage, bottomMessage;
 
+    private static ResourceBundle bundle;
+
+    static void setLocale(){
+//        Locale locale = new Locale("el", "GR");
+        Locale locale = Locale.getDefault();
+        bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleLabels", locale);
+    }
+
     static void setModeLabel() {
-        chooseGameMode = makeLabel("Select Game mode", FONT_SIZE_HUGE);
+        chooseGameMode = makeLabel(bundle.getString("selectGM"), FONT_SIZE_HUGE);
     }
 
     static void setPlayerChoiceLabels() {
-        chooseNumOfPlayers = makeLabel("Select Number of Players", FONT_SIZE_LARGE);
-        levelOfCPU = makeLabel("Choose the level of CPU", FONT_SIZE_MEDIUM);
+        chooseNumOfPlayers = makeLabel(bundle.getString("selectNumPlayers"), FONT_SIZE_LARGE);
+        levelOfCPU = makeLabel(bundle.getString("selectCPULevel"), FONT_SIZE_MEDIUM);
         cpuLevels = new JLabel[3];
         for (int i = 0; i < cpuLevels.length; i++) {
-            cpuLevels[i] = makeLabel("CPU " + (i + 1) + ": ", FONT_SIZE_SMALL);
+            cpuLevels[i] = makeLabel(bundle.getString("cpuLabel") + (i + 1) + ": ", FONT_SIZE_SMALL);
         }
     }
 
@@ -33,12 +43,12 @@ class Labels {
     }
 
     static void setPlayerNamesLabel() {
-        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
+        writeNames = makeLabel(bundle.getString("writeNames"), FONT_SIZE_LARGE);
     }
 
     static void setPlayerChoiceDuelLabels() {
-        writeNames = makeLabel("Write the names of the players", FONT_SIZE_LARGE);
-        duelCPU = makeLabel("Do you want to play against CPU ?", FONT_SIZE_MEDIUM);
+        writeNames = makeLabel(bundle.getString("writeNames"), FONT_SIZE_LARGE);
+        duelCPU = makeLabel(bundle.getString("duelCPU"), FONT_SIZE_MEDIUM);
     }
 
     private static JLabel makeLabel(String name, int font_size) {
@@ -49,26 +59,26 @@ class Labels {
     }
 
     static void setTopMessagePreview() {
-        topMessage.setText("Showing Cards for " + DelaysInGUI.getPreviewDelay() + " seconds. Remember as many as you can.");
+        topMessage.setText(bundle.getString("topMessagePreview1") + DelaysInGUI.getPreviewDelay() + bundle.getString("topMessagePreview2"));
     }
 
     static void setTopMessageRules() {
         int mode = GUIConnectionToLogic.getGameMode();
         if (mode == 3)
-            topMessage.setText("Choose three cards in each round.");
+            topMessage.setText(bundle.getString("topRuleTriple"));
         else if (mode == 4)
-            topMessage.setText("Choose only one card from your table in each round.");
-        else topMessage.setText("Choose two cards in each round.");
+            topMessage.setText(bundle.getString("topRuleDuel"));
+        else topMessage.setText(bundle.getString("topRuleBasicDouble"));
         GUI.repaintMessagePanel();
     }
 
     static void setTopMessageWrong() {
-        topMessage.setText("Wrong choice!!!");
+        topMessage.setText(bundle.getString("topWrong"));
         GUI.repaintMessagePanel();
     }
 
     static void setTopMessageCorrect() {
-        topMessage.setText("Correct choice!!!");
+        topMessage.setText(bundle.getString("topCorrect"));
         GUI.repaintMessagePanel();
     }
 
@@ -78,6 +88,6 @@ class Labels {
     }
 
     static void setBottomMessagePlayerTurn(int i) {
-        bottomMessage.setText("It is the turn of " + GUIConnectionToLogic.getNameOfPlayer(i));
+        bottomMessage.setText(bundle.getString("bottomPlayerTurn") + GUIConnectionToLogic.getNameOfPlayer(i));
     }
 }
