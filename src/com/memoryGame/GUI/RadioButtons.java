@@ -20,7 +20,7 @@ class RadioButtons {
     private static ResourceBundle bundle;
 
     static void setLocale() {
-//        Locale locale = new Locale("el", "GR");
+        //Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
         try {
             bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleRadioButtons", locale);

@@ -95,7 +95,6 @@ public class GUIConnectionToLogic {
     static void setCoordinates(int x, int y, Table table, JButton[][] cardButtons, JButton[][] openCardButtons) {
         arrayCoordinatesX[cardNo] = x;
         arrayCoordinatesY[cardNo] = y;
-
         if (mode == 4) {
             Panels.removeCardButton(cardButtons, x, y, isFirstPlayingNow());
             Panels.addCardButton(openCardButtons, x, y, table, isFirstPlayingNow());

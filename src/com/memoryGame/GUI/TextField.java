@@ -16,7 +16,7 @@ class TextField {
     private static ResourceBundle bundle;
 
     static void setLocale() {
-//        Locale locale = new Locale("el", "GR");
+        //Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
         try {
             bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleTextField", locale);
@@ -54,7 +54,5 @@ class TextField {
         textPlayerNames[i].setEnabled(false);
     }
 
-    static void playerLabel(int i) {
-        textPlayerNames[i].setText(bundle.getString("playerTextField") + (i + 1));
-    }
+    static void playerLabel(int i) {textPlayerNames[i].setText(bundle.getString("playerTextField") + (i + 1));}
 }

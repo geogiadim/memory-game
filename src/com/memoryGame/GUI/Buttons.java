@@ -39,10 +39,11 @@ class Buttons {
     static JButton[][] cardButtonsDuelOne, cardButtonsDuelTwo, openCardButtonsDuelOne, openCardButtonsDuelTwo;
     //ResourceBundle for i18n
     private static ResourceBundle bundle;
+
     private static boolean isFirstCards = true;
 
     static void setLocale() {
-//        Locale locale = new Locale("el", "GR");
+        //Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
         try {
             bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleButtons", locale);
@@ -62,11 +63,6 @@ class Buttons {
         tripleButton.setMnemonic(tripleButton.getText().charAt(1));
         duelButton = makeButton(bundle.getString("duelButton"), WIDTH_MODE, HEIGHT_MODE, FONT_MODE);
         duelButton.setMnemonic(duelButton.getText().charAt(1));
-
-//        enButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY);
-//        enButton.setIcon(new ImageIcon(ICON_EN_LANG));
-//        elButton = makeButton("", WIDTH_SECONDARY, HEIGHT_LANG, FONT_SECONDARY);
-//        elButton.setIcon(new ImageIcon(ICON_EL_LANG));
     }
 
     static void setNextBackButtons() {

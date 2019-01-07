@@ -11,7 +11,7 @@ class Labels {
     private static final int FONT_SIZE_LARGE = 30;
     private static final int FONT_SIZE_MEDIUM = 18;
     private static final int FONT_SIZE_SMALL = 12;
-    static JLabel chooseGameMode, chooseNumOfPlayers;
+    static JLabel chooseGameMode, chooseNumOfPlayers, gameOverLabel,results;
     static JLabel writeNames, levelOfCPU, duelCPU;
     static JLabel[] cpuLevels;
     static JLabel topMessage, bottomMessage;
@@ -19,7 +19,7 @@ class Labels {
     private static ResourceBundle bundle;
 
     static void setLocale() {
-//        Locale locale = new Locale("el", "GR");
+        //Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
         try {
             bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleLabels", locale);
@@ -29,9 +29,7 @@ class Labels {
         }
     }
 
-    static void setModeLabel() {
-        chooseGameMode = makeLabel(bundle.getString("selectGM"), FONT_SIZE_HUGE);
-    }
+    static void setModeLabel() {chooseGameMode = makeLabel(bundle.getString("selectGM"), FONT_SIZE_HUGE);}
 
     static void setPlayerChoiceLabels() {
         chooseNumOfPlayers = makeLabel(bundle.getString("selectNumPlayers"), FONT_SIZE_LARGE);
@@ -47,13 +45,17 @@ class Labels {
         bottomMessage = makeLabel(" ", FONT_SIZE_MEDIUM);
     }
 
-    static void setPlayerNamesLabel() {
-        writeNames = makeLabel(bundle.getString("writeNames"), FONT_SIZE_LARGE);
-    }
+    static void setPlayerNamesLabel() {writeNames = makeLabel(bundle.getString("writeNames"), FONT_SIZE_LARGE);}
 
     static void setPlayerChoiceDuelLabels() {
         writeNames = makeLabel(bundle.getString("writeNames"), FONT_SIZE_LARGE);
         duelCPU = makeLabel(bundle.getString("duelCPU"), FONT_SIZE_MEDIUM);
+    }
+
+    static void setGameOverLabel(){
+        gameOverLabel= makeLabel("Game Over",FONT_SIZE_HUGE);
+        results= makeLabel("Check in the document <<Memory-Game-Scores.txt>> the results of the game",FONT_SIZE_MEDIUM);
+        results.setForeground(Color.BLACK);
     }
 
     private static JLabel makeLabel(String name, int font_size) {

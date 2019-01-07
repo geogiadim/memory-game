@@ -55,7 +55,5 @@ class ChecksForJComponents {
         }
     }
 
-    static int getNumberOfCPU() {
-        return numberOfCPU;
-    }
+    static int getNumberOfCPU() {return numberOfCPU;}
 }
