@@ -10,27 +10,15 @@ class Player {
         tries = 0;
     }
 
-    void increaseNumberOfPairs() {
-        pairs++;
-    }
+    void increaseNumberOfPairs() {pairs++;}
 
-    void increaseNumOfTries() {
-        tries++;
-    }
+    void increaseNumOfTries() {tries++;}
 
-    int getNumberOfPairs() {
-        return pairs;
-    }
+    int getNumberOfPairs() {return pairs;}
 
-    int getNumOfTries() {
-        return tries;
-    }
+    int getNumOfTries() {return tries;}
 
-    String getName() {
-        return name;
-    }
+    String getName() {return name;}
 
-    void setName(String n) {
-        name = n;
-    }
+    void setName(String n) {name = n;}
 }

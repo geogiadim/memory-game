@@ -35,9 +35,7 @@ public class Table {
      * @param y the row on which the card is inserted
      * @param v the value of the card
      */
-    void setCardValue(int x, int y, int v) {
-        tableOfCards[x][y].setValue(v);
-    }
+    void setCardValue(int x, int y, int v) {tableOfCards[x][y].setValue(v);}
 
     /**
      * Returns the value of the card
@@ -46,25 +44,7 @@ public class Table {
      * @param y the row on which the card is inserted
      * @return the value of the card
      */
-    public int getCardValue(int x, int y) {
-        return tableOfCards[x][y].getValue();
-    }
-
-//    /**
-//     * Appears the card
-//     *
-//     * @param x the row on which the card is inserted
-//     * @param y the row on which the card is inserted
-//     */
-//    public void openCard(int x, int y) {tableOfCards[x][y].setIsOpen(true);}
-//
-//    /**
-//     * Hides the card
-//     *
-//     * @param x the row on which the card is inserted
-//     * @param y the column on which the card is inserted
-//     */
-//    public void closeCard(int x, int y) {tableOfCards[x][y].setIsOpen(false);}
+    public int getCardValue(int x, int y) {return tableOfCards[x][y].getValue();}
 
     /**
      * Sets the card as paired and makes it unable to be chosen again.
@@ -72,53 +52,26 @@ public class Table {
      * @param x the row on which the card is inserted
      * @param y the column on which the card is inserted
      */
-    void unableCard(int x, int y) {
-        tableOfCards[x][y].setPairedTrue();
-//        tableOfCards[x][y].setIsOpen(false);
-    }
-
-//    /**
-//     * Returns true if the card is open and false if it is closed
-//     *
-//     * @param x the row on which the card is inserted
-//     * @param y the column on which the card is inserted
-//     * @return true if the card is open and false if it is closed
-//     */
-//    boolean isCardOpen(int x, int y) {return tableOfCards[x][y].getIsOpen();}
-//
-//    /**
-//     * Returns true if the card is paired and false if it is unpaired
-//     *
-//     * @param x the row on which the card is inserted
-//     * @param y the column on which the card is inserted
-//     * @return true if the card is paired and false if it is unpaired
-//     */
-//    boolean isCardPaired(int x, int y) {return tableOfCards[x][y].getIsPaired();}
+    void unableCard(int x, int y) {tableOfCards[x][y].setPairedTrue();}
 
     /**
      * Returns the number of rows of the table
      *
      * @return the number of rows of the table
      */
-    public int sizeX() {
-        return x;
-    }
+    public int sizeX() {return x;}
 
     /**
      * Returns the number of columns of the table
      *
      * @return the number of columns of the table
      */
-    public int sizeY() {
-        return y;
-    }
+    public int sizeY() {return y;}
 
     /**
      * Returns the size of the table / Number of Cards
      *
      * @return the size of the table
      */
-    public int sizeOfTable() {
-        return x * y;
-    }
+    public int sizeOfTable() {return x * y;}
 }

@@ -1,8 +1,6 @@
 package com.memoryGame;
 
 import com.memoryGame.GUI.GUIConnectionToLogic;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 import java.util.Random;
 
 /**

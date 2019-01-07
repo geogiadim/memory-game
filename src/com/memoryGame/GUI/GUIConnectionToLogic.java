@@ -8,7 +8,7 @@ import javax.swing.*;
 public class GUIConnectionToLogic {
     private static final int MESSAGE_DELAY = 2;
     private static int mode = 0;
-    private static int numOfPlayers = 0; //numOfCPUs = 0;
+    private static int numOfPlayers = 0;
     private static int[] arrayCoordinatesX;
     private static int[] arrayCoordinatesY;
     private static int cardNo = 0;
@@ -85,8 +85,6 @@ public class GUIConnectionToLogic {
         }
         return Diff;
     }
-
-    //static int getNumOfPairedCards(){return numOfPairedCards;}
 
     private static void initArrayCoordinates() {
         arrayCoordinatesX = new int[maxCardNo];
