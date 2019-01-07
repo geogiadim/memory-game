@@ -4,7 +4,7 @@ import com.memoryGame.Table;
 import javax.swing.*;
 
 class DelaysInGUI {
-    private final static int PREVIEW_DELAY = 3;
+    private final static int PREVIEW_DELAY = 5;
     private static int timesDelayed = PREVIEW_DELAY;
 
     static void delayForPreview(Table tableOfCards1) {

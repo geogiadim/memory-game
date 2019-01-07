@@ -2,6 +2,8 @@ package com.memoryGame.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 class TextField {
     //Font for Text Field Labels
@@ -10,6 +12,19 @@ class TextField {
     static JTextField[] textPlayerNames;
     //Labels for Text Fields
     static JLabel[] labelPlayerNames;
+
+    private static ResourceBundle bundle;
+
+    static void setLocale() {
+//        Locale locale = new Locale("el", "GR");
+        Locale locale = Locale.getDefault();
+        try {
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleTextField", locale);
+        } catch (java.util.MissingResourceException e) {
+            Locale defaultLocale = new Locale("en", "US");
+            bundle = ResourceBundle.getBundle("com.memoryGame.GUI.i18n.MessageListBundleTextField", defaultLocale);
+        }
+    }
 
     static void makeTextField(boolean duel) {
         if (duel) {
@@ -23,14 +38,14 @@ class TextField {
         for (int i = 0; i < textPlayerNames.length; i++) {
             labelPlayerNames[i] = new JLabel();
             labelPlayerNames[i].setFont(FONT_TEXTFIELD_LABEL);
-            textPlayerNames[i] = new JTextField("Player " + (i + 1));
+            textPlayerNames[i] = new JTextField(bundle.getString("playerTextField") + (i + 1));
         }
 
-        labelPlayerNames[0].setText("1st Player");
-        labelPlayerNames[1].setText("2nd Player");
+        labelPlayerNames[0].setText(bundle.getString("player1"));
+        labelPlayerNames[1].setText(bundle.getString("player2"));
         if (!duel) {
-            labelPlayerNames[2].setText("3rd Player");
-            labelPlayerNames[3].setText("4th Player");
+            labelPlayerNames[2].setText(bundle.getString("player3"));
+            labelPlayerNames[3].setText(bundle.getString("player4"));
         }
     }
 
@@ -40,6 +55,6 @@ class TextField {
     }
 
     static void playerLabel(int i) {
-        textPlayerNames[i].setText("Player " + (i + 1));
+        textPlayerNames[i].setText(bundle.getString("playerTextField") + (i + 1));
     }
 }

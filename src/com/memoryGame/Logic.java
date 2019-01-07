@@ -18,8 +18,7 @@ public class Logic {
     private Player[] players;
     private int playerTurn = 0;
     private int mode;
-    private int winnerIndex;
-    private ScoresFIle file;
+
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
      *
@@ -39,6 +38,7 @@ public class Logic {
         } else if (mode == 4) {
             tableOfCards = new Table(6, 4);
             tableOfCards2 = new Table(6, 4);
+            playerTurn = 1;
             duelGame();
         }
     }
@@ -51,13 +51,14 @@ public class Logic {
         players = new Player[maxPlayers];
         if (mode == 4) {
             players[0] = new Player(GUIConnectionToLogic.getNameOfPlayer(0));
-            if (GUIConnectionToLogic.isCPU(1)) players[1] = new CPU(GUIConnectionToLogic.getNameOfPlayer(1), GUIConnectionToLogic.getCPUDiff(1));
+            if (GUIConnectionToLogic.isCPU(1))
+                players[1] = new CPU(GUIConnectionToLogic.getNameOfPlayer(1), GUIConnectionToLogic.getCPUDiff(1));
             else players[1] = new Player(GUIConnectionToLogic.getNameOfPlayer(1));
         }
         for (int i = 0; i < maxPlayers; i++) {
-            if (GUIConnectionToLogic.isCPU(i))
+            if (GUIConnectionToLogic.isCPU(i)) {
                 players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
-            else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
+            } else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
         }
     }
 
@@ -75,34 +76,6 @@ public class Logic {
     }
 
     /**
-     * This is the initialisation for the Triple Game Mode Table and the transfer of it to the GUI.
-     */
-    private void tripleGame() {
-        createPlayers();
-
-        initTablePairs(3);
-        shuffleTable(tableOfCards);
-
-        GUIConnectionToLogic.beginGamePlay(tableOfCards);
-
-        //GUI.array with results and game over*/
-    }
-
-    /**
-     * This is the initialisation for the Duel Game Mode Tables and the transfer of them to the GUI.
-     */
-    private void duelGame() {
-        createPlayers();
-
-        initDuelTable(tableOfCards);
-        shuffleTable(tableOfCards);
-        initDuelTable(tableOfCards2);
-        shuffleTable(tableOfCards2);
-
-        GUIConnectionToLogic.beginGamePlayDuel(tableOfCards, tableOfCards2);
-    }
-
-    /**
      * Checks if Cards given by the parameters as coordinates, have the same value.
      *
      * @param coordinatesX Array of X coordinates of Cards.
@@ -113,21 +86,24 @@ public class Logic {
         boolean state;
 
         int x1 = coordinatesX[0];
-        int x2 = coordinatesX[1];
         int y1 = coordinatesY[0];
+
+        int x2 = coordinatesX[1];
         int y2 = coordinatesY[1];
 
-        if (mode == 4){
-            playerTurn = maxPlayers - playerTurn - 1;
-            if (tableOfCards.getCardValue(x1,y1) == tableOfCards2.getCardValue(x2,y2)){
-                tableOfCards.unableCard(x1, y1);
-                tableOfCards2.unableCard(x2, y2);
+        if (mode == 4) {
+            if (tableOfCards.getCardValue(coordinatesX[maxPlayers-playerTurn-1], coordinatesY[maxPlayers-playerTurn-1]) == tableOfCards2.getCardValue(coordinatesX[playerTurn], coordinatesY[playerTurn])) {
+                tableOfCards.unableCard(coordinatesX[maxPlayers-playerTurn-1], coordinatesY[maxPlayers-playerTurn-1]);
+                tableOfCards2.unableCard(coordinatesX[playerTurn], coordinatesY[playerTurn]);
                 players[playerTurn].increaseNumOfTries();
                 players[playerTurn].increaseNumberOfPairs();
                 state = true;
-            } else state = false;
-        }
-        else {
+                } else {
+                    players[playerTurn].increaseNumOfTries();
+                    state = false;
+                }
+            playerTurn = maxPlayers - playerTurn - 1;
+        } else {
             if (tableOfCards.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {
                 tableOfCards.unableCard(x1, y1);
                 tableOfCards.unableCard(x2, y2);
@@ -159,52 +135,33 @@ public class Logic {
         return state;
     }
 
-    public void createFile(){
-        int num= GUIConnectionToLogic.getNumOfPlayers();
-        String name;
-        int index,steps;
-        //if not solo mode
-        if (num>1){
-            //if exists a winner
-            if (isThereAWinner()) {
-                index = getWinnerIndex();
-                name = players[index].getName();
-                file =  new ScoresFIle(name, mode);
-            }//if does not exist
-            else {
-                name="";
-                file =  new ScoresFIle(name, mode);
-            }
-        }//if solo mode
-        else {
-            name = players[0].getName();
-            steps = players[0].getNumOfTries();
-            file =  new ScoresFIle(name,steps,mode);
-        }
+    /**
+     * This is the initialisation for the Triple Game Mode Table and the transfer of it to the GUI.
+     */
+    private void tripleGame() {
+        createPlayers();
+
+        initTablePairs(3);
+        shuffleTable(tableOfCards);
+
+        GUIConnectionToLogic.beginGamePlay(tableOfCards);
+
+        //GUI.array with results and game over*/
     }
 
-    private ScoresFIle getFile(){return file;}
+    /**
+     * This is the initialisation for the Duel Game Mode Tables and the transfer of them to the GUI.
+     */
+    private void duelGame() {
+        createPlayers();
 
-    private boolean isThereAWinner (){
-        int maxIndex=0;
-        int winners=0;
-        maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
-        for (int i =1; i<maxPlayers;i++){
-            if (players[i].getNumberOfPairs() > players[maxIndex].getNumberOfPairs()){
-                maxIndex = i;
-            }
-        }
-        setWinnerIndex(maxIndex);
-        for (int i =0; i<maxPlayers;i++){
-            if (players[i].getNumberOfPairs() == players[maxIndex].getNumberOfPairs()){
-                winners++;
-            }
-        }
-        return winners==1;
+        initDuelTable(tableOfCards);
+        shuffleTable(tableOfCards);
+        initDuelTable(tableOfCards2);
+        shuffleTable(tableOfCards2);
+
+        GUIConnectionToLogic.beginGamePlayDuel(tableOfCards, tableOfCards2);
     }
-
-    private void setWinnerIndex(int index) {winnerIndex = index;}
-    private int getWinnerIndex() {return winnerIndex;}
 
     /**
      * Fills the normal Game Mode Tables with different Card values according to the Game Mode.

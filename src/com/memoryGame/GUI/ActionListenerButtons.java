@@ -65,21 +65,21 @@ class ActionListenerButtons {
         }
     }
 
-    static void addCardButtonsActListDuel(Table table1, Table table2){
+    static void addCardButtonsActListDuel(Table table1, Table table2) {
         for (int i = 0; i < table1.sizeX(); i++) {
             for (int j = 0; j < table1.sizeY(); j++) {
                 final int x = i;
                 final int y = j;
                 Buttons.cardButtonsDuelOne[i][j].addActionListener(actionEvent -> {
-                    if (GUIConnectionToLogic.isFirstPlayingNow()){
-                        if (GUIConnectionToLogic.notInDelay()){
+                    if (GUIConnectionToLogic.isFirstPlayingNow()) {
+                        if (GUIConnectionToLogic.notInDelay()) {
                             GUIConnectionToLogic.setCoordinates(x, y, table1, Buttons.cardButtonsDuelOne, Buttons.openCardButtonsDuelOne);
                         }
                     }
                 });
                 Buttons.cardButtonsDuelTwo[i][j].addActionListener(actionEvent -> {
-                    if (!GUIConnectionToLogic.isFirstPlayingNow()){
-                        if (GUIConnectionToLogic.notInDelay()){
+                    if (!GUIConnectionToLogic.isFirstPlayingNow()) {
+                        if (GUIConnectionToLogic.notInDelay()) {
                             GUIConnectionToLogic.setCoordinates(x, y, table2, Buttons.cardButtonsDuelTwo, Buttons.openCardButtonsDuelTwo);
                         }
                     }

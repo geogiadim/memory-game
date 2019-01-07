@@ -47,7 +47,7 @@ class ActionListenerRadioButtons {
         RadioButtons.yesOrNo[1].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(true);
             TextField.textPlayerNames[1].setText("Player 2");
-            for (JRadioButton radioButton : RadioButtons.diffDuel){
+            for (JRadioButton radioButton : RadioButtons.diffDuel) {
                 radioButton.setEnabled(false);
             }
             RadioButtons.diffDuel[0].setSelected(true);
@@ -55,7 +55,7 @@ class ActionListenerRadioButtons {
         RadioButtons.yesOrNo[0].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(false);
             TextField.textPlayerNames[1].setText("CPU");
-            for (JRadioButton radioButton : RadioButtons.diffDuel){
+            for (JRadioButton radioButton : RadioButtons.diffDuel) {
                 radioButton.setEnabled(true);
             }
         });
