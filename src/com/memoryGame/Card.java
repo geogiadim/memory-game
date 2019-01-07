@@ -57,13 +57,4 @@ public class Card {
     void setPairedTrue() {
         isPaired = true;
     }
-
-    /**
-     * Returns true if it is paired and false if it is unpaired
-     *
-     * @return true if it is paired and false if it is unpaired
-     */
-    boolean getIsPaired() {
-        return isPaired;
-    }
 }

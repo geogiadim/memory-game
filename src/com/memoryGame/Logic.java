@@ -92,29 +92,16 @@ public class Logic {
         int y2 = coordinatesY[1];
 
         if (mode == 4) {
-            if (playerTurn == 1) {
-                if (tableOfCards.getCardValue(x1, y1) == tableOfCards2.getCardValue(x2, y2)) {
-                    tableOfCards.unableCard(x1, y1);
-                    tableOfCards2.unableCard(x2, y2);
-                    players[playerTurn].increaseNumOfTries();
-                    players[playerTurn].increaseNumberOfPairs();
-                    state = true;
+            if (tableOfCards.getCardValue(coordinatesX[maxPlayers-playerTurn-1], coordinatesY[maxPlayers-playerTurn-1]) == tableOfCards2.getCardValue(coordinatesX[playerTurn], coordinatesY[playerTurn])) {
+                tableOfCards.unableCard(coordinatesX[maxPlayers-playerTurn-1], coordinatesY[maxPlayers-playerTurn-1]);
+                tableOfCards2.unableCard(coordinatesX[playerTurn], coordinatesY[playerTurn]);
+                players[playerTurn].increaseNumOfTries();
+                players[playerTurn].increaseNumberOfPairs();
+                state = true;
                 } else {
                     players[playerTurn].increaseNumOfTries();
                     state = false;
                 }
-            } else {
-                if (tableOfCards2.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {
-                    tableOfCards2.unableCard(x1, y1);
-                    tableOfCards.unableCard(x2, y2);
-                    players[playerTurn].increaseNumOfTries();
-                    players[playerTurn].increaseNumberOfPairs();
-                    state = true;
-                } else {
-                    players[playerTurn].increaseNumOfTries();
-                    state = false;
-                }
-            }
             playerTurn = maxPlayers - playerTurn - 1;
         } else {
             if (tableOfCards.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {

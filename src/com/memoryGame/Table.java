@@ -113,12 +113,12 @@ public class Table {
         return y;
     }
 
-    /**
-     * Returns the size of the table / Number of Cards
-     *
-     * @return the size of the table
-     */
-    public int sizeOfTable() {
-        return x * y;
-    }
+//    /**
+//     * Returns the size of the table / Number of Cards
+//     *
+//     * @return the size of the table
+//     */
+//    public int sizeOfTable() {
+//        return x * y;
+//    }
 }

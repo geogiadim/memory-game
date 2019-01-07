@@ -49,16 +49,21 @@ public class GUI {
         frame = new JFrame("Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Buttons.setLocale();
-        Labels.setLocale();
-        RadioButtons.setLocale();
-        TextField.setLocale();
+        setLocale();
         frame1GameMode(frame.getContentPane());
 
         frame.setResizable(false);
         frame.pack();
         setFrameOnCenter(frame);
         frame.setVisible(true);
+    }
+
+    private static void setLocale() {
+
+        Buttons.setLocale();
+        Labels.setLocale();
+        RadioButtons.setLocale();
+        TextField.setLocale();
     }
 
     static void createFrame2() {
