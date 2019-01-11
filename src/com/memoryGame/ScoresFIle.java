@@ -51,31 +51,37 @@ class ScoresFIle {
                 case 1:
                     highScores[0][1]= name+", ";
                     highScores[0][2]= String.valueOf(steps);
+                    break;
                 case 2:
                     highScores[1][1]= name+", ";
                     highScores[1][2]= String.valueOf(steps);
+                    break;
                 case 3:
                     highScores[2][1]= name+", ";
                     highScores[2][2]= String.valueOf(steps);
+                    break;
             }
         }
         else {
             //change the array if there is a winner
-            if (name.equals("")) {
+            if (!name.equals("")) {
                 switch (mode){
                     case 1:
                         highScores[3][1]= name+", ";
                         highScores[3][2]= String.valueOf(wins++);
+                        break;
                     case 2:
                         highScores[4][1]= name+", ";
                         highScores[4][2]= String.valueOf(wins++);
-
+                        break;
                     case 3:
                         highScores[5][1]= name+", ";
                         highScores[5][2]= String.valueOf(wins++);
+                        break;
                     case 4:
                         highScores[6][1]= name+", ";
                         highScores[6][2]= String.valueOf(wins++);
+                        break;
                 }
             }
         }

@@ -166,17 +166,16 @@ public class Logic {
     }
 
     public void createFile(){
-        int num= GUIConnectionToLogic.getNumOfPlayers();
         String name;
         int index,steps;
         //if not solo mode
-        if (num>1){
+        if (maxPlayers>1){
             //if exists a winner
             if (isThereAWinner()) {
                 index = getWinnerIndex();
                 name = players[index].getName();
                 file =  new ScoresFIle(name, mode);
-            }//if does not exist
+            }//if does not exist a winner
             else {
                 name="";
                 file =  new ScoresFIle(name, mode);
@@ -192,20 +191,22 @@ public class Logic {
     private ScoresFIle getFile(){return file;}
 
     private boolean isThereAWinner (){
-        int maxIndex=0;
+        int winnerIndex=0;
         int winners=0;
-        maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
         for (int i =1; i<maxPlayers;i++){
-            if (players[i].getNumberOfPairs() > players[maxIndex].getNumberOfPairs()){
-                maxIndex = i;
+            if (players[i].getNumberOfPairs() > players[winnerIndex].getNumberOfPairs()){
+                winnerIndex = i;
             }
         }
-        setWinnerIndex(maxIndex);
+        setWinnerIndex(winnerIndex);
         for (int i =0; i<maxPlayers;i++){
-            if (players[i].getNumberOfPairs() == players[maxIndex].getNumberOfPairs()){
+            if (players[i].getNumberOfPairs() == players[winnerIndex].getNumberOfPairs()){
                 winners++;
             }
         }
+        System.out.println("Num of winners" + winners);
+        for (int i=0; i < maxPlayers; i++ )
+            System.out.println("Num of paired cards of "+ players[i].getName()+ " : " + players[i].getNumberOfPairs());
         return winners==1;
     }
 
