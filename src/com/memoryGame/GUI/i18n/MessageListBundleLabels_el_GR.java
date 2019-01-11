@@ -17,7 +17,9 @@ public class MessageListBundleLabels_el_GR extends ListResourceBundle {
             {"topRuleBasicDouble", "Επιλέξτε δύο κάρτες σε κάθε γύρο."},
             {"topWrong", "Λάθος επιλογή !!!"},
             {"topCorrect", "Σωστή επιλογή !!!"},
-            {"bottomPlayerTurn", "Παίζει ο/η "}
+            {"bottomPlayerTurn", "Παίζει ο/η "},
+            {"gameOver", "Τέλος παιχνιδιού"},
+            {"resultsLabel", "Τα αποτελέσματα του παιχνιδιού βρίσκονται στο αρχείο <<Memory-Game-Scores.txt>>"}
     };
 
     @Override

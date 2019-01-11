@@ -17,8 +17,11 @@ public class MessageListBundleLabels_en_US extends ListResourceBundle {
             {"topRuleBasicDouble", "Choose two cards in each round."},
             {"topWrong", "Wrong choice !!!"},
             {"topCorrect", "Correct choice !!!"},
-            {"bottomPlayerTurn", "It is the turn of "}
+            {"bottomPlayerTurn", "It is the turn of "},
+            {"gameOver", "Game Over"},
+            {"resultsLabel", "Check in the document <<Memory-Game-Scores.txt>> the results of the game"}
     };
+
 
     @Override
     protected Object[][] getContents() {

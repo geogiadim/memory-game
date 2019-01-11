@@ -52,9 +52,9 @@ class Labels {
         duelCPU = makeLabel(bundle.getString("duelCPU"), FONT_SIZE_MEDIUM);
     }
 
-    static void setGameOverLabel(){
-        gameOverLabel= makeLabel("Game Over",FONT_SIZE_HUGE);
-        results= makeLabel("Check in the document <<Memory-Game-Scores.txt>> the results of the game",FONT_SIZE_MEDIUM);
+    static void setGameOverLabel() {
+        gameOverLabel = makeLabel(bundle.getString("gameOver"), FONT_SIZE_HUGE);
+        results = makeLabel(bundle.getString("resultsLabel"), FONT_SIZE_MEDIUM);
         results.setForeground(Color.BLACK);
     }
 

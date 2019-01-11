@@ -49,15 +49,19 @@ public class Logic {
     private void createPlayers() {
         maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
         players = new Player[maxPlayers];
+        if (maxPlayers > 0) {
+            CPU cpu = new CPU();
+        }
+
         if (mode == 4) {
             players[0] = new Player(GUIConnectionToLogic.getNameOfPlayer(0));
             if (GUIConnectionToLogic.isCPU(1))
-                players[1] = new CPU(GUIConnectionToLogic.getNameOfPlayer(1), GUIConnectionToLogic.getCPUDiff(1));
+                players[1] = new CPUPlayer(GUIConnectionToLogic.getNameOfPlayer(1), GUIConnectionToLogic.getCPUDiff(1));
             else players[1] = new Player(GUIConnectionToLogic.getNameOfPlayer(1));
         }
         for (int i = 0; i < maxPlayers; i++) {
             if (GUIConnectionToLogic.isCPU(i)) {
-                players[i] = new CPU(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
+                players[i] = new CPUPlayer(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
             } else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
         }
     }
