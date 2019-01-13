@@ -215,7 +215,7 @@ public class GUI {
 
         JPanel selectCPUDiff = new JPanel(new GridLayout(1, 0, 2, 2));
         ButtonGroup cpuDiffButtonGroup = new ButtonGroup();
-
+        selectCPUDiff.add(Labels.levelOfCPU);
         for (int i = 0; i < RadioButtons.diffDuel.length; i++) {
             selectCPUDiff.add(RadioButtons.diffDuel[i]);
             cpuDiffButtonGroup.add(RadioButtons.diffDuel[i]);
@@ -326,11 +326,14 @@ public class GUI {
         Labels.setGameOverLabel();
         JPanel gameOverPanel= new JPanel();
         gameOverPanel.add(Labels.gameOverLabel);
+        JPanel scorePanel = new JPanel(new GridLayout(1,1,2,2));
+        //scorePanel.add();
         JPanel resultsPanel = new JPanel();
         resultsPanel.add(Labels.results);
 
         pane.add(gameOverPanel, BorderLayout.PAGE_START);
-        pane.add(resultsPanel,BorderLayout.CENTER);
+        pane.add(scorePanel,BorderLayout.CENTER);
+        pane.add(resultsPanel,BorderLayout.PAGE_END);
     }
 
     private static void makeGamePlayPanels() {

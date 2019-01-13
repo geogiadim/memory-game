@@ -6,7 +6,7 @@ public class MessageListBundleLabels_en_US extends ListResourceBundle {
     private Object[][] contents = {
             {"selectGM", "Select Game mode"},
             {"selectNumPlayers", "Select Number of Players"},
-            {"selectCPULevel", "Choose CPU Level"},
+            {"selectCPULevel", "Choose CPU Level: "},
             {"cpuLabel", "CPU "},
             {"writeNames", "Write the names of the players"},
             {"duelCPU", " Do you want to play against CPU?"},
@@ -19,7 +19,7 @@ public class MessageListBundleLabels_en_US extends ListResourceBundle {
             {"topCorrect", "Correct choice !!!"},
             {"bottomPlayerTurn", "It is the turn of "},
             {"gameOver", "Game Over"},
-            {"resultsLabel", "Check in the document <<Memory-Game-Scores.txt>> the results of the game"}
+            {"resultsLabel", "Check in the document <<Memory-Game-Scores.txt>> the high scores of the game"}
     };
 
 

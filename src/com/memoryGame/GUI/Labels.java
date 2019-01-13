@@ -50,6 +50,7 @@ class Labels {
     static void setPlayerChoiceDuelLabels() {
         writeNames = makeLabel(bundle.getString("writeNames"), FONT_SIZE_LARGE);
         duelCPU = makeLabel(bundle.getString("duelCPU"), FONT_SIZE_MEDIUM);
+        levelOfCPU= makeLabel(bundle.getString("selectCPULevel"),FONT_SIZE_MEDIUM);
     }
 
     static void setGameOverLabel() {

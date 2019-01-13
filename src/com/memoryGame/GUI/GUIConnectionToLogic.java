@@ -30,6 +30,7 @@ public class GUIConnectionToLogic {
 
     public static void beginGamePlayDuel(Table newTable, Table newTable2) {
         initArrayCoordinates();
+        System.out.println("In begin");
         GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), newTable, newTable2);
         DelaysInGUI.delayForPreview(newTable, newTable2);
     }
@@ -107,6 +108,8 @@ public class GUIConnectionToLogic {
             //if Cards match
             if (checkCardsMatch()) {
                 numOfPairedCards++;
+                System.out.println("Pairs: " + numOfPairedCards );
+                System.out.println("size: " + table.sizeOfTable());
                 inDelay = true;
                 Timer timer = new Timer(MESSAGE_DELAY * 1000, actionEvent -> {
                     inDelay = false;
@@ -163,12 +166,23 @@ public class GUIConnectionToLogic {
                 tempTable = table;
             }
         }
-        if (mode == 1 || mode == 2)
-            if (numOfPairedCards == table.sizeOfTable() / 2) gameOver();
-        else if (mode == 3)
-            if (numOfPairedCards == table.sizeOfTable()/ 3) gameOver();
-        else
-            if (numOfPairedCards == table.sizeOfTable()) gameOver();
+
+        if (mode == 1 || mode == 2) {
+            if (numOfPairedCards == table.sizeOfTable() / 2) {
+                System.out.println("end");
+                gameOver();
+            }
+        } else if (mode == 3) {
+            if (numOfPairedCards == table.sizeOfTable() / 3){
+                System.out.println("end");
+                gameOver();
+            }
+        } else{
+            if (numOfPairedCards == table.sizeOfTable()) {
+                System.out.println("end");
+                gameOver();
+            }
+        }
     }
     private static void gameOver(){
         logic.createFile();

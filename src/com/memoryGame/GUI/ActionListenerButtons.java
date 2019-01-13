@@ -73,6 +73,7 @@ class ActionListenerButtons {
                 Buttons.cardButtonsDuelOne[i][j].addActionListener(actionEvent -> {
                     if (GUIConnectionToLogic.isFirstPlayingNow()) {
                         if (GUIConnectionToLogic.notInDelay()) {
+                            System.out.println("set coo for 1");
                             GUIConnectionToLogic.setCoordinates(x, y, table1, Buttons.cardButtonsDuelOne, Buttons.openCardButtonsDuelOne);
                         }
                     }
@@ -80,6 +81,7 @@ class ActionListenerButtons {
                 Buttons.cardButtonsDuelTwo[i][j].addActionListener(actionEvent -> {
                     if (!GUIConnectionToLogic.isFirstPlayingNow()) {
                         if (GUIConnectionToLogic.notInDelay()) {
+                            System.out.println("set coo for 2");
                             GUIConnectionToLogic.setCoordinates(x, y, table2, Buttons.cardButtonsDuelTwo, Buttons.openCardButtonsDuelTwo);
                         }
                     }

@@ -6,7 +6,7 @@ public class MessageListBundleLabels_el_GR extends ListResourceBundle {
     private Object[][] contents = {
             {"selectGM", "Επιλέξτε Κατηγορία Παιχνιδιού"},
             {"selectNumPlayers", "Επιλέξτε αριθμό Παικτών"},
-            {"selectCPULevel", "Επιλέξτε δυσκολία Υπολογιστή"},
+            {"selectCPULevel", "Επιλέξτε δυσκολία Υπολογιστή: "},
             {"cpuLabel", "Υπολογιστής "},
             {"writeNames", "Γράψτε τα ονόματα των Παικτών"},
             {"duelCPU", " Θέλετε ως αντίπαλο Υπολογιστή;"},
@@ -19,7 +19,7 @@ public class MessageListBundleLabels_el_GR extends ListResourceBundle {
             {"topCorrect", "Σωστή επιλογή !!!"},
             {"bottomPlayerTurn", "Παίζει ο/η "},
             {"gameOver", "Τέλος παιχνιδιού"},
-            {"resultsLabel", "Τα αποτελέσματα του παιχνιδιού βρίσκονται στο αρχείο <<Memory-Game-Scores.txt>>"}
+            {"resultsLabel", "Οι καλύτερες επιδόσεις του παιχνιδιού βρίσκονται στο αρχείο <<Memory-Game-Scores.txt>>"}
     };
 
     @Override
