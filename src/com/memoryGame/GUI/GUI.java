@@ -54,9 +54,9 @@ public class GUI {
         setFrame(gameFrame);
     }
 
-    static void createFrame3(){
+    static void createFrame3(int steps, boolean isThereWinner, String name){
         JFrame gameOverFrame = new JFrame("Memory Game");
-        lastFrame(gameOverFrame.getContentPane());
+        lastFrame(gameOverFrame.getContentPane(), steps, isThereWinner, name);
         setFrame(gameOverFrame);
     }
 
@@ -321,19 +321,32 @@ public class GUI {
         ActionListenerButtons.addCardButtonsActListDuel(tableOfCards1, tableOfCards2);
     }
 
-    private static void lastFrame(Container pane){
+    private static void lastFrame(Container pane,int steps,boolean isThereWinner, String name){
         numOfFrame=5;
         Labels.setGameOverLabel();
         JPanel gameOverPanel= new JPanel();
         gameOverPanel.add(Labels.gameOverLabel);
-        JPanel scorePanel = new JPanel(new GridLayout(1,1,2,2));
-        //scorePanel.add();
-        JPanel resultsPanel = new JPanel();
-        resultsPanel.add(Labels.results);
+
+        JPanel resultsPanel = new JPanel(new GridLayout(1,1,2,2));
+        setResultsPanel(resultsPanel, steps, isThereWinner, name);
+
+        JPanel highScoresPanel = new JPanel();
+        highScoresPanel.add(Labels.highScores);
 
         pane.add(gameOverPanel, BorderLayout.PAGE_START);
-        pane.add(scorePanel,BorderLayout.CENTER);
-        pane.add(resultsPanel,BorderLayout.PAGE_END);
+        pane.add(resultsPanel,BorderLayout.CENTER);
+        pane.add(highScoresPanel,BorderLayout.PAGE_END);
+    }
+
+    private static void setResultsPanel(JPanel panel, int steps, boolean isThereWinner, String name){
+        Labels.setResultsLabel(steps,name);
+        if (GUIConnectionToLogic.getNumOfPlayers()==1){
+            panel.add(Labels.soloResults);
+        }else {
+            if (isThereWinner){
+                panel.add(Labels.winnerResults);
+            } else panel.add(Labels.drawResults);
+        }
     }
 
     private static void makeGamePlayPanels() {

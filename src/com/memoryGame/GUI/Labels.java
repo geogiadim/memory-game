@@ -11,7 +11,8 @@ class Labels {
     private static final int FONT_SIZE_LARGE = 30;
     private static final int FONT_SIZE_MEDIUM = 18;
     private static final int FONT_SIZE_SMALL = 12;
-    static JLabel chooseGameMode, chooseNumOfPlayers, gameOverLabel,results;
+    static JLabel chooseGameMode, chooseNumOfPlayers, gameOverLabel,highScores;
+    static JLabel soloResults, winnerResults, drawResults;
     static JLabel writeNames, levelOfCPU, duelCPU;
     static JLabel[] cpuLevels;
     static JLabel topMessage, bottomMessage;
@@ -55,8 +56,17 @@ class Labels {
 
     static void setGameOverLabel() {
         gameOverLabel = makeLabel(bundle.getString("gameOver"), FONT_SIZE_HUGE);
-        results = makeLabel(bundle.getString("resultsLabel"), FONT_SIZE_MEDIUM);
-        results.setForeground(Color.BLACK);
+        highScores = makeLabel(bundle.getString("highScoresLabel"), FONT_SIZE_MEDIUM);
+        highScores.setForeground(Color.BLACK);
+    }
+
+    static void setResultsLabel(int steps, String name){
+        soloResults = makeLabel(bundle.getString("soloResults1" + steps + "soloResults2"),FONT_SIZE_LARGE);
+        soloResults.setForeground(Color.RED);
+        winnerResults = makeLabel(bundle.getString("winnerResults" + name),FONT_SIZE_LARGE);
+        winnerResults.setForeground(Color.RED);
+        drawResults = makeLabel(bundle.getString("drawResults"),FONT_SIZE_LARGE);
+        drawResults.setForeground(Color.RED);
     }
 
     private static JLabel makeLabel(String name, int font_size) {

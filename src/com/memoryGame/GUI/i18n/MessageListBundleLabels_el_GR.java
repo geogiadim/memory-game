@@ -19,7 +19,11 @@ public class MessageListBundleLabels_el_GR extends ListResourceBundle {
             {"topCorrect", "Σωστή επιλογή !!!"},
             {"bottomPlayerTurn", "Παίζει ο/η "},
             {"gameOver", "Τέλος παιχνιδιού"},
-            {"resultsLabel", "Οι καλύτερες επιδόσεις του παιχνιδιού βρίσκονται στο αρχείο <<Memory-Game-Scores.txt>>"}
+            {"highScoresLabel", "Οι καλύτερες επιδόσεις του παιχνιδιού βρίσκονται στο αρχείο <<Memory-Game-Scores.txt>>"},
+            {"soloResults1","Ταίριαξες όλες τις κάρτες σε "},
+            {"soloResults2", " βήματα."},
+            {"winnerResults", "Νικητής είναι ο/η: "},
+            {"drawResults", "Δεν υπάρχει νικητής."}
     };
 
     @Override

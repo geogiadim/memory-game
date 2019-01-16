@@ -19,7 +19,11 @@ public class MessageListBundleLabels_en_US extends ListResourceBundle {
             {"topCorrect", "Correct choice !!!"},
             {"bottomPlayerTurn", "It is the turn of "},
             {"gameOver", "Game Over"},
-            {"resultsLabel", "Check in the document <<Memory-Game-Scores.txt>> the high scores of the game"}
+            {"highScoresLabel", "Check in the document <<Memory-Game-Scores.txt>> the high scores of the game"},
+            {"soloResults1","You matched all cards in "},
+            {"soloResults2", " steps."},
+            {"winnerResults", "The winner is: "},
+            {"drawResults", "There is not a winner."}
     };
 
 

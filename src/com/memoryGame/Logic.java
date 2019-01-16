@@ -17,7 +17,9 @@ public class Logic {
     private Player[] players;
     private int playerTurn = 0;
     private int mode;
-    private int winnerIndex;
+    private int winnerIndex,soloSteps=0;
+    private boolean winner=false;
+    private String name;
     private ScoresFIle file;
     /**
      * Initializes the appropriate table and chooses the correct version to start the game.
@@ -166,27 +168,31 @@ public class Logic {
     }
 
     public void createFile(){
-        String name;
-        int index,steps;
+        int index;
         //if not solo mode
         if (maxPlayers>1){
+            winner=isThereAWinner();
             //if exists a winner
-            if (isThereAWinner()) {
+            if (winner) {
                 index = getWinnerIndex();
                 name = players[index].getName();
-                file =  new ScoresFIle(name, mode);
+                file =  new ScoresFIle(name, mode,true);
             }//if does not exist a winner
             else {
                 name="";
-                file =  new ScoresFIle(name, mode);
+                file =  new ScoresFIle(name, mode,false);
             }
         }//if solo mode
         else {
             name = players[0].getName();
-            steps = players[0].getNumOfTries();
-            file =  new ScoresFIle(name,steps,mode);
+            soloSteps = players[0].getNumOfTries();
+            file =  new ScoresFIle(name,soloSteps,mode);
         }
     }
+
+    public int getSteps(){return soloSteps;}
+    public boolean getWinner(){return winner;}
+    public String getName(){return name;}
 
     private ScoresFIle getFile(){return file;}
 

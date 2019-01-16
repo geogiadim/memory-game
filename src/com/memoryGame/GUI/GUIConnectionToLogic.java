@@ -189,7 +189,7 @@ public class GUIConnectionToLogic {
         Timer timer = new Timer(2* 1000, actionEvent -> {
             GUI.getGameFrame().setVisible(false);
             GUI.getGameFrame().dispose();
-            GUI.createFrame3();
+            GUI.createFrame3(logic.getSteps(), logic.getWinner(), logic.getName());
         });
         timer.setRepeats(false);
         timer.start();

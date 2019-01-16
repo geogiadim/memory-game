@@ -8,6 +8,7 @@ class ScoresFIle {
     private String name;
     private int steps=0,wins=0,mode;
     private String[][] highScores;
+    private boolean winner=false;
 
     ScoresFIle(String name,int steps,int mode){
         this.name=name;
@@ -16,9 +17,10 @@ class ScoresFIle {
         initHighScores();
         createFile();
     }
-    ScoresFIle(String name,int mode){
+    ScoresFIle(String name,int mode, boolean isThereWinner){
         this.name=name;
         this.mode=mode;
+        winner=isThereWinner;
         initHighScores();
         createFile();
     }
@@ -64,7 +66,7 @@ class ScoresFIle {
         }
         else {
             //change the array if there is a winner
-            if (!name.equals("")) {
+            if (winner) {
                 wins++;
                 switch (mode){
                     case 1:
