@@ -169,7 +169,7 @@ public class Logic {
 
     public void createFile(){
         int index;
-        //if not solo mode
+        //if multi player mode
         if (maxPlayers>1){
             winner=isThereAWinner();
             //if exists a winner
