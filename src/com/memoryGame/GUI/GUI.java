@@ -327,7 +327,7 @@ public class GUI {
         JPanel gameOverPanel= new JPanel();
         gameOverPanel.add(Labels.gameOverLabel);
 
-        JPanel resultsPanel = new JPanel(new GridLayout(1,1,2,2));
+        JPanel resultsPanel = new JPanel();
         setResultsPanel(resultsPanel, steps, isThereWinner, name);
 
         JPanel highScoresPanel = new JPanel();

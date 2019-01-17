@@ -61,9 +61,9 @@ class Labels {
     }
 
     static void setResultsLabel(int steps, String name){
-        soloResults = makeLabel(bundle.getString("soloResults1" + steps + "soloResults2"),FONT_SIZE_LARGE);
+        soloResults = makeLabel(bundle.getString("soloResults1") + steps + bundle.getString("soloResults2"),FONT_SIZE_LARGE);
         soloResults.setForeground(Color.RED);
-        winnerResults = makeLabel(bundle.getString("winnerResults" + name),FONT_SIZE_LARGE);
+        winnerResults = makeLabel(bundle.getString("winnerResults") + name,FONT_SIZE_LARGE);
         winnerResults.setForeground(Color.RED);
         drawResults = makeLabel(bundle.getString("drawResults"),FONT_SIZE_LARGE);
         drawResults.setForeground(Color.RED);
