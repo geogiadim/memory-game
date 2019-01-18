@@ -113,6 +113,9 @@ public class GUIConnectionToLogic {
         else return (getNumOfPlayers() - playerNumber - 1) < ChecksForJComponents.getNumberOfCPU();
     }
 
+    /**
+     *
+     */
     private static void areCPUPlaying(){
         if (mode == 4) areCPUPlaying = true;
         else {
@@ -175,6 +178,14 @@ public class GUIConnectionToLogic {
     }
 
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param table
+     * @param cardButtons
+     * @param openCardButtons
+     */
     static void setCoordinates(int x, int y, Table table, JButton[][] cardButtons, JButton[][] openCardButtons) {
         if (mode == 4) {
             if (!isCPUPlaying || randomCPUCard){
@@ -314,6 +325,9 @@ public class GUIConnectionToLogic {
         }
     }
 
+    /**
+     * Starts the process for game over
+     */
     private static void gameOver(){
         logic.createFile();
         if (mode != 4){

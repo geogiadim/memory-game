@@ -78,12 +78,21 @@ class Labels {
         levelOfCPU= makeLabel(bundle.getString("selectCPULevel"),FONT_SIZE_MEDIUM);
     }
 
+    /**
+     * Creates the labels for Game over frame
+     */
     static void setGameOverLabel() {
         gameOverLabel = makeLabel(bundle.getString("gameOver"), FONT_SIZE_HUGE);
         highScores = makeLabel(bundle.getString("highScoresLabel"), FONT_SIZE_MEDIUM);
         highScores.setForeground(Color.BLACK);
     }
 
+    /**
+     * Creates the labels for results of the game in last frame
+     *
+     * @param steps the steps that player needed to finish the game
+     * @param name the name of the player
+     */
     static void setResultsLabel(int steps, String name){
         soloResults = makeLabel(bundle.getString("soloResults1") + steps + bundle.getString("soloResults2"),FONT_SIZE_LARGE);
         soloResults.setForeground(Color.RED);

@@ -7,7 +7,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
- * Creates a JFrame for Game Mode selection, Player and CPU selection, Player Name selection and a JFrame for gameplay.
+ * Creates a JFrame for Game Mode selection, Player and CPU selection, Player Name selection and a JFrame for game play.
  * Modifies all JFrames for normal(not Duel) Game Modes and for Duel Game Mode.
  * Handles proper initiation of Components when they are needed.
  * <p>
@@ -29,7 +29,7 @@ public class GUI {
      */
     static JFrame getFrame() {return frame;}
     /**
-     * Returns the gameplay JFrame, where Card/Buttons are.
+     * Returns the game play JFrame, where Card/Buttons are.
      *
      * @return The game JFrame in use
      */
@@ -48,21 +48,21 @@ public class GUI {
      */
     static int getNumOfDuelFrame() {return numOfDuelFrame;}
     /**
-     * Returns the top JPanel from gameplay Frame.
+     * Returns the top JPanel from game play Frame.
      *
      * @return Return the top JPanel
      */
     private static JPanel getMessagePanel() {return messagePanel;}
     /**
-     * Returns the gameplay JPanel for normal(not Duel) Game Modes.
+     * Returns the game play JPanel for normal(not Duel) Game Modes.
      *
-     * @return The gameplay JPanel
+     * @return The game play JPanel
      */
     static JPanel getGamePanel() {return gamePanel;}
     /**
      * Returns the appropriate gameplay JPanel for Duel Game Mode.
      *
-     * @param isFirst If true, returns the first gameplay JPanel. If false, returns the second gameplay JPanel
+     * @param isFirst If true, returns the first game play JPanel. If false, returns the second game play JPanel
      * @return The gameplay JPanel
      */
     static JPanel getGamePanelDuel(boolean isFirst){
@@ -104,12 +104,22 @@ public class GUI {
         setFrame(frame);
     }
 
+    /**
+     * Creates the second frame for game play
+     */
     static void createFrame2() {
         gameFrame = new JFrame("Memory Game");
         GUIConnectionToLogic.begin();
         setFrame(gameFrame);
     }
 
+    /**
+     * Creates the third frame for game over
+     *
+     * @param steps steps that player needed to finish the game
+     * @param isThereWinner true if exists a winner and false if does not
+     * @param name the name of the winner
+     */
     static void createFrame3(int steps, boolean isThereWinner, String name){
         JFrame gameOverFrame = new JFrame("Memory Game");
         lastFrame(gameOverFrame.getContentPane(), steps, isThereWinner, name);
@@ -364,7 +374,7 @@ public class GUI {
     }
 
     /**
-     * The gameplay JFrame containing the Card/Buttons in a grid, top and bottom messages.
+     * The game play JFrame containing the Card/Buttons in a grid, top and bottom messages.
      *
      * @param pane         The Container to add all JPanels
      * @param tableOfCards The Table of Card Object corresponding to the Card/Buttons used
@@ -391,7 +401,7 @@ public class GUI {
 
 
     /**
-     * The gameplay Duel JFrame containing the two Card/Button groups in two grids, top and bottom messages.
+     * The game play Duel JFrame containing the two Card/Button groups in two grids, top and bottom messages.
      *
      * @param pane          The Container to add all JPanels
      * @param tableOfCards1 The first Table of Card Object corresponding to the right group of Card/Buttons used
@@ -428,6 +438,14 @@ public class GUI {
         ActionListenerButtons.addCardButtonsActListDuel(tableOfCards1, tableOfCards2);
     }
 
+    /**
+     * This is the last frame for game over and results of the game
+     *
+     * @param pane The Container to add all JPanels
+     * @param steps steps that player needed to finish the game
+     * @param isThereWinner true if exists a winner and false if does not
+     * @param name the name of the player
+     */
     private static void lastFrame(Container pane,int steps,boolean isThereWinner, String name){
         numOfFrame=5;
         Labels.setGameOverLabel();
@@ -445,6 +463,14 @@ public class GUI {
         pane.add(highScoresPanel,BorderLayout.PAGE_END);
     }
 
+    /**
+     * Sets the panel in which locates the results of the game
+     *
+     * @param panel The Container to add all JPanels
+     * @param steps steps that player needed to finish the game
+     * @param isThereWinner true if winner exists and false if does not
+     * @param name the name of the player/winner
+     */
     private static void setResultsPanel(JPanel panel, int steps, boolean isThereWinner, String name){
         Labels.setResultsLabel(steps,name);
         if (GUIConnectionToLogic.getNumOfPlayers()==1){
@@ -457,7 +483,7 @@ public class GUI {
     }
 
     /**
-     * Creates the gameplay JPanel, the top and bottom message JPanels.
+     * Creates the game play JPanel, the top and bottom message JPanels.
      */
     private static void makeGamePlayPanels() {
         messagePanel = new JPanel();
@@ -466,7 +492,7 @@ public class GUI {
     }
 
     /**
-     * Adds the gameplay JPanel, the top and bottom message JPanels to the given Container.
+     * Adds the game play JPanel, the top and bottom message JPanels to the given Container.
      *
      * @param pane The Container to add all JPanels
      */
