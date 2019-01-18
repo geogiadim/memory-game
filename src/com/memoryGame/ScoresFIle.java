@@ -5,14 +5,13 @@ import java.util.HashMap;
 
 class ScoresFIle implements Serializable{
     private String name;
-    private int steps=0,wins=0,mode;
+    private int steps=0,mode;
     private String[][] highScores;
     private boolean winner=false;
     private boolean fileNotExists;
     private HashMap<String,Integer> hashMap;
 
     private final String FILE_WINS_BIN= "Memory-Game-Wins.bin";
-    private final String FILE_WINS_TXT = "Memory-Game-Wins.txt";
     private final String FILE_BIN = "Memory-Game-Scores.bin";
     private final String FILE_TXT = "Memory-Game-Scores.txt";
 
@@ -105,16 +104,20 @@ class ScoresFIle implements Serializable{
         }
     }
 
-    private void loadWinsFromBinaryFile(){
+    private void loadWinsFromBinaryFile() {
         try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(FILE_WINS_BIN)))){
-            for (String n : hashMap.keySet()){
-                hashMap.put(in.readUTF(),hashMap.get(n));
-                System.out.println(1);
+            System.out.println(3);
+            while (true){
+                String n = in.readUTF();
+                int w= in.readInt();
+                hashMap.put(n,w);
+                System.out.println("load");
             }
+        }catch (EOFException e) {
+            // τέλος αρχείου
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     private void saveWinsToBinaryFile() {
@@ -122,6 +125,7 @@ class ScoresFIle implements Serializable{
             for (String name : hashMap.keySet()){
                 out.writeUTF(name);
                 out.write(hashMap.get(name));
+                System.out.println("save");
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -132,10 +136,11 @@ class ScoresFIle implements Serializable{
         boolean flag = false;
         for (String n : hashMap.keySet()) {
             if (hashMap.containsKey(name)) {
-                System.out.println("change");
+                System.out.println("name exists");
                 hashMap.replace(n, hashMap.get(n) + 1);
                 flag=true;
             }
+            System.out.println("change");
         }
 
         if (!flag) {
@@ -153,6 +158,7 @@ class ScoresFIle implements Serializable{
         }
         else {
             //change the array if there is a winner
+            int wins;
             if (winner) {
                 checkForWins();
                 if (name.equals(highScores[mode+2][1])){
@@ -180,12 +186,15 @@ class ScoresFIle implements Serializable{
             e.printStackTrace();
         }
 
+        //for wins
+        final String FILE_WINS_TXT = "Memory-Game-Wins.txt";
         try (FileWriter writer= new FileWriter(FILE_WINS_TXT)){
             for (String n : hashMap.keySet()){
                 writer.write(n);
                 String wins = String.valueOf(hashMap.get(n));
                 writer.write(wins);
                 writer.write("\n\n");
+                System.out.println("writer");
             }
         }catch (IOException e) {
             e.printStackTrace();
@@ -197,7 +206,7 @@ class ScoresFIle implements Serializable{
     }
 
     public static void main(String[] args) {
-        //ScoresFIle file = new ScoresFIle("nikos",26,3);
-        ScoresFIle file = new ScoresFIle("dimitris",3,true);
+        //ScoresFIle file = new ScoresFIle("giorgos",24,1);
+        ScoresFIle file = new ScoresFIle("allos",1,true);
     }
 }
