@@ -183,7 +183,7 @@ public class CPU {
         }
         for (int i = 0; i < maxCardNo; i++) {
             System.out.println(temp[i][0] + ", " + temp[i][1]);
-            GUIConnectionToLogic.openCard(temp[i][0], temp[i][1], random);
+            GUIConnectionToLogic.openCard(temp[i][1], temp[i][2], random);
         }
         random = false;
     }
@@ -197,7 +197,7 @@ public class CPU {
         } else {
             temp = chooseRandomCard(tableDuel2)[0];
         }
-        GUIConnectionToLogic.openCard(temp[0], temp[1], random);
+        GUIConnectionToLogic.openCard(temp[1], temp[2], random);
         random = false;
     }
 
@@ -242,8 +242,7 @@ public class CPU {
 
         if (GUIConnectionToLogic.getGameMode() == 4) maxCards = 1;
         else maxCards = maxCardNo;
-        int[][] cardCoords = new int[maxCards][2];
-
+        int[][] cardCoords = new int[maxCards][3];
 
         for (int m = 0; m < maxCards; m++){
             boolean flagFoundRandom = false;
@@ -255,8 +254,8 @@ public class CPU {
             for (int i = 0; i < table.sizeX(); i++){
                 for (int j = 0; j < table.sizeY(); j++){
                     if (table.getCardValue(i,j) == randomCardValue && i != lastI && j != lastJ && i!= mI && j!= mJ){
-                        cardCoords[m][0] = i;
-                        cardCoords[m][1] = j;
+                        cardCoords[m][1] = i;
+                        cardCoords[m][2] = j;
                         flagFoundRandom = true;
                         lastI = i;
                         lastJ = j;

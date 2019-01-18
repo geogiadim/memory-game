@@ -38,11 +38,6 @@ public class GUIConnectionToLogic {
     private static boolean randomCPUCard = false;
 
     /**
-     * Creates a Logic Object.
-     */
-    static void begin() {logic = new Logic(getGameMode());}
-
-    /**
      * Loads the game play Frame and starts the Card/Button preview for normal(not Duel) Game Modes.
      *
      * @param newTable The Table of Card Object, ready from Logic Class
@@ -61,11 +56,17 @@ public class GUIConnectionToLogic {
      */
     public static void beginGamePlayDuel(Table newTable, Table newTable2) {
         initArrayCoordinates();
-        System.out.println("In begin");
         GUI.frame3GamePlayDuel(GUI.getGameFrame().getContentPane(), newTable, newTable2);
         DelaysInGUI.delayForPreview(newTable, newTable2);
     }
 
+    /**
+     * Creates a Logic Object.
+     */
+    static void begin() {
+        areCPUPlaying();
+        logic = new Logic(getGameMode());
+    }
 
     static void setMode(int i) {
         mode = i;
@@ -81,15 +82,6 @@ public class GUIConnectionToLogic {
         else  maxCardNo = 2;
         return mode;
     }
-
-    /**
-     * Returns the name of Player according to given Player number.
-     *
-     * @param playerNumber The Player number to get the name
-     * @return The Player's name
-     */
-    public static String getNameOfPlayer(int playerNumber) {return TextField.textPlayerNames[playerNumber].getText();}
-
 
     /**
      * Returns the number of Players.
@@ -128,6 +120,16 @@ public class GUIConnectionToLogic {
                 if (isCPU(i)) areCPUPlaying = true;
             }
         }
+    }
+
+    /**
+     * Returns the name of Player according to given Player number.
+     *
+     * @param playerNumber The Player number to get the name
+     * @return The Player's name
+     */
+    public static String getNameOfPlayer(int playerNumber) {
+        return TextField.textPlayerNames[playerNumber].getText();
     }
 
     /**
@@ -313,13 +315,16 @@ public class GUIConnectionToLogic {
 
     private static void gameOver(){
         logic.createFile();
-        Timer timer = new Timer(2* 1000, actionEvent -> {
-            GUI.getGameFrame().setVisible(false);
-            GUI.getGameFrame().dispose();
-            GUI.createFrame3(logic.getSteps(), logic.getWinner(), logic.getName());
-        });
-        timer.setRepeats(false);
-        timer.start();
+        if (mode != 4){
+            Timer timer = new Timer(2* 1000, actionEvent -> {
+                GUI.getGameFrame().setVisible(false);
+                GUI.getGameFrame().dispose();
+                GUI.createFrame3(logic.getSteps(), logic.getWinner(), logic.getName());
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
+
     }
 
     /**
