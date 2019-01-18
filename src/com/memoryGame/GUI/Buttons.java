@@ -140,7 +140,7 @@ class Buttons {
             cards = new JButton[sizeX][sizeY];
             for (int i = 0; i < sizeX; i++) {
                 for (int j = 0; j < sizeY; j++) {
-                    cards[i][j] = makeButton(String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]), WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
+                    cards[i][j] = makeButton("", WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
                     cards[i][j].setEnabled(true);
                     setOpenCardIcon(cards[i][j], String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]));
                 }

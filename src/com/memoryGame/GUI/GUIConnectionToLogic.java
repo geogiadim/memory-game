@@ -70,8 +70,9 @@ public class GUIConnectionToLogic {
     }
 
     /**
+     * Sets the mode of the game
      *
-     * @param i
+     * @param i the mode of the game
      */
     static void setMode(int i) {
         mode = i;
@@ -118,7 +119,7 @@ public class GUIConnectionToLogic {
     }
 
     /**
-     *
+     * Sets whether CPUs are playing or not
      */
     private static void areCPUPlaying(){
         if (mode == 4) areCPUPlaying = true;

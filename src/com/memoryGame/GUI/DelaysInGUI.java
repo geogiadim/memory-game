@@ -10,7 +10,7 @@ import javax.swing.*;
  * @author Giorgos Christidis
  */
 class DelaysInGUI {
-    private final static int PREVIEW_DELAY = 5;
+    private final static int PREVIEW_DELAY = 15;
     private static int timesDelayed = PREVIEW_DELAY;
 
     /**

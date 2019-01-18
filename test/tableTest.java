@@ -1,4 +1,4 @@
-/*import com.memoryGame.Table;
+import com.memoryGame.Table;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  *
  * @author Giorgos Christidis
  */
-/*public class tableTest {
+public class tableTest {
     public tableTest(){}
 
     @BeforeClass
@@ -21,12 +21,12 @@ import static org.junit.Assert.*;
     public void setUp(){}
 
     @After
-    public void tearDown(){}*/
+    public void tearDown(){}
 
     /**
      * Test of getSCardValue method, of class Table.
      */
-   /* @Test
+    @Test
     public void testGetCardValue(){
         System.out.println("getCardValue");
         int x = 6;
@@ -34,12 +34,12 @@ import static org.junit.Assert.*;
         Table table = new Table(x,y);
         int cardValue = table.getCardValue(3,5);
         assertEquals(cardValue, 0, 0.0);
-    }*/
+    }
 
     /**
      * Test of getSizeX method, of class Table.
      */
-   /* @Test
+    @Test
     public void testGetSizeX(){
         System.out.println("getSizeX");
         int x = 4;
@@ -47,12 +47,12 @@ import static org.junit.Assert.*;
         Table table = new Table(x,y);
         int sizeX = table.sizeX();
         assertEquals(x, sizeX, 0);
-    }*/
+    }
 
     /**
      * Test of getSizeY method, of class Table.
      */
-    /*@Test
+    @Test
     public void testGetSizeY(){
         System.out.println("getSizeY");
         int x = 4;
@@ -60,12 +60,12 @@ import static org.junit.Assert.*;
         Table table = new Table(x,y);
         int sizeY = table.sizeY();
         assertEquals(y, sizeY, 0);
-    }*/
+    }
 
     /**
      * Test of getSizeOfTable method, of class Table.
      */
-   /* @Test
+    @Test
     public void testGetSizeOfTable(){
         System.out.println("getSizeOfTable");
         int x = 4;
@@ -75,4 +75,4 @@ import static org.junit.Assert.*;
         assertEquals(x * y, size, 0);
     }
 
-}*/
+}
