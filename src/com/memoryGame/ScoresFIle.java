@@ -3,6 +3,11 @@ import com.memoryGame.GUI.GUIConnectionToLogic;
 import java.io.*;
 import java.util.HashMap;
 
+/**
+ * This class receives the results of the game and creates the file with the higj scores
+ *
+ * @author Giorgos Giannios
+ */
 class ScoresFIle implements Serializable{
     private String name;
     private int steps=0,mode;
@@ -15,6 +20,13 @@ class ScoresFIle implements Serializable{
     private final String FILE_BIN = "Memory-Game-Scores.bin";
     private final String FILE_TXT = "Memory-Game-Scores.txt";
 
+    /**
+     * Constructor of this class for solo mode of the game
+     *
+     * @param name the name of the player
+     * @param steps the steps that player needed to finish the game
+     * @param mode the mode of the game
+     */
     ScoresFIle(String name,int steps,int mode){
         highScores= new String[7][5];
         this.name=name;
@@ -23,6 +35,14 @@ class ScoresFIle implements Serializable{
         checkIfFIleExists();
         createFile();
     }
+
+    /**
+     * Constructor of this class for multi player mode of the game
+     *
+     * @param name the name of the winner if is he exist
+     * @param mode the mode of the game
+     * @param isThereWinner it is true if exists a winner and false if does not exist
+     */
     ScoresFIle(String name,int mode, boolean isThereWinner){
         highScores= new String[7][5];
         hashMap= new HashMap<>();
@@ -33,6 +53,9 @@ class ScoresFIle implements Serializable{
         createFile();
     }
 
+    /**
+     * Checks if the .txt file with the high scores already exists
+     */
     private void checkIfFIleExists(){
         if ((new File(FILE_TXT).isFile())){
             System.out.println("txt exists");
@@ -47,6 +70,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Checks if the .bin file with the number of wins of each player already exists
+     */
     private void checkForWins(){
         if ((new File(FILE_WINS_BIN).isFile())){
             System.out.println("bin exists");
@@ -58,6 +84,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Initialize the 2D table with the high scores for each type of the game
+     */
     private void initHighScores(){
         highScores[0][0] = "Solo Basic Game high score: ";
         highScores[1][0] = "Solo Double Game high score: ";
@@ -80,6 +109,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Saves to binary file the high scores
+     */
     private void saveToBinaryFile() {
         try(DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(FILE_BIN)))){
             for (String[] line : highScores){
@@ -92,6 +124,10 @@ class ScoresFIle implements Serializable{
         }
     }
 
+
+    /**
+     * Loads from binary file the high scores
+     */
     private void loadFromBinaryFile(){
         try(DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(FILE_BIN)))){
             for (int i = 0; i< highScores.length; i++){
@@ -104,6 +140,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Loads from binary file the num of wins of each player
+     */
     private void loadWinsFromBinaryFile() {
         try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(FILE_WINS_BIN)))){
             System.out.println(3);
@@ -120,6 +159,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Saves to binary file the num of wins of each player
+     */
     private void saveWinsToBinaryFile() {
         try(DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(FILE_WINS_BIN)))){
             for (String name : hashMap.keySet()){
@@ -132,6 +174,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Changes the hashMap keys and values according to the results of the multi player  modes
+     */
     private void changeHashMap (){
         boolean flag = false;
         for (String n : hashMap.keySet()) {
@@ -149,6 +194,9 @@ class ScoresFIle implements Serializable{
 
     }
 
+    /**
+     * Changes the high scores according to the results of the game
+     */
     private void changeHighScores(){
         if (false/*GUIConnectionToLogic.getNumOfPlayers()==1*/){
             if (steps <= Integer.parseInt(highScores[mode-1][3]) || fileNotExists || Integer.parseInt(highScores[mode-1][3]) == 0){
@@ -174,6 +222,9 @@ class ScoresFIle implements Serializable{
         }
     }
 
+    /**
+     * Creates the file with the high scores
+     */
     private void createFile(){
         try (FileWriter writer= new FileWriter(FILE_TXT)){
             for (int i=0; i<7; i++){
