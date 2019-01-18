@@ -69,6 +69,10 @@ public class GUIConnectionToLogic {
         logic = new Logic(getGameMode());
     }
 
+    /**
+     *
+     * @param i
+     */
     static void setMode(int i) {
         mode = i;
     }
@@ -178,13 +182,15 @@ public class GUIConnectionToLogic {
     }
 
 
+
     /**
+     * Tests if Card flipping is possible. If it is, it passed necessary data to check the Cards.
      *
-     * @param x
-     * @param y
-     * @param table
-     * @param cardButtons
-     * @param openCardButtons
+     * @param x The X coordinate of the Card
+     * @param y The Y coordinate of the Card
+     * @param table The Table the Card belongs
+     * @param cardButtons The group of JButtons the Card belongs
+     * @param openCardButtons The group of opened JButtons the Card corresponds to
      */
     static void setCoordinates(int x, int y, Table table, JButton[][] cardButtons, JButton[][] openCardButtons) {
         if (mode == 4) {
@@ -293,7 +299,7 @@ public class GUIConnectionToLogic {
                 isCPUPlaying = true;
             } else isCPUPlaying = false;
             if (numOfPairedCards == table.sizeOfTable() / 3) {
-                System.out.println("end");
+                //System.out.println("end");
                 gameOver();
             }
         } else if (mode == 4) {
@@ -310,7 +316,7 @@ public class GUIConnectionToLogic {
                 playerCanNotPlay = false;
             }
             if (numOfPairedCards == table.sizeOfTable()){
-                System.out.println("end");
+                //System.out.println("end");
                 gameOver();
             }
         } else{
@@ -319,7 +325,7 @@ public class GUIConnectionToLogic {
                 isCPUPlaying = true;
             } else isCPUPlaying = false;
             if (numOfPairedCards == table.sizeOfTable() / 2) {
-                System.out.println("end");
+                //System.out.println("end");
                 gameOver();
             }
         }
@@ -330,16 +336,13 @@ public class GUIConnectionToLogic {
      */
     private static void gameOver(){
         logic.createFile();
-        if (mode != 4){
-            Timer timer = new Timer(2* 1000, actionEvent -> {
-                GUI.getGameFrame().setVisible(false);
-                GUI.getGameFrame().dispose();
-                GUI.createFrame3(logic.getSteps(), logic.getWinner(), logic.getName());
-            });
-            timer.setRepeats(false);
-            timer.start();
-        }
-
+        Timer timer = new Timer(2* 1000, actionEvent -> {
+            GUI.getGameFrame().setVisible(false);
+            GUI.getGameFrame().dispose();
+            GUI.createFrame3(logic.getSteps(), logic.getWinner(), logic.getName());
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     /**
@@ -352,6 +355,11 @@ public class GUIConnectionToLogic {
         return logic.checkCards(arrayCoordinatesX, arrayCoordinatesY);
     }
 
+    /**
+     * Returns whether the player can press a Card/Button or not.
+     *
+     * @return whether the player can press a Card/Button or not
+     */
     static boolean getPlayerCanNotPlay(){
         return !playerCanNotPlay;
     }
@@ -365,6 +373,14 @@ public class GUIConnectionToLogic {
         return playingNowDuel == 0;
     }
 
+
+    /**
+     * Opens a Card after a specific amount of time, according to the give data.
+     *
+     * @param x The X coordinate of the Card
+     * @param y The Y coordinate of the Card
+     * @param random Whether the Card was chosen randomly
+     */
     public static void openCard(int x, int y, boolean random){
         randomCPUCard = random;
         Timer timer = new Timer(1000, actionEvent -> {
@@ -380,6 +396,12 @@ public class GUIConnectionToLogic {
 
     }
 
+
+    /**
+     * Returns whether there are any CPUs.
+     *
+     * @return Whether there are any CPUs.
+     */
     public static boolean getAreCPUPlaying() {
         return areCPUPlaying;
     }

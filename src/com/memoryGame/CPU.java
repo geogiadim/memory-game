@@ -29,21 +29,49 @@ public class CPU {
     private static boolean flagAll = false;
     private static boolean random;
 
+
+    /**
+     * Initializes the table of Cards and ArrayLists to store opened Card/Buttons for normal(not Duel) game modes.
+     *
+     * @param tableOfCards The specific table of Cards to store
+     * @param players The array of current Players
+     */
     static void init(Table tableOfCards, Player[] players) {
         table = initTable(tableOfCards);
         initAllArrays(false, players);
     }
 
+
+    /**
+     * Initializes the table of Cards and ArrayLists to store opened Card/Buttons for the Duel game mode.
+     *
+     * @param table1 The right table of Cards to store
+     * @param table2 The left table of Cards to store
+     * @param players The array of current Players
+     */
     static void init(Table table1, Table table2, Player[] players){
         tableDuel1 = initTable(table1);
         tableDuel2 = initTable(table2);
         initAllArrays(true, players);
     }
 
+    /**
+     * Used in storing the table from Logic to a local table.
+     *
+     * @param originTable The original table from Logic
+     * @return The table to store locally
+     */
     private static Table initTable(Table originTable){
         return originTable;
     }
 
+    /**
+     * Initializes all ArrayLists used in storing opened Card/Buttons,
+     * for all game modes and depending on the difficulty of the CPUs selected.
+     *
+     * @param isDuel If the game mode is Duel
+     * @param players The array of current Players
+     */
     private static void initAllArrays(boolean isDuel, Player[] players){
         playerDiff = new int[players.length];
         for (int i = 0; i < players.length; i++) {
@@ -68,6 +96,13 @@ public class CPU {
         maxCardNo = GUIConnectionToLogic.getMaxCardsNum();
     }
 
+    /**
+     * Adds a Card Object to the initialized ArrayLists, depending on the difficulty of the CPUs selected.
+     * It first checks if the Card Object is already stored. Used in normal(not Duel) game modes.
+     *
+     * @param x The X coordinate of the Card to store
+     * @param y The Y coordinate of the Card to store
+     */
     public static void addCardToArrayLists(int x, int y) {
         if (flagAll || flagSome){
             int[] temp = new int[3];
@@ -83,6 +118,14 @@ public class CPU {
         }
     }
 
+
+    /**
+     * Checks if a Card Object is already stored in the given ArrayList.
+     * If it is not, it gets stored.
+     *
+     * @param temp An array containing the Card value and coords to be checked for
+     * @param arrayList The specific ArrayList to check
+     */
     private static void checkIfCardExists(int[] temp, ArrayList<int[]> arrayList){
         boolean flagExists = false;
         for (int[] i : arrayList){
@@ -102,6 +145,16 @@ public class CPU {
         }
     }
 
+
+    /**
+     * Adds a Card Object to the initialized ArrayLists, depending on the difficulty of the CPUs selected
+     * and whether or not the first player is playing. It first checks if the Card Object is already stored.
+     * Used in Duel game mode.
+     *
+     * @param x The X coordinate of the Card to store
+     * @param y The Y coordinate of the Card to store
+     * @param firstPlayingNow If the first player is playing
+     */
     public static void addCardToArrayListsDuel(int x, int y, boolean firstPlayingNow) {
         if (flagAll || flagSome){
             int[] temp = new int[3];
@@ -128,6 +181,14 @@ public class CPU {
         }
     }
 
+
+
+    /**
+     * Removes card data from ArrayLists and tables accordingly.
+     * Used in normal(not Duel) game modes.
+     *
+     * @param cardValue The value of the Card to be removed
+     */
     public static void removeCardsFromArrayList(int cardValue) {
         if (flagAll) {
             removePair(cardValue, arrayListAll);
@@ -138,6 +199,13 @@ public class CPU {
         removeFromTable(cardValue, table);
     }
 
+
+    /**
+     * Removes a Card Object from the according table.
+     *
+     * @param cardValue The value of the Card Object to be removed
+     * @param tableToRemove The table to remove the Card Object from
+     */
     private static void removeFromTable(int cardValue, Table tableToRemove){
         int limI = tableToRemove.sizeX() - 1;
         int limJ = tableToRemove.sizeY() - 1;
@@ -150,6 +218,13 @@ public class CPU {
         }
     }
 
+
+    /**
+     * Removes all card data from given ArrayList. All cards with the same value are removed.
+     *
+     * @param cardValue The value of the Card to be removed
+     * @param arrayList The ArrayList to remove the Card from
+     */
     private static void removePair(int cardValue, ArrayList<int[]> arrayList) {
         int limJ = arrayList.size() - 1;
         for (int j = limJ; j >= 0; j--) {
@@ -159,6 +234,12 @@ public class CPU {
         }
     }
 
+    /**
+     * Removes card data from ArrayLists and tables accordingly.
+     * Used in Duel game mode.
+     *
+     * @param cardValue The value of the Card to be removed
+     */
     public static void removeCardsFromArrayListsDuel(int cardValue){
         if (flagAll){
             removePair(cardValue, arrayListAllDuel1);
@@ -171,6 +252,13 @@ public class CPU {
         removeFromTable(cardValue, tableDuel2);
     }
 
+
+    /**
+     * Choose specific Card coordinates of Cards to open, according to the difficulty of the CPU playing.
+     * Used in normal(not Duel) game modes.
+     *
+     * @param playingNow Which CPU is currently playing
+     */
     public static void play(int playingNow) {
         int[][] temp;
 
@@ -182,12 +270,17 @@ public class CPU {
             temp = chooseRandomCard(table);
         }
         for (int i = 0; i < maxCardNo; i++) {
-            System.out.println(temp[i][0] + ", " + temp[i][1]);
+            //System.out.println(temp[i][0] + ", " + temp[i][1]);
             GUIConnectionToLogic.openCard(temp[i][1], temp[i][2], random);
         }
         random = false;
     }
 
+
+    /**
+     * Choose specific Card coordinates of Cards to open, according to the difficulty of the CPU playing.
+     * Used in Duel game mode.
+     */
     public static void playDuel(){
         int[] temp;
         if (playerDiff[1] == 1){
@@ -201,6 +294,14 @@ public class CPU {
         random = false;
     }
 
+    /**
+     * Choose same Cards to play according to the ArrayList given.
+     * Used in Duel game mode.
+     *
+     * @param arrayListCPU The player's ArrayList of opened Cards
+     * @param arrayListPlayer The CPU's ArrayList of opened Cards
+     * @return An array containing the x & y coords of the Card to be opened
+     */
     private static int[] chooseCardFromArrayDuel(ArrayList<int[]> arrayListCPU, ArrayList<int[]> arrayListPlayer){
         boolean foundPair = false;
         int pos = 1;
@@ -213,7 +314,7 @@ public class CPU {
             temp[2] = arrayListCPU.get(des)[2];
             for (int asc = 0; asc < arrayListPlayer.size(); asc++) {
                 if (des == asc) break;
-                System.out.println(asc + " " +des);
+                //System.out.println(asc + " " +des);
                 if (arrayListPlayer.get(asc)[0] == arrayListCPU.get(des)[0]) {
                     temp[0] = arrayListCPU.get(asc)[0];
                     temp[1] = arrayListCPU.get(asc)[1];
@@ -231,6 +332,13 @@ public class CPU {
         if (!foundPair) temp = chooseRandomCard(tableDuel2)[0];
         return temp;
     }
+
+    /**
+     * Chooses random Cards to play from the Table of Card Object.
+     *
+     * @param table The table containing all the playable Card Objects
+     * @return An array containing the x & y coords of the Card to be opened
+     */
     private static int[][] chooseRandomCard(Table table) {
         int maxCards;
         int lastI = -1;
@@ -272,6 +380,13 @@ public class CPU {
         return cardCoords;
     }
 
+    /**
+     * Choose same Cards to play according to the ArrayList given.
+     * Used in normal(not Duel) game modes.
+     *
+     * @param arrayList The ArrayList of opened Cards
+     * @return An array containing the x & y coords of the Card to be opened
+     */
     private static int[][] chooseCardFromArray(ArrayList<int[]> arrayList) {
         boolean foundPair = false;
         int pos = 1;

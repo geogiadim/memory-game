@@ -58,12 +58,10 @@ class ScoresFIle implements Serializable{
      */
     private void checkIfFIleExists(){
         if ((new File(FILE_TXT).isFile())){
-            System.out.println("txt exists");
             fileNotExists=false;
             loadFromBinaryFile();
             changeHighScores();
         } else {
-            System.out.println("txt not");
             fileNotExists=true;
             initHighScores();
             changeHighScores();
@@ -75,11 +73,9 @@ class ScoresFIle implements Serializable{
      */
     private void checkForWins(){
         if ((new File(FILE_WINS_BIN).isFile())){
-            System.out.println("bin exists");
             loadWinsFromBinaryFile();
             changeHashMap();
         }else {
-            System.out.println("bin not exists");
             changeHashMap();
         }
     }
@@ -150,7 +146,6 @@ class ScoresFIle implements Serializable{
                 String n = in.readUTF();
                 int w= in.readInt();
                 hashMap.put(n,w);
-                System.out.println("load");
             }
         }catch (EOFException e) {
             // τέλος αρχείου
@@ -167,7 +162,6 @@ class ScoresFIle implements Serializable{
             for (String name : hashMap.keySet()){
                 out.writeUTF(name);
                 out.write(hashMap.get(name));
-                System.out.println("save");
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -181,11 +175,9 @@ class ScoresFIle implements Serializable{
         boolean flag = false;
         for (String n : hashMap.keySet()) {
             if (hashMap.containsKey(name)) {
-                System.out.println("name exists");
                 hashMap.replace(n, hashMap.get(n) + 1);
                 flag=true;
             }
-            System.out.println("change");
         }
 
         if (!flag) {

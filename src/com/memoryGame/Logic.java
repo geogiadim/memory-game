@@ -241,7 +241,6 @@ public class Logic {
                 winners++;
             }
         }
-        System.out.println("Num of winners: " + winners);
         for (int i=0; i < maxPlayers; i++ )
             System.out.println("Num of paired cards of "+ players[i].getName()+ ": " + players[i].getNumberOfPairs());
         return winners==1;
