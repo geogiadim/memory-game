@@ -237,21 +237,6 @@ class ScoresFIle implements Serializable{
             e.printStackTrace();
         }
 
-        //for wins
-        final String FILE_WINS_TXT = "Memory-Game-Wins.txt";
-        try (FileWriter writer= new FileWriter(FILE_WINS_TXT)){
-            for (String n : hashMap.keySet()){
-                writer.write(n);
-                String wins = String.valueOf(hashMap.get(n));
-                writer.write(wins);
-                writer.write("\n\n");
-                System.out.println("writer");
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
         if (GUIConnectionToLogic.getNumOfPlayers()>1) saveWinsToBinaryFile();
         saveToBinaryFile();
     }
