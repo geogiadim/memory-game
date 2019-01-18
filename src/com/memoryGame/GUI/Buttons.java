@@ -141,7 +141,8 @@ class Buttons {
             for (int i = 0; i < sizeX; i++) {
                 for (int j = 0; j < sizeY; j++) {
                     cards[i][j] = makeButton(String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]), WIDTH_CARD, HEIGHT_CARD, FONT_GAME);
-                    cards[i][j].setEnabled(false);
+                    cards[i][j].setEnabled(true);
+                    setOpenCardIcon(cards[i][j], String.valueOf(LETTERS[tableOfCards.getCardValue(i, j)]));
                 }
             }
         }
@@ -194,5 +195,18 @@ class Buttons {
             default:
                 break;
         }
+    }
+
+    /**
+     * Sets appropriate Icons to opened Card/Buttons.
+     *
+     * @param button The Button Object to add Icon
+     * @param letter The value of the Card/Button
+     */
+    private static void setOpenCardIcon(JButton button, String letter){
+        button.setOpaque(false);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setIcon(new ImageIcon("images/" + letter + ".png"));
     }
 }
