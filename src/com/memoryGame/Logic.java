@@ -51,20 +51,22 @@ public class Logic {
     private void createPlayers() {
         maxPlayers = GUIConnectionToLogic.getNumOfPlayers();
         players = new Player[maxPlayers];
-        if (maxPlayers > 0) {
-            CPU cpu = new CPU();
-        }
 
         if (mode == 4) {
             players[0] = new Player(GUIConnectionToLogic.getNameOfPlayer(0));
             if (GUIConnectionToLogic.isCPU(1))
-                players[1] = new CPUPlayer(GUIConnectionToLogic.getNameOfPlayer(1), GUIConnectionToLogic.getCPUDiff(1));
+                players[1] = new Player(GUIConnectionToLogic.getNameOfPlayer(1), GUIConnectionToLogic.getCPUDiff(1));
             else players[1] = new Player(GUIConnectionToLogic.getNameOfPlayer(1));
         }
         for (int i = 0; i < maxPlayers; i++) {
             if (GUIConnectionToLogic.isCPU(i)) {
-                players[i] = new CPUPlayer(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
+                players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i), GUIConnectionToLogic.getCPUDiff(i));
             } else players[i] = new Player(GUIConnectionToLogic.getNameOfPlayer(i));
+        }
+
+        if (GUIConnectionToLogic.getAreCPUPlaying()) {
+            if (mode == 4) CPU.init(tableOfCards, tableOfCards2, players);
+            else CPU.init(tableOfCards, players);
         }
     }
 
@@ -72,38 +74,36 @@ public class Logic {
      * This is the initialisation for the Basic and Double Game Modes Table and the transfer of it to the GUI.
      */
     private void basicDoubleGame() {
-        createPlayers();
-
         initTablePairs(1);
         shuffleTable(tableOfCards);
 
+        createPlayers();
+
         GUIConnectionToLogic.beginGamePlay(tableOfCards);
-        //GUI.array with results and game over
     }
 
     /**
      * This is the initialisation for the Triple Game Mode Table and the transfer of it to the GUI.
      */
     private void tripleGame() {
-        createPlayers();
-
         initTablePairs(3);
         shuffleTable(tableOfCards);
 
+        createPlayers();
+
         GUIConnectionToLogic.beginGamePlay(tableOfCards);
-        //GUI.array with results and game over*/
     }
 
     /**
      * This is the initialisation for the Duel Game Mode Tables and the transfer of them to the GUI.
      */
     private void duelGame() {
-        createPlayers();
-
         initDuelTable(tableOfCards);
         shuffleTable(tableOfCards);
         initDuelTable(tableOfCards2);
         shuffleTable(tableOfCards2);
+
+        createPlayers();
 
         GUIConnectionToLogic.beginGamePlayDuel(tableOfCards, tableOfCards2);
     }
@@ -117,14 +117,16 @@ public class Logic {
      */
     public boolean checkCards(int[] coordinatesX, int[] coordinatesY) {
         boolean state;
+
         int x1 = coordinatesX[0];
         int y1 = coordinatesY[0];
+
         int x2 = coordinatesX[1];
         int y2 = coordinatesY[1];
 
         if (mode == 4) {
-            if (tableOfCards.getCardValue(coordinatesX[maxPlayers-playerTurn-1], coordinatesY[maxPlayers-playerTurn-1]) == tableOfCards2.getCardValue(coordinatesX[playerTurn], coordinatesY[playerTurn])) {
-                tableOfCards.unableCard(coordinatesX[maxPlayers-playerTurn-1], coordinatesY[maxPlayers-playerTurn-1]);
+            if (tableOfCards.getCardValue(coordinatesX[maxPlayers - playerTurn - 1], coordinatesY[maxPlayers - playerTurn - 1]) == tableOfCards2.getCardValue(coordinatesX[playerTurn], coordinatesY[playerTurn])) {
+                tableOfCards.unableCard(coordinatesX[maxPlayers - playerTurn - 1], coordinatesY[maxPlayers - playerTurn - 1]);
                 tableOfCards2.unableCard(coordinatesX[playerTurn], coordinatesY[playerTurn]);
                 players[playerTurn].increaseNumOfTries();
                 players[playerTurn].increaseNumberOfPairs();
@@ -134,8 +136,7 @@ public class Logic {
                 state = false;
             }
             playerTurn = maxPlayers - playerTurn - 1;
-        }
-        else {
+        } else {
             if (tableOfCards.getCardValue(x1, y1) == tableOfCards.getCardValue(x2, y2)) {
                 tableOfCards.unableCard(x1, y1);
                 tableOfCards.unableCard(x2, y2);

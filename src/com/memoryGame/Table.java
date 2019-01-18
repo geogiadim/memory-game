@@ -1,5 +1,6 @@
 package com.memoryGame;
 
+import java.util.ArrayList;
 /**
  * This class creates a table with the cards of the game. There are some methods that handle the cards on the table.
  *
@@ -7,7 +8,7 @@ package com.memoryGame;
  * @author Giorgos Christidis
  */
 public class Table {
-    private Card[][] tableOfCards;
+    private ArrayList<ArrayList<Card>> tableOfCards;
     private int x;
     private int y;
 
@@ -18,15 +19,23 @@ public class Table {
      * @param y the number of columns of the table
      */
     public Table(int x, int y) {
-        tableOfCards = new Card[x][y];
+        tableOfCards = new ArrayList<>(x);
         this.x = x;
         this.y = y;
 
         for (int i = 0; i < sizeX(); i++) {
+            tableOfCards.add(new ArrayList<>());
             for (int j = 0; j < sizeY(); j++)
-                tableOfCards[i][j] = new Card();
+                tableOfCards.get(i).add(new Card());
         }
     }
+
+    /**
+     * Returns the table of the cards
+     *
+     * @return the table of the cards
+     */
+    ArrayList<ArrayList<Card>> getArrayTable(){return tableOfCards;}
 
     /**
      * Sets the value of the card
@@ -35,7 +44,7 @@ public class Table {
      * @param y the row on which the card is inserted
      * @param v the value of the card
      */
-    void setCardValue(int x, int y, int v) {tableOfCards[x][y].setValue(v);}
+    void setCardValue(int x, int y, int v) {tableOfCards.get(x).get(y).setValue(v);}
 
     /**
      * Returns the value of the card
@@ -44,7 +53,7 @@ public class Table {
      * @param y the row on which the card is inserted
      * @return the value of the card
      */
-    public int getCardValue(int x, int y) {return tableOfCards[x][y].getValue();}
+    public int getCardValue(int x, int y) {return tableOfCards.get(x).get(y).getValue();}
 
     /**
      * Sets the card as paired and makes it unable to be chosen again.
@@ -52,7 +61,7 @@ public class Table {
      * @param x the row on which the card is inserted
      * @param y the column on which the card is inserted
      */
-    void unableCard(int x, int y) {tableOfCards[x][y].setPairedTrue();}
+    void unableCard(int x, int y) { tableOfCards.get(x).get(y).setPairedTrue();}
 
     /**
      * Returns the number of rows of the table

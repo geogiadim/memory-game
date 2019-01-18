@@ -1,8 +1,16 @@
 package com.memoryGame.GUI;
 
+/**
+ * Enables the right TextFields and sets the correct Labels in Frame3 according to the state of RadioButtons in Frame2.
+ *
+ * @author Giorgos Giannios
+ */
 class ChecksForJComponents {
     private static int numberOfCPU = 0;
 
+    /**
+     * Checks Player Radio Button position and enables corresponding TextFields.
+     */
     static void checkForTextField() {
         if (RadioButtons.player[0].isSelected()) {
             TextField.textPlayerNames[0].setEnabled(true);
@@ -30,6 +38,10 @@ class ChecksForJComponents {
         }
     }
 
+
+    /**
+     * Checks CPU Radio Button position and changes corresponding TextFields.
+     */
     static void checkForTextField2() {
         if (RadioButtons.cpu[0].isSelected()) {
             TextField.playerLabel(0);
@@ -55,5 +67,11 @@ class ChecksForJComponents {
         }
     }
 
+
+    /**
+     * Getter to return the number of CPUs.
+     *
+     * @return Number of CPUs
+     */
     static int getNumberOfCPU() {return numberOfCPU;}
 }

@@ -146,7 +146,7 @@ class ScoresFIle implements Serializable{
     private void loadWinsFromBinaryFile() {
         try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(FILE_WINS_BIN)))){
             System.out.println(3);
-            while (true){
+            while (in.available()>0){
                 String n = in.readUTF();
                 int w= in.readInt();
                 hashMap.put(n,w);

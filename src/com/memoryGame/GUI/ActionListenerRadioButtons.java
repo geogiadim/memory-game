@@ -2,7 +2,16 @@ package com.memoryGame.GUI;
 
 import javax.swing.*;
 
+/**
+ * Adds actionListeners to all GUI Radio Buttons.
+ *
+ * @author George Giannios
+ */
 class ActionListenerRadioButtons {
+
+    /**
+     * Add actionListeners to Player and CPU choice Radio Buttons.
+     */
     static void addRadButActList() {
         for (int i = 0; i < RadioButtons.player.length; i++) {
             final int playerNo = i;
@@ -29,6 +38,11 @@ class ActionListenerRadioButtons {
         }
     }
 
+    /**
+     * Changes CPU and Difficulty Radio Button settings according to pressed Player Radio Button
+     *
+     * @param num The Player Radio Button number pressed
+     */
     private static void setRadioButtonsAndTextFields(int num) {
         for (int i = 0; i <= num; i++) {
             RadioButtons.cpu[i].setEnabled(true);
@@ -43,6 +57,9 @@ class ActionListenerRadioButtons {
         }
     }
 
+    /**
+     * Adds actionListeners to Yes and No Radio Buttons for Duel Game Mode.
+     */
     static void addRadButActListDuel() {
         RadioButtons.yesOrNo[1].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(true);
@@ -50,7 +67,6 @@ class ActionListenerRadioButtons {
             for (JRadioButton radioButton : RadioButtons.diffDuel) {
                 radioButton.setEnabled(false);
             }
-            RadioButtons.diffDuel[0].setSelected(true);
         });
         RadioButtons.yesOrNo[0].addActionListener(actionEvent -> {
             TextField.textPlayerNames[1].setEnabled(false);
@@ -58,6 +74,7 @@ class ActionListenerRadioButtons {
             for (JRadioButton radioButton : RadioButtons.diffDuel) {
                 radioButton.setEnabled(true);
             }
+            RadioButtons.diffDuel[0].setSelected(true);
         });
     }
 }

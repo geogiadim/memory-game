@@ -2,7 +2,15 @@ package com.memoryGame.GUI.i18n;
 
 import java.util.ListResourceBundle;
 
+/**
+ * Language Bundle for Labels in el_GR Locale.
+ *
+ * @author George Christidis
+ */
 public class MessageListBundleLabels_el_GR extends ListResourceBundle {
+    /**
+     * Translated contents of Resource Bundle in 2D Array.
+     */
     private Object[][] contents = {
             {"selectGM", "Επιλέξτε Κατηγορία Παιχνιδιού"},
             {"selectNumPlayers", "Επιλέξτε αριθμό Παικτών"},
@@ -26,6 +34,12 @@ public class MessageListBundleLabels_el_GR extends ListResourceBundle {
             {"drawResults", "Δεν υπάρχει νικητής."}
     };
 
+
+    /**
+     * Getter for translated Resource Bundle content.
+     *
+     * @return Resource Bundle content
+     */
     @Override
     protected Object[][] getContents() {
         return contents;

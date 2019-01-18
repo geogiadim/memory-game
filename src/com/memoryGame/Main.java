@@ -5,7 +5,7 @@ import com.memoryGame.GUI.GUI;
 import javax.swing.*;
 
 /**
- * This is the main Class of the project, initialising the GUI.
+ * This is the main Class of the project, initializes the GUI.
  *
  * @author Giorgos Christidis
  */

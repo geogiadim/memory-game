@@ -5,6 +5,11 @@ import java.awt.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Creates static JRadioButton Objects for use in GUI Frames.
+ *
+ * @author George Giannios
+ */
 class RadioButtons {
     //Font for Radio Buttons
     private final static Font FONT_RADIOBUTTON = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
@@ -19,6 +24,11 @@ class RadioButtons {
 
     private static ResourceBundle bundle;
 
+
+    /**
+     * Sets the Locale as the default OS Locale and if the corresponding Resource Bundle exists it is set accordingly
+     * else, the Locale is set to en_US and the Resource Bundle to the en_US one.
+     */
     static void setLocale() {
         //Locale locale = new Locale("el", "GR");
         Locale locale = Locale.getDefault();
@@ -30,6 +40,10 @@ class RadioButtons {
         }
     }
 
+
+    /**
+     * Creates Player number, CPU number and CPU difficulty Radio Buttons.
+     */
     static void setRadioButtons() {
         //Make 4 Player Number Radio Buttons
         player = new JRadioButton[4];
@@ -61,6 +75,9 @@ class RadioButtons {
         }
     }
 
+    /**
+     * Creates yes/no Radio Button for Duel Game Mode CPU selection.
+     */
     static void setRadioButtonsDuel() {
         //Make yes or no Radio Buttons
         yesOrNo = new JRadioButton[2];
@@ -73,6 +90,13 @@ class RadioButtons {
         diffDuel[2] = makeRadioButton(bundle.getString("hardRadioButton"));
     }
 
+
+    /**
+     * Creates a JRadioButton Object with specific properties from given parameters.
+     *
+     * @param name The RadioButton text
+     * @return a JRadioButton object
+     */
     private static JRadioButton makeRadioButton(String name) {
         JRadioButton radioButton = new JRadioButton(name);
         radioButton.setFocusPainted(false);

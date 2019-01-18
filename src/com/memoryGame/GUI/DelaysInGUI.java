@@ -3,10 +3,20 @@ package com.memoryGame.GUI;
 import com.memoryGame.Table;
 import javax.swing.*;
 
+/**
+ * Creates a delay to show a preview of the Card/Buttons for all Game Modes using Swing Timers.
+ *
+ * @author George Giannios
+ */
 class DelaysInGUI {
     private final static int PREVIEW_DELAY = 5;
     private static int timesDelayed = PREVIEW_DELAY;
 
+    /**
+     * Delay for normal(not Duel) Game Modes, after which the open Card/Buttons close.
+     *
+     * @param tableOfCards1 The Table of Card Objects to show.
+     */
     static void delayForPreview(Table tableOfCards1) {
         Labels.setTopMessagePreview();
         Labels.setBottomMessageCountdown(PREVIEW_DELAY);
@@ -25,6 +35,12 @@ class DelaysInGUI {
         timer.start();
     }
 
+    /**
+     * Delay for Duel Game Mode, after which the open Card/Buttons close.
+     *
+     * @param tableOfCards1 The first Table of Card Objects to show.
+     * @param tableOfCards2 The second Table of Card Objects to show.
+     */
     static void delayForPreview(Table tableOfCards1, Table tableOfCards2) {
         Labels.setTopMessagePreview();
         Labels.setBottomMessageCountdown(PREVIEW_DELAY);
@@ -44,5 +60,10 @@ class DelaysInGUI {
         timer.start();
     }
 
+    /**
+     * Returns the preview delay.
+     *
+     * @return The preview delay
+     */
     static int getPreviewDelay() {return PREVIEW_DELAY;}
 }

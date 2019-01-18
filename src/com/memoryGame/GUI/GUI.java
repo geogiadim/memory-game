@@ -7,7 +7,14 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
+ * Creates a JFrame for Game Mode selection, Player and CPU selection, Player Name selection and a JFrame for gameplay.
+ * Modifies all JFrames for normal(not Duel) Game Modes and for Duel Game Mode.
+ * Handles proper initiation of Components when they are needed.
+ * <p>
+ * Has setters and getters for JFrames and JPanels used in other GUI package Classes.
  *
+ * @author George Christidis
+ * @author George Giannios
  */
 public class GUI {
     private static JFrame frame, gameFrame;
@@ -15,17 +22,57 @@ public class GUI {
     private static JPanel messagePanel, gamePanel, playerPanel;
     private static int numOfFrame = 0, numOfDuelFrame = 0;
 
+    /**
+     * Returns the JFrame used in Game Mode selection, Player and CPU selection, Player Name selection.
+     *
+     * @return The JFrame in use
+     */
     static JFrame getFrame() {return frame;}
+    /**
+     * Returns the gameplay JFrame, where Card/Buttons are.
+     *
+     * @return The game JFrame in use
+     */
     static JFrame getGameFrame() {return gameFrame;}
+
+    /**
+     * Return the current JFrame number for normal(not Duel) Game Modes.
+     *
+     * @return The current jFrame number
+     */
     static int getNumOfFrame() {return numOfFrame;}
+    /**
+     * Return the current JFrame number for Duel Game Mode.
+     *
+     * @return The current Duel JFrame number
+     */
     static int getNumOfDuelFrame() {return numOfDuelFrame;}
+    /**
+     * Returns the top JPanel from gameplay Frame.
+     *
+     * @return Return the top JPanel
+     */
     private static JPanel getMessagePanel() {return messagePanel;}
+    /**
+     * Returns the gameplay JPanel for normal(not Duel) Game Modes.
+     *
+     * @return The gameplay JPanel
+     */
     static JPanel getGamePanel() {return gamePanel;}
+    /**
+     * Returns the appropriate gameplay JPanel for Duel Game Mode.
+     *
+     * @param isFirst If true, returns the first gameplay JPanel. If false, returns the second gameplay JPanel
+     * @return The gameplay JPanel
+     */
     static JPanel getGamePanelDuel(boolean isFirst){
         if (isFirst) return tablePanel1;
         else return tablePanel2;
     }
 
+    /**
+     * Calls all JComponents classed in GUI package to set Locale.
+     */
     private static void setLocale() {
         Buttons.setLocale();
         Labels.setLocale();
@@ -33,6 +80,11 @@ public class GUI {
         TextField.setLocale();
     }
 
+    /**
+     * sets the properties of a JFrame.
+     *
+     * @param frame a JFrame
+     */
     private static void setFrame(JFrame frame){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -41,6 +93,10 @@ public class GUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates a JFrame, sets its properties, sets appropriate Locale for all JComponents
+     * and loads the first JFrame with appropriate JComponents.
+     */
     public static void createGUI() {
         frame = new JFrame("Memory Game");
         setLocale();
@@ -60,6 +116,12 @@ public class GUI {
         setFrame(gameOverFrame);
     }
 
+
+    /**
+     * Sets JFrame in the middle of the screen.
+     *
+     * @param frame The JFrame to set in the middle of the screen
+     */
     private static void setFrameOnCenter(JFrame frame) {
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension d = t.getScreenSize();
@@ -68,16 +130,31 @@ public class GUI {
         frame.setLocation(x, y);
     }
 
+    /**
+     * Clears the given JFrame off JComponents and repaints it.
+     *
+     * @param frame The JFrame to clear
+     */
     static void clearFrame(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.getContentPane().repaint();
     }
 
+
+    /**
+     * Repaints and validates the top message Panel.
+     */
     static void repaintMessagePanel() {
         getMessagePanel().repaint();
         getMessagePanel().validate();
     }
 
+
+    /**
+     * Thw first JFrame containing Game Mode selection Buttons.
+     *
+     * @param pane The Container to add all JPanels
+     */
     static void frame1GameMode(Container pane) {
         numOfFrame = 1;
         numOfDuelFrame = 0;
@@ -99,6 +176,12 @@ public class GUI {
         pane.add(gmButtonsPanel, BorderLayout.CENTER);
     }
 
+
+    /**
+     * The second JFrame containing Player, CPU and CPU difficulty selection Radio Buttons.
+     *
+     * @param pane The Container to add all JPanels
+     */
     static void frame2PlayerChoice(Container pane) {
         numOfFrame = 2;
 
@@ -182,6 +265,11 @@ public class GUI {
         pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * The second JFrame, used in Duel Game Mode, to select Player names, CPU and CPU difficulty.
+     *
+     * @param pane The Container to add all JPanels
+     */
     static void frame2PlayerChoiceDuel(Container pane) {
         numOfDuelFrame = 2;
 
@@ -242,6 +330,11 @@ public class GUI {
         pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * The third JFrame containing Player name TextFields.
+     *
+     * @param pane The Container to add all JPanels
+     */
     static void frame3PlayersName(Container pane) {
         numOfFrame = 3;
         ChecksForJComponents.checkForTextField();
@@ -270,6 +363,12 @@ public class GUI {
         pane.add(Panels.backNextPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * The gameplay JFrame containing the Card/Buttons in a grid, top and bottom messages.
+     *
+     * @param pane         The Container to add all JPanels
+     * @param tableOfCards The Table of Card Object corresponding to the Card/Buttons used
+     */
     static void frame4GamePlay(Container pane, Table tableOfCards) {
         numOfFrame = 4;
 
@@ -290,6 +389,14 @@ public class GUI {
         ActionListenerButtons.addCardButtonsActList(tableOfCards);
     }
 
+
+    /**
+     * The gameplay Duel JFrame containing the two Card/Button groups in two grids, top and bottom messages.
+     *
+     * @param pane          The Container to add all JPanels
+     * @param tableOfCards1 The first Table of Card Object corresponding to the right group of Card/Buttons used
+     * @param tableOfCards2 The second Table of Card Object corresponding to the left group of Card/Buttons used
+     */
     static void frame3GamePlayDuel(Container pane, Table tableOfCards1, Table tableOfCards2) {
         numOfDuelFrame = 3;
 
@@ -349,12 +456,20 @@ public class GUI {
         }
     }
 
+    /**
+     * Creates the gameplay JPanel, the top and bottom message JPanels.
+     */
     private static void makeGamePlayPanels() {
         messagePanel = new JPanel();
         gamePanel = new JPanel();
         playerPanel = new JPanel();
     }
 
+    /**
+     * Adds the gameplay JPanel, the top and bottom message JPanels to the given Container.
+     *
+     * @param pane The Container to add all JPanels
+     */
     private static void setGamePlayPanes(Container pane) {
         pane.add(messagePanel, BorderLayout.PAGE_START);
         pane.add(gamePanel, BorderLayout.CENTER);
