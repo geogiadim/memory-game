@@ -12,6 +12,7 @@ import javax.swing.*;
  * Also handles Logic initialisation.
  *
  * @author George Giannios
+ * @author Giorgos Christidis
  */
 public class GUIConnectionToLogic {
     private static final int MESSAGE_DELAY = 2;

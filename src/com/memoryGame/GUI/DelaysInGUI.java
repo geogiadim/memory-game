@@ -7,6 +7,7 @@ import javax.swing.*;
  * Creates a delay to show a preview of the Card/Buttons for all Game Modes using Swing Timers.
  *
  * @author George Giannios
+ * @author Giorgos Christidis
  */
 class DelaysInGUI {
     private final static int PREVIEW_DELAY = 5;

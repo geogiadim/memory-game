@@ -6,6 +6,7 @@ import javax.swing.*;
  * Adds actionListeners to all GUI Radio Buttons.
  *
  * @author George Giannios
+ * @author Giorgos Christidis
  */
 class ActionListenerRadioButtons {
 

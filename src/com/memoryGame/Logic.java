@@ -168,6 +168,9 @@ public class Logic {
         return state;
     }
 
+    /**
+     * Creates an object from ScoresFile class
+     */
     public void createFile(){
         int index;
         //if multi player mode
@@ -191,12 +194,39 @@ public class Logic {
         }
     }
 
+    /**
+     * Returns the steps of the player
+     *
+     * @return the steps of the player
+     */
     public int getSteps(){return soloSteps;}
+
+    /**
+     * Returns true if exists a winner and false if does not
+     *
+     * @return true if exists a winner and false if does not
+     */
     public boolean getWinner(){return winner;}
+
+    /**
+     * Returns the name of the winner
+     *
+     * @return the name of the winner
+     */
     public String getName(){return name;}
 
+    /**
+     * Returns a ScoresFile object
+     *
+     * @return a ScoresFile object
+     */
     private ScoresFIle getFile(){return file;}
 
+    /**
+     * Returns true if exists a winner and false if does not
+     *
+     * @return true if exists a winner and false if does not
+     */
     private boolean isThereAWinner (){
         int winnerIndex=0;
         int winners=0;
@@ -217,7 +247,18 @@ public class Logic {
         return winners==1;
     }
 
+    /**
+     * Sets the index of the winner
+     *
+     * @param index the index of the winner
+     */
     private void setWinnerIndex(int index) {winnerIndex = index;}
+
+    /**
+     * Returns the winner's index
+     *
+     * @return the winner's index
+     */
     private int getWinnerIndex() {return winnerIndex;}
 
     /**
