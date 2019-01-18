@@ -207,13 +207,14 @@ public class CPU {
 
         int[] temp = new int[3];
 
-        for (int des = arrayListCPU.size() - 1; des >= 0; des--) {
+        for (int des = arrayListCPU.size() - 1; des >=0; des--) {
             temp[0] = arrayListCPU.get(des)[0];
             temp[1] = arrayListCPU.get(des)[1];
             temp[2] = arrayListCPU.get(des)[2];
             for (int asc = 0; asc < arrayListPlayer.size(); asc++) {
                 if (des == asc) break;
-                if (arrayListCPU.get(asc)[0] == arrayListPlayer.get(des)[0]) {
+                System.out.println(asc + " " +des);
+                if (arrayListPlayer.get(asc)[0] == arrayListCPU.get(des)[0]) {
                     temp[0] = arrayListCPU.get(asc)[0];
                     temp[1] = arrayListCPU.get(asc)[1];
                     temp[2] = arrayListCPU.get(asc)[2];
@@ -230,7 +231,6 @@ public class CPU {
         if (!foundPair) temp = chooseRandomCard(tableDuel2)[0];
         return temp;
     }
-
     private static int[][] chooseRandomCard(Table table) {
         int maxCards;
         int lastI = -1;
