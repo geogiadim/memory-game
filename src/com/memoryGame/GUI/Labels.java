@@ -163,8 +163,4 @@ class Labels {
     static void setBottomMessagePlayerTurn(int i) {
         bottomMessage.setText(bundle.getString("bottomPlayerTurn") + GUIConnectionToLogic.getNameOfPlayer(i));
     }
-
-    static void setTopMessageCPUPlaying(){
-        topMessage.setText("It is the CPU's turn");
-    }
 }
