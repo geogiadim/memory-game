@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 
 /**
- * This class receives the results of the game and creates the file with the higj scores
+ * This class receives the results of the game and creates the file with the high scores
  *
  * @author Giorgos Giannios
  */
@@ -198,7 +198,7 @@ class ScoresFIle implements Serializable{
      * Changes the high scores according to the results of the game
      */
     private void changeHighScores(){
-        if (false/*GUIConnectionToLogic.getNumOfPlayers()==1*/){
+        if (GUIConnectionToLogic.getNumOfPlayers()==1){
             if (steps <= Integer.parseInt(highScores[mode-1][3]) || fileNotExists || Integer.parseInt(highScores[mode-1][3]) == 0){
                 highScores[mode-1][1]= name;
                 highScores[mode-1][3]= String.valueOf(steps);
@@ -252,12 +252,7 @@ class ScoresFIle implements Serializable{
         }
 
 
-        if (true/*GUIConnectionToLogic.getNumOfPlayers()>1*/) saveWinsToBinaryFile();
+        if (GUIConnectionToLogic.getNumOfPlayers()>1) saveWinsToBinaryFile();
         saveToBinaryFile();
-    }
-
-    public static void main(String[] args) {
-        //ScoresFIle file = new ScoresFIle("giorgos",24,1);
-        ScoresFIle file = new ScoresFIle("allos",1,true);
     }
 }
